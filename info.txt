@@ -1,3 +1,15 @@
+…or create a new repository on the command line
+    echo "# React-16.6---The-Complete-Guide-incl.-React-Router-Redux-" >> README.md
+    git init
+    git add README.md
+    git commit -m "first commit"
+    git remote add origin https://github.com/nsdonato/React-16.6---The-Complete-Guide-incl.-React-Router-Redux-.git
+    git push -u origin master
+    
+…or push an existing repository from the command line
+    git remote add origin https://github.com/nsdonato/React-16.6---The-Complete-Guide-incl.-React-Router-Redux-.git
+    git push -u origin master
+
 ## SECCION 1 ##
 
 1. Introduction
@@ -65,3 +77,5 @@
     }
 
     ReactDOM.render(<Person name="Max" age="28"/>, document.querySelector('#p1')); 
+    ReactDOM.render(<Person name="Manu" age="29"/>, document.querySelector('#p2')); 
+
