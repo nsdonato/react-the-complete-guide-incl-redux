@@ -1,0 +1,67 @@
+## SECCION 1 ##
+
+1. Introduction
+2. What is React?
+
+    Que, como y porque:
+        Una libreria de JavaScript para crear interfaces de usuario (Componentes)
+        Corre en el navegador.
+        Podemos reusar componentes.
+
+3. Real-World SPAs & React Web Apps
+
+    Mas frula sobre componentes, nada interesante.
+
+4. Adding the Right React Version to Codepen
+
+    In the next lecture, we'll write our first React code in Codepen, an online editor (it's only getting used in the next lecture).
+    Currently, there seems to be a bug if you add React as shown in the next video.
+    To fix it, replace the automatically added import paths (you'll see what I mean) with these:
+        https://cdnjs.cloudflare.com/ajax/libs/react/15.6.1/react.min.js 
+        https://cdnjs.cloudflare.com/ajax/libs/react/15.6.1/react-dom.min.js 
+    This should fix. And don't worry about the React version, the entire rest of the course uses 16+ :)
+
+5. Writing our First React Code
+    
+    Crear una aplicación en Codepen.
+        
+        Cuando se repite un elemento pero tiene diferente información adentro, esto ya se puede entender como un componente.
+
+    - Importar React:
+        https://cdnjs.cloudflare.com/ajax/libs/react/15.6.1/react.min.js 
+
+    - Importar React DOM, la logica para crear los componentes en el DOM real.
+        https://cdnjs.cloudflare.com/ajax/libs/react/15.6.1/react-dom.min.js 
+
+    - Para utilizar las últimas caracteristicas de React --> Babel
+
+    // Tiene que comenzar con mayuscula para que funcione bien.
+    function Person(){
+        return (
+            <div className="person">
+                <h1>Max</h1>
+                <p>Your Age: 28</p>
+            </div>
+        );// Sintaxis JSX, para renderizar el DOM.
+    }
+
+    ReactDOM.render(<Person />, document.querySelector('#p1')); 
+
+    // el metodo render nos permite representar una función de JavaScript como componente del DOM real, y tratarlo como un componente.
+    // le decimos que renderice como html ese objeto Person.
+    // le decimos en donde queremos que se vea ese componente.
+
+    * las clases en el codigo html se tienen que escribir className en vez de class. Porque React renderiza ese html como un componente JavaScript (que usa la propiedad className)
+
+    // Le agrega un argumento que es propio de react
+    // los datos dinamicos se encierran entre { }
+     function Person(props){
+        return (
+            <div className="person">
+                <h1>{props.name}</h1>
+                <p>{props.age}</p>
+            </div>
+        );// Sintaxis JSX, para renderizar el DOM.
+    }
+
+    ReactDOM.render(<Person name="Max" age="28"/>, document.querySelector('#p1')); 
