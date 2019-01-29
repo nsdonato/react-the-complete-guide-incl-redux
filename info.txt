@@ -178,6 +178,156 @@
         NextJs, una libreria construida bajo react, donde contrustruimos nuestro propio flujo de trabajo, etc.
 
     
+10. How to get the Most out of This Course
+
+    Como sacarle provecho al curso:
+        Codificar solo.
+        Si algo no funciona, chequear contra su codigo.
+        Si estas atascado, usar lar parte donde se hacen las preguntas, primero buscar porque seguro alguien ya pregunto.
+        Practicar.
+
+11. Useful Resources & Links
+
+    Documentación de React: https://reactjs.org/
+    El codepen, hecho por él: https://codepen.io/anon/pen/MELQaQ
 
 
+### Sección: 2 - Refreshing Next Generation JavaScript (Optional) ###
+
+12. Module Introduction
+    Next-Gen Javascript, para refrescar. React usa esto, así que, hay que saber.
+
+13. Understanding "let" and "const"
+    let = var (cambia el tema del scope, porque ahora es de bloque.)
+    const = para info que no va a cambiar.
+
+14. Arrow Functions
+    antes:
+        function myFuncion() {
+            ...
+        } 
+
+    ahora:
+        const myFuncion = () => {
+            ...
+        }
+
+    * Arrow functions, mejoran el problema de que this, no siempre apuntaba al contexto de ejecución, sino al objeto global.
+    * Si no tiene parametros, va solo parentesis
+    * Si tiene uno, es param => 
+    * Si tiene mas de uno, es (param1,param2) =>
+    * Si la parte de retorno solo tiene una linea, se puede escribir así: const multiplicar = number => number * 2;
+
+15. Exports and Imports
+
+    Para codigo modular, para dividir los archivos js en varios archivos.
+        Si bien ya se puede (porque agregas diferentes archivos en el html, de manera ordenada)
+        Lo que pasa ahora es que desde un js, se puede usar info de otro js.
+
+    EXPORTAR
+        person.js
+            const person = {
+                name: 'Max'
+            } 
+            export default person
+
+            // export: sirve para exportar esa función, objeto, etc, desde un archivo.
+            // default: que esa funcion, obj, etc, va a ser la predeterminada.
+            // person: en este caso es el objeto 
+
+        utility.js
+            export const clean = () => { ... }
+            export const baseData = 10;
+
+    IMPORTAR
+        app.js
+            // Se pone de alguna de las dos maneras, ya que hace referencia a lo único que se exporto (default)
+
+                import person from './person.js' 
+                import prs from './person.js'   
+
+            // Al ser exportada como diferentes constantes, se usa las { }  para "mejorar el codigo", diciendo que se esta exportando algo especifico
+            // Tiene que respetar el nombre que se le puso en el archivo donde se la exporta obj
+            // se puede ponerle un alias, como en la segunda linea
+
+                import { baseData } from './utility.js' 
+                import { baseData as bd } from './utility.js' 
+
+            // También se podría hacer de esta manera.
+
+                import { baseData, clean } from './utility.js' 
+
+    
+16. Understanding Classes
+
+    - Los metodos son como: funciones atachados a esa clase/objetos,
+    - las propiedades son como: variables, atachadas a esa clase/objetos,
+
+    class Human {
+        constructor(){
+            this.gender = 'male';
+        }
+
+        printGender(){
+            consoe.log(this.gender);
+        }
+    }
+
+    // Herencia
+    class Person extends Human{
+        constructor(){
+            super();
+            this.name = 'Max';
+            this.gender = 'female'; // pero no es correcto usar así.
+        }
+        
+        printMyname (){
+            console.log(this.name);
+        }
+    }
+
+    // Instanciar un objeto de esa clase.
+    const miPersona = new Person();
+    miPersona.printMyname();
+    miPersona.printGender();    
+
+17. Classes, Properties and Methods
+
+    ES6
+        constructor() {
+            this.myProperty = 'value'
+        }
+
+        miMetodo () {
+            ...
+        }
+
+    ES7
+        myProperty = 'value'; // Si, no hay un "constructor" en si.
+
+        miMetodo = () => {
+            ...
+        }
+        
+    * Es mejor usar ambos opciones de ES7, para esto si o si hay que usar ES6/Babel.
+
+18. The Spread & Rest Operator  
+
+    // Spread
+    ...
+
+    
+
+19. Destructuring
+
+20. Reference and Primitive Types Refresher
+
+21. Refreshing Array Functions
+
+22. Wrap Up
+
+23. Next-Gen JavaScript - Summary
+    next-gen-js-summary.pdf
+
+24. JS Array Functions
 
