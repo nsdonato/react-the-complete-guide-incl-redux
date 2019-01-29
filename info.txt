@@ -79,3 +79,105 @@
     ReactDOM.render(<Person name="Max" age="28"/>, document.querySelector('#p1')); 
     ReactDOM.render(<Person name="Manu" age="29"/>, document.querySelector('#p2')); 
 
+    En vez tener un elemento div con la clase p1, ahora solo vamos a tener uno con id Apps
+    HTML:
+    <div id="app"></div>
+
+    JS:
+     function Person(props){
+        return (
+            <div className="person">
+                <h1>{props.name}</h1>
+                <p>{props.age}</p>
+            </div>
+        );// Sintaxis JSX, para renderizar el DOM.
+    }
+
+    var app = (
+         <div>
+            <Person name="Max" age="28" />
+            <Person name="Manu" age="29" />
+         </div>
+    );
+
+    // En vez de tener dos elementos, tengo uno solo que tenga los 2.
+     ReactDOM.render(<app/>, document.querySelector('#app')); 
+
+     * Este es el mejor modo para crear SAP. Single Page Applications.
+
+6. Why should we choose react?
+
+    Porque en aplicaciones grandes es dificil de manejar el ESTADO.
+    Aparte si tenes que cambiar los elementos de lugar y puede que tengas que cambiar cosas y estas usando querySelector.
+     
+    React nos permite enfocarnos en nuestra logica de negocios, envitando que nuestr app explote.
+    Supuestamente como React tiene una comunidad zarpada, el codigo es excelente.
+    Aparte de tener un gran ecosistema, comunidad activa y alta performance.
+
+7. React alternatives.
+
+    Angular y Vue.js
+        Te sirve para enforcarte en la logica y en el modelo de negocio, y no tanto en el aspecto del elemento en particular que querías cambiar (cmo en react)
+
+8. Understanding Single Page Applications and Multi Page Applications.
+
+    SAP:
+         Solo recuperamos un solo archivo html, el contenido es renderizado en el cliente.
+         Esta construidda por componentes, y cada componente es un componente React, también es mantenida por un componente root de React, que esta bajo el cotnrol de React.
+         Tipicalmente tenemos una llamada reactDOM.render(), se necesita una sola porque tenemos un componente raiz, que esta montado en el DOM que tiene todo el resto de componentes.
+
+    MPA:
+        Recuperamos varias paginas determinadas, donde cada pagina tiene el contenido para una ruta determinada, y el contenido es renderizado en el servidor.
+        Algunas partes de la pagina son componentes React.
+        Los widgets individuales no conocen la existencia de otros.
+        Vamos a tener varios reactDOM.render para los diferentes componentes, en difernetes lugares de la app.
+
+9. Course outline.
+
+     Getting started.
+        Usar JavaScript moderno porque mantiene limpio y es un estandar para react, funciones de flechas y esas cosas.
+    
+    React basics.
+        Como crear componentes reacts, ver las diferentes maneras que hay de hacerlo y como comunicarse entre componentes.
+        Como podemos generar listas, o como podemos presentar contenido de forma condicional.
+
+    Debug
+        Como debuggear react.
+
+    Styling componentes 
+        Como darle estilo a los componentes y como podemos asegurarnos de que el estilo que aplicamos a un componente, solo se aplique a ese componente y no a todos.
+
+    Componentes Deep Dive
+        Pronfudización en los componentes, ya que tendremos mucho conocimiento de ellos, vamos a aprender cual es su ciclo de vida.
+        Como comprobar actualizaciones a menudo o no.
+
+    HTTP Request
+        Como conectarla con el mundo exterior, como obtener datos de un servidor o subirlos al servidor.
+
+    Routing.
+        Es una caracteristica del Core de las SAP, porque con routing, podemos manejar diferentes urls, /productos /usuarios  diferentes paginas, aunque tengamos un solo HTML, y en realidad
+        lo que hacemos es analizar la url y renderizar las diferentes partes que necesitamos, para mostrar "una nueva pagina".
+    
+    Forms and validation.
+        validación de entrada de datos de los usuarios, etc.
+
+    Redux
+        es una biblioteca de terceros pero se usa muchisimo con react.
+        acciones asincronas, etc.
+
+    Authentication
+        login de usuario.
+
+    Testing
+         Introducción a como probar app de react.
+
+    Deployment
+        Como publicar en producción
+
+    Bonus: aplicaciones de react animadas, ubicación de reactores, webpack, etc.
+        NextJs, una libreria construida bajo react, donde contrustruimos nuestro propio flujo de trabajo, etc.
+
+    
+
+
+
