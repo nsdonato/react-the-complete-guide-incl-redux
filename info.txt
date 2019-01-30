@@ -372,21 +372,430 @@
         console.log(nombre); // Noe
         console.log(apellido); // Donato
 
+        const numbers = [1,2,3];
+        [num1, num2] = numbers;
+        console.log(num1,num2); // 1 2
+
+        [num1, ,num3] = numbers;
+        console.log(num1,num3); // 1 3
+
     object:
         { name } = { name: 'Noe', age: '32' };
         console.log(name); // Noe
         console.log(age); // undefined
 
-         
-      
 20. Reference and Primitive Types Refresher
+
+    Primitivos
+    * Copia el valor de su variable en otra, osea hay 2.
+    number, boolean, string
+
+    Referencia
+    * No copia, sino que hace referencia al puntero en memoria del otro objeto.
+    Object, arrays.
+
+        const person = {
+            name: 'Max'
+        };
+        const secPerson = person;
+        person.name = 'Manu';
+
+        console.log(secPerson); // 'Manu'
+
+    Para copiar un objeto, o sea generar uno nuevo, deberíamoshacer:
+        const person = {
+            name: 'Max'
+        };
+        const secPerson = {
+            ...person
+        };
+        person.name = 'Manu';
+
+        console.log(secPerson); // 'Max'
 
 21. Refreshing Array Functions
 
+    const numbers = [1,2,3];
+
+    // La función se va a ejecutar por cada elemento
+    // Al parametro le ponemos num, porque esta recorriendo numeros, como para ser claros.
+    const numbers = [1,2,3];
+    const doubleNumArray = numbers.map((num) => num * 2 );
+    console.log(doubleNumArray); // [2,4,6]
+
 22. Wrap Up
 
-23. Next-Gen JavaScript - Summary
-    next-gen-js-summary.pdf
+    Basicamente que cualquier cosa, se puede volver a esas clases para refrescar por si te olvidaste algo.
 
+23. Next-Gen JavaScript - Summary
+
+    jajaj me la pase resumiendo y lo hizo acá!! lpm 
+
+    Descargar el pdf o en mi caso ver:
+        file:///C:/Users/Noe/Downloads/next-gen-js-summary.pdf
+        
 24. JS Array Functions
 
+    En realidad, no la próxima generación de JavaScript, pero también es importante: un arreglo de funciones de JavaScript, como map() , filter() , reduce()  etc.
+    Me verás usarlos bastante ya que muchos conceptos de React se basan en trabajar con arreglos (de manera inmutable).
+
+    La siguiente página ofrece una buena descripción general de los diversos métodos que puede utilizar en el prototipo de matriz. No dude en hacer clic en ellos y actualizar sus conocimientos según sea necesario:  
+         https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array
+         
+    Particularmente importantes en este curso son:
+
+    map()  =>  https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map
+    find()  =>  https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/find
+    findIndex()  =>  https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/findIndex
+    filter()  =>  https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter
+    reduce()  =>  https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce?v=b
+    concat()  =>  https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/concat?v=b
+    slice()  =>  https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice
+    splice()  =>  https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice
+
+### Sección 3 - Understanding the Base Features & Syntax ###
+
+25. Module Introduction
+
+    Que es, como usarlo, nuestra primera app react, conceptos generales, sintaxis basicas, etc.
+
+26. The Build Workflow
+
+                Recomendado para SPA y MPAs
+
+    Porque?     
+            - Optimización de codigo en grandes apps, para tener también el menor codigo postible, considerando el peso de las app también.
+
+            - Usar nex-gen JS. Mejoramos como desarrolladores, y funcionan mejor las app, porque basicamente usar esto es "comprometerse con las mejores practicas"
+                Como no en todos los browsers se soporta esto, se debe usar un flujo de trabajo diferente, para poder compilar next-gen javascript y usarlo.
+
+            - Ser mas productivo. 
+                Incluir, auto-prefixing de CSS. 
+                Linting: una herramienta que te dice si estas escribiendo mal codigo o podes hacer mas optimo algún codigo especifico.
+    
+    Como?       
+            - Gestor de dependencias: npm o yarn (3ty parth libraries)
+            - Bundler "Controlador", recomendado: webpack
+                Para escribir codigo modular, para tener una tarea/enfoque claro y nos resulte mas facil de mantener y administrar.
+            - Compilador (para next-gen), recomendado: Babel + presets
+            - Un Web Server de desarrollo. 
+            
+    * Nos va a enseñar una herramienta de desarrollo que hace todo esto menos engorroso y no tenemos qe andar configurando todo, es una herramienta que generó el equipo de React de facebook.
+    * En otro modulo enseña como hacer una desde 0 igual.
+
+27. Using Create React App
+
+    Es la herramienta recomendada para crear proyectos de React. "Create React App"
+
+    - Instalar Node JS.
+    > npm install -g create-react-app // Instalar globalmente, para poder llamarla desde cualquier lado.
+    > create-react-app
+    > cd react-guia-completa
+    > npm start
+
+28. Understanding the Folder Structure
+    ide-setup.pdf
+
+    package.json
+        Donde estan las dependencias y los diferentes scripts que podemos ejecutar para correr diferentes tareas.
+
+    node_modules
+        Donde estan las dependencias de cada paquete, y los paquetes en si
+    
+    public
+        Es la carpeta raiz, donde van a estar todos los archivos que se le sirven al cliente.
+        
+        index.html 
+            Es la única que tenemos y la única que vamos a tener. NUNCA TENEMOS QUE AGREGAR PAGINAS.
+            Si es una MPA, el Workflow va a tener que ser diferente.
+            Si queremos agregar otro css, va ahí.
+            No metamos html dentro del html
+        
+        manifest.json
+            Nos brinda una aplicación web progresiva, lista para usar.
+
+    scr
+        Ahí van los archivos que podemos editar.
+
+        index.js
+            obtiene acceso al elemento raiz de nuestro DOM del arch html, para que dentro del elemento con id="root" se renderice nuestra aplicación react.
+        
+        App.js 
+            Actualmente ahí tenemos nuestro primer componente.
+    
+        registerServiceWorker.js
+            Es importante para registrar un service worker,  que es generado automaticamente, relacionado a la PWA
+            Basicamente, pre-cachea los archivos scripts.
+
+        App.test.js
+            Nos permite crear pruebas unitarias para los diferentes componentes en nuestra app.
+
+    - Eliminar el logo de react.svg y la linea que importa el logo.
+    - Eliminar del archivo css, todo menos la parte de .App
+    
+
+29. Understanding Component Basics
+    Descargar pdf o file:///C:/Users/Noe/Downloads/components-learning-card.pdf
+
+    index.js
+        import React from 'react';
+        import ReactDOM from 'react-dom';
+        import './index.css';
+        import App from './App';
+        import * as serviceWorker from './serviceWorker';
+
+        // Siempre vamos a tener un elemento donde van a estar todos los componentes
+        // y que lo vamos a renderizar en un id x ej root.
+        ReactDOM.render(<App />, document.getElementById('root'));
+
+    app.js
+        import React, { Component } from 'react';
+        import './App.css';
+
+        class App extends Component {
+            render() {
+                return (
+                    <div className="App">
+                        <h1>Hola, soy una App React</h1>
+                    </div>
+                );
+            }
+        }
+
+        export default App;
+
+    - Para definir un componente, hay 2 maneras.
+        1) 
+            1.1) Creamos una clase y lo hacemos heredar de Component, 
+                 que se importa de la libreria de react.
+                 React, se importa porque es necesario para renderizar el componente y el objeto componente.
+            1.2) el metodo render() 
+                    sirve para renderizar JSX en la pantalla.
+
+        2)
+    - 
+
+    * Por lo general cuando se elige el nombre de un componente, se usa ese nombre para la variable a importar, para el archivo y para el elemento.
+    * Los archivos también podrían llamarse JSX, pero se usa js por convención.
+        JSX en realidad es lo que llaman syntactic sugar. Es una sintaxis dentro de un lenguaje de programación, diseñado para ser mas facil de leer o expresarse.
+        Es como "mas dulce para que lo use una persona"
+
+30. Understanding JSX
+
+    class App extends Component {
+        render() {
+            // Podemos usar el objeto de React para crear un elemento.
+            // createElement, toma infinitos argumentos, pero el primero es o un elemento o un componente.
+            // 2 arg: puede ser un objeto, aunque es opcional, por lo tanto pasamos null
+            // 3 arg, los hijos: a partir de ese, van separados por comas, y basicamente s todo lo que va a ir, adentro del primer arg, el div en este caso.
+                1 linea: como el comportamiento por default es tomar todo por texto, va a imprimir en pantalla, h1Iamreactapp, 
+                2 lines: así que hay que usar otro react.createelement...
+                3 linea: Para pasarle estilo
+
+            //return React.createElement('div', null, 'h1','I\'m a React App!!!!');
+            //return React.createElement('div', null, React.createElement('h1',null,'I\'m a React App!!!!'));
+            return React.createElement('div', { className: 'App'}, React.createElement('h1',null,'I\'m a React App!!!!'));
+
+        }
+    }
+
+    * NO SE USA CREAR LOS ELEMENTOS ASÍ, es para que sepamos que existe esto y no es lo correcto.
+    Para eso se genera el "HTML, que en realidad es JSX" = javascript.
+
+31. JSX Restrictions
+
+    Como en realidad el html que vemos es JSX, podemos usar palabras claves y no las de html, como className, en el elemento.
+    No podemos devolver elementos que no tienen un padre.
+    Es buena practica, es meter todo dentro de un contenedor a devolver.
+
+32. Creating a Functional Component
+
+    src/Person/Person.js
+    vamos a crear un componente.
+    La gran mayor cantidad de tiempo los componentes se crean como el de app, pero por lo general son solo funciones
+    Importamos en el archivo app, el nuevo componente, y lo agregamos al retorno.
+    <Person /> // lo podemos dejar así ya que no tenemos que nest nada adentro.
+
+
+33. Components & JSX Cheat Sheet
+    Descargar pdf o file:///C:/Users/Noe/Downloads/components.Pronfudización
+
+    Los componentes son el componente básico de las aplicaciones React . En realidad, React realmente es solo una biblioteca para crear componentes en su núcleo.
+
+    Por lo tanto, una aplicación React típica podría representarse como un árbol de componentes : tiene un componente raíz ("Aplicación") y luego una cantidad potencialmente infinita de componentes secundarios anidados.
+    Cada componente debe devolver / generar algún  código JSX ; define qué código HTML React debe procesar al DOM real al final.
+    JSX NO es HTML pero se parece mucho a eso. Sin embargo, se pueden ver las diferencias cuando se mira de cerca (por ejemplo, className en JSX vs class en "HTML normal"). JSX es solo azúcar sintáctica para JavaScript, lo que le permite escribir código HTML en lugar de llamadas React.createElement (...) anidadas.
+    Al crear componentes, puede elegir entre dos formas diferentes:
+
+    Componentes funcionales (también conocidos como componentes de "presentación", "tontos" o "sin estado"; más información sobre esto más adelante en el curso) =>  const cmp = () => { return <div>some JSX</div> } (se recomienda usar las funciones de flecha de ES6 como se muestra aquí, pero es opcional)
+    componentes basados ​​en clase (también conocidos como componentes "contenedores", "inteligentes" o "con estado") => class Cmp extends Component { render () { return <div>some JSX</div> } } 
+    Por supuesto, nos sumergiremos en la diferencia a lo largo de este curso. Ya puede notar que debe usar 1) con la mayor frecuencia posible. Es la mejor práctica.
+
+34. Working with Components & Re-Using Them
+
+    Trabajar componentes en archivos separados, hace que el codigo sea mas mantenible.
+    Aparte se lo puede configurar y reutilizar.
+    return (
+        <div className="App">
+          <h1>Hola, soy una App React</h1>
+          <Person />
+          <Person />
+          <Person />
+        </div>
+    ); 
+
+    * Esto no es dinamico, así que en el proximo vamos a ver como hacerlo..
+
+35. Outputting Dynamic Content
+
+    Para que el js, no sea interpretada como texto, se debe usar ${js que quiera}
+        return <p>Soy una persona and I am {Math.floor(Math.random() * 30)} years old! </p>
+
+    Esto se usa para simples calculos o llamadas a funciones, pero nada mas, debería ser solo una linea de codigo
+
+36. Working with Props
+    Descargar pdf o file:///C:/Users/Noe/Downloads/props-learning-card.pdf
+
+     return (
+        <div className="App">
+          <h1>Hola, soy una App React</h1>
+          <Person name="Max" age="28"/>
+          <Person name="Manu" age="29"/>
+          <Person name="Noe" age="32"/>
+        </div>
+    ); 
+
+    Person.js
+        const person = (props) => {
+            return <p>Hola! Soy {props.name} y tengo {props.age} años! </p>
+        }
+
+    Cuanto se usa en una clase-componente (como app), se tiene que usar this.props
+
+37. Understanding the Children Property
+    en esta carpeta: base-syntax--01-props-custom-cmp.zip
+
+    <div>
+        <p>I'm {props.name} and I am {props.age} years old!</p>
+        <p>{props.children}</p>
+    </div>
+
+    Si queremos pasar algo entre la etiqueta de apertura y cierre, tenemos que envolver eso en un elemento padre y usar children.
+
+    <div className="App">
+        <h1>Hola, soy una App React</h1>
+        <Person name="Max" age="28"/>
+        <Person name="Manu" age="29">My hobbies: Racing</Person>
+        <Person name="Noe" age="32"/>
+    </div>
+
+38. Understanding & Using State
+
+    <button>Cambiar de nombre</button>
+
+    State:
+        - SOLO SE PUEDE USAR: En las clases-componentes
+        - es una propiedad especial, donde se establecen y pasan props desde afuera como name, age etc, y que se gestionan dentro del componente.
+            Si cambiamos algo que use esta propiedad, va a renderizar nuevamente el dom/componente.
+
+        Se inicializa como un objeto.
+            state = {}
+        Se le pueden agrengar, array objetos:
+            state = {
+                persons: [
+                    { name: 'Noe', age: 32 },
+                    { name: 'Gabu', age: 29 },
+                    { name: 'Nany', age: 33 },
+                ]
+            }
+
+        Una vez que hacemos esto, la podemos usar en nuestro metodo dinamico.
+
+        <div className="App">
+          <h1>Hola, soy una App React</h1>
+          <button>Cambiar de nombre</button>
+          <Person name={this.state.persons[0].name} age={this.state.persons[0].age}/>
+          <Person name={this.state.persons[1].name} age={this.state.persons[1].age}>My hobbies: Racing</Person>
+          <Person name={this.state.persons[2].name} age={this.state.persons[2].age}/>
+        </div>
+
+    
+39. Props & State
+    file:///C:/Users/Noe/Downloads/props-state.pdf
+
+    props  y state  son los conceptos CORE de React. En realidad, solo se realizan cambios props  y / o se state  activa React para volver a renderizar sus componentes y potencialmente actualizar el DOM en el navegador (en la sección 6 se proporciona una descripción detallada de cómo React verifica si se debe tocar realmente el DOM real).
+    Props
+        props  le permite pasar datos de un componente principal (ajuste) a un componente secundario (incorporado).
+
+    Ejemplo:
+        AllPosts Component:
+            const posts = () => {
+                return (
+                    <div>
+                        <Post title="My first Post" />
+                    </div>
+                );
+            }
+
+        Aquí title  está la propiedad personalizada ( prop ) configurada en el Post  componente personalizado . Básicamente, replicamos el comportamiento del atributo HTML predeterminado que ya conocemos (por ejemplo, <input type="text">  le informamos al navegador acerca de cómo manejar esa entrada).
+
+        Post Component:
+            const post = ( props ) => {   
+                volver ( 
+                    <div>
+                        <h1> { props . título } </ h1 >
+                    </ div >
+                );
+            }
+
+        El Post  componente recibe el props  argumento. Por supuesto, puede nombrar este argumento como desee: es la definición de su función, ¡a React no le importa! Pero React pasará un argumento a su función de componente => Un objeto, que contiene todas las propiedades que configuró <Post ... /> .
+        {props.title}  luego genera dinámicamente la title  propiedad del props  objeto, que está disponible ya que configuramos la title  propiedad dentro del AllPosts  componente (ver arriba).
+
+
+    Estado
+        Mientras que los accesorios le permiten pasar datos al árbol de componentes (y, por lo tanto, desencadenar una actualización de la interfaz de usuario), el estado se usa para cambiar el componente, bueno, el estado desde dentro. Los cambios en el estado también activan una actualización de la interfaz de usuario.
+
+    Ejemplo:
+        NewPost Component:
+            ¡La clase NewPost extiende el Componente { // estado solo se puede acceder en los componentes basados ​​en clase!     
+            
+            class NewPost extends Component { // state can only be accessed in class-based components!
+                state = {
+                    counter: 1
+                };  
+            
+                render () { // Needs to be implemented in class-based components! Needs to return some JSX!
+                    return (
+                        <div>{this.state.counter}</div>
+                    );
+                }
+            }
+
+        Aquí, el NewPost  componente contiene state . Solo los componentes basados ​​en clases pueden definir y usar state .    Por supuesto, puede pasar state  a componentes funcionales, pero estos no pueden editarlo directamente.
+        state  Simplemente es una propiedad de la clase de componente, state  aunque debe llamarlo , el nombre no es opcional. Luego, puede acceder a él a través this.state  de su código JSX de clase (que devuelve en el render()  método requerido ).
+        Cada vez que state  cambia (se enseña en las próximas conferencias), el componente se volverá a representar y reflejará el nuevo estado. La diferencia props  es que esto sucede dentro de un mismo componente: ¡no recibe datos nuevos ( props ) de fuera!
+
+40. Handling Events with Methods
+
+41. To Which Events Can You Listen?
+
+42. Manipulating the State
+    state-learning-card.pdf
+
+43. Functional (Stateless) vs class (Stateful) Components
+
+44. Passing Method References Between Components
+    base-syntax--02-state-events.zip
+
+45. Adding Two Way Binding
+
+46. Adding Styling with Stylesheets
+
+47. Working with Inline Styles
+    Tarea 1: Time to Practice - The Base Syntax
+
+48. Useful Resources & Links
+    base-syntax--01-props-custom-cmp.zip
+    base-syntax--02-state-events.zip
+    base-syntax--03-finished.zip
+    base-syntax--assignment-solution.zip
