@@ -313,13 +313,72 @@
 
 18. The Spread & Rest Operator  
 
-    // Spread
+    // Operator Spread o Rest (depende de donde se use)
     ...
 
+    Spread: (división de las propiedades de un objeto o un array.)
+
+            Se usa para dividir elementos de un array o propiedades de un objeto.
+            Por ejemplo, si tenemos una matriz antigua y queremos agregar todos los elementos de esa matriz anterior a una nueva matriz y,
+            además, agregar un 1 en un elemento dos, este primer índice sería lo que tenía tres puntos delante
+            de toda la matriz. simplemente extraiga todos los elementos y agregue a la nueva matriz que
+            creamos con corchetes.
+
+            // Idem object pero array
+                const oldArray = [3,4,5];
+                const newArray = [...oldArray,1,2];
+                console.log(newArray);
+                // 3,4,5,1,2
+
+            // Lo probé, lo que hace es agarrar las propiedades/funciones del objeto viejo, y ponerselo al nuevo y suma la nueva prop/func.
+            const oldObject = {
+                name: "Noe";
+            }
+
+            const newObject = { ...oldObject, newProp: 5 }
+            console.log(newO)
+    Rest: (Fusión de elementos en un array)
+          
+          Se utiliza con menos frecuencia.
+
+          Se usa para mergear una lista de argumentos de funciones en una matriz.
+          O sea, lo usamos en el parametro de una función. ej:
+
+          // Recibe una lista ilimitada de argumentos, y todos se fusionan en un array.
+          // O sea, en vez de dividir, los une.
+          function sortArgs(...args){
+              return args.sort[]; 
+          }
+
     
+    
+    * Hay que tener en cuenta que si el numero o propiedad / funcion, ya existia en el objeto actual, lo sobreescribe.
+    
+    array.filter()  // ejecuta una función en cada elemento de la matriz y se verifica si existe un elemento en ella, ej:
+    const filter = (...args) => {
+        return args.filter(el => el === 1);
+    }
+
+    console.log(filter(1,2,3));
+    // [1]
 
 19. Destructuring
 
+    Permite extraer facilmente elementos de una matriz o propiedades de objetos y guardarlos en variables.
+    ej:
+
+    array:
+        [nombre, apellido] = ['Noe','Donato'];
+        console.log(nombre); // Noe
+        console.log(apellido); // Donato
+
+    object:
+        { name } = { name: 'Noe', age: '32' };
+        console.log(name); // Noe
+        console.log(age); // undefined
+
+         
+      
 20. Reference and Primitive Types Refresher
 
 21. Refreshing Array Functions
