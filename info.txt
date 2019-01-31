@@ -960,16 +960,73 @@
 
 43. Functional (Stateless) vs class (Stateful) Components
     
-    La mayoria de las veces vamos a usar funciones stateless, las que reciben props.
-    
-    La mayor parte de la app, no debería cambiar el estado de la aplicación, se supone que solo va a cambiar en ciertos componentes,
-        conocidos como "contenedores" ej app.js
-    
+    Functional (Stateless)
+        La mayoria de las veces vamos a usar funciones stateless, las que reciben props.
+        Solo renderizan cosas al DOM, son dinamicos, pueden tener logica, pero no manipulan el estado de la aplicación.
 
+
+    Class (Stateful) Components 
+        La mayor parte de la app, no debería cambiar el estado de la aplicación, se supone que solo va a cambiar en ciertos componentes,
+            conocidos como "contenedores" ej app.js
+    
+    * Vamos a ver como se puede cambiar el estado desde otro componente.
+    
 44. Passing Method References Between Components
     base-syntax--02-state-events.zip
 
+    No se puede pasar un manejador de eventos de un archivo a otro, así que se puede pasar como propiedad. props.
+    
+    Esto es un patrón comun:
+        Le pasamos el eventHandler por propiedad. 
+        El nombre de la prop es el que nosotros queramos.
+        Se lo pasamos por "referencencia"
+
+    App.js
+        <div className="App">
+            <button onClick={this.switchNameHanlder}>Cambiar de nombre</button>
+            <Person 
+                name={this.state.persons[2].name} 
+                age={this.state.persons[2].age}
+                click={this.switchNameHanlder}/>
+        </div>
+
+    Person.js
+        <p onClick={props.click}>I'm {props.name} and I am {props.age} years old!</p>
+        
+    También podemos pasarle datos al evento:
+
+        1) Pasado un argumento, con bind
+
+            switchNameHanlder = (newName) => {
+                this.setState({
+                persons: [
+                    { name: newName, age: 32 },
+                    ]
+                })
+            }
+
+            <button onClick={this.switchNameHanlder.bind(this,'Maximilian!!')}>Switch Name</button>
+
+            <Person
+                name={this.state.persons[1].name}
+                age={this.state.persons[1].age}
+                click={this.switchNameHanlder.bind(this, 'Max!')}>
+                My Hobbies: Racing
+            </Person>
+
+        2) Con una arrow function
+            
+            <button onClick={() => this.switchNameHanlder()}>Switch Name</button>
+        
+        * Recomienda usar la primera porque con la segunda puede que react, renderce cosas innecesarias. 
+            PUEDE SER INEFICIENTE.
+
 45. Adding Two Way Binding
+
+    Agrega un input en person, para reflejar lo que el usuario escribe ahí.
+    Agrega un nuevo handler nameChangedHandler, solo va a cambiar el nombre de uno solo porque no aprendimos LISTAS todavía.
+    
+
 
 46. Adding Styling with Stylesheets
 
