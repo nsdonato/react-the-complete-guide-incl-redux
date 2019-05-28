@@ -24,7 +24,7 @@
 
     Mas frula sobre componentes, nada interesante.
 
-4. Adding the Right React Version to Codepen
+    Adding the Right React Version to Codepen
 
     In the next lecture, we'll write our first React code in Codepen, an online editor (it's only getting used in the next lecture).
     Currently, there seems to be a bug if you add React as shown in the next video.
@@ -33,7 +33,7 @@
         https://cdnjs.cloudflare.com/ajax/libs/react/15.6.1/react-dom.min.js 
     This should fix. And don't worry about the React version, the entire rest of the course uses 16+ :)
 
-5. Writing our First React Code
+4. Writing our First React Code
     
     Crear una aplicación en Codepen.
         
@@ -105,7 +105,7 @@
 
      * Este es el mejor modo para crear SAP. Single Page Applications.
 
-6. Why should we choose react?
+5. Why should we choose react?
 
     Porque en aplicaciones grandes es dificil de manejar el ESTADO.
     Aparte si tenes que cambiar los elementos de lugar y puede que tengas que cambiar cosas y estas usando querySelector.
@@ -114,12 +114,12 @@
     Supuestamente como React tiene una comunidad zarpada, el codigo es excelente.
     Aparte de tener un gran ecosistema, comunidad activa y alta performance.
 
-7. React alternatives.
+6. React alternatives.
 
     Angular y Vue.js
         Te sirve para enforcarte en la logica y en el modelo de negocio, y no tanto en el aspecto del elemento en particular que querías cambiar (cmo en react)
 
-8. Understanding Single Page Applications and Multi Page Applications.
+7. Understanding Single Page Applications and Multi Page Applications.
 
     SAP:
          Solo recuperamos un solo archivo html, el contenido es renderizado en el cliente.
@@ -132,7 +132,7 @@
         Los widgets individuales no conocen la existencia de otros.
         Vamos a tener varios reactDOM.render para los diferentes componentes, en difernetes lugares de la app.
 
-9. Course outline.
+8. Course outline.
 
      Getting started.
         Usar JavaScript moderno porque mantiene limpio y es un estandar para react, funciones de flechas y esas cosas.
@@ -178,7 +178,7 @@
         NextJs, una libreria construida bajo react, donde contrustruimos nuestro propio flujo de trabajo, etc.
 
     
-10. How to get the Most out of This Course
+9. How to get the Most out of This Course
 
     Como sacarle provecho al curso:
         Codificar solo.
@@ -186,7 +186,7 @@
         Si estas atascado, usar lar parte donde se hacen las preguntas, primero buscar porque seguro alguien ya pregunto.
         Practicar.
 
-11. Useful Resources & Links
+10. Useful Resources & Links
 
     Documentación de React: https://reactjs.org/
     El codepen, hecho por él: https://codepen.io/anon/pen/MELQaQ
@@ -194,14 +194,14 @@
 
 ### Sección: 2 - Refreshing Next Generation JavaScript (Optional) ###
 
-12. Module Introduction
+11. Module Introduction
     Next-Gen Javascript, para refrescar. React usa esto, así que, hay que saber.
 
-13. Understanding "let" and "const"
+12. Understanding "let" and "const"
     let = var (cambia el tema del scope, porque ahora es de bloque.)
     const = para info que no va a cambiar.
 
-14. Arrow Functions
+13. Arrow Functions
     antes:
         function myFuncion() {
             ...
@@ -218,7 +218,7 @@
     * Si tiene mas de uno, es (param1,param2) =>
     * Si la parte de retorno solo tiene una linea, se puede escribir así: const multiplicar = number => number * 2;
 
-15. Exports and Imports
+14. Exports and Imports
 
     Para codigo modular, para dividir los archivos js en varios archivos.
         Si bien ya se puede (porque agregas diferentes archivos en el html, de manera ordenada)
@@ -258,7 +258,7 @@
                 import { baseData, clean } from './utility.js' 
 
     
-16. Understanding Classes
+15. Understanding Classes
 
     - Los metodos son como: funciones atachados a esa clase/objetos,
     - las propiedades son como: variables, atachadas a esa clase/objetos,
@@ -291,7 +291,7 @@
     miPersona.printMyname();
     miPersona.printGender();    
 
-17. Classes, Properties and Methods
+16. Classes, Properties and Methods
 
     ES6
         constructor() {
@@ -311,7 +311,7 @@
         
     * Es mejor usar ambos opciones de ES7, para esto si o si hay que usar ES6/Babel.
 
-18. The Spread & Rest Operator  
+17. The Spread & Rest Operator  
 
     // Operator Spread o Rest (depende de donde se use)
     ...
@@ -362,7 +362,7 @@
     console.log(filter(1,2,3));
     // [1]
 
-19. Destructuring
+18. Destructuring
 
     Permite extraer facilmente elementos de una matriz o propiedades de objetos y guardarlos en variables.
     ej:
@@ -384,7 +384,7 @@
         console.log(name); // Noe
         console.log(age); // undefined
 
-20. Reference and Primitive Types Refresher
+19. Reference and Primitive Types Refresher
 
     Primitivos
     * Copia el valor de su variable en otra, osea hay 2.
@@ -413,7 +413,7 @@
 
         console.log(secPerson); // 'Max'
 
-21. Refreshing Array Functions
+20. Refreshing Array Functions
 
     const numbers = [1,2,3];
 
@@ -423,18 +423,18 @@
     const doubleNumArray = numbers.map((num) => num * 2 );
     console.log(doubleNumArray); // [2,4,6]
 
-22. Wrap Up
+21. Wrap Up
 
     Basicamente que cualquier cosa, se puede volver a esas clases para refrescar por si te olvidaste algo.
 
-23. Next-Gen JavaScript - Summary
+22. Next-Gen JavaScript - Summary
 
     jajaj me la pase resumiendo y lo hizo acá!! lpm 
 
     Descargar el pdf o en mi caso ver:
         file:///C:/Users/Noe/Downloads/next-gen-js-summary.pdf
         
-24. JS Array Functions
+23. JS Array Functions
 
     En realidad, no la próxima generación de JavaScript, pero también es importante: un arreglo de funciones de JavaScript, como map() , filter() , reduce()  etc.
     Me verás usarlos bastante ya que muchos conceptos de React se basan en trabajar con arreglos (de manera inmutable).
@@ -455,11 +455,11 @@
 
 ### Sección 3 - Understanding the Base Features & Syntax ###
 
-25. Module Introduction
+24. Module Introduction
 
     Que es, como usarlo, nuestra primera app react, conceptos generales, sintaxis basicas, etc.
 
-26. The Build Workflow
+25. The Build Workflow
 
                 Recomendado para SPA y MPAs
 
@@ -483,7 +483,7 @@
     * Nos va a enseñar una herramienta de desarrollo que hace todo esto menos engorroso y no tenemos qe andar configurando todo, es una herramienta que generó el equipo de React de facebook.
     * En otro modulo enseña como hacer una desde 0 igual.
 
-27. Using Create React App
+26. Using Create React App
 
     Es la herramienta recomendada para crear proyectos de React. "Create React App"
 
@@ -493,8 +493,8 @@
     > cd react-guia-completa
     > npm start
 
-28. Understanding the Folder Structure
-    ide-setup.pdf
+27. Understanding the Folder Structure
+    C:\Cursos\React-16.6---The-Complete-Guide-incl.-React-Router-Redux-\info_gral_curso\27\ide-setup.pdf
 
     package.json
         Donde estan las dependencias y los diferentes scripts que podemos ejecutar para correr diferentes tareas.
@@ -534,8 +534,8 @@
     - Eliminar del archivo css, todo menos la parte de .App
     
 
-29. Understanding Component Basics
-    Descargar pdf o file:///C:/Users/Noe/Downloads/components-learning-card.pdf
+28. Understanding Component Basics
+    file:///C:/Cursos/React-16.6---The-Complete-Guide-incl.-React-Router-Redux-/info_gral_curso/28/components-learning-card.pdf
 
     index.js
         import React from 'react';
@@ -567,8 +567,10 @@
     - Para definir un componente, hay 2 maneras.
         1) 
             1.1) Creamos una clase y lo hacemos heredar de Component, 
+                 
                  que se importa de la libreria de react.
                  React, se importa porque es necesario para renderizar el componente y el objeto componente.
+            
             1.2) el metodo render() 
                     sirve para renderizar JSX en la pantalla.
 
@@ -580,7 +582,7 @@
         JSX en realidad es lo que llaman syntactic sugar. Es una sintaxis dentro de un lenguaje de programación, diseñado para ser mas facil de leer o expresarse.
         Es como "mas dulce para que lo use una persona"
 
-30. Understanding JSX
+29. Understanding JSX
 
     class App extends Component {
         render() {
@@ -602,13 +604,13 @@
     * NO SE USA CREAR LOS ELEMENTOS ASÍ, es para que sepamos que existe esto y no es lo correcto.
     Para eso se genera el "HTML, que en realidad es JSX" = javascript.
 
-31. JSX Restrictions
+30. JSX Restrictions
 
     Como en realidad el html que vemos es JSX, podemos usar palabras claves y no las de html, como className, en el elemento.
     No podemos devolver elementos que no tienen un padre.
     Es buena practica, es meter todo dentro de un contenedor a devolver.
 
-32. Creating a Functional Component
+31. Creating a Functional Component
 
     src/Person/Person.js
     vamos a crear un componente.
@@ -617,7 +619,7 @@
     <Person /> // lo podemos dejar así ya que no tenemos que nest nada adentro.
 
 
-33. Components & JSX Cheat Sheet
+32. Components & JSX Cheat Sheet
     Descargar pdf o file:///C:/Users/Noe/Downloads/components.Pronfudización
 
     Los componentes son el componente básico de las aplicaciones React . En realidad, React realmente es solo una biblioteca para crear componentes en su núcleo.
@@ -631,7 +633,7 @@
     componentes basados ​​en clase (también conocidos como componentes "contenedores", "inteligentes" o "con estado") => class Cmp extends Component { render () { return <div>some JSX</div> } } 
     Por supuesto, nos sumergiremos en la diferencia a lo largo de este curso. Ya puede notar que debe usar 1) con la mayor frecuencia posible. Es la mejor práctica.
 
-34. Working with Components & Re-Using Them
+33. Working with Components & Re-Using Them
 
     Trabajar componentes en archivos separados, hace que el codigo sea mas mantenible.
     Aparte se lo puede configurar y reutilizar.
@@ -646,14 +648,14 @@
 
     * Esto no es dinamico, así que en el proximo vamos a ver como hacerlo..
 
-35. Outputting Dynamic Content
+34. Outputting Dynamic Content
 
     Para que el js, no sea interpretada como texto, se debe usar ${js que quiera}
         return <p>Soy una persona and I am {Math.floor(Math.random() * 30)} years old! </p>
 
     Esto se usa para simples calculos o llamadas a funciones, pero nada mas, debería ser solo una linea de codigo
 
-36. Working with Props
+35. Working with Props
     Descargar pdf o file:///C:/Users/Noe/Downloads/props-learning-card.pdf
 
      return (
@@ -672,7 +674,7 @@
 
     Cuanto se usa en una clase-componente (como app), se tiene que usar this.props
 
-37. Understanding the Children Property
+36. Understanding the Children Property
     en esta carpeta: base-syntax--01-props-custom-cmp.zip
 
     <div>
@@ -689,7 +691,7 @@
         <Person name="Noe" age="32"/>
     </div>
 
-38. Understanding & Using State
+37. Understanding & Using State
 
     <button>Cambiar de nombre</button>
 
@@ -719,13 +721,14 @@
           <Person name={this.state.persons[2].name} age={this.state.persons[2].age}/>
         </div>
 
-    
-39. Props & State
+        this, hace referencia a la clase donde se esta usando 
+38. Props & State
     file:///C:/Users/Noe/Downloads/props-state.pdf
 
-    props  y state  son los conceptos CORE de React. En realidad, solo se realizan cambios props  y / o se state  activa React para volver a renderizar sus componentes y potencialmente actualizar el DOM en el navegador (en la sección 6 se proporciona una descripción detallada de cómo React verifica si se debe tocar realmente el DOM real).
+    props  y state  son los conceptos CORE de React. Solo props  y/o state activa React para volver a renderizar sus componentes y potencialmente actualizar el DOM en el navegador 
+
     Props
-        props  le permite pasar datos de un componente principal (ajuste) a un componente secundario (incorporado).
+        props: le permite pasar datos de un componente principal (container) a un componente secundario (embebido).
 
     Ejemplo:
         AllPosts Component:
@@ -752,8 +755,8 @@
         {props.title}  luego genera dinámicamente la title  propiedad del props  objeto, que está disponible ya que configuramos la title  propiedad dentro del AllPosts  componente (ver arriba).
 
 
-    Estado
-        Mientras que los accesorios le permiten pasar datos al árbol de componentes (y, por lo tanto, desencadenar una actualización de la interfaz de usuario), el estado se usa para cambiar el componente, bueno, el estado desde dentro. Los cambios en el estado también activan una actualización de la interfaz de usuario.
+    State:
+        Mientras props le permiten pasar datos al árbol de componentes (y, por lo tanto, desencadenar una actualización de la interfaz de usuario), el estado se usa para cambiar el componente, bueno, el estado desde dentro. Los cambios en el estado también activan una actualización de la interfaz de usuario.
 
     Ejemplo:
         NewPost Component:
@@ -771,11 +774,15 @@
                 }
             }
 
-        Aquí, el NewPost  componente contiene state . Solo los componentes basados ​​en clases pueden definir y usar state .    Por supuesto, puede pasar state  a componentes funcionales, pero estos no pueden editarlo directamente.
-        state  Simplemente es una propiedad de la clase de componente, state  aunque debe llamarlo , el nombre no es opcional. Luego, puede acceder a él a través this.state  de su código JSX de clase (que devuelve en el render()  método requerido ).
-        Cada vez que state  cambia (se enseña en las próximas conferencias), el componente se volverá a representar y reflejará el nuevo estado. La diferencia props  es que esto sucede dentro de un mismo componente: ¡no recibe datos nuevos ( props ) de fuera!
+        Por supuesto, puede pasar state  a componentes funcionales, pero estos no pueden editarlo directamente.
+        state  => 
+            Simplemente es una propiedad de la clase de componente, debes llamarlo state, obligatoriamente. 
+            Luego, puede acceder a él a través this.state  de su código JSX de clase (que devuelve en el render()  método requerido ).
+            Cada vez que state  cambia, el componente se volverá a representar y reflejará el nuevo estado. 
+            
+            La diferencia con props es que esto sucede dentro de un mismo componente: ¡no recibe datos nuevos ( props ) de fuera!
 
-40. Handling Events with Methods
+39. Handling Events with Methods
     // en JSX es con la C mayus.
     <button onClick=>Cambiar de nombre</button>
 
@@ -790,7 +797,7 @@
     <button onClick={this.switchNameHanlder}>Cambiar de nombre</button>
 
 
-41. To Which Events Can You Listen?
+40. To Which Events Can You Listen?
 
     En la última conferencia, vimos que puedes reaccionar ante el evento onClick, pero ¿a qué otros eventos puedes escuchar? Puede encontrar una lista de eventos compatibles aquí:  https://reactjs.org/docs/events.html#supported-events
 
@@ -926,12 +933,12 @@
         Event names:
             onToggle
 
-42. Manipulating the State
+41. Manipulating the State
     file:///C:/Users/Noe/Downloads/state-learning-card.pdf
 
     switchNameHanlder = () => {
         // No hay que mutar de esta manera (cambiar de estado), va a dar un error.
-        this.state.persons[0].name = 'Noelia';
+        //this.state.persons[0].name = 'Noelia';
         this.setState({
             persons: [
                 { name: 'Noeñs', age: 32 },
@@ -942,6 +949,8 @@
     }
 
     setState:
+        Esta disponible solo en clases basadas en componentes.
+
         Este es un método que nos permite actualizar esta propiedad state, después
         nos aseguramos de que react conozca como la actualización y react actualice el DOM.
 
@@ -958,26 +967,279 @@
 
         * Solo se pueden cambiar props y state 
 
-43. Functional (Stateless) vs class (Stateful) Components
+
+
+42. Function Components Naming
+
+    En la próxima conferencia, aprenderemos a administrar el estado en componentes funcionales (en lugar de componentes basados en clases).
+
+    En caso de que esté obteniendo un error con el código que se muestra en la siguiente clase, simplemente asigne un nombre de variable en mayúscula a la variable que contiene su componente funcional.
+
+    Ejemplo:
+        Utilizar
+            const App = () => {...}
+            en lugar de
+
+            const app = () => {...}
+
+    Técnicamente, eso no es necesario, pero dependiendo de la configuración de su proyecto, el indicador incorporado (una herramienta de verificación de la calidad del código) que viene con la aplicación crear-reaccionar puede no gustarle el nombre de la variable en minúscula.
+
+    También puede evitar esto creando proyectos con la versión correcta de react-scripts, que recomendaría para este curso de todos modos (vea el video de instalación, conferencia 26)
+
+    create-react-app my-app --scripts-version 1.1.5
+
+43. Using the useState() Hook for State Manipulation
+    base-syntax--02-state-events.zip
+
+    Hasta React 16.8 setState era la unica manera de manejar estados en las aplicaciones de React.
+
+    Ahora hay una característica llamada React Hooks.
+
+    El va a seguir enseñando la manera tradicional (clases basadas en componentes) porque en las compañias ya tienen proyectos hechos basados en esto.
     
+    Si bien desde React 16.8 podemos usar componentes funcionales para todo, vamos a mantenernos en las clases basadas en componentes, por la causa que ya se menciono.
+
+    Esta nueva forma en que estamos usando "react hooks" es totalmente opcional y ni siquiera está seguro de si esto será
+    la forma principal de crear componentes en el futuro y, por lo tanto, en este curso, simplemente aprenderá ambos 
+    y usaremos esta forma de tableta aquí, que es la forma predeterminada de crear componentes y reaccionar y
+
+    "react hooks"  
+        Es una colección de funciones expuestas por React para que puedas en componentes funcionales y demás.
+        y por lo tanto tendrá que convertir este componente aquí en uno funcional.
+
+        Cambia el componente app por uno funcional o sea, 
+
+        const app = props => {
+            useState({
+                mete el array de persons
+            });
+
+            return() { JSX } 
+        }
+
+        Este es un componente funcional normal, pero ahora puede usar la función de "react hooks" o una de las funciones de React.
+
+        UseState devuelve una matriz con exactamente dos elementos y siempre dos elementos que son importantes.
+        const [ currentState, updateCurrentState ] = useState({
+
+        }
+
+        Así que podemos almacenarlo está en, digamos, una constante de matriz de estado.
+        Ahora el primer elemento que recibimos siempre será nuestro estado actual.
+        Así que inicialmente ese objeto y cada vez que lo cambiemos.
+        Bueno, el estado actualizado del segundo elemento en la matriz de estado siempre será una función que nos permita actualice este estado para que reaccione lo sepa y volverá a procesar este componente, que por supuesto es.
+        La idea y que es lo que también sucede con este estado y los componentes basados ​​en clase, por lo que también podemos
+        Use una función javascript más moderna llamada estructuración de radio que funciona agregando corchetes
+        en el lado izquierdo del signo igual aquí y esto le permite extraer elementos de la matriz que obtiene
+        atrás desde el lado derecho del lado igual.
+        Así que fuera de esta función llamada.
+        Así que aquí puede dar a estos elementos el nombre que desee y, por lo tanto, nombraré el primero aquí.
+        Estado de la persona, por ejemplo, de nuevo.
+        Ese nombre depende totalmente de ti.
+        Y el segundo elemento será una función que le permitirá establecer ese estado para que la identificación del nombre establezca las personas con las que
+        También se puede nombrar dicho estado de persona lo que quieras.
+        Así que tal vez establezcamos el estado de la persona para que quede realmente claro qué hace esto.
+        Así que ahora tenemos estas dos cosas que las personas en el estado le dan acceso a este objeto.
+        Así que ofrecen en todos los lugares donde anteriormente utilizamos este estado, ahora reemplazamos este estado y todos
+        Estos lugares con estado de personas porque este estado ya no existe.
+        Solo existe en componentes de React basados ​​en clase y no tenemos ningún componente de React basado en clase aquí
+        nunca más.
+
+        Es un componente funcional.
+        Entonces, este acceso es el estado de la persona del conjunto de datos de la persona que nos permite establecer un nuevo estado y para esto
+        Se puede volver a agregar un controlador de nombre de interruptor muerto a nuestro componente.
+        Pero, ¿cómo agregamos un método como era antes a un componente funcional mientras resulta que puede tener?
+        Funciones dentro de funciones no solo en reaccionar sino en JavaScript en general.
+        Y estamos aquí podemos agregar una nueva función almacenada en una constante tal vez, que es mi antiguo controlador de nombre de switch
+        Acabo de copiar ese código.
+        Así que ahora tengo esa constante de controlador de nombre de switch que contiene este código de función aquí y esto es perfectamente
+        El código de javascript fino puede tener una definición de función dentro de todas las funciones parece extraño y normalmente
+        no lo use con demasiada frecuencia, pero para los ganchos de React lo usa y está bien porque ahora tiene un funcional
+        componente que puede administrar el estado y que puede tener otras funciones que hacen algo, por ejemplo, en
+        un clic
+        Y eso es exactamente lo que hago aquí en clic.
+        Anteriormente llamamos a este conmutador de nombre de controlador.
+        Bueno, esta palabra clave ahora es incorrecta porque ya no estamos dentro de una clase.
+        En su lugar, es solo un conmutador de nombre de conmutador que se refiere a esta constante aquí sin paréntesis porque
+        No quiero ejecutarlo inmediatamente, solo se produce un clic en Windows y esta función se ejecutará
+        y ahora ya no llamaremos el estado de configuración porque esta función tampoco existe más.
+        En lugar de este estado triste, ahora solo se establece el estado de la persona a la que pasamos nuestro nuevo objeto de estado en su.
+        Y con eso, si lo guarda con sus servidores de desarrollo aún en funcionamiento, esta es la aplicación y
+        esto todavía se ve bien.
+        Lo que ya significa que el estado de uso generalmente funciona, de lo contrario no sería posible extraer datos de
+        El estado de nuestra persona ahí abajo.
+        Así que si ahora presiona el nombre del interruptor, mira a Max, aquí está Maximilian.
+        Así que extraiga el estado y actualice el estado y vuelva a renderizar el componente en un estado cambiar todo
+        trabajos.
+
+        Hay una diferencia importante en el estado en un componente basado en clase, aunque generalmente se ve
+        como funciona igual pero no me permite controlar el estado de la persona de registro aquí para que podamos ver lo que hay
+        dentro.
+        Si los dispositivos de seguridad hacen recargas de aplicaciones.
+        Así que aquí tenemos a Max y Maximilian, y esto es lo que está en nuestro estado correcto.
+        Es un objeto con un estado obvio porque estamos configurando esto también para demostrar que esto no funciona.
+        se sobrescribe y las personas si hace clic en el nombre que recibimos el estado de las noticias y no se encuentra en nuestro estado
+        y eso es súper importante cuando usas ganchos de React.
+        Tu función aquí que obtienes como segundo elemento y esa matriz no fusiona lo que pasas
+        A ello con el viejo estado.
+        En su lugar, reemplaza el viejo estado con él.
+        Y esto es muy importante porque esto significa que cada vez que actualice un estado como este
+        Tienes que asegurarte manualmente de incluir todos los datos del estado antiguo.
+        Aquí, por ejemplo, agregando manualmente la propiedad del estado promedio y luego tiene que acceder a la persona
+        Indique aquí y acceda a nuestro estado y esto solo se asegurará de que copiemos en el antiguo.
+        En este caso, intacto nuestro estado, por supuesto, también podría cambiarlo aquí.
+        Y cuando lo esté haciendo ahora, si hace clic en cambiar nombre, nuestro estado todavía está allí.
+        Esta es una forma de hacerlo, pero la forma más elegante es no fusionar manualmente sus estados.
+        pero en su lugar use use state varias veces, mientras que en los componentes basados ​​en clase solo tiene una propiedad de estado
+        y este estado establecido fusiona automáticamente los cambios con el estado anterior.
+        Para no descartar ningún estado aquí, no puede tener llamadas de estado de uso múltiple.
+        Así que podemos llamar.
+        Utilice el estado de nuevo y allí, si quisiéramos administrar nuestro estado promedio, podríamos pasar un poco más de nuestra cuenta.
+        de nuestro objeto de valor aquí o si lo único que queremos gestionar es una cadena.
+        También podríamos simplemente pasarle esa cadena como un valor predeterminado.
+        No tiene que ser un objeto.
+        Podría ser un objeto como está aquí.
+        También podría ser solo una cadena, un número, una matriz, un booleano, independientemente de lo que su aplicación necesite y pueda tener.
+        tantas llamadas estatales de los Estados Unidos como desee.
+
+        Y ahora estamos siempre en un estado de registro de mi persona y luego aquí también extraigo eso en dos variables con el
+        Ayuda de la desestructuración de matrices que podría ser mi otro estado y establecer nuestro estado.
+        Así que ahora, las personas de derecho civil, el estado y otros estados, y nunca uso el set set our state porque no quiero
+        para configurarlo en cualquier lugar.
+        Ahora, si inicia sesión aquí con Q, utilice las llamadas de estado en la aplicación que ve inicialmente, tenemos a nuestra persona
+        Estado que todavía tiene su propio estado promedio, así que eliminemos eso.
+        Así que de nuevo cargamos.
+        Así que ahora tenemos el estado de la persona que es igual de objeto y luego tenemos nuestro otro estado aquí
+        algun otro valor
+        Y si cambio de nombre, actualizamos a las personas y todavía tenemos otro valor porque ese estado no es
+        tocado por nuestro llamado a establecer el estado de las personas que solo interactúa con el resultado del primer estado de uso.
+        Por lo tanto, los estados de uso múltiple con diferentes secciones de estado
+        Así que para decir así es como gestionó el estado y un componente funcional en el que reaccionan los ganchos.
+        No tienes un objeto de estado grande, aunque puedes y puedes combinarlo manualmente si lo prefieres
+        pero en su lugar, tiene varios segmentos de estado separados.
+        Este es el gancho de estado de uso y este es un vistazo a los ganchos de React en general y este es el más importante.
+        reaccionar gancho.
+
+        Para resumir, los ganchos de React se trata de usar algo que funciona con el estado de los EE. UU.
+        Importante que le permite agregar funcionalidad a los componentes funcionales, como aquí el estado de uso nos permite
+        Para agregar la gestión del estado a los componentes funcionales.
+        Así que si usted está utilizando los ganchos de React solamente.
+        Y nuevamente les enseñaré todos estos ganchos importantes a lo largo de este curso.
+        No es necesario que uses componentes basados ​​en clases como lo mencioné en este curso.
+        Usaré componentes basados ​​en clases porque esa es la manera establecida.
+        Esta es la forma en que lo necesitará en cualquier trabajo que esté comenzando.
+        Y, por lo tanto, si quieres convertirte en un ayudante reactivo, tienes que saber ese nombre.
+        Aún así, todo lo que se aprende es reaccionar sintaxis de gancho en el camino y volver a mencionarlo.
+        Hay dos módulos completos hacia el final de este curso donde, en un módulo, paso por todos
+        Los reactivos importantes para que los tenga todos en un lugar y en el otro módulo.
+        Tomaré ese proyecto de React, este proyecto completo del curso eventualmente se construirá en este curso y se convertirá
+        esto es para usar solo el reactor X para que esté bien preparado para cualquier proyecto en el que esté realizando una inmersión.
+        Así que esta fue una buena excursión aquí adjunta, encuentra un retroceso al enfoque basado en la clase y también
+        Encuentra este código aquí para que tengas esto como referencia.
+        Pero retroceda ese enfoque basado en clase para continuar porque ese es el enfoque con el que
+        continuaremos para este curso y los usaremos para todos en este curso.
+
+44. Stateless vs Stateful
+    
+    Functional (Stateless) vs class (Stateful) Components
     La mayoria de las veces vamos a usar funciones stateless, las que reciben props.
     
     La mayor parte de la app, no debería cambiar el estado de la aplicación, se supone que solo va a cambiar en ciertos componentes,
-        conocidos como "contenedores" ej app.js
+        conocidos como "contenedores" Statefull Components. ej app.js
     
-
-44. Passing Method References Between Components
+45. Passing Method References Between Components
     base-syntax--02-state-events.zip
 
-45. Adding Two Way Binding
+    en el padre, al hijo embebido, le generamos un atributo donde le podemos pasar un metodo, entonces en el archivo del hijo, usando prop podemos utilizarlo.
 
-46. Adding Styling with Stylesheets
+    o sea, el hijo termina usando un metodo que esta en el padre.
 
-47. Working with Inline Styles
+    Si necesitamos pasar parametros hay que usar bind.
+    
+    this.metodo.bind(this, param)
+    
+    si en vez de usar esa manera, usamos una funcion de flecha anonima, tenemos que tener en cuenta que cuando escribimos la función en una linea:
+        onClick={() => this.metodo()}
+
+        adelante del this, si bien no lo pone, hay un RETURN.
+
+    Idealmente es mejor usar bind, porque la función anonima es ineficiente.
+
+
+46. Adding Two Way Binding
+
+    En el padre, generamos el metodo qu eva a cambiar el nombre, recibe un event como parametro.
+
+    dentro del elemento hijo, agregamos un parametro onChange, para pasarle a ese componente ese metodo, y usamos props.change (que es el atributo donde pusimos el metodo.)
+
+
+47. Adding Styling with Stylesheets
+
+    hay que poner un archivo .css en la misma carpeta que el componente e importarlo en el componente.js 
+
+
+48. Working with Inline Styles
+    
+    Para usar inline styles, se usa javascript en camelCase, ej lo que en css es background-color, aca es backgroundColor o marginLeft, etc.. en el JSX se usa 
+    
+    <a style={style}
+    
     Tarea 1: Time to Practice - The Base Syntax
 
-48. Useful Resources & Links
+49. [OPTIONAL] Assignment Solution
+
     base-syntax--01-props-custom-cmp.zip
     base-syntax--02-state-events.zip
     base-syntax--03-finished.zip
     base-syntax--assignment-solution.zip
+
+    Solución de la tarea.
+
+50. Useful Resources & Links
+
+    create-react-app: https://github.com/facebookincubator/create-react-app
+    Introducing JSX: https://reactjs.org/docs/introducing-jsx.html
+    Rendering Elements: https://reactjs.org/docs/rendering-elements.html
+    Components & Props: https://reactjs.org/docs/components-and-props.html
+    Listenable Events: https://reactjs.org/docs/events.html
+    Recursos de esta clase
+    base-syntax--01-props-custom-cmp.zip
+    base-syntax--02-state-events.zip
+    base-syntax--03-finished.zip
+    base-syntax--assignment-solution.zip
+
+###  Sección 4: Working with Lists and Conditionals
+
+51. Module Introduction
+52. Rendering Content Conditionally
+
+    envolver un elemento con { para poder escribir javascript }
+    por ejemplo para mostrar o dejar de mostrar un div.
+
+    IMPORTANTE: Hay que usar el operador ternario
+
+    ej:
+    { this.showParrafo ?
+        <p>hola</p>
+      :
+      null 
+    }
+
+    significa que o muestro o el parro o no muestro (renderizo nada)
+
+
+53. Handling Dynamic Content "The JavaScript Way"
+
+    Dentro de render, antes de retornar algo, podemos poner variables javascript, ya que ahí podemos usar js normalmente.
+
+54. Outputting Lists (Intro)
+55. Outputting Lists
+56. Lists & State
+57. Updating State Immutably
+58. Lists & Keys
+59. Flexible Lists
+60. Wrap Up
+    Tarea 2: Time to Practice - Lists & Conditionals
+
+61. [OPTIONAL] Assignment Solution
+62. Useful Resources & Links
