@@ -18,6 +18,7 @@ class App extends Component {
     // NO HAY QUE HACER  ESTO: this.state.persons[0].name = 'Noelia';
     this.setState({
       persons: [
+<<<<<<< HEAD
         { name: newName, age: 32 },
         { name: "Gabuns", age: 29 },
         { name: "Nanys", age: 33 }
@@ -31,10 +32,26 @@ class App extends Component {
         { name: "Max", age: 28 },
         { name: event.target.value, age: 29 },
         { name: "Stephanie", age: 26 }
+=======
+          { name: newName, age: 32 },
+          { name: 'Gabuns', age: 29 },
+          { name: 'Nanys', age: 33 },
+        ]
+      })
+  }
+
+  switchNameHanlder = (event) => {
+    this.setState({
+      persons: [
+        { name: newName, age: 32 },
+        { name: 'Gabuns', age: 29 },
+        { name: 'Nanys', age: 33 },
+>>>>>>> 18d46ddb738b84ff0659b52c903b63e04b8925e5
       ]
     })
   }
 
+<<<<<<< HEAD
   togglePersonHanlder = () => {
     const doesShow = this.state.showPersons;
     this.setState({ showPersons: !doesShow });
@@ -82,6 +99,30 @@ class App extends Component {
       </div>
     );
      // return React.createElement('div', {className: 'App'}, React.createElement('h1', null, 'Does this work now?'));
+=======
+
+
+  render() {
+    return (
+      <div className="App">
+        <h1>Hi, I'm a React App</h1>
+        <p>This is really working!</p>
+        <button onClick={() => this.switchNameHanlder('Noe!!')}>Switch Name</button>
+        <Person
+          name={this.state.persons[0].name}
+          age={this.state.persons[0].age} />
+        <Person
+          name={this.state.persons[1].name}
+          age={this.state.persons[1].age}
+          click={this.switchNameHanlder.bind(this, 'Max!')}>
+          My Hobbies: Racing
+        </Person>
+        <Person
+          name={this.state.persons[2].name}
+          age={this.state.persons[2].age} />
+      </div>
+      );    
+>>>>>>> 18d46ddb738b84ff0659b52c903b63e04b8925e5
   }
 }
 
