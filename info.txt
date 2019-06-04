@@ -750,6 +750,8 @@
             <Person name={this.state.persons[2].name} age={this.state.persons[2].age}/>
             </div>
 
+            props.children mostraría por ej en el componente Person "My hobbies: Racing"
+
         this, hace referencia a la clase donde se esta usando 
 38. Props & State
     file:///C:/Users/Noe/Downloads/props-state.pdf
@@ -1022,152 +1024,40 @@
 
     Hasta React 16.8 setState era la unica manera de manejar estados en las aplicaciones de React.
 
-    Ahora hay una característica llamada React Hooks.
+    Ahora hay una característica llamada React Hooks, se utiliza mas que nada en los componentes de funciones.
 
-    El va a seguir enseñando la manera tradicional (clases basadas en componentes) porque en las compañias ya tienen proyectos hechos basados en esto.
+    IMPORTANTE: El va a seguir enseñando la manera tradicional (clases basadas en componentes) porque en las compañias ya tienen proyectos hechos basados en esto.
     
-    Si bien desde React 16.8 podemos usar componentes funcionales para todo, vamos a mantenernos en las clases basadas en componentes, por la causa que ya se menciono.
-
-    Esta nueva forma en que estamos usando "react hooks" es totalmente opcional y ni siquiera está seguro de si esto será
-    la forma principal de crear componentes en el futuro y, por lo tanto, en este curso, simplemente aprenderá ambos 
-    y usaremos esta forma de tableta aquí, que es la forma predeterminada de crear componentes y reaccionar y
-
+    Si bien desde React 16.8 podemos usar componentes funcionales para todo, vamos a mantenernos en las clases basadas en componentes, porque el dice que en los laburos se usa mas eso.
+    
     "react hooks"  
-        Es una colección de funciones expuestas por React para que puedas en componentes funcionales y demás.
-        y por lo tanto tendrá que convertir este componente aquí en uno funcional.
+        Es una colección de funciones expuestas por React para que puedas en componentes funcionales y demás, una de ellas es useState.
 
         Cambia el componente app por uno funcional o sea, 
+            const app = props => {
+                useState({
+                    mete el array de persons
+                });
 
-        const app = props => {
-            useState({
-                mete el array de persons
-            });
-
-            return() { JSX } 
-        }
+                return() { JSX } 
+            }
 
         Este es un componente funcional normal, pero ahora puede usar la función de "react hooks" o una de las funciones de React.
+        --> Para eso hay que importarlo:  import React, { useState } from 'react' (React ya lo teníamos, solo agregamos { useState })
 
-        UseState devuelve una matriz con exactamente dos elementos y siempre dos elementos que son importantes.
-        const [ currentState, updateCurrentState ] = useState({
+        UseState:
+             Devuelve una matriz con exactamente dos elementos y siempre dos elementos que son importantes.
 
-        }
+                // Usamos destructuración [ param1, param 2] , lo que hace que useState ponga la info en donde corresponda.
+                const [ currentState, updateCurrentState ] = useState({});
 
-        Así que podemos almacenarlo está en, digamos, una constante de matriz de estado.
-        Ahora el primer elemento que recibimos siempre será nuestro estado actual.
-        Así que inicialmente ese objeto y cada vez que lo cambiemos.
-        Bueno, el estado actualizado del segundo elemento en la matriz de estado siempre será una función que nos permita actualice este estado para que reaccione lo sepa y volverá a procesar este componente, que por supuesto es.
-        La idea y que es lo que también sucede con este estado y los componentes basados ​​en clase, por lo que también podemos
-        Use una función javascript más moderna llamada estructuración de radio que funciona agregando corchetes
-        en el lado izquierdo del signo igual aquí y esto le permite extraer elementos de la matriz que obtiene
-        atrás desde el lado derecho del lado igual.
-        Así que fuera de esta función llamada.
-        Así que aquí puede dar a estos elementos el nombre que desee y, por lo tanto, nombraré el primero aquí.
-        Estado de la persona, por ejemplo, de nuevo.
-        Ese nombre depende totalmente de ti.
-        Y el segundo elemento será una función que le permitirá establecer ese estado para que la identificación del nombre establezca las personas con las que
-        También se puede nombrar dicho estado de persona lo que quieras.
-        Así que tal vez establezcamos el estado de la persona para que quede realmente claro qué hace esto.
-        Así que ahora tenemos estas dos cosas que las personas en el estado le dan acceso a este objeto.
-        Así que ofrecen en todos los lugares donde anteriormente utilizamos este estado, ahora reemplazamos este estado y todos
-        Estos lugares con estado de personas porque este estado ya no existe.
-        Solo existe en componentes de React basados ​​en clase y no tenemos ningún componente de React basado en clase aquí
-        nunca más.
+                1) Ahora el primer elemento que recibimos siempre será nuestro estado actual.
+                2) El segundo elemento en la matriz de estado siempre será una función que nos permita actualice este estado para que react lo sepa y volverá a procesar este componente
+                    IMPORTANTE: La 2da función no mergea los cambios, pisa el objeto con el nuevo estado.
 
-        Es un componente funcional.
-        Entonces, este acceso es el estado de la persona del conjunto de datos de la persona que nos permite establecer un nuevo estado y para esto
-        Se puede volver a agregar un controlador de nombre de interruptor muerto a nuestro componente.
-        Pero, ¿cómo agregamos un método como era antes a un componente funcional mientras resulta que puede tener?
-        Funciones dentro de funciones no solo en reaccionar sino en JavaScript en general.
-        Y estamos aquí podemos agregar una nueva función almacenada en una constante tal vez, que es mi antiguo controlador de nombre de switch
-        Acabo de copiar ese código.
-        Así que ahora tengo esa constante de controlador de nombre de switch que contiene este código de función aquí y esto es perfectamente
-        El código de javascript fino puede tener una definición de función dentro de todas las funciones parece extraño y normalmente
-        no lo use con demasiada frecuencia, pero para los ganchos de React lo usa y está bien porque ahora tiene un funcional
-        componente que puede administrar el estado y que puede tener otras funciones que hacen algo, por ejemplo, en
-        un clic
-        Y eso es exactamente lo que hago aquí en clic.
-        Anteriormente llamamos a este conmutador de nombre de controlador.
-        Bueno, esta palabra clave ahora es incorrecta porque ya no estamos dentro de una clase.
-        En su lugar, es solo un conmutador de nombre de conmutador que se refiere a esta constante aquí sin paréntesis porque
-        No quiero ejecutarlo inmediatamente, solo se produce un clic en Windows y esta función se ejecutará
-        y ahora ya no llamaremos el estado de configuración porque esta función tampoco existe más.
-        En lugar de este estado triste, ahora solo se establece el estado de la persona a la que pasamos nuestro nuevo objeto de estado en su.
-        Y con eso, si lo guarda con sus servidores de desarrollo aún en funcionamiento, esta es la aplicación y
-        esto todavía se ve bien.
-        Lo que ya significa que el estado de uso generalmente funciona, de lo contrario no sería posible extraer datos de
-        El estado de nuestra persona ahí abajo.
-        Así que si ahora presiona el nombre del interruptor, mira a Max, aquí está Maximilian.
-        Así que extraiga el estado y actualice el estado y vuelva a renderizar el componente en un estado cambiar todo
-        trabajos.
+                3) Si estabamos usando this.state ahora debemos cambiarlo por currentState 
 
-        Hay una diferencia importante en el estado en un componente basado en clase, aunque generalmente se ve
-        como funciona igual pero no me permite controlar el estado de la persona de registro aquí para que podamos ver lo que hay
-        dentro.
-        Si los dispositivos de seguridad hacen recargas de aplicaciones.
-        Así que aquí tenemos a Max y Maximilian, y esto es lo que está en nuestro estado correcto.
-        Es un objeto con un estado obvio porque estamos configurando esto también para demostrar que esto no funciona.
-        se sobrescribe y las personas si hace clic en el nombre que recibimos el estado de las noticias y no se encuentra en nuestro estado
-        y eso es súper importante cuando usas ganchos de React.
-        Tu función aquí que obtienes como segundo elemento y esa matriz no fusiona lo que pasas
-        A ello con el viejo estado.
-        En su lugar, reemplaza el viejo estado con él.
-        Y esto es muy importante porque esto significa que cada vez que actualice un estado como este
-        Tienes que asegurarte manualmente de incluir todos los datos del estado antiguo.
-        Aquí, por ejemplo, agregando manualmente la propiedad del estado promedio y luego tiene que acceder a la persona
-        Indique aquí y acceda a nuestro estado y esto solo se asegurará de que copiemos en el antiguo.
-        En este caso, intacto nuestro estado, por supuesto, también podría cambiarlo aquí.
-        Y cuando lo esté haciendo ahora, si hace clic en cambiar nombre, nuestro estado todavía está allí.
-        Esta es una forma de hacerlo, pero la forma más elegante es no fusionar manualmente sus estados.
-        pero en su lugar use use state varias veces, mientras que en los componentes basados ​​en clase solo tiene una propiedad de estado
-        y este estado establecido fusiona automáticamente los cambios con el estado anterior.
-        Para no descartar ningún estado aquí, no puede tener llamadas de estado de uso múltiple.
-        Así que podemos llamar.
-        Utilice el estado de nuevo y allí, si quisiéramos administrar nuestro estado promedio, podríamos pasar un poco más de nuestra cuenta.
-        de nuestro objeto de valor aquí o si lo único que queremos gestionar es una cadena.
-        También podríamos simplemente pasarle esa cadena como un valor predeterminado.
-        No tiene que ser un objeto.
-        Podría ser un objeto como está aquí.
-        También podría ser solo una cadena, un número, una matriz, un booleano, independientemente de lo que su aplicación necesite y pueda tener.
-        tantas llamadas estatales de los Estados Unidos como desee.
-
-        Y ahora estamos siempre en un estado de registro de mi persona y luego aquí también extraigo eso en dos variables con el
-        Ayuda de la desestructuración de matrices que podría ser mi otro estado y establecer nuestro estado.
-        Así que ahora, las personas de derecho civil, el estado y otros estados, y nunca uso el set set our state porque no quiero
-        para configurarlo en cualquier lugar.
-        Ahora, si inicia sesión aquí con Q, utilice las llamadas de estado en la aplicación que ve inicialmente, tenemos a nuestra persona
-        Estado que todavía tiene su propio estado promedio, así que eliminemos eso.
-        Así que de nuevo cargamos.
-        Así que ahora tenemos el estado de la persona que es igual de objeto y luego tenemos nuestro otro estado aquí
-        algun otro valor
-        Y si cambio de nombre, actualizamos a las personas y todavía tenemos otro valor porque ese estado no es
-        tocado por nuestro llamado a establecer el estado de las personas que solo interactúa con el resultado del primer estado de uso.
-        Por lo tanto, los estados de uso múltiple con diferentes secciones de estado
-        Así que para decir así es como gestionó el estado y un componente funcional en el que reaccionan los ganchos.
-        No tienes un objeto de estado grande, aunque puedes y puedes combinarlo manualmente si lo prefieres
-        pero en su lugar, tiene varios segmentos de estado separados.
-        Este es el gancho de estado de uso y este es un vistazo a los ganchos de React en general y este es el más importante.
-        reaccionar gancho.
-
-        Para resumir, los ganchos de React se trata de usar algo que funciona con el estado de los EE. UU.
-        Importante que le permite agregar funcionalidad a los componentes funcionales, como aquí el estado de uso nos permite
-        Para agregar la gestión del estado a los componentes funcionales.
-        Así que si usted está utilizando los ganchos de React solamente.
-        Y nuevamente les enseñaré todos estos ganchos importantes a lo largo de este curso.
-        No es necesario que uses componentes basados ​​en clases como lo mencioné en este curso.
-        Usaré componentes basados ​​en clases porque esa es la manera establecida.
-        Esta es la forma en que lo necesitará en cualquier trabajo que esté comenzando.
-        Y, por lo tanto, si quieres convertirte en un ayudante reactivo, tienes que saber ese nombre.
-        Aún así, todo lo que se aprende es reaccionar sintaxis de gancho en el camino y volver a mencionarlo.
-        Hay dos módulos completos hacia el final de este curso donde, en un módulo, paso por todos
-        Los reactivos importantes para que los tenga todos en un lugar y en el otro módulo.
-        Tomaré ese proyecto de React, este proyecto completo del curso eventualmente se construirá en este curso y se convertirá
-        esto es para usar solo el reactor X para que esté bien preparado para cualquier proyecto en el que esté realizando una inmersión.
-        Así que esta fue una buena excursión aquí adjunta, encuentra un retroceso al enfoque basado en la clase y también
-        Encuentra este código aquí para que tengas esto como referencia.
-        Pero retroceda ese enfoque basado en clase para continuar porque ese es el enfoque con el que
-        continuaremos para este curso y los usaremos para todos en este curso.
-
+                 
 44. Stateless vs Stateful
     
     Functional (Stateless) vs class (Stateful) Components
@@ -1197,10 +1087,11 @@
 
 46. Adding Two Way Binding
 
-    En el padre, generamos el metodo qu eva a cambiar el nombre, recibe un event como parametro.
+    En el padre, generamos el metodo que va a cambiar el estado, por parametro le pasamos un event.
 
     dentro del elemento hijo, agregamos un parametro onChange, para pasarle a ese componente ese metodo, y usamos props.change (que es el atributo donde pusimos el metodo.)
 
+    IMPORTANTE: Si usamos un input siempre le tenemos que poner un onChange o readonly
 
 47. Adding Styling with Stylesheets
 
@@ -1211,7 +1102,12 @@
     
     Para usar inline styles, se usa javascript en camelCase, ej lo que en css es background-color, aca es backgroundColor o marginLeft, etc.. en el JSX se usa 
     
-    <a style={style}
+    Dentro de render () 
+    const style = {
+        backgroundColor: color,
+    }
+
+    <a style={style}></a>
     
     Tarea 1: Time to Practice - The Base Syntax
 
@@ -1247,21 +1143,42 @@
 
     IMPORTANTE: Hay que usar el operador ternario
 
+    Dentro de JSX no se puede poner el if comun.
+
     ej:
-    { this.showParrafo ?
+    { this.showParrafo === true ?
         <p>hola</p>
       :
       null 
     }
 
-    significa que o muestro o el parro o no muestro (renderizo nada)
+    significa que o muestro o el parrafo o no muestro (renderizo nada)
 
 
 53. Handling Dynamic Content "The JavaScript Way"
 
     Dentro de render, antes de retornar algo, podemos poner variables javascript, ya que ahí podemos usar js normalmente.
 
+    ej:
+
+    render (){
+        let person = null;
+
+        if(this.person == null) {
+            person = ( // esto es como crear un elemento 
+                metemos el html aca que queremos ocultar o no
+            );
+        }
+
+        return (
+            html..
+            {person} // person es la variable null o la variable donde guardamos el html a renderizar.
+        )
+    }
+
 54. Outputting Lists (Intro)
+
+    
 55. Outputting Lists
 56. Lists & State
 57. Updating State Immutably
