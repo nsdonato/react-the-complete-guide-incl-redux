@@ -1178,14 +1178,237 @@
 
 54. Outputting Lists (Intro)
 
-    
+    Explica que las listas asi hardcodeadas como estan se romperían si se elimina un elemento. Y que se soluciona con lo que se va a seguir en el curso (re al pedo este modulo.)
+
 55. Outputting Lists
+
+    
+    .map mapea elementos en un array dado (en este caso "elArray"), ejecuta un metodo en cada elemento del array
+        el metodo/funcion, es pasado a mapa dentor de los ().
+        - .map retorna un nuevo array, react lo que intenta hacer al retornarlo es renderizarlo otra vez en el DOM (si es un JSX valido)
+
+    esa función que se le pasa a map, se ejecuta en cada elemento del array.
+    map tiene un segundo parametro que es el index del elemento.
+
+    {this.state.elArray.map(elementoDelArray => {
+        return <Person name="person.name" age="person.age" />;                                    // Lo que quiero mapear dentro de cada elemento.
+    })}
+
+    * El elemento key en este ejemplo falta, esta en el 58 y se tiene que poner para que funcione todo correctamente, explicación ahí.
+
 56. Lists & State
+    deletePersonHandler = (personIndex) => {
+        
+        const persons = this.state.persons; // Me guardo el array de personas.
+        persons.splice(personIndex, 1); // Splice, sirve para eliminar elementos del array, acá le decimos que elimine 1 solo, y un index en particular.
+        this.setState({persons: persons})
+
+    }
+    
+    {this.state.elArray.map( ( elementoDelArray, index ) => {
+        return <Person click={this.deletePersonHandler} name="person.name" age="person.age" />;                                   
+    })}
+
+    Supuestamente esto tiene una falla, en el proximo  modulo se va a demostrar esto.
+
 57. Updating State Immutably
+
+    Lo que se hizo antes es una mala practica. Ya que esta apuntando al state original, y si ese se modifica, también explotaría acá.
+    Lo que hay que hacer primero es una copia del array, utilizando slice.
+
+    slice() sin argumentos copia el array completo y retorna uno nuevo en la variable, entonces ahora si no habría ningún problema.
+
+        const persons = this.state.persons.slice();
+
+    Hay una alternativa (equivalente) a esto, que es usar el operador spread: ... / Si son tres puntos.
+    Spread: ... despliega los elementos del array en una lista de elementos, que se agrega a esa matriz, de modo que ahora tenemos una matriz,
+        nueva matriz con los objetos viejos de la matriz vieja, pero no la matriz vieja en si misma.   
+        
+        const persons = [...this.state.persons] 
+
+    Por ende:
+        1) Crear una copia
+        2) Actualizar esa
+        3) updatear el state
+
 58. Lists & Keys
+
+    React exige escribir el elemento key, ya que esto le deja comparar el dom virtual con el dom real, y de esta manera identifica
+        que elemento cambió y debe actualizar y no así toda la lista.
+        se tiene que poner el id de los elementos.
+
+        {this.state.elArray.map( ( elementoDelArray, index ) => {
+            return <Person click={this.deletePersonHandler} name="person.name" age="person.age" key="person.id" />;                                   
+        })}
+
 59. Flexible Lists
+
+    1) Le agrega id al array de persons, apenas lo setea 
+    2) modifica el elemento Person para que tenga el evento change, pasandole el evento y el id:
+
+        {this.state.elArray.map( ( elementoDelArray, index ) => {
+            return <Person 
+                        click={this.deletePersonHandler} 
+                        name="person.name" 
+                        age="person.age" 
+                        key="person.id"
+                        change="{(event) => { this.nameChangeHandler(event, person.id)}} // A la función anonima hay que pasarle el param event, para que después se lo pueda pasar a la función nameChangeHandler
+
+                         />;                                   
+        })}
+
+    3) Actualiza la función nameChangeHandler, para que seactualice el elemento especifico.
+
+        nameChangeHandler = (event, id) => {
+            
+            // Obtenemos el index del elemento en la matriz, findIndex retorna true o false si no lo encontró.
+            const personIndex = this.state.persons.findIndex(p => {
+                return p.id === id;
+            });
+
+            // Creamos un nuevo objeto para poder quedarnos con el que queremos una vez que lo encontramos.
+            const person = {
+                ...this.state.persons[personIndex]
+            }
+            
+            // Otra manera de hacerlo sería:
+            // Pasamos un objeto vacio, y como 2do param, el objeto que queremos asignarle.
+            // const person = Object.assign({}, this.state.persons[person]); 
+
+            // Ya conseguí la copia (no el objeto original)
+            person.name = event.target.name;
+
+            // Pongo los elementos viejos del state en uno nuevo, y actualizo el array con la nueva persona a la que actualizamos el nombre anteriormente.
+            const persons = [...this.state.persons];
+            persons[personIndex] = person;
+
+            // Finalmente actualizamos el estado con el nuevo array actualizado.
+            this.setState({ persons: persons)}
+        
+
+        // findIndex como map, recorre cada elemento y busca el index que le pasamos.
+
 60. Wrap Up
     Tarea 2: Time to Practice - Lists & Conditionals
 
 61. [OPTIONAL] Assignment Solution
 62. Useful Resources & Links
+
+    Conditional Rendering: https://reactjs.org/docs/conditional-rendering.html
+    Lists & Keys: https://reactjs.org/docs/lists-and-keys.html
+
+    Recursos de esta clase
+        lists-conditionals--01-conditional-content.zip
+        lists-conditionals--lists-finished.zip
+        lists-conditionals--assignment-solution.zip
+
+###  Sección 5: Styling React - Components & Elements
+
+63. Module Introduction
+64. Outlining the Problem Set
+65. Setting Styles Dynamically
+
+    render () {
+        // Agrega esto
+        const style = {
+            backgroundColor: 'green',
+            color: 'white',
+            font: 'inherit',
+            border: '1px solid blue',
+            padding: '8px',
+            cursor: 'pointer'
+        }
+
+        let persons = null;
+
+        if ( this.state.showPersons ) {
+        persons = (
+            <div>
+            {this.state.persons.map((person, index) => {
+                return <Person
+                click={() => this.deletePersonHandler(index)}
+                name={person.name} 
+                age={person.age}
+                key={person.id}
+                changed={(event) => this.nameChangedHandler(event, person.id)} />
+            })}
+            </div>
+        );
+
+        style.backgroundColor = 'red'; // Agrega esto
+    }
+
+66. Setting Class Names Dynamically
+
+    // Agrega las clases:
+
+    App.css 
+        .red {
+            color: red;
+        }
+
+        .bold {
+            font-weight: bold;
+        }
+    
+    App.js
+        // Esto usa las clases que declaramos y las une con un espacio en el medio.
+        let classes = ['red','bold'].join(' ');
+
+        return (
+            <div className="App">
+                <h1>Hi, I'm a React App</h1>
+                <p className={classes}>This is really working!</p>
+
+67. Adding and Using Radium
+    
+    // Sirve para poder usar, inline styles, pseudo selectores y media queries:
+        Para extender el alcance de un componente o cambiarlo dinamicamente.
+
+    1) > npm install --save Radium
+    2) import Radium from 'radium'; 
+    3) export default Radium(App); // Higher order component, se puede usar en todo tipo de componentes.
+
+    const style = {
+      backgroundColor: 'green',
+      color: 'white',
+      font: 'inherit',
+      border: '1px solid blue',
+      padding: '8px',
+      cursor: 'pointer',
+      ':hover': {
+        backgroundColor: 'yellow',
+        color: 'black'
+      }
+    };
+
+    style.backgroundColor = 'red';
+    style[':hover'] = {
+        backgroundColor: 'brown',
+        color: 'black'
+    };
+
+    IMPORTANTE: Todo esto es porque si bien podemos poner el codigo en el css, no va a aplicar solo al componente que queremos sino a todos los componentes.
+
+68. Using Radium for Media Queries
+
+    // Actualemente no es necesario importar ni usar usar: </StyleRoot>
+        no hay errores.
+    Person.js
+    const style = {
+        '@media (min-width: 580px': {
+            
+        }
+    };
+
+69. MUST READ: Enabling CSS Modules
+
+70. Enabling & Using CSS Modules
+
+71. More on CSS Modules
+
+72. Adding Pseudo Selectors
+
+73. Working with Media Queries
+
+74. Useful Resources & Links
