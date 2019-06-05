@@ -1403,6 +1403,10 @@
 
 69. MUST READ: Enabling CSS Modules
 
+    // Para habilitar CSS Modules:
+    1) commitear los cambios que puedas tener
+    2) 
+    
 70. Enabling & Using CSS Modules
 
 71. More on CSS Modules
