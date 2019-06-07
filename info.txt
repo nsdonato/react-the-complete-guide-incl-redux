@@ -1435,7 +1435,38 @@
 
 70. Enabling & Using CSS Modules
 
-    More on CSS Modules
+    // Para habilitar CSS Modules:
+    1) commitear los cambios que puedas tener
+    2) npm run eject
+    3) Vamos a ver nuevas carpetas: 
+        /config -->
+        /scripts --> Tiene un script por cada comando en scripts a ejecutar 
+
+    4) Modificar el archivo en config/webpack.config.js 
+
+    test: cssRegex,
+              exclude: cssModuleRegex,
+              use: getStyleLoaders({
+                importLoaders: 1,
+                modules: true,
+                localIdentName: '[name]__[local]__[hash:base64:5]',
+                sourceMap: isEnvProduction && shouldUseSourceMap,
+              }),
+
+        debería modificarse también en el de prod, pero no lo tengo.. igual que otros archivos que el tiene y yo no.
+    5) Modificamos el import del css: import clases from './App.css' 
+        las clases que tenemos en el archivo pasan a ser propiedades :O
+    6) Cambiamos 
+        <div className="App">
+        por:
+        <div className={clases.App}>
+
+        Transforma la info que esta en la clase en unica.
+    7) Si revisamos el html vemos que tiene un nombre de clase super extraño :D
+
+
+71. More on CSS Modules
+
     CSS Modules are a relatively new concept (you can dive super-deep into them here: https://github.com/css-modules/css-modules). With CSS modules, you can write normal CSS code and make sure, that it only applies to a given component.
 
     It's not using magic for that, instead it'll simply automatically generate unique CSS class names for you. And by importing a JS object and assigning classes from there, you use these dynamically generated, unique names. So the imported JS object simply exposes some properties which hold the generated CSS class names as values.
@@ -1465,12 +1496,654 @@
     :global .Post { ... } 
 
     Now you can use className="Post"  anywhere in your app and receive that styling.
-
-71. More on CSS Modules
+    
+72. Adding Pseudo Selectors
 
     Elimina todo el css que andaba por los archivos. Lo voy a eliminar cualquier cosa ver commit "elime css por curso 72"
-72. Adding Pseudo Selectors
+
+    .App button {
+        border: 1px solid blue;
+        padding: 16px;
+        background-color : green;
+        font: inherit;
+    }
+
+    Sigue funcionando todo porque:
+    <div className={classes.App}>
+         <button
+    </div
+
+
+    btnClass = classes.Red;
+    <button
+          className={btnClass}
 
 73. Working with Media Queries
 
+    Person.css
+    @media (min-width: 500px) {
+        .Person {
+            width: 450px;
+        }
+    }
+
+    no se que pasa que no funciona.
+
 74. Useful Resources & Links
+
+    Useful Resources & Links
+    Using CSS Modules in create-react-app Projects: https://medium.com/nulogy/how-to-use-css-modules-with-create-react-app-9e44bec2b5c2
+    More information about CSS Modules: https://github.com/css-modules/css-modules
+    Recursos de esta clase
+    styling--01-radium.zip
+    styling--02-css-modules-finished.zip
+
+
+###  Sección 6: Debugging React Apps
+
+75. Module Introduction
+76. Understanding Error Messages
+
+    Como ver en la consola el error y en que linea esta.
+
+77. Finding Logical Errors by using DevTools & Sourcemaps
+
+    Enseña como poner un debug en la consola de chrome.
+
+78. Working with the React Developer Tools
+
+    Instala la extensión de chrome, muestra la solapa React en la consola de Chrome.
+
+79. Using Error Boundaries (React 16+)
+
+    throw new Error("hubo un error");
+    
+    IMPORTANTE: key, siempre tiene que estar en el elemento "padre";
+
+    Crea un componente ErrorBoundary
+
+    import React, { Component } from 'react;
+    class ErrorBoundary extends Component{
+        state = {
+            hasError: false,
+            errorMessage:
+        }
+
+        componentDidCatch = (error, info ) => {
+            this.setState({hasError: true, errorMessage: error});
+        }
+
+        render () {
+            if(this.state.hasError){
+                return <h1>{this.state.errorMessage}</h1>;
+            }else{
+                return.this.props.children;
+            }
+        }
+    }
+
+    export default ErrorBoundary;
+
+    IMPORTANTE: hay que usar este componente para envolver algo que tenga realmente sentido.
+                en development el error es sobreescrito por lo que informa React, no así en prod.
+
+80. Wrap Up
+81. Useful Resources & Links
+
+    Error Boundaries: https://reactjs.org/docs/error-boundaries.html
+    Chrome Devtool Debugging: https://developers.google.com/web/tools/chrome-devtools/javascript/
+    Recursos de esta clase
+    debugging--01-finished.zip
+
+###  Sección 7: Diving Deeper into Components & React Internals
+
+82. Module Introduction
+83. A Better Project Structure
+
+    Los componentes a generar deben tener sentido. Por ej si queremos tener algo generico como un input que se use en varias partes, ahí si valdría la pena hacer un solo componente por eso.
+    Los componentes que manejan estados, no deberían comprometerse mucho con la renderización de otros, o sea no tener mucho JSX.
+
+    En src, genera:
+        /components  --> cada componente
+        /assets      --> imagenes y css
+        /containers  --> los componentes principales (como App)
+
+
+84. Splitting an App Into Components
+
+    // Si hacemos esto, no es necesario poner el return, gracias a ES6
+    const persons = (props) => (
+        Podemos poner JSX
+    );
+
+    Lo que no entiendo es que al final le saco los parentesis y puso javascript de una.
+        Al parecer cuando no retorn JSX, estás retornando una función normal.
+        es por eso que o usas => ( y lo que queremos renderizar) o => () {}
+
+    Resumen: Hay que tener containers donde se manejen estados y el resto deberían ser funcional components donde 
+             solamente se pasen props.
+
+85. Comparing Stateless and Stateful Components
+
+    Presentational component (stateless components) = functional component que no maneja estados
+
+86. Class-based vs Functional Components
+
+        A los containers se les puede pasar props desde index.js al renderizarlos.
+
+87. class Component Lifecycle Overview
+
+    - Solo esta disponible en class Component.
+    - Hay un monton de metodo, que react corre por nosotross, ej:
+      contructor(), getDerivedStateFromProps()...
+
+      IMPORTANTE: no realizar "side effects" en el construtor, como:
+        http request, store aglo en la base. Usar solo para inicializar variables.
+
+ Ejemplos de llamados de metodos en orden:
+    1) constructor
+    2) getDerivedStateFromProps
+        Cuando las props cambien para la clase. Idem constructor, no side effects acá.
+    3) render
+        prepara y estructura tu jsx para retornarlo.
+    4) Child components:
+        Se renderizan estos components.
+    5) ComponentDidMount()
+        Acá se pueden generar "side effects"
+        NO ACTUALIZAR EL ESTADO ACA. Salvo que se cumpla una promesa sobre un llamado http.
+
+88. Component Creation Lifecycle in Action
+
+    mediante console log, muestra como se van ejecutando en orden las cosas.
+
+89. Component Update Lifecycle (for props Changes)
+
+    1) getDerivedStateFromProps
+    2) 
+    
+    TODO:
+
+90. Component Update Lifecycle (for state Changes)
+
+    lo pase.
+
+91. Using useEffect() in Functional Components
+
+    import React, { useEffect } import 'react'
+
+    Toma una función que corre en cada ciclo de renderizado.
+    useEffect(() => {
+
+    })
+
+    useEffect combina dos :
+    componentDidMount y componentDidUpdate.
+
+92. Controlling the useEffect() Behavior
+
+    1) Que haga algo solo la primera vez. Se pone un array vacio [] y corre una sola vez y nunca mas.
+        useEffect(() => {
+
+        },[])
+    
+    2) cuando se actualiza un estado.
+        Lo que hay que hacer sería lo siguiente:
+
+        useEffect(() => {
+
+        },[props.persons])
+
+    IMPORTANTE: En el caso de necesitar lo mismo para otra prop, hay que volver a escribir useEffect y pasarle esa prop.
+
+93. Cleaning up with Lifecycle Hooks & useEffect()
+
+    componentWillUnmount, se ejecuta cuando se remueve el componente, en el caso del toggle persons por ej cuando haces clic otra vez para ocultarlo.
+
+    Dentro del mismo useEffect, se puede retornar algo mediante una función anonima, para limpiar algo.
+
+
+94. Cleanup Work with useEffect() - Example
+95. Using shouldComponentUpdate for Optimization
+
+    shouldComponentUpdate -> se renderizan todos los componentes, pero lo podemos modificar para que se renderice solo el que se actualizó:
+
+    shouldComponentUpdate(nextProps, nextState){
+        if(nextProps.persons !== this.props.persons){
+            return true;
+        }else{
+            return false;
+        }
+
+        return true;
+    }
+
+    IMPORTANTE: Para ver que se refresca en la pantalla > F12 > clic en los 3 puntos > More Tools > Rendering > chequear la opción Paint Flashing
+                Ojo porque a veces parece que refresca la pantalla, pero en realidad esta refrescando el dom virtual.
+    
+96. Optimizing Functional Components with React.memo()
+
+    En cockppit por ejemplo, al exportar el componente, utilizaríamos memo.
+    Lo que hace es tomar un snapshot del componente y lo re-renderiza, si y solo si, el input cambia.
+
+    export default React.memo(cockpit);
+
+    El problema es que en cockpit, hay una propiedad que cambia siempre que es persons, por ende hay que hacer un mini fix en la manera de pasarselo en App.
+        le pasamos solo el lenght de cockpit, en vez de que lo resuelva el adentro.
+
+97. When should you optimize?
+98. PureComponents instead of shouldComponentUpdate
+    
+    Si queremos chequear si alguna de todas las propiedades cambió, no nos conviene usar shouldComponentUpdate.
+    Para eso tenemos que extender de otro componente:
+
+    import React, { PureComponent } from 'react'
+
+    PureComponent, ya implementa shouldComponentUpdate con un completo chequeo de todas las props.
+
+
+99. How React Updates the DOM
+
+    render() --> No actualiza inmediatamente al DOM real. Aplica a todo tipo de componentes. 
+                 Este puede llegar a dar el mismo resultado que antes, es por eso que se usa shouldComponentUpdate, para manejar que es lo que realmente se debería renderizar.
+
+                 Lo que hace es compara el viejo DOM con el nuevo DOM (virtuals)
+                    Hace esto porque es mas rapido que el DOM real.
+
+                DOM Virtual, es una representación del DOM en Javascript.
+                El future DOM, es el que se crea cuando render es llamado, recordemos que render no llama inmediatamente al DOM real sin antes comparar (el viejo con el futuro para ver si hay diferencias.)
+                Una vez que termina llama al DOM real y lo actualiza, y no lo re-renderiza por completo, solo lo que fue detectado para updetear.
+
+                Si no encuentra diferencias, se ejecuta render y ahí es donde shouldComponentUpdate debería prevenir que llame al dom real, si realmente nada cambio.
+                
+100. Rendering Adjacent JSX Elements
+
+    En vez de envolver los elementos en un div, podemos usar:
+
+        return [
+            <h1></h1>,
+            <p></p>
+        ]
+
+        El tema es que hay que generar una key, para cada elemento, si no tenes que generar identificadores unico igual.
+
+    Otra manera de hacer esto es:
+    
+        Crear una carpeta hoc (High order component)
+        Después hay que crear un archivo Aux.js (mac) Auxiliary.js (Windows) 
+
+        import React from 'react';
+
+        const aux = props => props.children;
+
+        export default aux;
+
+        IMPORTANTE: Children es una propiedad especial, que lo que sea que entre, lo pone entre tags cerrados.
+
+
+101. Windows Users Must Read
+
+    On Windows, the Aux.js  filename is not allowed in ZIP archives. Hence when extracting the attached source code, you might get prompted to rename the Aux.js  file. You might also face difficulties creating an Aux folder and Aux.js file.
+
+    I really apologize for that inconvenience, Windows is really doing an amazing job here ;-).
+
+    Follow these fixes:
+
+    1) Problems when unzipping the attached file:
+    Simply skip this step (e.g. by pressing "No") and ignore the upcoming error message.
+
+    In the extracted folder, you'll then find all source files EXCEPT for the Aux.js  file. In later course modules (where we work on the course project), the Aux.js  file can be found in an Aux/  subfolder inside hoc/ .
+
+    Make sure to take the Aux.js  file attached to this lecture and place it inside the hoc/  or hoc/Aux/  folder (which ever of the two you got).
+
+    2) Problems with the creation of an Aux folder and/ or file:
+    Simply name both differently. For example, you may create an Auxiliary  folder and name the file inside of it Auxiliary.js . Make sure to then adjust your imports (import Aux from './path/to/Auxiliary/Auxiliary' ) and you should be fine.
+
+
+
+    Recursos de esta clase
+    Aux.js
+    Auxiliary.js
+
+102. Using React.Fragment
+
+    En vez de usar Aux, se puede usar <React.Fragment> si no queremos usarlo así (separado por el punto, hay que importar Fragment)
+    import React, { Fragment} from 'react' 
+
+    Hace lo mismo que Aux.
+
+103. Higher Order Components (HOC) - Introduction
+    
+    Se llama así porque contiene un componente, no hace nada.
+
+    También puede haber componentes HOC:
+        Puede ser por ej el div con className App.
+
+    Otro ejemplo:
+        Crea el archivo /hoc/WithClass.js
+
+        import React from 'react';
+
+        const withClass = props => {
+            <div className={props.classes}>
+                {props.children}
+            </div>
+        };
+
+        export default withClass;
+
+    CONVENCIÓN: Los archivos de hoc, tienen que tener With adelante.
+    
+    Cambia el div de app por este withClass y le pasa classes por props.
+
+104. Another Form of HOCs
+
+    Existe otra manera de crear las clases tipo withClass.
+    
+    Devolver una función comun de Javascript.
+    1) parametro que debe arrancar con mayuscula
+    2) algo que necesitemos en el componente hoc.
+    3) Puede tener n parametros (obvio los que necesitas nada mas.)
+
+    const withClass = (WrappedComponent, className) => {
+        // Retorno un componente funcional.
+        return props => (
+            <div className={className}>
+               <WrappedComponent></WrappedComponent>
+            </div>
+        );
+    };
+    
+    4) Usamos el componente Aux en App y cambiamos el nombre del js a tener w minuscula, porque ahora estamos devolviendo una función no un componente.
+    5) modificamos el export de App:
+        export default withClass(App, classes.App);
+
+        Esto se usa dependiendo de que necesitemos.
+
+105. Passing Unknown Props
+
+    Si lo hacemos en el componente de Person no tenemos prop, entonces hay qu tocar la función, para que dentro delc omponente, haga un spread de props, así después los demas componentes que la quieren usar no tienen ningun problema.
+
+106. Setting State Correctly
+
+    Esto que muestra es solo para clases basadas en componentes.
+
+    Hay que actualizar el estado así:
+        this.setState((prevState, props) => {
+            return {
+                persons: persons,
+                changeCounter: prevState.changeCounter + 1;
+            }
+        })
+
+    NO ASÍ:
+        this.setState({
+            persons: persons,
+            changeCounter: this.state.changeCounter + 1;
+        })
+
+    Porque cuando se usa de la ultima forma, React no te garantiza que ese sea realmente el último estado.
+
+107. Using PropTypes
+
+    No necesariamente son necesarias, pero cuando trabaja en un equipo grande o que queres distribuir lo que estás haciendo, evitas que la gente pase mal las propiedades.
+
+    Hay que:
+    
+        1) Instalar prop-types
+            > npm install --save prop-types
+        2) Importarlo: 
+            import PropTypes from 'prop-types';
+        3) Agregar antes del export:
+            
+            NOTA: va con minuscula acá:
+
+            Person.propTypes = {
+                click: PropTypes.func,
+                name: PropTypes.string,
+                age: PropTypes.number
+            }
+    
+    IMPORTANTE: 
+        - Funciona en cualquier tipo de componente.
+        - Te avisa si estas pasando una propiedad incorrecta EN DEVELOPMENT MODE.
+        - Podes usarlo en el componente que creas necesario.
+
+108. Using Refs
+
+    Solo funciona en componentes basados en clases.
+    Ejemplo para ponerle el foco en el ultimo elemento de una lista de 3 elementos input:
+    
+    ref:
+        es una key especial, que le podes pasar a cualquier componente.
+        Se puede usar de varias maneras, una es esta:
+
+            Lo usas con una función anonima en la que obtenes tenes la referencia, de donde pongas ref.
+            y le pones el nombre que quieras, por ej inputEl, 
+            en el cuerpo de la función podes asignar ese elemento a una nueva propiedad de clase 
+
+            ComponentDidMount() {
+                this.inputElement.focus();
+            }
+
+            <input 
+                ref={ ( inputEl ) => { this.inputElement = inputEl }}
+            />
+        
+        Otra es:
+            constructor() {
+                super(props);
+                this.inputElementRef = react.createRef();
+            }
+
+            ComponentDidMount() {
+                this.inputElementRef.current.focus();
+            }
+
+            <input 
+                ref={ this.inputElementRef }
+            />
+
+109. Refs with React Hooks
+
+    Como usar algo parecido a Refs, con React Hooks en functional components.
+
+    import React, { useRef } from 'react'
+    const toggleBtnRef = React.createRef(null);
+
+    y hay que usar dentro de useEffect: toggleBtnRef.current.click()
+
+110. Understanding Prop Chain Problems
+
+    Hace un ejemplo donde pasa una propiedad por varios componentes y que si tenes un componente que es reutilizable vas a tener que estar haciendo cosas demas para poder usarlo solo por eso,
+     explica que esto lo resuelve
+
+111. Using the Context API
+
+    Agrega una nueva carpeta /context y después un archivo aux-context.js
+    import React from 'react';
+
+    const authContext = React.createContext({
+        authenticated: false,
+        login: () => {}
+    });
+
+    App.js
+        Lo importamos.
+        Envolvemos los componentes que queremos con el componente que creamos:
+            // value, se setea cuando vos no seteas ningun otro valor.
+            <AuthContext.Provider value={authenticated: this.state.authenticated, login: this.loginHandler  } >
+
+    Persons.js
+        Como acá lo queremos consumir, tenemos que, después del return, poner:
+        <AuthContext.Consumer>
+         {context => <button onClick...}
+        </ AuthContext.Consumer>
+
+    IMPORTANTE: lo que se cambie en ese contexto, no va a generar una re-renderización.
+
+    export default authContext;
+
+112. contextType & useContext()
+
+    
+    COMPONENTES BASADOS EN CLASES:
+
+        Como en ComponentDidMount, puede que tengas que hacer un llamado HTTP y necesites el context y ahí no se puede obtener la info como la aprendimos.
+        A partir de react 16.6 hay una variable estatica contextType.
+
+        static contextType = authContext;
+
+        Esto habilita a que detrás de escena, el metodo ComponentDidMount, se comunique con la variable estatica, ya que ahora tenes dentro del metodo:
+        this.context.login por ej.
+        this.context.authenticated
+        También podemos modificar el elemento AuthContext.Consumer por this.context.authenticated
+
+    FUNCTIONAL COMPONENTS
+        import AuthContext from 'context/aut-context';
+        import React, {useContext} from 'react'
+
+        const authContext = useContext(AuthContext);
+
+        authContext.authenticated
+
+        en coockpit, cambias el elemento por esto y listo. 
+
+113. Wrap Up
+
+114. Useful Resources & Links
+
+    More on useEffect(): https://reactjs.org/docs/hooks-effect.html
+
+    State & Lifecycle: https://reactjs.org/docs/state-and-lifecycle.html
+
+    PropTypes: https://reactjs.org/docs/typechecking-with-proptypes.html
+
+    Higher Order Components: https://reactjs.org/docs/higher-order-components.html
+
+    Refs: https://reactjs.org/docs/refs-and-the-dom.html
+
+    Recursos de esta clase
+    cmp-deep-dive-01-creation-lifecycle.zip
+    cmp-deep-dive-02-updating-lifecycle-props.zip
+    cmp-deep-dive-03-updating-lifecycle-state.zip
+    cmp-deep-dive-04-finished-useeffect.zip
+    cmp-deep-dive-05-shouldcomponentupdate-memo.zip
+    cmp-deep-dive-06-aux.zip
+    cmp-deep-dive-07-withclass.zip
+    cmp-deep-dive-08-finished-hocs.zip
+    cmp-deep-dive-09-updating-state.zip
+    cmp-deep-dive-10-proptypes.zip
+    cmp-deep-dive-11-refs.zip
+    cmp-deep-dive-12-finished.zip
+
+115. MUST READ: Legacy Lectures
+    DON'T SKIP THIS!
+
+    ---
+
+    With React 16.8, a new feature called "React Hooks" was introduced. This course already covers this feature and this module, up to this point, is 100% up-to-date with that feature (e.g. you learned about useEffect()).
+
+    The upcoming lectures marked as "[LEGACY]" are only there to allow existing students who started this module before the update (on February 6th) to continue smoothly.
+
+    You can skip all remaining lectures in this module (i.e. the lectures with "[LEGACY]") if you watched all the other lectures prior to this one.
+
+    116. [LEGACY] Splitting an App Into Components
+    117. [LEGACY] Comparing Stateless and Stateful Components
+    118. [LEGACY] Understanding the Component Lifecycle
+    119. [LEGACY] Converting Stateless to Stateful Components
+    120. [LEGACY] Component Creation Lifecycle in Action
+    121. [LEGACY] componentWillUnmount()
+    122. [LEGACY] Component Updating Lifecycle Hooks
+    123. [LEGACY] Component Updating Lifecycle in Action
+    124. [LEGACY] Updating Lifecycle Hooks (Triggered by State Changes)
+    125. [LEGACY] Performance Gains with PureComponents
+    126. [LEGACY] How React Updates the App & Component Tree
+    127. [LEGACY] Understanding React's DOM Updating Strategy
+    128. [LEGACY] Windows Users Must Read - File Downloads
+    129. [LEGACY] Returning Adjacent Elements (React 16+)
+    130. [LEGACY] React 16.2 Feature: Fragments
+    131. [LEGACY] Understanding Higher Order Components (HOCs)
+    132. [LEGACY] A Different Approach to HOCs
+    133. [LEGACY] Passing Unknown Props
+    134. [LEGACY] Using setState Correctly
+    135. [LEGACY] Validating Props
+    136. [LEGACY] Available PropTypes
+    137. [LEGACY] Using References ("ref")
+    138. [LEGACY] More on the React ref API (16.3)
+    139. [LEGACY] The Context API (React
+    140. [LEGACY] More on the Context API (16.6)
+    141. [LEGACY] Updated Lifecycle Hooks (React 16.3)
+    142. [LEGACY] The "memo" Method (16.4)
+    143. [LEGACY] Wrap Up
+    144. [LEGACY] Useful Resources &
+
+
+###  Sección 8: A Real App: The Burger Builder (Basic Version)
+
+145. About React Hooks
+
+    As mentioned before, we'll build the course project without React Hooks for now (React Hooks are a new feature, introduced with React 16.8, I'll introduce them in-depth later).
+    Towards the end of the course, we'll have an entire module where we convert it to use React Hooks though (after having yet another Hooks deep-dive module of course).
+
+146. Module Introduction
+147. Planning an App in React - Core Steps
+
+    Como planear una applicación React: Pasos Core
+
+    1) Estructura
+    2) Estado (State)
+    3) Componentes vs Contenedores
+
+148. Planning our App - Layout and Component Tree
+
+     Modela como va a ser la pagina, y los componentes que va a necesitar.
+
+149. Planning the State
+
+    Identificar donde necesitamos state, va a ayudar a saber que va a ser un componente o no
+
+    State
+        -Ingredients
+            -carne
+            -queso
+        -comprado: true/false
+        -totalPrice: 0
+        ...
+        
+    
+150. Setting up the Project
+151. Creating a Layout Component
+152. Starting Implementation of The Burger Builder Container
+153. Adding a Dynamic Ingredient Component
+154. Adding Prop Type Validation
+155. Starting the Burger Component
+156. Outputting Burger Ingredients Dynamically
+157. Calculating the Ingredient Sum Dynamically
+158. Adding the Build Control Component
+159. Outputting Multiple Build Controls
+160. Connecting State to Build Controls
+161. Removing Ingredients Safely
+162. Displaying and Updating the Burger Price
+163. Adding the Order Button
+164. Creating the Order Summary Modal
+165. Showing & Hiding the Modal (with Animation!)
+166. Implementing the Backdrop Component
+167. Adding a Custom Button Component
+168. Implementing the Button Component
+169. Adding the Price to the Order Summary
+170. Adding a Toolbar
+171. Using a Logo in our Application
+172. Adding Reusable Navigation Items
+173. Creating a Responsive Sidedrawer
+174. Working on Responsive Adjustments
+175. More about Responsive Adjustments
+176. Reusing the Backdrop
+177. Adding a Sidedrawer Toggle Button
+178. Adding a Hamburger Icon
+179. Improving the App - Introduction
+180. Prop Type Validation
+181. Improving Performance
+182. Using Component Lifecycle Methods
+183. Changing the Folder Structure
+184. Wrap Up
+185. Useful Resources & Links
