@@ -10,8 +10,6 @@
 
 3. Real-World SPAs & React Web Apps
 
-    Mas frula sobre componentes, nada interesante.
-
     Adding the Right React Version to Codepen
 
     In the next lecture, we'll write our first React code in Codepen, an online editor (it's only getting used in the next lecture).
@@ -24,7 +22,6 @@
 4. Writing our First React Code
     
     Crear una aplicación en Codepen.
-        
         Cuando se repite un elemento pero tiene diferente información adentro, esto ya se puede entender como un componente.
 
     - Importar React:
@@ -55,6 +52,7 @@
 
     // Le agrega un argumento que es propio de react
     // los datos dinamicos se encierran entre { }
+    
      function Person(props){
         return (
             <div className="person">
@@ -98,14 +96,14 @@
     Porque en aplicaciones grandes es dificil de manejar el ESTADO.
     Aparte si tenes que cambiar los elementos de lugar y puede que tengas que cambiar cosas y estas usando querySelector.
      
-    React nos permite enfocarnos en nuestra logica de negocios, envitando que nuestr app explote.
+    React nos permite enfocarnos en nuestra logica de negocios, envitando que nuestra app explote.
     Supuestamente como React tiene una comunidad zarpada, el codigo es excelente.
     Aparte de tener un gran ecosistema, comunidad activa y alta performance.
 
 6. React alternatives.
 
     Angular y Vue.js
-        Te sirve para enforcarte en la logica y en el modelo de negocio, y no tanto en el aspecto del elemento en particular que querías cambiar (cmo en react)
+        Te sirve para enforcarte en la logica y en el modelo de negocio, y no tanto en el aspecto del elemento en particular que        querías cambiar (como en react)
 
 7. Understanding Single Page Applications and Multi Page Applications.
 
@@ -123,7 +121,7 @@
 8. Course outline.
 
      Getting started.
-        Usar JavaScript moderno porque mantiene limpio y es un estandar para react, funciones de flechas y esas cosas.
+        Usar JavaScript moderno porque mantiene limpio y es un estandar para react, funciones de flechas, etc.
     
     React basics.
         Como crear componentes reacts, ver las diferentes maneras que hay de hacerlo y como comunicarse entre componentes.
@@ -163,8 +161,7 @@
         Como publicar en producción
 
     Bonus: aplicaciones de react animadas, ubicación de reactores, webpack, etc.
-        NextJs, una libreria construida bajo react, donde contrustruimos nuestro propio flujo de trabajo, etc.
-
+        NextJs, una libreria construida bajo react, donde construimos nuestro propio flujo de trabajo, etc.
     
 9. How to get the Most out of This Course
 
@@ -183,7 +180,7 @@
 ### Sección: 2 - Refreshing Next Generation JavaScript (Optional) ###
 
 11. Module Introduction
-    Next-Gen Javascript, para refrescar. React usa esto, así que, hay que saber.
+    Next-Gen Javascript, para refrescar. React usa esto, así que, hay que saberlo.
 
 12. Understanding "let" and "const"
     let = var (cambia el tema del scope, porque ahora es de bloque.)
@@ -337,8 +334,6 @@
           function sortArgs(...args){
               return args.sort[]; 
           }
-
-    
     
     * Hay que tener en cuenta que si el numero o propiedad / funcion, ya existia en el objeto actual, lo sobreescribe.
     
