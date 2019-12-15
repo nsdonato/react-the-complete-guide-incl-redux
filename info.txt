@@ -2191,12 +2191,31 @@
         Agrega un BuildControls y crea un componente BuildControl, lo estila..
 
     159. Outputting Multiple Build Controls
+        agrega el control al componente principal y con map, mapea todos los controles para agregar los distintos ingredientes.
 
     160. Connecting State to Build Controls
+        genera las funciones de remover y agregar, agrega el codigo necesario a add, como actualizar el precio, y los ingredientes.
+
+        en el componente de mas abajo de todos de los controles, no el ultimo, ya que ese es el que ejuta la funcion nad amas, el anterior, a la función le pase el tipo cuando hace clic, el se encarga de hacer eso no el padre de todos esos componentes, porque es el que tiene la función y el que pasa la referencia a sus componentes hijos.
+
     161. Removing Ingredients Safely
+        copia y pega la de agregar y la modifica para el removr.
+        también valida que los ingredientes sean mayor a 0, así cuando intenta remover mas y no hay mas, no hay errres.
+        
+        genera un flag que inhabilita el ctrl de el ingrediente cuando no hay mas de ese especifico
+
+        pasa la property de disable entre los componentes.
+
     162. Displaying and Updating the Burger Price
+        con .toFixed(2) -> dice que el precio muestre con 2 decimales.
+
     163. Adding the Order Button
+        genera la función que valida si hay al menos u ingrediente para que se habilite el boton de ordernar ahora. agrega la función al final del remover ingredientes o agregar ingredientes para que se llame y justamente verifique si tiene que habilitar el boton o no.
+
     164. Creating the Order Summary Modal
+        crea una carpeta Ui dentro decomponentes, para poner el modal y un par mas,
+        a la misma altura que los controles crea un componente orderSumarr que se va a ir actualizando desde el componente raiz con los ingredientes.
+        
     165. Showing & Hiding the Modal (with Animation!)
     166. Implementing the Backdrop Component
     167. Adding a Custom Button Component
@@ -2503,7 +2522,7 @@
         te genara un link tipo firebase.burgerApp.com bla entras y listo.
 
         parecido a heroku.
-        
+
     398. Wrap Up
     399. Useful Resources & Links
         Useful Resources & Links
