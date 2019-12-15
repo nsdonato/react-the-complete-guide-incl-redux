@@ -2238,7 +2238,6 @@
                 console.log(response);
             }) // cuando se resuelva la promesa, cae en then.
 
-
     193. Rendering Fetched Data to the Screen
         guarda la info que retorna la api en el state, y después con map genera los componentes necesarios dependiendo de cuanta info vino en el repsonse.
 
@@ -2270,19 +2269,79 @@
         arregla un temita que no se había dado cuenta, que era que cuando hacia click en un post se mostraba el titulo y no el contendido, nad amas.
 
     200. Handling Errors Locally
-        
+        a la llamada de axios aparte de .then, se le puede agregar 
+        .catch(response => {
+            this.setState({error: true}); 
+        })
 
     201. Adding Interceptors to Execute Code Globally
+        Para cuando queres hacer cosas como agregar headers que tienen que ir siempre, en app.js
+        importa axios.
+        Tiene 2 parametros, en uno recibimos la config del request y después podemos manejar los errores que puedean ocurrir.
+
+        axios.interceptors.request.use(request =>  {
+            console.log(request);
+            // Editamos la configuración del request (que es lo que hay en request en si)
+            return request; // siempre tenemos que retornar request, sino estamos bloqueando el request.
+        }, error => { -> esto es para cuando hay errores de conectividad, no un 400 bad request por ej
+            return Promise.reject(error);
+        })
+
+
+        También podemos manejar los response.
+        axios.interceptors.response.use(response => {
+            console.log(response);
+            return response;
+        }, error => {
+            console.log(error);
+            return Promise.reject(error);
+        });
+
+
+        Hay otr manera también de acceder a las configuraciones, la muestra en la proxima.
 
     202. Removing Interceptors
+        You learned how to add an interceptor, getting rid of one is also easy. Simply store the reference to the interceptor in a variable and call eject  with that reference as an argument, to remove it (more info: https://github.com/axios/axios#interceptors):
+
+        var myInterceptor = axios.interceptors.request.use(function () {/*...*/});
+        axios.interceptors.request.eject(myInterceptor);
 
     203. Setting a Default Global Configuration for Axios
+        En app.js
+
+        axios.defaults.BaseUrl = 'la url de mi api'; -> sacamos en nuestras llamadas la parte del server:port
+        axios.defaults.headers.common['Authorization'] = 'AUTH TOKEN'; -> que venga con el token
+        axios.defaults.headers.post['Content-Type'] = 'application/json' -> que solo para los post pida esto
+
 
     204. Creating and Using Axios Instances
+        se puede configurar diferentes url base, usando diferentes instancias.
+
+        crea un nuevo archivo axios.js y:
+            importa axios
+
+            const instance = axios.create({
+                baseURL: 'mi url',
+
+            })
+
+            //axios.defaults.headers.common['Authorization'] = 'AUTH TOKEN';
+            instance.headers.common['Authorization'] = 'AUTH TOKEN'; -> solo para esta instancia con esa url.
+
+            export default instance;
+
+        en donde la necesitamos ahora importamos este archivo en vez de axios.
 
     205. Wrap Up
-
     206. Useful Resources & Links
+        Useful Resources & Links
+        Axios Docs: https://github.com/axios/axios
+        Recursos de esta clase
+        http--01-starting-setup.zip
+        http--02-after-get.zip
+        http--03-after-post-error.zip
+        http--04-after-global-axios.zip
+        http--05-finished.zip
 
 #### Sección 11: Multi-Page-Feeling in a Single-Page-App: Routing
 
