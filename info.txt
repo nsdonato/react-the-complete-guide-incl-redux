@@ -2191,7 +2191,7 @@
         Agrega un BuildControls y crea un componente BuildControl, lo estila..
 
     159. Outputting Multiple Build Controls
-        
+
     160. Connecting State to Build Controls
     161. Removing Ingredients Safely
     162. Displaying and Updating the Burger Price
@@ -2222,20 +2222,36 @@
 ###  Sección 9: Reaching out to the Web (Http / Ajax)
 
     189. Module Introduction
-
     190. Understanding Http Requests in React
+        explica como funciona cuando un cliente hace un request mediante el navegador y que responde el servidor..
 
     191. Understanding our Project and Introducing Axios
+        Habla de que se puede hacer algo con Javascript, pero ya existen paquetes que hacen todo mas facil, como axios.
+
+        npm install axios --save
 
     192. Creating a Http Request to GET Data
+        simula llamadas a una api, con json placeholder
+
+        axios.get(url)
+            .then(response => {
+                console.log(response);
+            }) // cuando se resuelva la promesa, cae en then.
+
 
     193. Rendering Fetched Data to the Screen
+        guarda la info que retorna la api en el state, y después con map genera los componentes necesarios dependiendo de cuanta info vino en el repsonse.
 
     194. Transforming Data
+        usa slice para en vez de mostrar todos los elementos del response, mostrar solo los primeros 4.
+        Envia por atributos/props la info y arregla el componente para que muestre bien todo.
+        
 
-    195. Making a Post Selectable
+    195. Making a Post Selectable   
+        Hace una función y se la pasa al componente que termina renderizando un mensaje o la info que seleccionaste.
 
     196. Fetching Data on Update (without Creating Infinite Loops)
+        
 
     197. POSTing Data to the Server
 
@@ -2286,12 +2302,50 @@
         We don't need to install react-router  on our own for it to work. You can omit this installation step, I left it in there for historic reasons and because I like to emphasize that the main package is named react-router. If you ever search for assistance, you probably want to search for "react router" - that's the name of the package.
 
     222. Preparing the Project For Routing
+        Modifica la estructura, cambiando componentes de lugar Post lo saca de adentro de blog...
 
     223. Setting Up and Rendering Routes
+        En Blog, importa Route de react-router-dom
+
+        render -> se le pasa una función por esta prop, dentro de la función se debe retornar jsx
+        exact -> prop booleana que exije que se muestre la ruta que realmente es actualmente
+
+        <Route path="/" render={() => <h1>Home</h1>}>
+
     224. Rendering Components for Routes
+        component tiene que hacer referencia a la función o clase que queremos usar por ej Post dentro de Blog.
+        En render no debería renderizarse componentes enteros, porque es dificil de mantener después.
+
+        <Route path="/" component={Post}>
+
     225. Switching Between Pages
+        <Route path="/" component={NewPost}>
+
+        Si bien funciona, al pasar de una pagina a otra se recarga toda la pagina y por lo tanto se pierde el state, en el prox muestra como soucionar esto.
+
     226. Using Links to Switch Pages
+        Comenta que no es correcto usar Route, sino que hay que importar y usar Link
+
+        Para eso modifica en en el nav, los a por el componente link
+        React router genera la etiqueta de anclaje y previene el reload, por lo tanto
+        to, apate de ser un string, también se le puede pasar una función, un objeto...
+
+        hash -> esto sirve para si hay algún id con submit, directamente vaya a esa pagina.
+        search -> nos habilita a pasar parametros por query
+        
+        <Link to="/"> Home</Link>
+        
+        Son ejemplos para que sepamos que existen, pero no lo vamos a usar así.
+        <Link to={{
+            pathname: '/new-post',
+            hash: '#submit', 
+            search: '?quick-submit=true', 
+        }}> New Post</Link>
+
+        Si hacemos click ahora vamos a ver que no se actualiza la pagina entera (se nota en el icono de reload del navegador, que no se mueve esta vez-)
+
     227. Using Routing-Related Props
+
     228. The "withRouter" HOC & Route Props
     229. Absolute vs Relative Paths
     230. Absolute vs Relative Paths (Article)
