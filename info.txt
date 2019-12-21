@@ -2816,26 +2816,228 @@
         // TODO: hacer esta tarea. hacer Quiere que agreguemos al if de las accciones, eliminar y un par mas.
 
     291. Passing and Retrieving Data with Action
+        cuando pasamos info al dispatch, en el segundo parametro, podemos pasar info por el action.
+        después lo manejamos en el reducer.
 
     292. Switch-Case in the Reducer
+        statement expression: switch 
+
+        en el caso default, retornamos solo state;
 
     293. Updating State Immutably
+        en el case arregla los return:
+
+        const newState = Object.assign({}, state);
+        newState.counter= state.counter + 1;
+        return newState;
+
+        una mejor manera:
+
+        case 'DECREMENT':
+            return {
+                ...state,
+                counter: state.counter + action.val 
+            }
+
+        // en este caso esta es la manera correcta:
+        case 'STORE_RESULT':
+            return {
+                ...state,
+                results: state.results.concat(state.counter)
+            }
+
+        Agrega a mapStateToProps una propiedad:
+
+            storedResults: state.results;
 
     294. Updating Arrays Immutably
+        
+
+        Para eliminar info de un array se usa splice, pero como este lo hace sobre el array existe y nosotros no podemos mutar el original, muestra dos opciones:
+
+        1) 
+            const id = 2;
+            const newArray = [...state.results]
+            newArray.splice(id, 1);
+
+            case 'DELETE_RESULT':
+            return {
+                ...state,
+                results: newArray       
+            }
+
+        2) const updatedArray = state.results.filter(result => result.id !== action.resultElId);
+            
+            case 'DELETE_RESULT':
+            return {
+                ...state,
+                results: updatedArray
+            }
 
     295. Immutable Update Patterns
+        Immutable Update Patterns on reduxjs.org: http://redux.js.org/docs/recipes/reducers/ImmutableUpdatePatterns.html
+
+        Updating Nested Objects
+        The key to updating nested data is that every level of nesting must be copied and updated appropriately. This is often a difficult concept for those learning Redux, and there are some specific problems that frequently occur when trying to update nested objects. These lead to accidental direct mutation, and should be avoided.
+
+        Common Mistake #1: New variables that point to the same objects
+        Defining a new variable does not create a new actual object - it only creates another reference to the same object. An example of this error would be:
+
+        function updateNestedState(state, action) {
+            let nestedState = state.nestedState;
+            // ERROR: this directly modifies the existing object reference - don't do this!
+            nestedState.nestedField = action.data;
+        
+            return {
+                ...state,
+                nestedState
+            };
+        }
+        This function does correctly return a shallow copy of the top-level state object, but because the nestedState variable was still pointing at the existing object, the state was directly mutated.
+
+        Common Mistake #2: Only making a shallow copy of one level
+        Another common version of this error looks like this:
+
+        function updateNestedState(state, action) {
+            // Problem: this only does a shallow copy!
+            let newState = {...state};
+        
+            // ERROR: nestedState is still the same object!
+            newState.nestedState.nestedField = action.data;
+        
+            return newState;
+        }
+        Doing a shallow copy of the top level is not sufficient - the nestedState object should be copied as well.
+
+        Correct Approach: Copying All Levels of Nested Data
+        Unfortunately, the process of correctly applying immutable updates to deeply nested state can easily become verbose and hard to read. Here's what an example of updating state.first.second[someId].fourth might look like:
+
+        function updateVeryNestedField(state, action) {
+            return {
+                ...state,
+                first : {
+                    ...state.first,
+                    second : {
+                        ...state.first.second,
+                        [action.someId] : {
+                            ...state.first.second[action.someId],
+                            fourth : action.someValue
+                        }
+                    }
+                }
+            }
+        }
+        Obviously, each layer of nesting makes this harder to read, and gives more chances to make mistakes. This is one of several reasons why you are encouraged to keep your state flattened, and compose reducers as much as possible.
+
+        Inserting and Removing Items in Arrays
+        Normally, a Javascript array's contents are modified using mutative functions like push, unshift, and splice. Since we don't want to mutate state directly in reducers, those should normally be avoided. Because of that, you might see "insert" or "remove" behavior written like this:
+
+        function insertItem(array, action) {
+            return [
+                ...array.slice(0, action.index),
+                action.item,
+                ...array.slice(action.index)
+            ]
+        }
+        
+        function removeItem(array, action) {
+            return [
+                ...array.slice(0, action.index),
+                ...array.slice(action.index + 1)
+            ];
+        }
+        However, remember that the key is that the original in-memory reference is not modified. As long as we make a copy first, we can safely mutate the copy. Note that this is true for both arrays and objects, but nested values still must be updated using the same rules.
+
+        This means that we could also write the insert and remove functions like this:
+
+        function insertItem(array, action) {
+            let newArray = array.slice();
+            newArray.splice(action.index, 0, action.item);
+            return newArray;
+        }
+        
+        function removeItem(array, action) {
+            let newArray = array.slice();
+            newArray.splice(action.index, 1);
+            return newArray;
+        }
+        The remove function could also be implemented as:
+
+        function removeItem(array, action) {
+            return array.filter( (item, index) => index !== action.index);
+        }
+        Updating an Item in an Array
+        Updating one item in an array can be accomplished by using Array.map, returning a new value for the item we want to update, and returning the existing values for all other items:
+
+        function updateObjectInArray(array, action) {
+            return array.map( (item, index) => {
+                if(index !== action.index) {
+                    // This isn't the item we care about - keep it as-is
+                    return item;
+                }
+        
+                // Otherwise, this is the one we want - return an updated value
+                return {
+                    ...item,
+                    ...action.item
+                };    
+            });
+        }
+        Immutable Update Utility Libraries
+        Because writing immutable update code can become tedious, there are a number of utility libraries that try to abstract out the process. These libraries vary in APIs and usage, but all try to provide a shorter and more succinct way of writing these updates. Some, like dot-prop-immutable, take string paths for commands:
+
+        state = dotProp.set(state, `todos.${index}.complete`, true)
+        Others, like immutability-helper (a fork of the now-deprecated React Immutability Helpers addon), use nested values and helper functions:
+
+        var collection = [1, 2, {a: [12, 17, 15]}];
+        var newCollection = update(collection, {2: {a: {$splice: [[1, 1, 13, 14]]}}});
+        They can provide a useful alternative to writing manual immutable update logic.
+
+        Immutable Data#Immutable Update Utilities section of the Redux Addons Catalog.
 
     296. Outsourcing Action Types
+        Recomienda por ej en un archivo acions.js crear constantes para las acciones, así si hay un error de tipo sabes donde puede estar el problema, y no tenes que andar buscando por toda la app donde pusiste esa variable para el dispatcher y que le pifiaste.
+
+        export const INCREMENTE = 'INCREMENT';
+        export const DECREMENT = 'DECREMENT';
+        ...ETC
 
     297. Combining Multiple Reducers
+        Divide los reducers en diferentes archivos. Crea una carpeta reducers > counter.js, result.js
+
+        en counter pone los de decremento y incremento.
+        en result pone store result y delete result.
+        a ambos los exporta default reducer;
+
+        para combinarlos en el archivo index, aparte de importarlos, importa una helper function del paquete de readux, que se llama combineReducers
+
+        const rootReducer = combineReducers({
+            ctr: counterReducer,
+            res: resultReducer
+        });
+
+        y después al createStore se le pasa rootReducer.
 
     298. Understanding State Types
+        Dice que para una aplicación chiquita no es necesario usar redux, pero para una chica>mediana, si. Pero que de todas maneras no es necesario que toda la app lo use, simplemente hay que analizar donde se necesita.
 
-    Tarea 5: Time to Practice - Redux Basics
+        Tipos de estado:
+
+        Type:               Example:                Use Redux?:
+        loca ui state      show / hide backdrop     mostly handled within components.
+        Persistent state     All Users... All posts..    Stored on Server, relevant slice managed by Redux.
+        Client State        Esta autenticado? Filter set by User        Managed via Redux.
+
+
+        * No olvidarse que si el usuario recarga la pagina, el estado se pierde, redux no reemplaza una base de datos. * 
+    TODO: Tarea 5: Time to Practice - Redux Basics
 
     299. [OPTIONAL] Assignment Solution
-
+        Solución por él de la tarea.
+        
     300. Combining Local UI State and Redux
+        Muestra combina los dos, useState para manejar los valores que usa el usuario en los input. 
+        Y en el boton que usa la función que se creo para redux dentro de mapDispatchToProps
 
     301. Wrap Up
     302. Useful Resources & Links
@@ -2856,6 +3058,9 @@
 ### Sección 15: Adding Redux to our Project
 
     303. Module Introduction
+        Analiza la app de la hamburguesa, para ver donde puede usar Redux y donde deja state.
+
+        Analiza que es local ui state.
 
     304. Installing Redux and React Redux
 
@@ -2872,7 +3077,6 @@
     310. Adjusting Checkout and Contact Data
 
     311. Wrap Up
-
     312. Useful Resources & Links
         Find the source code for this module attached to this lecture.
 
@@ -3255,9 +3459,31 @@
 ### Sección 26: React Hooks
 
     454. Introduction
-
     455. What are "React Hooks"?
+        Nos ayuda a trabajar con nuestros componentes de una manera mas eficiente.
 
+        Functional:
+            Props in, JSX out
+            Great for Presentational
+            Focused on one/few purpose(s)
+
+        Class-based:
+            Uses props and state
+            Business logic goes in here
+            Orchestates components.
+            Lifecycle hooks
+
+        Para usar uno u otro, hay que convertirlos o desconvertirlos y es bastanta molesto.
+
+        Hooks, podes hacer que todo sean functional components, no necesitas mas classes.
+        
+        Los nombres de las funciones de React hooks arrancan con useAlgo()
+        
+        No puede exponer ciertas funcionalidades completas de estado posible a componentes funcionales como la administración del
+        estado, sino también agregar métodos de ciclo de vida un poco diferentes que con componentes basados en clases.
+
+        Son reutilizables e independientes de cada componente.
+        
     456. The Starting Project
 
     457. Getting Started with useState()
@@ -3449,21 +3675,38 @@
 ### Sección 30: Next Steps and Course Roundup
 
     534. Module Introduction
+        Practicar, practicar...
 
     535. React Rocks! Where to find more Examples
+        http://react.rocks
+        Tiene mas ejemplos, no necesariamente pueden estar bien codeados, pero tenes muchos ejemplos.
 
     536. More Inspiration: Real-World Projects Built with React
+        build with react.
+        es un repo de git que tenes un monton de opciones para elegir que hacer en react.
 
     537. Static React Apps with Gatsby.js
+        sitios web staticos con react. 
 
     538. Introducing React Native
-
+        ...
     539. Component Libraries (Example: Material UI)
+        material-ui.com
 
     540. Smaller Apps with Preact
+        mas liviano que react. no lo termine de ver
 
     541. Comparing React with Preact
-
+        no lo vi.
     542. Congratulations
-
+        ...
     543. Bonus: More Content!
+        I got a lot of other high-quality & bestselling courses you might be interested in: https://academind.com/learn/our-courses/
+
+        I'd love to welcome you on board of any of these courses! :-)
+
+        Also don't forget to subscribe to my newsletter on https://academind.com/ to receive the latest updates and exclusive offers!
+
+        And in case you didn't know: On the same page as well as on my YouTube channel I got loads of additional tutorials.
+
+        Last but not least - I tweet on @maxedapps and on @academind_real, would love to see you there!
