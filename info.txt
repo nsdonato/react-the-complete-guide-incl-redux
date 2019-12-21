@@ -2428,6 +2428,9 @@
         Important: Make sure you pick the Realtime Database, NOT Firestore!
 
     209. Creating the Firebase Project
+        Ir a consola > Nuevo proyecto > poner el nombre > destilde Google Analytics. 
+
+        TODO: modulo sin finalizar porque: La consola que muestra el es bastante diferente de la que tiene actualmente firebase, voy a pasar este modulo porque igual no necesito ahora saber esto. .
 
     210. Creating the Axios Instance
 
@@ -2456,7 +2459,7 @@
     218. Routing and SPAs
         El enrutamiento se trata de poder mostrar difernetes paginas a el usuario.
                         
-                        Router Package:
+        Router Package:
         Parsear url / path -> configurar las rutas ->  renderiza / carga el jsx apropiado / componente
 
     219. Setting Up Links
@@ -2641,26 +2644,176 @@
 ### Sección 14: Redux
 
     281. Module Introduction
+        State management, que es el estado y como funciona redux.
 
     282. Understanding State
+        Ingredientes nuevos
+        Esta el usuario autenticado?
+        El modal esta abierto?
+        lista de posteos en nuestro blog, etc...
 
     283. The Complexity of Managing State
+        Si bien podemos manejar el estado y pasar información de un componente A a un componente B mediante queryString a travez de las rutas, se vuelve inmanejable cuando crece la app.
+
+        Si queremos pasar por ej, la información de autenticación de un componente A a B, se puede tornar muy engorroso ya que o lo vamos a manejar pasando de props en props y componentes.. o queryStrings, ahí aparece redux en acción...
 
     284. Understanding the Redux Flow
+        Redux es una libreria de terceros, que si bien vemos que se puede integrar con React, se puede usar sola.
+
+        Como maneja los datos y como se actualiza?
+        
+        CentralStorage: 
+            Tiene el estado de toda la aplicación
+
+        Acciones:
+            - Se envian (dispatch) desde los componentes. 
+            - Un action, es un es un paquete de información predefinida, por ej "Agregar componente" o "Eliminar componente"
+            - Posiblemente también tenga un payload, por ej, si la acción es un ingrediente, necesitamos pasar toda la información sobre QUE ingrediente
+            - Una acción no sabe como operar el central storage, no tiene logica, es solo un mensajero. 
+
+        Reducers:
+            - Se utiliza para cambiar el central storage.
+            - Es una función pura que recibe la acción y el estado viejo.
+            - Podemos combinar diferentes reducers en 1. Pero en el "final", simplemente es una ruta reducer que se conecta directamente con el central storage.
+            - El reducer puede chequear el tipo de la acción , por ej si es agregar un ingrediente, y cuando definimos el codigo para ese tipo de acción y luego "escupe" un estado actualizado.
+            - El reducer ejecuta codigo sincronico, por ende no ejecuta HTTP request, no side effects, nada. Es solo información entrando, respuesta saliendo, nada de delay, igual vamos a aprender a hacer cosas asincronicas.
+            - El reducer actualiza el estado del central storage, de una manera inmutable, por lo que siempre retornamos un nuevo estado, que es basado en el viejo pero es tecnicamente un nuevo objeto javascript, porque los objetos son de tipo de referencia y no queremos que accidentalmente cambiemos el objeto viejo.
+
+        Subscriptions Model (Subscriptors?):
+             - Sirve para que una vez que el reducer actualiza el estado del central storage, se triggeree la finromación nuevamente al componente que lo necesitaba, para ello el componente debe estar subscripto al modelo de subscripción.   
+
+        EJ:
+            Tenemos un componente que quiere manipular el estado, este no lo actualiza directamente modificando central storage
 
     285. Setting Up Reducer and Store
+        Comenta que agrego un proyecto para que bajemos y con el que vamos a ejercitar redux.
 
+        1) Instalación redux:
+            > npm install --save redux
+        2) Crea el archivo redux-basics.js acá va a poner el Store, Reducer, Dispatching Action, Subscription.
+
+        Estado incial del estado..
+            const initialState = {
+                counter: 0;
+            }
+
+        Reducer:
+            Es una función rootReducer que recibe el estado y la acción por parametro.
+            return state;
+            
+            const rootReducer = (state = initialState, action) => {
+                return state;
+            }
+
+        Store:
+            const store = createSotre(rootReducer) ;nos habilita a crear un nuevo store.
+                                                    un Store, necesita ser inicializado con un reducer.
+            connsole.log(sotre);
+    
     286. Dispatching Actions
+        Una acción es "enviada" por simplemente acceder al store.
+
+
+        // Dispatching
+         // recibe como parametro una acción, un objeto, que si o si tiene que ser type, por convención su valor tiene que estar todo en mayus.
+        store.dispatch({ type: 'INC_COUNTER' });
+        store.dispatch({ type: 'INC_COUNTER', value: 10 }); // tiene otro parametro opcional.
+
+
+        const rootReducer = (state = initialState, action) => {
+            if(action.type === 'INC_COUNTER'){
+                // state.counter++ -> esto no se puede hacer porque estas mutando su estado original.
+                return {
+                    ...state,
+                    counter: state.counter + 1; // obtiene el estado que acabo de desesctructurar y ahi si, en un nuevo obj le sumo 1.
+                };
+            }
+
+            return state;
+        }
 
     287. Adding Subscriptions
+        // Subscription -> Tienqe que ir antes de los dispatchers.
+
+        store.suscribe(() => {
+            console.log('[Suscripción]', store.getState());
+        }) // como parametro toma una función que se va a ejecutar cada vez que se actualice el estado.
 
     288. Connecting React to Redux
+         Tenemos que tener en cuenta que hay aplicaciones que no necesitan redux porque no son tan complejas...
+
+         en el archivo index.js, importamos redux: 
+            import { createStore } from 'redux';
+
+            // antes de que se renderice la app:
+            const store = createStore(reducer);
+
+        # ! Generalmente se puede ver en la estructura del proyecto que hay una carpet store. #
+
+        crea la carpeta store, adentro crea un archivo reducer.js:
+
+            const initialState = {
+                counter: 0
+            }
+
+            const reducer = (state = initialState, action) => {
+                return state;
+            }
+
+            export default reducer;
 
     289. Connecting the Store to React
+        Instalamos react-redux, para conectar el store con nuestra app react:
+            npm install --save react-redux;
+
+        index.js
+            import { Provider }  from 'react-redux';
+
+            envolvemos el componente a renderizar <App /> con el componente Provider.
+
+        Provider: 
+            Es un helper component, que nos habilita a "inyectar" nuestro store dentro de los componentes de react.
+            le tenemos que pasar una propiedad, le vamos a poner store por sentido comun, y le pasamos el store que creamos.
+            <Provider store={}> <App /> </Provider>
+
+        Counter.js 
+            Importamos un hoc, una función de redux que nos permite ocnectar con nuestro store. O sea, no es realmente un hoc, sino una función que retorna un hoc.
+            En grandes aplicaciones podríamos tener montones y montones de diferentes estados y piezas de estados que manejar.
+
+            import { connect } from 'redux';
+
+            const mapStateToProps = state => {
+                return {
+                    ctr: state;
+                }
+            }
+            export default connect(mapStateToProps)(Counter); // En el primer param le pasamos cierta config.
+
+            Al hacer esto ahora en nuestro componente, donde mostramos el value que crece o decrece, simplemente utilizamos la prop que acabamos de generar y pasarle a connect:
+
+            // value={this.state.counter}
+            <CounterOutput value={this.props.ctr} />
 
     290. Dispatching Actions from within the Component
+        Ahora vamos a aprender a enviar acciones desde nuestro componente.
+
+        También necesitamos una función para enviarle por parametro a connect e informarle que acciones queremos realmente que se envien.
+        
+        // retorna un obj javascript que va a tener la función que cuando se ejecute va a enviar una acción.
+        // pasariamos como nulo el primer parametro a connect si no es necesario, segun lo que tengamos en nuestro componente.
+        const mapDispatchToProps = dispatch => {
+            return {
+                onIncrementCounter: () => dispatch({type: 'INCREMENT'})
+            };
+        }
+
+        Ahora en el componente <CounterControl pasamos en la prop donde tenemos el handler de la función que hace el incremento, simplemente pasamos this.props.onIncrementCounter
+
+
+        Ahora tenemos que actualizar en nuestro archivo reducer, el if que verifica las acciones que van llegando.
 
     Tarea 4: Time to Practice - Dispatching Actions
+        // TODO: hacer esta tarea. hacer Quiere que agreguemos al if de las accciones, eliminar y un par mas.
 
     291. Passing and Retrieving Data with Action
 
