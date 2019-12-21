@@ -1,4 +1,4 @@
-## SECCION 1 ##
+### SECCION 1 ##
 
     1. Introduction
     2. What is React?
@@ -182,7 +182,6 @@
 
         Documentación de React: https://reactjs.org/
         El codepen, hecho por él: https://codepen.io/anon/pen/MELQaQ
-
 
 ### Sección: 2 - Refreshing Next Generation JavaScript (Optional) ###
 
@@ -1115,7 +1114,7 @@
         base-syntax--03-finished.zip
         base-syntax--assignment-solution.zip
 
-###  Sección 4: Working with Lists and Conditionals
+### Sección 4: Working with Lists and Conditionals
 
     52. Module Introduction
     53. Rendering Content Conditionally
@@ -1283,7 +1282,7 @@
             lists-conditionals--lists-finished.zip
             lists-conditionals--assignment-solution.zip
 
-###  Sección 5: Styling React - Components & Elements
+### Sección 5: Styling React - Components & Elements
 
     64. Module Introduction
     65. Outlining the Problem Set
@@ -1517,7 +1516,7 @@
         styling--01-radium.zip
         styling--02-css-modules-finished.zip
 
-###  Sección 6: Debugging React Apps
+### Sección 6: Debugging React Apps
 
     75. Module Introduction
     76. Understanding Error Messages
@@ -1573,7 +1572,7 @@
         Recursos de esta clase
         debugging--01-finished.zip
 
-###  Sección 7: Diving Deeper into Components & React Internals
+### Sección 7: Diving Deeper into Components & React Internals
 
         82. Module Introduction
         83. A Better Project Structure
@@ -2053,7 +2052,7 @@
 
         TODO: Falta toda la info de la parte LEGACY
 
-###  Sección 8: A Real App: The Burger Builder (Basic Version)
+### Sección 8: A Real App: The Burger Builder (Basic Version)
 
     145. About React Hooks
 
@@ -2217,9 +2216,26 @@
         a la misma altura que los controles crea un componente orderSumarr que se va a ir actualizando desde el componente raiz con los ingredientes.
         
     165. Showing & Hiding the Modal (with Animation!)
+        crea el código para mostrar u ocultar el modal y le da un poco de estilo.
+        En el interin tiene un problema con this, por la manera que escribio la función, así que la pasa a una arrow function y listo, solucionado.
+
+        El error pasó porque la función se ejecutaba después de un evento y eso hacía que this no apunte a la función.
+
     166. Implementing the Backdrop Component
+         Se puede retornar null en un componente, esta ok, significa que no queres mostrar nada.
+
+         Genera el overlay y pone el componente dentro del modal porque estan totalmente relacionados.
+
     167. Adding a Custom Button Component
+        Agregar los botones confirmar y cancelar.
+        Genera en UI un componente nuevo Button, y le define las propiedades necesarias para utilizarlo y qe sea generico.
+
+        de clase le passa un array, ya que le agrega 2 o mas segun el estado del boton.
+
     168. Implementing the Button Component
+        Lo implementa en OrderSummery
+        Le pasa por props a OrderSummery los handlers para los botones.
+
     169. Adding the Price to the Order Summary
     170. Adding a Toolbar
     171. Using a Logo in our Application
@@ -2229,13 +2245,44 @@
     175. More about Responsive Adjustments
     176. Reusing the Backdrop
     177. Adding a Sidedrawer Toggle Button
+
     178. Adding a Hamburger Icon
+        Hace lo que dice el modulo.
+
     179. Improving the App - Introduction
+        Habla sobre todo lo que nos enseño, su manera de pensar, que si hay componentes que se podrían mejorar, unir, si hay mejoras de performance que hacer, se va a tratar todo en las siguientes clases.
+
     180. Prop Type Validation
+        Comenta que solamente hice una validación de propiedades, porque es una app que esta haciendo el solo, que si lo aplicaría para un team de trabajo, o si esta haciendo algo open source, etc.
+        
     181. Improving Performance
+        Empieza a analizar la aplicación y comenta que en OrderSummery, se esta re-renderizando el componente, aún cuando el modal no esta visible, por lo que va a optimizar eso:
+
+        Para verificar eso, pasa el componente de Order a una clase y utiliza el metodo ComponentWillUpdate(), si falla por la versión que tenemos, se puede usar también ComponenteDidUpdate() 
+
+        Hace lo mismo con el modal, ya que verificó que realmente cada vez que agrega un ingrediente se actualiza Order.
+        A modal también lo convierte a clase y usa la función shouldComponentUpdate y solo va a actualizar las cosas si show (muestra o no el modal, se cambia a verdadero)
+
+
+        shouldComponentUpdate(nextProps, nextState) {
+            return nextProps.show !== this.props.show;
+        }
+
+        También comenta que no es necesario que se convierta en una clase, que debería ser un componente funcional.
+    
     182. Using Component Lifecycle Methods
+        Side effects en realidad aca se usa como llegar a hacer una llamada a una api y obtener datos de ella.
+        Explica la importancia de los metodos que ayudan a verificar si se actualizó un estado o no, etc.
+
     183. Changing the Folder Structure
+        Explica que Layout es un HOC, que podría estar en esa carpeta, pero que tampoco esta mal que este en containers, porque maneja el estado y se lo pasa a los componentes que esta conteniendo.
+        
+        Que no necesariamente hay que tener una carpeta hoc, podriamos tener solo componentes y containers y tampoco estaría mal. 
+
+        Dentro de la carpeta hoc, agrega una Aux y mete ahí el archivo Aux.js
     184. Wrap Up
+        Explica que hicimos nuestra primer app en react, que aprendimos, etc.
+
     185. Useful Resources & Links
         Useful Resources & Links
         Find the finished code (as well as in-between steps) for this module attached to this lecture.
@@ -2248,7 +2295,7 @@
         burger-basics--04-after-modal.zip
         burger-basics--05-after-navigation.zip
 
-###  Sección 9: Reaching out to the Web (Http / Ajax)
+### Sección 9: Reaching out to the Web (Http / Ajax)
 
     189. Module Introduction
     190. Understanding Http Requests in React
@@ -2342,7 +2389,6 @@
         axios.defaults.headers.common['Authorization'] = 'AUTH TOKEN'; -> que venga con el token
         axios.defaults.headers.post['Content-Type'] = 'application/json' -> que solo para los post pida esto
 
-
     204. Creating and Using Axios Instances
         se puede configurar diferentes url base, usando diferentes instancias.
 
@@ -2404,7 +2450,7 @@
         http-burger--02-after-error-hoc.zip
         http-burger--03-finished.zip
 
-#### Sección 11: Multi-Page-Feeling in a Single-Page-App: Routing
+### Sección 11: Multi-Page-Feeling in a Single-Page-App: Routing
 
     217. Module Introduction
     218. Routing and SPAs
@@ -2476,6 +2522,7 @@
         Si hacemos click ahora vamos a ver que no se actualiza la pagina entera (se nota en el icono de reload del navegador, que no se mueve esta vez-)
 
     227. Using Routing-Related Props
+        Muestra en consola las props que tiene Router.
 
     228. The "withRouter" HOC & Route Props
     229. Absolute vs Relative Paths
@@ -2500,6 +2547,383 @@
     Tarea 3: Time to Practice - Routing
     248. Wrap Up
     249. Useful Resources & Links
+        Useful Resources & Links
+        React Router Docs: https://reacttraining.com/react-router/web/guides/philosophy
+        Recursos de esta clase
+        routing--01-start.zip
+        routing--02-links-and-routes.zip
+        routing--03-after-nested-routing.zip
+        routing--04-redirect.zip
+        routing--05-finished.zip
+        routing--assignment-solution.zip
+
+### Sección 12: Adding Routing to our Burger Project
+
+    250. Module Introduction
+    251. Building the Checkout Container
+
+    252. Setting Up Routing & Routes
+
+    253. Navigating to the Checkout Page
+
+    254. Navigating Back & To Next Page
+
+    255. Passing Ingredients via Query Params
+
+    256. Navigating to the Contact Data Component
+
+    257. Order Submission & Passing Data Between Pages
+
+    258. Adding an Orders Page
+
+    259. Implementing Navigation Links
+
+    260. Fetching Orders
+
+    261. Outputting the Orders
+
+    262. Wrap Up
+
+    263. Useful Resources & Links
+        Find the source code for the module attached to this lecture.
+
+        Recursos de esta clase
+        routing-burger--01-first-routes.zip
+        routing-burger--02-query-params.zip
+        routing-burger--03-finished.zip
+
+### Sección 13: Forms and Form Validation
+
+    264. Module Introduction
+
+    265. Analyzing the App
+
+    266. Creating a Custom Dynamic Input Component
+
+    267. Setting Up a JS Config for the Form
+
+    268. Dynamically Create Inputs based on JS Config
+
+    269. Adding a Dropdown Component
+
+    270. Handling User Input
+
+    271. Handling Form Submission
+
+    272. Adding Custom Form Validation
+
+    273. Fixing a Common Validation Gotcha
+
+    274. Adding Validation Feedback
+
+    275. Improving Visual Feedback
+
+    276. Showing Error Messages
+
+    277. Handling Overall Form Validity
+
+    278. Working on an Error
+
+    279. Fixing a Bug
+
+    280. Useful Resources & Links
+        Validate.js (you may import its functionality into your React projects): https://validatejs.org/
+        Get more ideas about potential validation approaches: https://react.rocks/tag/Validation
+        Alternatives to the manual approach taken in this course:
+
+        react-validation package: https://www.npmjs.com/package/react-validation
+        formsy-react package: https://github.com/christianalfoni/formsy-react
+        Recursos de esta clase
+        forms--01-basic-form.zip
+        forms--02-form-validation.zip
+        forms--03-finished.zip
+
+### Sección 14: Redux
+
+    281. Module Introduction
+
+    282. Understanding State
+
+    283. The Complexity of Managing State
+
+    284. Understanding the Redux Flow
+
+    285. Setting Up Reducer and Store
+
+    286. Dispatching Actions
+
+    287. Adding Subscriptions
+
+    288. Connecting React to Redux
+
+    289. Connecting the Store to React
+
+    290. Dispatching Actions from within the Component
+
+    Tarea 4: Time to Practice - Dispatching Actions
+
+    291. Passing and Retrieving Data with Action
+
+    292. Switch-Case in the Reducer
+
+    293. Updating State Immutably
+
+    294. Updating Arrays Immutably
+
+    295. Immutable Update Patterns
+
+    296. Outsourcing Action Types
+
+    297. Combining Multiple Reducers
+
+    298. Understanding State Types
+
+    Tarea 5: Time to Practice - Redux Basics
+
+    299. [OPTIONAL] Assignment Solution
+
+    300. Combining Local UI State and Redux
+
+    301. Wrap Up
+    302. Useful Resources & Links
+        Redux Docs: http://redux.js.org/
+        Core Concepts: http://redux.js.org/docs/introduction/CoreConcepts.html
+        Actions: http://redux.js.org/docs/basics/Actions.html
+        Reducers: http://redux.js.org/docs/basics/Reducers.html
+        Redux FAQs: http://redux.js.org/docs/FAQ.html
+        Recursos de esta clase
+        redux--01-start.zip
+        redux--02-basic-flow.zip
+        redux--03-react-redux.zip
+        redux--04-improved-setup.zip
+        redux--05-finished.zip
+        redux--assignment-1-solution.zip
+        redux--assignment-2-solution.zip
+
+### Sección 15: Adding Redux to our Project
+
+    303. Module Introduction
+
+    304. Installing Redux and React Redux
+
+    305. Basic Redux Setup
+
+    306. Finishing the Reducer for Ingredients
+
+    307. Connecting the Burger Builder Container to our Store
+
+    308. Working on the Total Price Calculation
+
+    309. Redux & UI State
+
+    310. Adjusting Checkout and Contact Data
+
+    311. Wrap Up
+
+    312. Useful Resources & Links
+        Find the source code for this module attached to this lecture.
+
+        Recursos de esta clase
+        redux-burger--01-basic-setup.zip
+        redux-burger--02-finished.zip
+
+### Sección 16: Redux Advanced
+
+    313. Module Introduction
+
+    314. Adding Middleware
+
+    315. Using the Redux Devtools
+
+    316. Executing Asynchronous Code - Introduction
+
+    317. Introducing Action Creators
+
+    318. Action Creators & Async Code
+
+    319. Handling Asynchronous Code
+
+    320. Restructuring Actions
+
+    321. Where to Put Data Transforming Logic?
+
+    322. Using Action Creators and Get State
+
+    323. Using Utility Functions
+
+    324. A Leaner Switch Case Statement
+
+    325. An Alternative Folder Structure
+
+    326. Diving Much Deeper
+
+    327. Wrap Up
+    328. Useful Resources & Links
+        Middleware: http://redux.js.org/docs/advanced/Middleware.html
+
+        redux-thunk package: https://github.com/gaearon/redux-thunk
+
+        Async Actions: https://redux.js.org/advanced/asyncactions
+
+        Recursos de esta clase
+        redux-adv--01-start.zip
+        redux-adv--02-action-creators.zip
+        redux-adv--03-async-actions.zip
+        redux-adv--04-finished.zip
+
+### Sección 17: Redux Advanced: Burger Project
+
+    329. Module Introduction
+
+    330. Installing the Redux Devtools
+
+    331. Preparing the Folder Structure
+
+    332. Creating Action Creators
+
+    333. Executing Asynchronous Code
+
+    334. Fetching Ingredients Asynchronously
+
+    335. Initializing Ingredients in the BurgerBuilder
+
+    336. Changing the Order of our Ingredients Manually
+
+    337. Adding Order Actions
+
+    338. Connecting Contact Data Container & Actions
+
+    339. The Order Reducer
+
+    340. Working on Order Actions
+
+    341. Redirect to Improve UX
+
+    342. Combining Reducers
+
+    343. Handling Purchases & Updating the UI
+
+    344. Resetting the Price after Purchases
+
+    345. Fetching Orders (via Redux)
+
+    346. Checking our Implemented Functionalities
+
+    347. Refactoring Reducers
+
+    348. Refactoring Reducers Continued
+
+    349. Wrap Up
+    350. Useful Resources & Links
+        Find the source code for this module attached to this lecture.
+
+        Recursos de esta clase
+        redux-adv-burger--01-async-action-ingredients.zip
+        redux-adv-burger--02-finished.zip
+
+### Sección 18: Adding Authentication to our Burger Project
+
+    351. Module Introduction
+
+    352. Understanding Authentication in Single Page Applications
+
+    353. Required App Adjustments
+
+    354. Adding an Auth Form
+
+    355. Adding Actions
+
+    356. Getting a Token from the Backend
+
+    357. Adding Sign-In
+
+    358. Storing the Token
+
+    359. Adding a Spinner
+
+    360. Logging Users Out
+
+    361. Accessing Protected Resources
+
+    362. Updating the UI Depending on Auth State
+
+    363. Adding a Logout Link
+
+    364. Forwarding Unauthenticated Users
+
+    365. Redirecting the User to the Checkout Page
+
+    366. Persistent Auth State with localStorage
+
+    367. Fixing Connect + Routing Errors
+
+    368. Ensuring App Security
+
+    369. Guarding Routes
+
+    370. Displaying User Specific Orders
+
+    371. Wrap Up
+    372. Useful Resources & Links
+        SPA Authentication in general: https://stormpath.com/blog/token-auth-spa
+        Firebase authentication REST API: https://firebase.google.com/docs/reference/rest/auth/ 
+        Recursos de esta clase
+        auth--01-form-actions.zip
+        auth--02-auth-store.zip
+        auth--03-token.zip
+        auth--04-finished.zip
+
+### Sección 19: Improving our Burger Project
+
+    373. Module Introduction
+
+    374. Fixing the Redirect to the Frontpage
+
+    375. Using updateObject in the Entire App
+
+    376. Sharing the Validation Method
+
+    377. Using Environment Variables
+
+    378. Removing console.log()s
+
+    379. Adding Lazy Loading
+
+    380. Wrap Up
+    381. Useful Resources & Links
+        Find the source code for this module attached to this lecture.
+
+        Recursos de esta clase
+        burger-improvements--01-finished.zip
+
+### Sección 20: Testing
+
+    382. Module Introduction
+
+    383. What is Testing?
+
+    384. Required Testing Tools
+
+    385. What To Test?
+
+    386. Writing our First Test
+
+    387. Testing Components Continued
+
+    388. Jest and Enzyme Documentations
+
+    389. Testing Components Correctly
+
+    390. Testing Containers
+
+    391. How to Test Redux
+
+    392. Wrap Up
+    393. Useful Resources & Links
+        Enzyme API: http://airbnb.io/enzyme/docs/api/
+        Jest Docs: https://facebook.github.io/jest/
+        Recursos de esta clase
+        testing--01-finished.zip
 
 ### Sección 21: Deploying the App to the Web
 
@@ -2530,3 +2954,363 @@
 
         Recursos de esta clase
         deployment--01-finished.zip
+
+### Sección 22: Bonus: Working with Webpack
+
+    400. Module Introduction
+
+    401. Introducing Webpack
+
+    402. How Webpack works
+
+    403. Basic Workflow Requirements
+
+    404. Project & npm Setup
+
+    405. Creating a Basic Folder & File Structure
+
+    406. Creating the Basic React Application
+
+    407. Installing Production Dependencies
+
+    408. Setting Up the Basic Webpack Config
+
+    409. Adding File Rules & Babel
+
+    410. Loading CSS Files
+
+    411. Loading Images & Injecting into HTML Page
+
+    412. Production Workflow & Wrap Up
+
+    413. Adding babel-polyfill
+
+    414. Useful Resources & Links
+        Webpack Docs: https://webpack.js.org/concepts/
+        More about Babel: https://babeljs.io/
+        Recursos de esta clase
+        webpack--01-basic-react-app.zip
+        webpack--02-added-babel.zip
+        webpack--03-finished.zip
+
+### Sección 23: Bonus: Next.js
+
+    415. Module Introduction
+
+    416. Understanding Server Side Rendering
+
+    417. Setting Up a Project
+
+    418. Understanding the Basics
+
+    419. Next.js & Components & Pages
+
+    420. Styling our App in Next.js
+
+    421. Handling (404) Errors
+
+    422. A Special Lifecycle Hook
+
+    423. Deploying our App
+
+    424. Useful Resources & Links
+        Next.js Repo & Docs: https://github.com/zeit/next.js/
+        Recursos de esta clase
+        nextjs--01-finished.zip
+
+### Sección 24: Bonus: Animations in React Apps
+
+    425. Module Introduction
+
+    426. Preparing the Demo Project
+
+    427. Using CSS Transitions
+
+    428. Using CSS Animations
+
+    429. CSS Transition & Animations Limitations
+
+    430. Using ReactTransitionGroup
+
+    431. Using the Transition Component
+
+    432. Wrapping the Transition Component
+
+    433. Animation Timings
+
+    434. Transition Events
+
+    435. The CSSTransition Component
+
+    436. Customizing CSS Classnames
+
+    437. Animating Lists
+
+    438. Alternative Animation Packages
+
+    439. Wrap Up
+    440. Useful Resources & Links
+        More on CSS Transitions: https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Transitions/Using_CSS_transitions
+        More on CSS Animations: https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Animations/Using_CSS_animations
+        More on ReactTransitionGroup: https://github.com/reactjs/react-transition-group
+        Alternative => React Motion: https://github.com/chenglou/react-motion
+        Alternative => React Move: https://github.com/react-tools/react-move
+        Animating Route Animations: https://github.com/maisano/react-router-transition
+
+### Sección 25: Bonus: A Brief Introduction to Redux Saga
+
+    441. Module Introduction
+
+    442. Installing Redux Saga
+
+    443. Creating our First Saga
+
+    444. Hooking the Saga Up (to the Store and Actions)
+
+    445. Moving Logic from the Action Creator to a Saga
+
+    446. Moving More Logic Into Sagas
+
+    447. Handling Authentication with a Saga
+
+    448. Handling Auto-Sign-In with a Saga
+
+    449. Moving the BurgerBuilder Side Effects into a Saga
+
+    450. Moving the Orders Side Effects into Sagas
+
+    451. Why Sagas can be Helpful
+
+    452. Diving Deeper into Sagas
+
+    453. Useful Resources & Links
+        Find the module source code attached to this lecture.
+
+        Useful Links:
+
+        Redux Saga: Full Documentation => https://redux-saga.js.org/
+        Advanced Concepts: https://redux-saga.js.org/docs/advanced/
+        API Reference: https://redux-saga.js.org/docs/api/
+        Pros & Cons for Redux Saga vs Thunks: https://stackoverflow.com/questions/34930735/pros-cons-of-using-redux-saga-with-es6-generators-vs-redux-thunk-with-es2017-asy/34933395
+        Recursos de esta clase
+        redux-saga--01-start.zip
+        redux-saga--02-auth.zip
+        redux-saga--03-burger-builder.zip
+        redux-saga--04-orders.zip
+        redux-saga--05-finished.zip
+
+### Sección 26: React Hooks
+
+    454. Introduction
+
+    455. What are "React Hooks"?
+
+    456. The Starting Project
+
+    457. Getting Started with useState()
+
+    458. More on useState() & State Updating
+
+    459. Array Destructuring
+
+    460. Multiple States
+
+    461. Rules of Hooks
+
+    462. Passing State Data Across Components
+
+    Tarea 6: Time to Practice: Hooks Basics
+
+    463. Sending Http Requests
+
+    464. useEffect() & Loading Data
+
+    465. Understanding useEffect() Dependencies
+
+    466. More on useEffect()
+
+    467. What's useCallback()?
+
+    468. Working with Refs & useRef()
+
+    469. Cleaning Up with useEffect()
+
+    470. Deleting Ingredients
+
+    471. Loading Errors & State Batching
+
+    472. More on State Batching & State Updates
+
+    473. Understanding useReducer()
+
+    474. Using useReducer() for the Http State
+
+    475. Working with useContext()
+
+    476. Performance Optimizations with useMemo()
+
+    477. Getting Started with Custom Hooks
+
+    478. Sharing Data Between Custom Hooks & Components
+
+    479. Using the Custom Hook
+
+    480. Wrap Up
+
+    481. What's [LEGACY]?
+
+    482. [LEGACY] What are Hooks?
+
+    483. [LEGACY] Enabling Hooks
+
+    484. [LEGACY] The useState() Hook
+
+    485. [LEGACY] Adding Array Destructuring
+
+    486. [LEGACY] Using Multiple State
+
+    487. [LEGACY] Using One State Instead
+
+    488. [LEGACY] The "Rules of Hooks"
+
+    489. [LEGACY] Sending Data via Http
+
+    490. [LEGACY] The useEffect() Hook
+
+    491. [LEGACY] Controlling Effect Execution
+
+    492. [LEGACY] Effect Cleanup
+
+    493. [LEGACY] Converting the "App" Component
+
+    494. [LEGACY] The useContext() Hook
+
+    495. [LEGACY] State and Effects Gotchas
+
+    496. [LEGACY] The useReducer() Hook
+
+    497. [LEGACY] useReducer() vs useState()
+
+    498. [LEGACY] Working with References and useRef()
+
+    499. [LEGACY] Preparing & Optimizing
+
+    500. [LEGACY] Avoiding Unnecessary Re-Rendering
+
+    501. [LEGACY] How to think about Functional Components with Hooks
+
+    502. [LEGACY] Creating a Custom Hook
+
+    503. [LEGACY] Wrap Up
+
+### Sección 27: Using Hooks in the Burger Builder
+
+    504. Introduction
+
+    505. Converting <App>
+
+    506. Routing with React.lazy()
+
+    507. Converting the Layout Component
+
+    508. Converting withErrorHandler HOC
+    
+    509. Adjusting the Order & Checkout Containers
+
+    510. Add Hooks to ContactData
+
+    511. Converting the BurgerBuilder Container
+
+    512. Adjusting Auth & Logout Components
+
+    513. Using React.memo() & More!
+
+    514. Adding a Custom Error Handling Hook
+
+    515. Setting the right useEffect() Dependencies
+
+    516. Working with useSelector() and useDispatch()
+
+    517. Wrap Up
+    518. Useful Resources & Links
+        Official Hooks Docs: https://reactjs.org/docs/hooks-intro.html
+
+        Recursos de esta clase
+        hooks-prj-01-starting-project.zip
+        hooks-prj-02-added-lazy-loading.zip
+        hooks-prj-03-converted-hocs.zip
+        hooks-prj-04-orders-contactdata.zip
+        hooks-prj-05-burgerbuilder.zip
+        hooks-prj-06-auth.zip
+        hooks-prj-07-custom-error-handling-hook.zip
+        hooks-prj-08-finished.zip
+
+### Sección 28: Bonus: Replacing Redux with React Hooks
+
+    519. Module Introduction
+
+    520. Starting Project & Why You Would Replace Redux
+
+    521. Alternative: Using the Context API
+
+    522. Toggling Favorites with the Context API
+
+    523. Context API Summary (and why NOT to use it instead of Redux)
+
+    524. Getting Started with a Custom Hook as a Store
+
+    525. Finishing the Store Hook
+
+    526. Creating a Concrete Store
+
+    527. Using the Custom Store
+
+    528. Custom Hook Store Summary
+
+    529. Optimizing the Custom Hook Store
+
+    530. Bonus: Managing Multiple State Slices with the Custom Store Hook
+
+    531. Wrap Up
+    532. Useful Resources & Links
+        Attached, you find the module source code.
+
+        These resources might also be helpful:
+
+        More on React Hooks: https://reactjs.org/docs/hooks-intro.html
+
+        npm Custom Store Hook package: https://www.npmjs.com/package/use-global-hook
+
+        Recursos de esta clase
+        replace-redux-01-starting-project.zip
+        replace-redux-02-use-context-api.zip
+        replace-redux-03-started-work-on-custom-store-hook.zip
+        replace-redux-04-finished-custom-hook.zip
+        replace-redux-05-finished.zip
+        replace-redux-06-bonus-multiple-slices.zip
+
+### Sección 29: Bonus: Building the Burger CSS
+
+    533. Building the Burger CSS Code
+
+### Sección 30: Next Steps and Course Roundup
+
+    534. Module Introduction
+
+    535. React Rocks! Where to find more Examples
+
+    536. More Inspiration: Real-World Projects Built with React
+
+    537. Static React Apps with Gatsby.js
+
+    538. Introducing React Native
+
+    539. Component Libraries (Example: Material UI)
+
+    540. Smaller Apps with Preact
+
+    541. Comparing React with Preact
+
+    542. Congratulations
+
+    543. Bonus: More Content!
