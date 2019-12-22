@@ -1380,7 +1380,7 @@
                 
             }
         };
-# TODO: Actualizar esta sección a partir de acá:
+
     70. MUST READ: Enabling CSS Modules
 
         // Para habilitar CSS Modules:
@@ -1610,38 +1610,67 @@
         87. class Component Lifecycle Overview
 
             - Solo esta disponible en class Component.
-            - Hay un monton de metodo, que react corre por nosotross, ej:
+            - Hay un monton de metodos, que react corre por nosotross, ej:
             contructor(), getDerivedStateFromProps()...
 
             IMPORTANTE: no realizar "side effects" en el construtor, como:
                 http request, store aglo en la base. Usar solo para inicializar variables.
 
-        Ejemplos de llamados de metodos en orden:
-            1) constructor
-            2) getDerivedStateFromProps
-                Cuando las props cambien para la clase. Idem constructor, no side effects acá.
-            3) render
-                prepara y estructura tu jsx para retornarlo.
-            4) Child components:
-                Se renderizan estos components.
-            5) ComponentDidMount()
-                Acá se pueden generar "side effects"
-                NO ACTUALIZAR EL ESTADO ACA. Salvo que se cumpla una promesa sobre un llamado http.
+            Ejemplos de llamados de metodos en orden:
+
+                1) constructor
+                2) getDerivedStateFromProps
+                    Cuando las props cambien para la clase. Idem constructor, no side effects acá.
+
+                3) render
+                    prepara y estructura tu jsx para retornarlo.
+
+                4) Child components:
+                    Se renderizan estos components.
+
+                5) ComponentDidMount()
+                    Acá se pueden generar "side effects"
+                    NO ACTUALIZAR EL ESTADO ACA. Salvo que se cumpla una promesa sobre un llamado http.
 
         88. Component Creation Lifecycle in Action
 
-            mediante console log, muestra como se van ejecutando en orden las cosas.
+            mediante console log, muestra como se van ejecutando en orden las cosas, idem las posteriores..
 
         89. Component Update Lifecycle (for props Changes)
 
-            1) getDerivedStateFromProps
-            2) 
+            Ciclo de vida para actualizar los componentes.
+                Cuando cambian las props o el estado
             
-            TODO:
+            1) getDerivedStateFromProps(props, state)
+                No se usa amenudo, se utiliza para inicializar el estado de un componente que se actualiza en funcion de los accesorios que esta obteniendo. ej, algun control de form que obtiene propieades externas y luego internamente desea manejar la entrada del usuario pero inicializa su estado o actualiza el estado en función de cmbioas externos.
+                Sirve para sincronizar tu estado local dentro del component, no debería realizar side effects, por lo que no se deberían realizar llamadas http.
+
+            2) shouldComponentUpdate(nextProps, nextState)
+                permite cancelar el proceso de actualización, o sea, si react debe continuar evaluando y renderizando el componente o no.
+                se usa para optimizar el rendimiento.
+                tener cuidado porque podes bloquear tus componentes
+
+            3) render()
+                revisa el codigo JSX, lo evalua y basicamente construye su dom virtual 
+            
+            4) Update Child Components Props
+                Evalua todos los hijos secundarios que tengas en tu JSX y los actualiza
+
+            5) getSnapshotBeforeUpdate(prevProps, prevState)
+                devuelve un objeto snapshot que se puede configurar.
+                también es un enlace de ciclo de vida que no se usa demasiado.
+                se usa para operaciones de ultimo momento en el dom, no cambios, sino como obtener la posición de desplazamiento actual del usuario.
+                suponiendo que su proxima actualizacion del dom va a volver a representar el dom y agregara nuevos elementos y por lo tanto queres restaurar donde estaba el usuario posicionado.
+            
+            6) componentDidUpdate(prevProps, prevState, snapshot)
+                un enlace de ciclo de vida que te "avisa" que terminó la actualización del componente. 
+                acá si se pueden realizar llamadas http
+                LOOP INFINITOO ALERT:
+                    no actualice el stado aqui porque sino va a causar re-renderizado nuevamente. 
 
         90. Component Update Lifecycle (for state Changes)
 
-            lo pase.
+            
 
         91. Using useEffect() in Functional Components
 
@@ -2422,27 +2451,59 @@
 
     207. Module Introduction
     208. Firebase & The Right Database
-        Firebase & The Right Database
         The Firebase Database console - which we'll see in the next lecture - changed visually.
 
         Important: Make sure you pick the Realtime Database, NOT Firestore!
 
     209. Creating the Firebase Project
         Ir a consola > Nuevo proyecto > poner el nombre > destilde Google Analytics. 
+        
+        Dice que hay que tener en cuenta los planes...
+        Setea en rules en true, la opción de lectura/escritura, al menos por el momento.
+        Copia la url que le provee que es como un endpoint al que le pegas a la base.
 
-        TODO: modulo sin finalizar porque: La consola que muestra el es bastante diferente de la que tiene actualmente firebase, voy a pasar este modulo porque igual no necesito ahora saber esto. .
+
+        * La consola que muestra el es bastante diferente de la que tiene actualmente firebase.
+          El en este curso usa la opción de realtime database, por si en algún lugar de la consola se llega a ver eso.
 
     210. Creating the Axios Instance
+        crea un archivo axios-order.js y genera una instancia de axios para hacer posteos
 
     211. Sending a POST Request
+        Dentro de la función purchaseContinueHandler
+
+        hace la llamada a axios, y hay que tener en cuenta que para pegarle a la base a la tabla que corresponde en firebase, hay que poner por ej:
+
+        axios.post('/orders.json', objetoConInfo);
 
     212. Displaying a Spinner while Sending a Request
+        
+        Crea dentro de la carpeta UI un spinner.js
+        Busca en google css spinner, se copia el css, 
+        genera el componente en el archivo, props, estado.
+
+        Dentro del modal, en el metodo shouldComponentUpdate, agrega una condición al if, que se renderice lo que esta adentro del componente si cambia show o si nextProps.children !== this.props.children 
 
     213. Handling Errors
+        Implementar Global Error Handling.
+
+        Crea un componente hoc, withErrorHandler, con minuscula (es otra manera de crear un componente), no va a devolver JSX.
+        Usa el interceptor de response de axios para obtener si hubo algun error en alguna llamada en el response.
+        Crea una función para setear el error en nulo cuando cierra el modal de error.
 
     214. Retrieving Data from the Backend
+        En FireBase, crea la "tabla" ingredients, con las mismas propiedades del objeto con el que inicializaba, ahora en componentDidUpdate realiza la llamada a la base y mete una validación para que no rompa la app ya que ahora ingredients en el state es nulo al arrancar, porque se actualiza después con lo de la base.
+
+        Hay un error por la manera en la que se llaman los componentes cuando son clases y el problema lo tiene porque se utlizan los interceptores, por lo que cambia componentDidUpdate por componentWillMount, en la versión 16.8 ya no existe.
+        Agrega los catch a las llamadas con axios que faltaban.
 
     215. Removing Old Interceptors
+        Genera propiedades a la clase donde pone el resultado de los interceptors de req y resp, para usarlo en el componentWillUnmount.
+        
+        Y utiliza axios.interceptors.request.eject(this.reqInterceptor)
+        Y utiliza axios.interceptors.response.eject(this.reqResponse)
+
+        con esto evitamos crear y crear interceptors.
 
     216. Useful Resources & Links
         Useful Resources & Links
@@ -2528,6 +2589,7 @@
         Muestra en consola las props que tiene Router.
 
     228. The "withRouter" HOC & Route Props
+
     229. Absolute vs Relative Paths
     230. Absolute vs Relative Paths (Article)
     231. Styling the Active Route
@@ -3233,8 +3295,13 @@
 ### Sección 19: Improving our Burger Project
 
     373. Module Introduction
-
     374. Fixing the Redirect to the Frontpage
+        Arregla un flag que le había quedado mal en purchaseBurgerStart (el loading lo pasó a true)
+
+        Cuando submite la orden, se redirige al index con todo vacio.
+            Vuelve a poner la ruta de auth, porque dentro de ese componente estaba la funcionalidad y como no hace daño volver a ponerlo, es la solucion mas rapida que encontró.
+
+        fixea el css de la hamburgeusa porque no esta bien centrado..
 
     375. Using updateObject in the Entire App
 
@@ -3460,41 +3527,122 @@
 
     454. Introduction
     455. What are "React Hooks"?
+
         Nos ayuda a trabajar con nuestros componentes de una manera mas eficiente.
 
-        Functional:
+        1) Functional:
             Props in, JSX out
             Great for Presentational
             Focused on one/few purpose(s)
 
-        Class-based:
+        2)  Funcional With Hooks 
+            Nos permite trabajar con functional components only.
+            Hooks, reemplaza las funcionalidades de las clases (el manejo de estado) 
+                (que por eso las teníamos que usar, si bien podes crear clases, no es obligación. 
+
+        3) Class-based:
             Uses props and state
             Business logic goes in here
             Orchestates components.
-            Lifecycle hooks
+            Lifecycle hooks (can be hard to use)
 
-        Para usar uno u otro, hay que convertirlos o desconvertirlos y es bastanta molesto.
+        - Para usar uno u otro, hay que convertirlos o desconvertirlos y es bastanta molesto.
+        
+        React hooks, 
+            Son:
+                Estan en React desde la versión 16.8
+                Se llaman así porque "enganchas" a function component, con cierta funcionalidad.
+                simplemente funciones javascript.
+                Los nombres de las funciones de React hooks arrancan con useAlgo()
+                Con Hooks, podes hacer que todo sean functional components, no necesitas mas clases.
 
-        Hooks, podes hacer que todo sean functional components, no necesitas mas classes.
-        
-        Los nombres de las funciones de React hooks arrancan con useAlgo()
-        
-        No puede exponer ciertas funcionalidades completas de estado posible a componentes funcionales como la administración del
-        estado, sino también agregar métodos de ciclo de vida un poco diferentes que con componentes basados en clases.
+            Se pueden usar:
+                dentro de funcional components.        
+                dentro de otros hooks.
+                Son reutilizables e independientes de cada componente.
 
-        Son reutilizables e independientes de cada componente.
-        
+            También podemos:
+                escribir nuestros propios hooks.
+                Compartir la logica completa o sin estado entre multiples componentes.
+
+            No son - no tienen que ver:
+                No se pueden reemplazar los metodos de ciclo de vida con react hooks.
+            
+        La idea de los hooks, es que vos podes exponer cierta (posiblemente stateful funcionalities) a functions components, como manejar el estado, como el ciclo de vida de los componentes.
+
+        # IMPORTANTE #
+            Lifecycle hooks, son sinonimo de los metodos de ciclo de vida y solo se pueden usar en componentes basados en clases.
+
     456. The Starting Project
+        Habla sobre el proyecto que dejó adjunto y sobre que no tiene ni una clase, son todos componentes de funciones.
 
     457. Getting Started with useState()
+        Core Hook!
+
+        Como usarlo:
+            - Agregar al import de react, useState entre { }
+            - useState() -> puede ser inicializado con cualquier tipo. No solo con un objeto como en las clases componentes.
+            - Es mas facil inicialiarlos como string, ya que por mas que el input sea de otro tipo, los values son siempre strings.
+            - Devuelve una matriz con exactamente dos elemetos: 
+        
+            1) el valor actual 
+            2) una función que te permite retornar el valor actualizado.
+
+            const inputState = useState({title: '', amount: ''});
+
+            en nuestro input:
+                value={inputState[0].title} 
+                onChange={event => useState[1]({title: event.target.value})}
 
     458. More on useState() & State Updating
+        Los que nos enseño recién NO SIRVE, NO SE HACE ASÍ, porque se esta pisando la información, no actualizando la propiedad especifica del objeto, esta creando un objeto nuevo y perdiendo la información de amount o de title si es que empezas a escribir por amount.
+
+        const inputState = useState({title: '', amount: ''});
+
+        Se podría solucionar así, pero tampoco es la manera correcta, porque no podemos quedarnos tranquilos de que sea el ultimo snapshot del estado de los elementos.
+
+            en nuestro input:
+                value={inputState[0].title} 
+                onChange={event => inputState[1]({title: event.target.value, amount: useState[0].amount })}
+
+        La solución es:
+            value={inputState[0].title} 
+            onChange={event => {
+                const newTitle = event.target.value;
+                inputState[1](prevInputState => ({
+                    title: newTitle, 
+                    amount: prevInputState.amount 
+                }));
+            }}
 
     459. Array Destructuring
+        const [ inputState, setInputState ] = useState({title: '', amount: ''});
+
+        value={inputState.title} 
+        onChange={event => {
+            const newTitle = event.target.value;
+            setInputState(prevInputState => ({
+                title: newTitle, 
+                amount: prevInputState.amount 
+            }));
+        }}
 
     460. Multiple States
+        La manera correcta ya que la otra es inmantenible y aparte si tenes mas de un input en el form te volves loco, es:
+        Su forma recomendada:
+
+        const [ enteredTitle, setEnteredTitle ] = useState('');
+        const [ enteredAmount, setEnteredAmount ] = useState('');
+
+        value={enteredTitle} 
+        onChange={event => {
+            setEnteredTitle(event.target.value);
+        }}
 
     461. Rules of Hooks
+        Entendiendo useState
+
+        
 
     462. Passing State Data Across Components
 
