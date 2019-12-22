@@ -3810,10 +3810,14 @@
 ### Sección 28: Bonus: Replacing Redux with React Hooks
 
     519. Module Introduction
-
     520. Starting Project & Why You Would Replace Redux
-
+        Hay dos approach uno bueno y uno que no debería usarse para cualquier opción.
+        
     521. Alternative: Using the Context API
+        La alternativa que no se debe usar siempre (o sea, para cualquier cosa).
+        
+        Crea una carpeta context > products-context.js
+            
 
     522. Toggling Favorites with the Context API
 
