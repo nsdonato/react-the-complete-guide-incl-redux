@@ -1375,11 +1375,13 @@
         // Actualemente no es necesario importar ni usar usar: </StyleRoot>
             no hay errores.
         Person.js
-        const style = {
-            '@media (min-width: 580px': {
-                
-            }
-        };
+            const style = {
+                '@media (min-width: 580px': {
+                    
+                }
+            };
+
+        
 
     70. MUST READ: Enabling CSS Modules
 
@@ -2011,7 +2013,6 @@
                 en coockpit, cambias el elemento por esto y listo. 
 
         113. Wrap Up
-
         114. Useful Resources & Links
 
             More on useEffect(): https://reactjs.org/docs/hooks-effect.html
@@ -2048,38 +2049,35 @@
             The upcoming lectures marked as "[LEGACY]" are only there to allow existing students who started this module before the update (on February 6th) to continue smoothly.
 
             You can skip all remaining lectures in this module (i.e. the lectures with "[LEGACY]") if you watched all the other lectures prior to this one.
-
-            116. [LEGACY] Splitting an App Into Components
-            117. [LEGACY] Comparing Stateless and Stateful Components
-            118. [LEGACY] Understanding the Component Lifecycle
-            119. [LEGACY] Converting Stateless to Stateful Components
-            120. [LEGACY] Component Creation Lifecycle in Action
-            121. [LEGACY] componentWillUnmount()
-            122. [LEGACY] Component Updating Lifecycle Hooks
-            123. [LEGACY] Component Updating Lifecycle in Action
-            124. [LEGACY] Updating Lifecycle Hooks (Triggered by State Changes)
-            125. [LEGACY] Performance Gains with PureComponents
-            126. [LEGACY] How React Updates the App & Component Tree
-            127. [LEGACY] Understanding React's DOM Updating Strategy
-            128. [LEGACY] Windows Users Must Read - File Downloads
-            129. [LEGACY] Returning Adjacent Elements (React 16+)
-            130. [LEGACY] React 16.2 Feature: Fragments
-            131. [LEGACY] Understanding Higher Order Components (HOCs)
-            132. [LEGACY] A Different Approach to HOCs
-            133. [LEGACY] Passing Unknown Props
-            134. [LEGACY] Using setState Correctly
-            135. [LEGACY] Validating Props
-            136. [LEGACY] Available PropTypes
-            137. [LEGACY] Using References ("ref")
-            138. [LEGACY] More on the React ref API (16.3)
-            139. [LEGACY] The Context API (React
-            140. [LEGACY] More on the Context API (16.6)
-            141. [LEGACY] Updated Lifecycle Hooks (React 16.3)
-            142. [LEGACY] The "memo" Method (16.4)
-            143. [LEGACY] Wrap Up
-            144. [LEGACY] Useful Resources &
-
-        TODO: Falta toda la info de la parte LEGACY
+        116. [LEGACY] Splitting an App Into Components
+        117. [LEGACY] Comparing Stateless and Stateful Components
+        118. [LEGACY] Understanding the Component Lifecycle
+        119. [LEGACY] Converting Stateless to Stateful Components
+        120. [LEGACY] Component Creation Lifecycle in Action
+        121. [LEGACY] componentWillUnmount()
+        122. [LEGACY] Component Updating Lifecycle Hooks
+        123. [LEGACY] Component Updating Lifecycle in Action
+        124. [LEGACY] Updating Lifecycle Hooks (Triggered by State Changes)
+        125. [LEGACY] Performance Gains with PureComponents
+        126. [LEGACY] How React Updates the App & Component Tree
+        127. [LEGACY] Understanding React's DOM Updating Strategy
+        128. [LEGACY] Windows Users Must Read - File Downloads
+        129. [LEGACY] Returning Adjacent Elements (React 16+)
+        130. [LEGACY] React 16.2 Feature: Fragments
+        131. [LEGACY] Understanding Higher Order Components (HOCs)
+        132. [LEGACY] A Different Approach to HOCs
+        133. [LEGACY] Passing Unknown Props
+        134. [LEGACY] Using setState Correctly
+        135. [LEGACY] Validating Props
+        136. [LEGACY] Available PropTypes
+        137. [LEGACY] Using References ("ref")
+        138. [LEGACY] More on the React ref API (16.3)
+        139. [LEGACY] The Context API (React
+        140. [LEGACY] More on the Context API (16.6)
+        141. [LEGACY] Updated Lifecycle Hooks (React 16.3)
+        142. [LEGACY] The "memo" Method (16.4)
+        143. [LEGACY] Wrap Up
+        144. [LEGACY] Useful Resources &
 
 ### Sección 8: A Real App: The Burger Builder (Basic Version)
 
@@ -3243,15 +3241,28 @@
 ### Sección 18: Adding Authentication to our Burger Project
 
     351. Module Introduction
+        En MPA generalmente esto se maneja en el servidor mediante session. Acá tenemos un solo archivo, así que vamos a ver como se maneja...
 
     352. Understanding Authentication in Single Page Applications
+        SPA -> envia un auth al SERVER, el server no devuelve una sesión sino un TOKEN (json), generalmente se guarda en el localStorage, no se puede guardar en el estado porque si refresca la pagina se pierde..
+        Para hacer ciertos request necesitamos estar autenticados, entonces para no andar validando eso todo el tiempo en el request se envia el token con cierta información
 
+        Si bien acá usamos Firebase, el token se puede generar en cualuqier server.
+                                       
     353. Required App Adjustments
+        Comenta que va a agregar una vista, que es el formulario de inicio de sesión, que también tenemos que manejar en que endpoints vamos a pedir autenticación y por ultimo tenemos que pasar el token para poder hacer lo anterior.
 
     354. Adding an Auth Form
+        Dentro de containers crea un nuevo componente Auth.
+        Reutiliza lo que hizo en el modulo de Form y validaciones.
+
+        Le agrega un css, actualiza codigo..etc
 
     355. Adding Actions
-
+        Al final termina usando redux.. 
+        Agrega un tipo de acción al archivo actionsTypes.js
+        crea un archivo auth.js dentro de la carpeta actions.
+        // TODO: terminar de ver
     356. Getting a Token from the Backend
 
     357. Adding Sign-In
@@ -3304,14 +3315,38 @@
         fixea el css de la hamburgeusa porque no esta bien centrado..
 
     375. Using updateObject in the Entire App
+        Crea una carpeta shared y pasa el archivo utility.js ahí adentro.
+        actualiza las referencias al archivo en los import.
+
+        en updatedFormElement = updateObject(this.state.orderForm[inputIdentifier], 
+            value: event.target.value,
+            valid: this.checkValidity(updatedFormElement.value, updatedFormElement.validation),
+            touched: true
+        )
+
+        mismo para orderForm
+
+        verifica en otros archivos y hace lo mismo.
 
     376. Sharing the Validation Method
+        a la función checkValidity, la mete en el archivo utility.js, la usa para validar cosas del formulario.
+
+        elimina el metodo de los archivos, importa la función y le saca el this a la función en los archvos.
 
     377. Using Environment Variables
+        Hace que la dev tools de redux se vea solo en dev con las variables de entorno.
 
     378. Removing console.log()s
-
+        Elimina los console.log...
+        
     379. Adding Lazy Loading
+        Carga diferida.
+        Agrega dentro de la carpeta hoc > asyncComponent 
+        le pega info que hizo en la sección de enrutamiento
+
+        Genera una para cada una, order, auth, etc.
+
+        * No se debe usar siempre y para cualquier cosa, porque si son cosas chicas ni vale la pena hacer esto.
 
     380. Wrap Up
     381. Useful Resources & Links
