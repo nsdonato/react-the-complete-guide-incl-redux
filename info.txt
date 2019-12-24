@@ -1980,13 +1980,33 @@
 
     113. Using the Context API
 
-        Agrega una nueva carpeta /context y después un archivo aux-context.js
-        import React from 'react';
+        * this.context no se usa mas, se debe usar esta api. React.createContext + useContext
 
-        const authContext = React.createContext({
-            authenticated: false,
-            login: () => {}
-        });
+        PROVIDER: se crea el context para que los componentes después, lo puedan CONSUMIR.
+            - React create context, nos permite inicializar nuestro contexto con un valor inicial, puede ser cualquiera cosa, obj, array, etc. También se inicializa para poder usar el intellisense, pero generalmente la inicialización no se utiliza salvo que no se pase nada al atributo value del componente.
+
+            - Crete context es un "objeto global" de javascript. O sea, en realidad no es que es un objeto global, 
+            sino que vos decidis donde se va a aplicar.
+            
+            - En el contexto tengo que guardar todo lo que quiero acceder desde mis diferentes componentes.
+            
+            - Con nuestro nuevo componente, en este caso authContext, tenemos que envolver, los componentes, que querramos que tengan acceso a esta información.
+        
+        CONSUMER:
+            - Se debe importar el context, y en el return, debemos utilizar el componente, englobando los componentes que necesitan esa info, pero con <AuthContext.Consumer> ver ej mas abajo:
+            - No toma JSX como un hijo, pero si una función, ver ej de como realizar esto.
+            - Se utiliza en el componente que este lo mas abajo posible, ya que sino tenemos que andar pasando cosas por props y justamente esa no es la idea.
+        
+        EJEMPLO:
+        Agrega una nueva carpeta /context y después un archivo aux-context.js
+            import React from 'react';
+
+            const authContext = React.createContext({
+                authenticated: false,
+                login: () => {}
+            });
+
+            export default authContext;
 
         App.js
             Lo importamos.
