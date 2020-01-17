@@ -1382,17 +1382,88 @@
             };
 
     70. Introducing Styled Components
-        TODO: No lo pienso ver, es nuevo y es una libreria (70/76)
+        npm install --save styled-components
         
+        import syled from 'styled-components';
+        const Button = styled.button`` -> feature: que se llama tacked templates. button es una función o metodo, dentro de los ticks, podes pasar texto.
+
+        Los metodos retornan un componente de react.
+
+        En vez de:
+        <div className="Person" style={style}">
+
+        Haces:
+        styled.div``
+            width: 60%;
+            margin:  16px auto;
+
+        pero, es mejor, crear un nuevo COMPONENTE, de esta manera, que es especifica para este framework, ya que recordemos, los metodos, retornan un componente.:
+
+        const StyledDiv = styled.div`
+            width: 60%;
+            margin:  16px auto;`;
+
+        Esto después lo usamos así:
+        <StyledDiv>
+        </StyledDiv>
+            
     71. More on Styled Components
+        Como funcionan realmente?
+
+        Si nos fijamos en el html, los nombres de las clases que se generaron son fruta, estos nombres los genera el framework.
+
+        El package agarra todo el css y lo pone como selectores de clase y los agrega al encabezado documento, y después agrega el css al div que es retornado por ese compoenente.
 
     72. Styled Components & Dynamic Styles
+        Para pasarle props y cambiar su estilo, dinamicamente, simplemente le pasamos como cualquier otro componente, mediante un nombre de prop y un valor. Después dentro de los backteacks, usamos por ej:
 
+        <StyledButton alt="this.state.button">
+
+        const StyledButton = styled.button`
+            background-color: ${props => props.alt ? 'red' : 'green' }
+        `;
+        
+        Todo esto es javascript, no react, por eso usando los backteacks, se puede usar interpolación de cadenas y a su vez el package hace la magia de poder usar props.
+         
     73. Working with CSS Modules
+        npm run eject 
+        // Esto ya se hace varias veces en el curso, buscarlo en el archivo.
+
+        En el caso de que estemos manejando todo el css dentro de un solo arhivo, podríamos indicar adelante de los selectores, el css principal por ejemplo el de App.
 
     74. CSS Modules & Media Queries
+         Con CSS Modules, tenemos la info separada, js por un lado css por otro, y aparte de importar el css solo en el js que lo necesitamos. Recomendable este en la misma carpeta del componente junto al js.
 
     75. More on CSS Modules
+        CSS Modules are a relatively new concept (you can dive super-deep into them here: https://github.com/css-modules/css-modules). With CSS modules, you can write normal CSS code and make sure, that it only applies to a given component.
+
+        It's not using magic for that, instead it'll simply automatically generate unique CSS class names for you. And by importing a JS object and assigning classes from there, you use these dynamically generated, unique names. So the imported JS object simply exposes some properties which hold the generated CSS class names as values.
+
+        Example:
+
+        In Post.css File
+
+        .Post {
+            color: red;
+        }
+        In Post Component File
+
+        import classes from './Post.css';
+        
+        const post = () => (
+            <div className={classes.Post}>...</div>
+        );
+        Here, classes.Post  refers to an automatically generated Post  property on the imported classes  object. That property will in the end simply hold a value like Post__Post__ah5_1 .
+
+        So your .Post  class was automatically transformed to a different class (Post__Post__ah5_1 ) which is unique across the application. You also can't use it accidentally in other components because you don't know the generated string! You can only access it through the classes  object. And if you import the CSS file (in the same way) in another component, the classes  object there will hold a Post  property which yields a different (!) CSS class name. Hence it's scoped to a given component.
+
+        By the way, if you somehow also want to define a global (i.e. un-transformed) CSS class in such a .css  file, you can prefix the selector with :global .
+
+        Example:
+
+        :global .Post { ... } 
+
+        Now you can use className="Post"  anywhere in your app and receive that styling.
 
     76. Useful Resources & Links
         Using CSS Modules in create-react-app Projects: https://medium.com/nulogy/how-to-use-css-modules-with-create-react-app-9e44bec2b5c2
