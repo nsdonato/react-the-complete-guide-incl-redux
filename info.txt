@@ -1,13 +1,21 @@
+# TEORIA #: Un concepto puntual que deberíamos saber.
+# IMPORTANTE #: Algo a tener en cuenta, muy particular sobre el lenguaje.
+
 ### SECCION 1 ##
 
     1. Introduction
     2. What is React?
 
         Que, como y porque:
-            Una libreria de JavaScript para crear interfaces de usuario (Componentes)
-            Corre en el navegador.
-            Podemos reusar componentes.
+        # TEORIA #
+            Una /libreria de JavaScript/ para crear interfaces de usuario (Componentes)
+
+            - Basicamente, se crean aplicaciones Javascript, que corren en el navegador, no corren en el servidor. No tenemos que esperar una respuesta del servidor para obtener una nueva página o para renderizar algo nuevo.
+
+            - User interface: Interfaz de usuario, es lo que el usuario puede ver. Con React construimos componentes, para la interfaz de usuario, que a su vez, se pueden reutilizar.
+
     3. Join our Online Learning Community
+
         As a student of this course you also get free access to our "Academind Community" on Discord: https://discord.gg/gxvEWGU
 
         There, you can find like-minded people, discuss issues, help each other, share progress, successes and ideas and simply have a good time!
@@ -15,6 +23,7 @@
         I believe that you learn the most if you don't learn alone but find learning partners and other people with similar interests. Our community is a great place for this - it's the perfect complimentary resource for this course.
 
         Joining it is of course free and 100% optional.
+
     4. Real-World SPAs & React Web Apps
 
         Adding the Right React Version to Codepen
@@ -51,14 +60,18 @@
 
         ReactDOM.render(<Person />, document.querySelector('#p1')); 
 
-        // el metodo render nos permite representar una función de JavaScript como componente del DOM real, y tratarlo como un componente.
+        # TEORIA # 
+        El metodo RENDER nos permite representar una función de JavaScript como componente del DOM real, y tratarlo como un componente.
+
         // le decimos que renderice como html ese objeto Person.
         // le decimos en donde queremos que se vea ese componente.
 
-        * las clases en el codigo html se tienen que escribir className en vez de class. Porque React renderiza ese html como un componente JavaScript (que usa la propiedad className)
+        * El atributo class en el codigo html se tienen que escribir className, porque React renderiza ese html como un componente JavaScript (que es donde se usa la propiedad className)
 
         // Le agrega un argumento que es propio de react
-        // los datos dinamicos se encierran entre { }
+        
+        # TEORIA #  
+        Los datos dinamicos se encierran entre { }
         
         function Person(props){
             return (
@@ -73,25 +86,26 @@
         ReactDOM.render(<Person name="Manu" age="29"/>, document.querySelector('#p2')); 
 
         En vez tener un elemento div con la clase p1, ahora solo vamos a tener uno con id Apps
+        
         HTML:
-        <div id="app"></div>
+            <div id="app"></div>
 
         JS:
-        function Person(props){
-            return (
-                <div className="person">
-                    <h1>{props.name}</h1>
-                    <p>{props.age}</p>
-                </div>
-            );// Sintaxis JSX, para renderizar el DOM.
-        }
+            function Person(props){
+                return (
+                    <div className="person">
+                        <h1>{props.name}</h1>
+                        <p>{props.age}</p>
+                    </div>
+                );// Sintaxis JSX, para renderizar el DOM.
+            }
 
-        var app = (
-            <div>
-                <Person name="Max" age="28" />
-                <Person name="Manu" age="29" />
-            </div>
-        );
+            var app = (
+                <div>
+                    <Person name="Max" age="28" />
+                    <Person name="Manu" age="29" />
+                </div>
+            );
 
         // En vez de tener dos elementos, tengo uno solo que tenga los 2.
         ReactDOM.render(<app/>, document.querySelector('#app')); 
@@ -101,7 +115,7 @@
     6. Why should we choose react?
 
         Porque en aplicaciones grandes es dificil de manejar el ESTADO.
-        Aparte si tenes que cambiar los elementos de lugar y puede que tengas que cambiar cosas y estas usando querySelector.
+        Porque cambiar elementos de lugar es mas engorroso, aparte de acomodarlos en pantalla, dependiendo si usaste getQuerySelector o JQuery esto se complica mucho.
         
         React nos permite enfocarnos en nuestra logica de negocios, envitando que nuestra app explote.
         Supuestamente como React tiene una comunidad zarpada, el codigo es excelente.
@@ -116,7 +130,7 @@
 
         SAP:
             Solo recuperamos un solo archivo html, el contenido es renderizado en el cliente.
-            Esta construidda por componentes, y cada componente es un componente React, también es mantenida por un componente root de React, que esta bajo el cotnrol de React.
+            Esta construidda por componentes, y cada componente es un componente React, también es mantenida por un componente root de React, que esta bajo el control de React.
             Tipicalmente tenemos una llamada reactDOM.render(), se necesita una sola porque tenemos un componente raiz, que esta montado en el DOM que tiene todo el resto de componentes.
 
         MPA:
@@ -188,17 +202,19 @@
     12. Module Introduction
         Next-Gen Javascript, para refrescar. React usa esto, así que, hay que saberlo.
 
-    13. Understanding "let" and "const"
+    13. Understanding "let" and "const" - # TEORIA #
+
         let = var (cambia el tema del scope, porque ahora es de bloque.)
         const = para info que no va a cambiar.
 
-    14. Arrow Functions
-        antes:
+    14. Arrow Functions - # TEORIA #
+
+        funciones antes:
             function myFuncion() {
                 ...
             } 
 
-        ahora:
+        funciones ahora:
             const myFuncion = () => {
                 ...
             }
@@ -209,9 +225,9 @@
         * Si tiene mas de uno, es (param1,param2) =>
         * Si la parte de retorno solo tiene una linea, se puede escribir así: const multiplicar = number => number * 2;
 
-    15. Exports and Imports
+    15. Exports and Imports - # TEORIA #
 
-        Para codigo modular, para dividir los archivos js en varios archivos.
+        Para modular el código, para dividir los archivos js en varios archivos.
             Si bien ya se puede (porque agregas diferentes archivos en el html, de manera ordenada)
             Lo que pasa ahora es que desde un js, se puede usar info de otro js.
 
@@ -248,7 +264,7 @@
 
                     import { baseData, clean } from './utility.js' 
 
-    16. Understanding Classes
+    16. Understanding Classes - # TEORIA #
 
         - Los metodos son como: funciones atachados a esa clase/objetos,
         - las propiedades son como: variables, atachadas a esa clase/objetos,
@@ -281,27 +297,31 @@
         miPersona.printMyname();
         miPersona.printGender();    
 
-    17. Classes, Properties and Methods
+    17. Classes, Properties and Methods - # TEORIA #
 
         ES6
+        Propiedades:
             constructor() {
                 this.myProperty = 'value'
             }
 
+        Metodos:
             miMetodo () {
                 ...
             }
 
         ES7
+        Propiedades:
             myProperty = 'value'; // Si, no hay un "constructor" en si.
 
+        Metodos:
             miMetodo = () => {
                 ...
             }
             
-        * Es mejor usar ambos opciones de ES7, para esto si o si hay que usar ES6/Babel.
+        * Es mejor usar ambos opciones de ES7, para esto si o si hay que usar ES6/Babel, que transpila el código y lo convierte.
 
-    18. The Spread & Rest Operator  
+    18. The Spread & Rest Operator - # TEORIA #
 
         // Operator Spread o Rest (depende de donde se use)
         ...
@@ -327,6 +347,7 @@
 
                 const newObject = { ...oldObject, newProp: 5 }
                 console.log(newO)
+
         Rest: (Fusión de elementos en un array)
             
             Se utiliza con menos frecuencia.
@@ -336,9 +357,12 @@
 
             // Recibe una lista ilimitada de argumentos, y todos se fusionan en un array.
             // O sea, en vez de dividir, los une.
+
             function sortArgs(...args){
                 return args.sort[]; 
             }
+
+            sortArgs(1,2,3,4,5);
         
         * Hay que tener en cuenta que si el numero o propiedad / funcion, ya existia en el objeto actual, lo sobreescribe.
         
@@ -350,7 +374,7 @@
         console.log(filter(1,2,3));
         // [1]
 
-    19. Destructuring
+    19. Destructuring - # TEORIA #
 
         Permite extraer facilmente elementos de una matriz o propiedades de objetos y guardarlos en variables.
         ej:
@@ -372,7 +396,7 @@
             console.log(name); // Noe
             console.log(age); // undefined
 
-    20. Reference and Primitive Types Refresher
+    20. Reference and Primitive Types Refresher - # TEORIA #
 
         Primitivos
         * Copia el valor de su variable en otra, osea hay 2.
@@ -401,7 +425,7 @@
 
             console.log(secPerson); // 'Max'
 
-    21. Refreshing Array Functions
+    21. Refreshing Array Functions - # TEORIA #
 
         const numbers = [1,2,3];
 
@@ -416,12 +440,6 @@
         Basicamente que cualquier cosa, se puede volver a esas clases para refrescar por si te olvidaste algo.
 
     23. Next-Gen JavaScript - Summary
-
-        Me la pase resumiendo y lo dejó él, acá: 
-
-        Descargar el pdf o en mi caso ver:
-            file:///C:/Users/Noe/Downloads/next-gen-js-summary.pdf
-            
     24. JS Array Functions
 
         En realidad, no la próxima generación de JavaScript, pero también es importante: un arreglo de funciones de JavaScript, como map() , filter() , reduce()  etc.
@@ -447,9 +465,9 @@
 
         Que es, como usarlo, nuestra primera app react, conceptos generales, sintaxis basicas, etc.
 
-    26. The Build Workflow
+    26. The Build Workflow 
 
-                    Recomendado para SPA y MPAs
+        Recomendado para SPA y MPAs
 
         Porque?     
                 - Optimización de codigo en grandes apps, para tener también el menor codigo postible, considerando el peso de las app también.
@@ -472,18 +490,17 @@
         * En otro modulo enseña como hacer una desde 0 igual.
 
     27. Using Create React App
-
         Es la herramienta recomendada para crear proyectos de React. "Create React App"
 
         - Instalar Node JS.
-        > npm install -g create-react-app // Instalar globalmente, para poder llamarla desde cualquier lado.
-        > create-react-app react-guia-completa // El segundo parametro es el nombre de la app.
+        # IMPORTANTE: npm install -g create-react-app ESTA DEPRECADO.
+
+        > npm create-react-app react-guia-completa // El segundo parametro es el nombre de la app.
         > cd react-guia-completa
         > npm start
 
     28. Understanding the Folder Structure
-        C:\Cursos\React-16.6---The-Complete-Guide-incl.-React-Router-Redux-\info_gral_curso\27\ide-setup.pdf
-
+        
         package.json
             Donde estan las dependencias y los diferentes scripts que podemos ejecutar para correr diferentes tareas. Dependencias productivas y de desarrollo.
 
@@ -522,8 +539,6 @@
         - Eliminar del archivo css, todo menos la parte de .App
         
     29. Understanding Component Basics
-        file:///C:/Cursos/React-16.6---The-Complete-Guide-incl.-React-Router-Redux-/info_gral_curso/28/components-learning-card.pdf
-
         index.js
             import React from 'react';
             import ReactDOM from 'react-dom';
@@ -532,7 +547,7 @@
             import * as serviceWorker from './serviceWorker';
 
             // Siempre vamos a tener un elemento donde van a estar todos los componentes
-            // y que lo vamos a renderizar en un id x ej root.
+            // y que lo vamos a renderizar en un id x ej root. # TEORIA #
             ReactDOM.render(<App />, document.getElementById('root'));
 
         app.js
@@ -564,13 +579,15 @@
             2)
         - 
 
+        # TEORIA #
         * Por lo general cuando se elige el nombre de un componente, se usa ese nombre para la variable a importar, para el archivo y para el elemento.
         * Los archivos también podrían llamarse JSX, pero se usa js por convención.
-            JSX en realidad es lo que llaman syntactic sugar. Es una sintaxis dentro de un lenguaje de programación, diseñado para ser mas facil de leer o expresarse.
-            Es como "mas dulce para que lo use una persona"
+            JSX en realidad es lo que llaman "syntactic sugar". Es una sintaxis dentro de un lenguaje de programación, diseñado para ser mas facil de leer o expresarse.
+            Es como "mas dulce para que lo pueda usar una persona"
 
     30. Understanding JSX
 
+        Componente basado en clase:
         class App extends Component {
             render() {
                 // Podemos usar el objeto de React para crear un elemento.
@@ -593,11 +610,17 @@
 
     31. JSX Restrictions
 
-        Como en realidad el html que vemos es JSX, no podemos usar palabras claves como class, debemos en este caso, por ej usar className, en el elemento.
-        No podemos devolver elementos que no tienen un padre. Por ej, no podemos poner un elemento hermano al div root.
-        Es buena practica, es meter todo dentro de un contenedor a devolver.
+        # IMPORTANTE #:
+        
+        - Como en realidad el html que vemos es JSX, no podemos usar palabras reservadas como class, debemos en este caso, por ej usar className, en el elemento.
+        
+        - No podemos devolver elementos que no tienen un padre. Por ej, no podemos poner un elemento hermano al div root.
+       
+        - Es buena practica, es meter todo dentro de un contenedor a devolver.
 
     32. Creating a Functional Component
+
+        # IMPORTANTE #
 
         vamos a crear un componente:
             src/
@@ -661,13 +684,14 @@
 
     35. Outputting Dynamic Content
 
-        Para que el js, no sea interpretada como texto, se debe usar ${js que quiera}
+        # IMPORTANTE #
+        Para que el js, no sea interpretada como texto, se debe usar {js que quiera}
+
             return <p>Soy una persona and I am {Math.floor(Math.random() * 30)} years old! </p>
 
         Esto se usa para simples calculos o llamadas a funciones, pero nada mas, debería ser solo una linea de codigo
 
     36. Working with Props
-        Descargar pdf o file:///C:/Users/Noe/Downloads/props-learning-card.pdf
 
         return (
             <div className="App">
@@ -681,21 +705,18 @@
         Del componente principal, se le pasa al componente que corresponde el valor de las propiedades.
 
         Person.js
-            #IMPORTANTE: El argumento es un objeto con toda la info que se le pasa al componente, se puede llamar props, como se puede llamar pepito.
+            #IMPORTANTE: 
+            El argumento es un objeto con toda la info que se le pasa al componente, se puede llamar props, como se puede llamar pepito.
 
             const person = (props) => {
                 return <p>Hola! Soy {props.name} y tengo {props.age} años! </p>
             }
 
-        #IMPORTANTE: Cuanto se usa en una clase-componente (como app), se tiene que usar this.props
+        Cuanto se usa en una clase-componente (como app), se tiene que usar this.props
 
     37. Understanding the Children Property
-        en esta carpeta: base-syntax--01-props-custom-cmp.zip
 
-        <div>
-            <p>I'm {props.name} and I am {props.age} years old!</p>
-            <p>{props.children}</p>
-        </div>
+       
 
         Si queremos pasar algo entre la etiqueta de apertura y cierre, tenemos que envolver eso en un elemento padre y usar children.
 
@@ -705,6 +726,12 @@
             <Person name="Manu" age="29">My hobbies: Racing</Person>
             <Person name="Noe" age="32"/>
         </div>
+
+        Person.js
+         <div>
+            <p>I'm {props.name} and I am {props.age} years old!</p>
+            <p>{props.children}</p>
+         </div>
 
     38. Understanding & Using State
 
@@ -718,7 +745,7 @@
 
                 Se inicializa como un objeto.
                     state = {}
-                Se le pueden agrengar, array objetos:
+                Se le pueden agregar, array objetos:
                     state = {
                         persons: [
                             { name: 'Noe', age: 32 },
@@ -740,6 +767,7 @@
                 props.children mostraría por ej en el componente Person "My hobbies: Racing"
 
             this, hace referencia a la clase donde se esta usando 
+
     39. Props & State
         file:///C:/Users/Noe/Downloads/props-state.pdf
 
@@ -769,7 +797,7 @@
                     );
                 }
 
-            El Post  componente recibe el props  argumento. Por supuesto, puede nombrar este argumento como desee: es la definición de su función, ¡a React no le importa! Pero React pasará un argumento a su función de componente => Un objeto, que contiene todas las propiedades que configuró <Post ... /> .
+            El componente Post recibe props como argumento. Por supuesto, puede nombrar este argumento como desee: es la definición de su función, ¡a React no le importa! Pero React pasará un argumento a su función de componente => Un objeto, que contiene todas las propiedades que configuró <Post ... /> .
             {props.title}  luego genera dinámicamente la title  propiedad del props  objeto, que está disponible ya que configuramos la title  propiedad dentro del AllPosts  componente (ver arriba).
 
 
@@ -2456,7 +2484,6 @@
         usa slice para en vez de mostrar todos los elementos del response, mostrar solo los primeros 4.
         Envia por atributos/props la info y arregla el componente para que muestre bien todo.
         
-
     195. Making a Post Selectable   
         Hace una función y se la pasa al componente que termina renderizando un mensaje o la info que seleccionaste.
 
@@ -2673,7 +2700,7 @@
     226. Using Links to Switch Pages
         Comenta que no es correcto usar Route, sino que hay que importar y usar Link
 
-        Para eso modifica en en el nav, los a por el componente link
+        Para eso modifica en en el nav, los <a> por el componente link
         React router genera la etiqueta de anclaje y previene el reload, por lo tanto
         to, apate de ser un string, también se le puede pasar una función, un objeto...
 
@@ -3666,7 +3693,7 @@
         redux-saga--04-orders.zip
         redux-saga--05-finished.zip
 
-### Sección 26: React Hooks
+### Sección 26: React Hooks - # TEORIA #
 
     454. Introduction
     455. What are "React Hooks"?
@@ -3691,10 +3718,9 @@
 
         - Para usar uno u otro, hay que convertirlos o desconvertirlos y es bastanta molesto.
         
-        React hooks, 
-            Son:
+        React hooks: 
                 Estan en React desde la versión 16.8
-                Se llaman así porque "enganchas" a function component, con cierta funcionalidad.
+                Se llaman así porque "enganchas" un "function component", con cierta funcionalidad.
                 simplemente funciones javascript.
                 Los nombres de las funciones de React hooks arrancan con useAlgo()
                 Con Hooks, podes hacer que todo sean functional components, no necesitas mas clases.
