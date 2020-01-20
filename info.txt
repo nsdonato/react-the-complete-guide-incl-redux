@@ -1175,7 +1175,7 @@
             if(this.person == null) {
                 person = ( // esto es como crear un elemento 
                     metemos el html aca que queremos ocultar o no
-                );
+                );  
             }
 
             return (
@@ -2549,7 +2549,7 @@
 
         axios.defaults.BaseUrl = 'la url de mi api'; -> sacamos en nuestras llamadas la parte del server:port
         axios.defaults.headers.common['Authorization'] = 'AUTH TOKEN'; -> que venga con el token
-        axios.defaults.headers.post['Content-Type'] = 'application/json' -> que solo para los post pida esto
+        axios.defaults.headers.post['Content-Type'] = 'application/json' -> que solo para los post pida esto, se puede con cualquier metodo
 
     204. Creating and Using Axios Instances
         se puede configurar diferentes url base, usando diferentes instancias.
@@ -2662,7 +2662,7 @@
     220. Setting Up the Router Package
         npm install --save react-router react-router-dom
 
-        importamos BrowserRouter y envolvemos el div de app por ej.
+        importamos BrowserRouter y envolvemos el div de app por ej, a partir de ahí en todos los subcomponentes se van a poder acceder a las funcionalidades de este componente. (La funcionalidad sería parecida a la de Context)
 
         import { BrowserRouter } from 'react-router-dom';
         <BrowserRouter>
@@ -2722,11 +2722,41 @@
         Muestra en consola las props que tiene Router.
 
     228. The "withRouter" HOC & Route Props
-        
+        Para pasar props de un componente a otro, al exportar el componente al final hay que envolverlo con withRouer.
+
     229. Absolute vs Relative Paths
+        Absolute: depende siempre del dominio. 
+
+        Relative: podes construir la url con las props, ya que vimos que en match viene parte de la url, entonces lo que harías es:
+        pathname: this.props.match + '/new-posts'
+
     230. Absolute vs Relative Paths (Article)
+        Absolute vs Relative Paths (Article)
+        You learned about <Link> , you learned about the to  property it uses.
+
+        The path you can use in to can be either absolute or relative. 
+
+        Absolute Paths
+        By default, if you just enter to="/some-path"  or to="some-path" , that's an absolute path. 
+
+        Absolute path means that it's always appended right after your domain. Therefore, both syntaxes (with and without leading slash) lead to example.com/some-path .
+
+        Relative Paths
+        Sometimes, you might want to create a relative path instead. This is especially useful, if your component is already loaded given a specific path (e.g. posts ) and you then want to append something to that existing path (so that you, for example, get /posts/new ).
+
+        If you're on a component loaded via /posts , to="new"  would lead to example.com/new , NOT example.com/posts/new . 
+
+        To change this behavior, you have to find out which path you're on and add the new fragment to that existing path. You can do that with the url  property of props.match :
+
+        <Link to={props.match.url + '/new'}>  will lead to example.com/posts/new  when placing this link in a component loaded on /posts . If you'd use the same <Link>  in a component loaded via /all-posts , the link would point to /all-posts/new .
+
+        There's no better or worse way of creating Link paths - choose the one you need. Sometimes, you want to ensure that you always load the same path, no matter on which path you already are => Use absolute paths in this scenario.
+
+        Use relative paths if you want to navigate relative to your existing path.
+
     231. Styling the Active Route
     232. Passing Route Parameters
+
     233. Extracting Route Parameters
     234. Parsing Query Parameters & the Fragment
     235. Using Switch to Load a Single Route
@@ -3392,17 +3422,30 @@
         Reutiliza lo que hizo en el modulo de Form y validaciones.
 
         Le agrega un css, actualiza codigo..etc
+        // TODO: terminar de ver
 
     355. Adding Actions
         Al final termina usando redux.. 
         Agrega un tipo de acción al archivo actionsTypes.js
         crea un archivo auth.js dentro de la carpeta actions.
         // TODO: terminar de ver
+
     356. Getting a Token from the Backend
+        En firebase va a la sección de autenticación, y muestra que hay una opción para marcar donde elegis quedarte con el usuario y password del usuario y se aloja en firebase.
+        Enable > save.
+
+        Busca en Google firebase rest auth 
+        Busca en Firebase el api key, para pegarle al nuevo endpoint. 
+        Autenticación > web setup 
+
+        Elige la url de sing up, la pone dentro del archivo auth, que esta dentro de la carpeta store > actions > auth.js en la parte donde se exporta la función auth, ahí hace el post.
+
+        Verifica que datos tiene que mandarle en el body al endpoint, lo prueba y muestra por consola que le retorno bien la info.
 
     357. Adding Sign-In
 
     358. Storing the Token
+        Dentro de la carpeta reducer, genera un archivo auth.js 
 
     359. Adding a Spinner
 
@@ -3419,6 +3462,10 @@
     365. Redirecting the User to the Checkout Page
 
     366. Persistent Auth State with localStorage
+        Agrega en el local storage el token que obtiene, y también en localStorage agrega un expirationDate.
+
+        let expirationDate = new Date(new Date().getTime() + response.data.expiresIn * 1000);
+        localStorage('expirationDate', expirationDate);
 
     367. Fixing Connect + Routing Errors
 
@@ -3743,6 +3790,7 @@
             Lifecycle hooks, son sinonimo de los metodos de ciclo de vida y solo se pueden usar en componentes basados en clases.
 
     456. The Starting Project
+        
         Habla sobre el proyecto que dejó adjunto y sobre que no tiene ni una clase, son todos componentes de funciones.
 
     457. Getting Started with useState()
@@ -3751,7 +3799,7 @@
         Como usarlo:
             - Agregar al import de react, useState entre { }
             - useState() -> puede ser inicializado con cualquier tipo. No solo con un objeto como en las clases componentes.
-            - Es mas facil inicialiarlos como string, ya que por mas que el input sea de otro tipo, los values son siempre strings.
+            - Es mas facil inicialiarlos como string, ya que por mas que el input sea de otro tipo, el valor que se pone en el atributo value termina siendo siempre un string.
             - Devuelve una matriz con exactamente dos elemetos: 
         
             1) el valor actual 
@@ -3764,6 +3812,7 @@
                 onChange={event => useState[1]({title: event.target.value})}
 
     458. More on useState() & State Updating
+
         Los que nos enseño recién NO SIRVE, NO SE HACE ASÍ, porque se esta pisando la información, no actualizando la propiedad especifica del objeto, esta creando un objeto nuevo y perdiendo la información de amount o de title si es que empezas a escribir por amount.
 
         const inputState = useState({title: '', amount: ''});
@@ -3784,7 +3833,8 @@
                 }));
             }}
 
-    459. Array Destructuring
+    459. Array Destructuring 
+
         const [ inputState, setInputState ] = useState({title: '', amount: ''});
 
         value={inputState.title} 
@@ -3798,8 +3848,6 @@
 
     460. Multiple States
         La manera correcta ya que la otra es inmantenible y aparte si tenes mas de un input en el form te volves loco, es:
-        Su forma recomendada:
-
         const [ enteredTitle, setEnteredTitle ] = useState('');
         const [ enteredAmount, setEnteredAmount ] = useState('');
 
@@ -3809,11 +3857,23 @@
         }}
 
     461. Rules of Hooks
-        Entendiendo useState
+        Entendiendo useState...
 
-        
+        Podemos llamarlo con un estado inicial o no. 
+        Se crea un estado que se maneja "detras de escena" por React, que sobrevive re-render cicles.
+        Lo que obtenemos es una matriz con dos elementos, el primero es un puntero a tu estado y es el segundo es una función de update del estado.
 
-    462. Passing State Data Across Components
+        # IMPORTANTE #
+        Hay dos reglas importantes que se aplican a todos los estados:
+            1) Los hooks, solo se deben usar en componentes funcionales (functional components) o dentro de nuestros propios hooks personalizados.
+            2) No podes usar un hook en una función anidada, siempre es en el componente root. Para que quede claro, esto no se puede hacer:
+
+            const unaFuncion = () => {
+                useState() -> usarlo acá adentro.
+            }
+
+    462. Passing State Data Across Components   
+        Explica como hacer para agregar ingredientes y pasarselo al otro componente.
 
     Tarea 6: Time to Practice: Hooks Basics
 
@@ -3836,6 +3896,26 @@
     471. Loading Errors & State Batching
 
     472. More on State Batching & State Updates
+        React batches state updates - see: https://github.com/facebook/react/issues/10231#issuecomment-316644950
+
+        That simply means that calling
+
+        setName('Max');
+        setAge(30);
+        in the same synchronous (!) execution cycle (e.g. in the same function) will NOT trigger two component re-render cycles.
+
+        Instead, the component will only re-render once and both state updates will be applied simultaneously.
+
+        Not directly related, but also sometimes misunderstood, is when the new state value is available.
+
+        Consider this code:
+
+        console.log(name); // prints name state, e.g. 'Manu'
+        setName('Max');
+        console.log(name); // ??? what gets printed? 'Max'?
+        You could think that accessing the name state after setName('Max'); should yield the new value (e.g. 'Max') but this is NOT the case. Keep in mind, that the new state value is only available in the next component render cycle (which gets scheduled by calling setName()).
+
+        Both concepts (batching and when new state is available) behave in the same way for both functional components with hooks as well as class-based components with this.setState()!
 
     473. Understanding useReducer()
 
