@@ -2651,7 +2651,7 @@
 
     217. Module Introduction
     218. Routing and SPAs
-        El enrutamiento se trata de poder mostrar difernetes paginas a el usuario.
+        El enrutamiento se trata de poder mostrar diferentes paginas a el usuario.
                         
         Router Package:
         Parsear url / path -> configurar las rutas ->  renderiza / carga el jsx apropiado / componente
@@ -3859,9 +3859,9 @@
     461. Rules of Hooks
         Entendiendo useState...
 
-        Podemos llamarlo con un estado inicial o no. 
-        Se crea un estado que se maneja "detras de escena" por React, que sobrevive re-render cicles.
-        Lo que obtenemos es una matriz con dos elementos, el primero es un puntero a tu estado y es el segundo es una función de update del estado.
+        - Podemos llamarlo con un estado inicial o no. 
+        - Se crea un estado que se maneja "detras de escena" por React, que sobrevive re-render cicles.
+        - Lo que obtenemos es una matriz con dos elementos, el primero es un puntero a tu estado y es el segundo es    una función de update del estado.
 
         # IMPORTANTE #
         Hay dos reglas importantes que se aplican a todos los estados:
@@ -3874,16 +3874,70 @@
 
     462. Passing State Data Across Components   
         Explica como hacer para agregar ingredientes y pasarselo al otro componente.
+        O sea, modifica el componente de Ingredientes, donde:
+        Agrega el componente IngredientList y le pasa por prop el esado con los ingredients.
+        Agrega una función addIngredientHandler y se la pasa al componente IngedienteForm
 
     Tarea 6: Time to Practice: Hooks Basics
+        Deje la solución por la mitad.
 
     463. Sending Http Requests
+        Creó un nuevo proyecto en Firebase.
+        va a usar fetch y agrega la url del nuevo proyecto, configura el metodo como post, un body de lo que queres enviar (data en formato json), le envia el ingrediente sin id porque ahora eso lo va a generar firebase.
+        
+        # IMPORTANTE #
+        Explica que en fetch es obligatorio poner el header de app/json para que parsee eso a json, en axios no es necesario.
+
+        response.json() -> toma el body y lo convierte a json.
 
     464. useEffect() & Loading Data
+        Solo sepuede usar en componentes funcionales, y en el componente root.
+
+        Side effect, basicamente significa que tenes cierta logica que afecta a tu aplicación.
+        Por ejemplo, que dentro de la función estemos llamando a algo que no se termine en este ciclo de renderización o talvez afecta algo que esta afuera del alcance del código jsx. 
+        Por ejemplo setear el titulo del documento, algo así.
+
+        useEffect se ejecuta después de que cada componente procesa su ciclo.
+        O sea, después de que el componente donde se esta por usar se haya procesado por primera vez, la función que le pasas a useEffect, va a ser ejecutada.
+
+        # IMPORTANTE # 
+        Se ejecuta cada vez que el componente se vaya a re-renderizar.
+
+        Dentro de la función useEffect, hace un llamado a firebase con un get, para obtener los ingredientes.
+         crea una variable para ir pusheando los ingredientes, como un objeto .push({ title: , description: }) bla bla.
+
+         si no se usa useEffect, pasanlo un array, al hacer un fetch, se actualiza el estado, y como cada vez que se actualiza el estado, se re-renderiza el componente, useEffect genera un loop infinito porque siempre hace el fetch y siempre re-renderiza el estado.
+
+        A tener en cuenta: useEffect actua como componentDidUpdate().
+
+        En useEffect el primer parametro es la función que se ejecuta después de cada ciclo de renderizado, la segunda es una array con las dependencias de esa función, o sea, que solo va a correr la función cuando sus dependencias cambien. Para que corra solo una vez se agrega el array vacio, que no necesita dependencias, por ende solo ejecuta una vez. 
 
     465. Understanding useEffect() Dependencies
+        
+        # IMPORTANTE #
+        Se puede tener tantos useEffect como necesites, como useState.
 
+        Si le pasamos una dependencia, useEffect va a correr solo cuando a esa dependencia se le cambie algo (State, props
+        )
     466. More on useEffect()
+
+        Va a usar useEffect para hacer un request a firebase cada vez que el usuario pulse una tecla.
+        Por ende en vez de un array vacio, le pasa enteredFilter, que es el estado actualizado de las letras que se van escribiendo en el value.
+
+        Al final de la llamada, usa props.onLoadIngredients(loadedIngredients), este ultimo es donde se va pusheando la info a cada respuesta del request.
+
+        Así que le pasa al componente Search, la nueva prop onLoadIngredients={filteredIngredientsHandler}
+
+        crea la funcion filteredIngredientsHandler, como props es una dependencia de useEffect, también hay que pasarla como parametro del array, pero como esto puede traer otros problemas, lo que se hace en realidad es oasar la funcion onLoadIngredients, y arriba de todo después de crearse la función, lo que se hace es extraer con destructuring, esa función de las props, const { onLoadIngredients } = props;
+        Esto se hace para que useEffect se use solo cuando uno de los dos parametros que le psamos cambie.
+
+        Firebase admite filtrado, así que arma una constante query con enteredFilter.lenght === 0 ? '' : `?orderBy="title"&equalTo="${enteredFilter}"
+
+        eso se lo pasamos al final de la url en el fetch
+
+        También hay que ir a rules, y habilitar filtering en firebase, ingredients: { ".indexOn": [ "title" ]}
+
+        esto da un loop infinito, lo resuelve en el proximo video.
 
     467. What's useCallback()?
 
