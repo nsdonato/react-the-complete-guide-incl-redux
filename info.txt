@@ -3940,6 +3940,18 @@
         esto da un loop infinito, lo resuelve en el proximo video.
 
     467. What's useCallback()?
+        
+        Al re-renderizarse el componente, las funciones se vuelven a crear, es esto lo que esta causando el lopp infinito.
+
+        Para prevenir esto, hay otro hook que se llama useCallback. 
+
+        Nos permite envolver nuestra función y pasarle un 2do argumento con las dependencias del argumento, como nuestra funcion setUserIngredients, no tiene dependencias, entonces le especificamos a useCallback un array vacio, como useeffect.
+
+         Lo que hace useCallback es cachear la función y que sobreviva a las re-renderizaciones, o sea, no se va a recrear la funcion cuando el componente se re-renderice.
+
+         Si bien elimina el loop infinito en la solapa de network verifica porque hay 2 peticiones. 
+
+         Una es para obtener los ingredientes, la otra es desde ingredientes.
 
     468. Working with Refs & useRef()
 
