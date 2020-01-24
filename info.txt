@@ -4256,6 +4256,7 @@
     474. Using useReducer() for the Http State
         Genera un reducer para los tipos de acciones al hacer algo http, como enviar, respuesta, error, etc:
 
+        Solo manejamos estados, no es que vamos a hacer las llamadas ahí.
         
         const httpReducer = (curHttpState, action) => {
         switch (action.type) {
@@ -4282,6 +4283,89 @@
         // const [error, setError] = useState();
 
     475. Working with useContext()
+        Crea una carpeta context (porque a el le gusta hacerlo así): de esta manera todos los componentes que esten envueltos en el componente AuthContext, van a "escuchar" las actualizaciones sobre los estados isAuth y login.
+
+        auth-context.js
+            import React, { useState } from 'react';
+
+            export const AuthContext = React.createContext({
+                isAuth: false,
+                login: () => {}
+            });
+
+            const AuthContextProvider = props => {
+                const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+                const loginHandler = () => {
+                    setIsAuthenticated(true);
+                };
+
+                return (
+                    <AuthContext.Provider
+                    value={{ login: loginHandler, isAuth: isAuthenticated }}>
+                        {props.children} // De esta manera decis que a este componente se le puede pasar cualquier otro componente, es un wrapper.
+                    </AuthContext.Provider>
+                );
+            };
+
+            export default AuthContextProvider;
+
+        index.js
+
+            <AuthContextProvider>
+                <App />
+            </AuthContextProvider>
+
+        app.js
+            En los componentes funionales, el contexto no se puede utilizar, deberíamos convertirlos a clases, pero, para no hacer eso, podemos usar el hoook useContext.
+
+            import React, { useContext } from 'react';
+
+            import Ingredients from './components/Ingredients/Ingredients';
+            import Auth from './components/Auth';
+            import { AuthContext } from './context/auth-context';
+
+            const App = props => {
+                const authContext = useContext(AuthContext);
+
+                let content = <Auth />;
+                if (authContext.isAuth) {
+                    content = <Ingredients />;
+                }
+
+                return content;
+            };
+
+            export default App;
+
+        Auth.js
+            import React, { useContext } from 'react';
+
+            import Card from './UI/Card';
+            import { AuthContext } from '../context/auth-context';
+            import './Auth.css';
+
+            const Auth = props => {
+            const authContext = useContext(AuthContext);
+
+            const loginHandler = () => {
+                authContext.login();
+            };
+
+            return (
+                <div className="auth">
+                <Card>
+                    <h2>You are not authenticated!</h2>
+                    <p>Please log in to continue.</p>
+                    <button onClick={loginHandler}>Log In</button>
+                </Card>
+                </div>
+            );
+            };
+
+            export default Auth;
+
+        Cualquier cosa revisar la sección 7 donde explica mas sobre el contexto.
 
     476. Performance Optimizations with useMemo()
 
