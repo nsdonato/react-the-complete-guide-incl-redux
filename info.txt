@@ -2825,27 +2825,144 @@
     264. Module Introduction
 
     265. Analyzing the App
+        Habla de poner los input en su propio componente para poder centralizar, poner label y algún manejo de errores.
 
     266. Creating a Custom Dynamic Input Component
+        Lo mete dentro de la carpeta components > UI 
+        Genera css, y le pasa la info desde el form que lo usa, no más que eso
 
     267. Setting Up a JS Config for the Form
+        Genera un objeto con los inputs que va a tener el formulario, ej:
 
+        orderForm: {
+            name: {
+                elementType: 'input',
+                elementConfig: {
+                    type: 'text',
+                    placeholder: 'Your Name'
+                },
+                value: '',
+                validation: {
+                    required: true
+                },
+                valid: false,
+                touched: false
+            },
+        }
+
+       
     268. Dynamically Create Inputs based on JS Config
+         después dinamicamente genera el form:
+
+        <form onSubmit={this.orderHandler}>
+                {formElementsArray.map(formElement => (
+                    <Input 
+                        key={formElement.id}
+                        elementType={formElement.config.elementType}
+                        elementConfig={formElement.config.elementConfig}
+                        value={formElement.config.value}
+                        invalid={!formElement.config.valid}
+                        shouldValidate={formElement.config.validation}
+                        touched={formElement.config.touched}
+                        changed={(event) => this.inputChangedHandler(event, formElement.id)} />
+                ))}
+                <Button btnType="Success" disabled={!this.state.formIsValid}>ORDER</Button>
+            </form>
+            
 
     269. Adding a Dropdown Component
+        Genera en el switch el código para renderizar selects
 
     270. Handling User Input
+        Le agrega los onchage a los input y genera la función:
 
+        inputChangedHandler = (event, inputIdentifier) => {
+            const updatedOrderForm = {
+                ...this.state.orderForm
+            };
+            const updatedFormElement = { 
+                ...updatedOrderForm[inputIdentifier]
+            };
+            updatedFormElement.value = event.target.value;
+            updatedFormElement.valid = this.checkValidity(updatedFormElement.value, updatedFormElement.validation);
+            updatedFormElement.touched = true;
+            updatedOrderForm[inputIdentifier] = updatedFormElement;
+            
+            let formIsValid = true;
+            for (let inputIdentifier in updatedOrderForm) {
+                formIsValid = updatedOrderForm[inputIdentifier].valid && formIsValid;
+            }
+            this.setState({orderForm: updatedOrderForm, formIsValid: formIsValid});
+        }
+    
     271. Handling Form Submission
+        Genera la función que va a utilizar el formulario al submitirse.
+
+        orderHandler = ( event ) => {
+            event.preventDefault();
+    
+            const formData = {};
+            for (let formElementIdentifier in this.state.orderForm) {
+                formData[formElementIdentifier] = this.state.orderForm[formElementIdentifier].value;
+            }
+            const order = {
+                ingredients: this.props.ings,
+                price: this.props.price,
+                orderData: formData,
+                userId: this.props.userId
+            }
+
+            this.props.onOrderBurger(order, this.props.token);
+            
+        }
 
     272. Adding Custom Form Validation
+        Genera la función, con la que se valida si esta bien lla info ingresada en los input o no.
+        
+        checkValidity(value, rules) {
+            let isValid = true;
+            if (!rules) {
+                return true;
+            }
+            
+            if (rules.required) {
+                isValid = value.trim() !== '' && isValid;
+            }
 
+            if (rules.minLength) {
+                isValid = value.length >= rules.minLength && isValid
+            }
+
+            if (rules.maxLength) {
+                isValid = value.length <= rules.maxLength && isValid
+            }
+
+            if (rules.isEmail) {
+                const pattern = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
+                isValid = pattern.test(value) && isValid
+            }
+
+            if (rules.isNumeric) {
+                const pattern = /^\d+$/;
+                isValid = pattern.test(value) && isValid
+            }
+
+            return isValid;
+        }
     273. Fixing a Common Validation Gotcha
+        Mejora esto:
+        
+        if (rules.required) {
+            isValid = value.trim() !== '' && isValid;
+        }
 
     274. Adding Validation Feedback
+        if (props.invalid && props.shouldValidate && props.touched) {
+            inputClasses.push(classes.Invalid);
+        }
 
     275. Improving Visual Feedback
-
+    
     276. Showing Error Messages
 
     277. Handling Overall Form Validity
@@ -3812,6 +3929,7 @@
                 onChange={event => useState[1]({title: event.target.value})}
 
     458. More on useState() & State Updating
+        https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures
 
         Los que nos enseño recién NO SIRVE, NO SE HACE ASÍ, porque se esta pisando la información, no actualizando la propiedad especifica del objeto, esta creando un objeto nuevo y perdiendo la información de amount o de title si es que empezas a escribir por amount.
 
@@ -3891,6 +4009,9 @@
         response.json() -> toma el body y lo convierte a json.
 
     464. useEffect() & Loading Data
+
+        https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures
+
         Solo sepuede usar en componentes funcionales, y en el componente root.
 
         Side effect, basicamente significa que tenes cierta logica que afecta a tu aplicación.
@@ -3919,6 +4040,7 @@
 
         Si le pasamos una dependencia, useEffect va a correr solo cuando a esa dependencia se le cambie algo (State, props
         )
+        
     466. More on useEffect()
 
         Va a usar useEffect para hacer un request a firebase cada vez que el usuario pulse una tecla.
@@ -3955,11 +4077,114 @@
 
     468. Working with Refs & useRef()
         
+        Vamos a arreglar un problema, que es que cada vez que pulsamos una tecla se esta haciendo un request al servidor. 
+        Lo que quiere hacer es que después de un tiempo especifico se envie la consulta y no todo el tiempo.
+
+        Con useRef(), podemos generar una variable de referencia.
+
+        EL PROBLEMA DE ESTO ES QUE ESTAMOS GENERANDO UN NUEVO TIMEOUT TODO EL TIEMPO, PORQUE SE ACTUALIZA EL ESTADO CADA VEZ QUE TECLEAMOS. Y PORQUE ESTAMOS PASANDO DEPENDENCIAS A USEEFFECT.
+        
+        
+        const inputRef = useRef();
+
+        useEffect(() => {
+            setTimeout(() => {
+            if (enteredFilter === inputRef.current.value) {
+                const query =
+                enteredFilter.length === 0
+                    ? ''
+                    : `?orderBy="title"&equalTo="${enteredFilter}"`;
+                fetch(
+                'https://react-hooks-update.firebaseio.com/ingredients.json' + query
+                )
+                .then(response => response.json())
+                .then(responseData => {
+                    const loadedIngredients = [];
+                    for (const key in responseData) {
+                    loadedIngredients.push({
+                        id: key,
+                        title: responseData[key].title,
+                        amount: responseData[key].amount
+                    });
+                    }
+                    onLoadIngredients(loadedIngredients);
+                });
+            }
+            }, 500);
+        }, [enteredFilter, onLoadIngredients, inputRef]);
+
     469. Cleaning Up with useEffect()
+        Acá la función ya esta arreglada, la arreglaba en el proximo video.
+
+        Como setTimeout es un puntero a la función de timer, la guarda en una variable para después limpiarla con la función clearTimeout.
+
+        const timer = setTimeout(() => {
+        if (enteredFilter === inputRef.current.value) {
+            const query =
+            enteredFilter.length === 0
+                ? ''
+                : `?orderBy="title"&equalTo="${enteredFilter}"`;
+            fetch(
+            'https://react-hooks-update.firebaseio.com/ingredients.json' + query
+            )
+            .then(response => response.json())
+            .then(responseData => {
+                const loadedIngredients = [];
+                for (const key in responseData) {
+                loadedIngredients.push({
+                    id: key,
+                    title: responseData[key].title,
+                    amount: responseData[key].amount
+                });
+                }
+                onLoadIngredients(loadedIngredients);
+            });
+        }
+        }, 500);
+        return () => {
+        clearTimeout(timer);
+        };
 
     470. Deleting Ingredients
+        Actualiza la función de eliminar ingredientes, para que los elimine de firebase
+        
+        const removeIngredientHandler = ingredientId => {
+            setIsLoading(true);
+            fetch(
+            `https://react-hooks-update.firebaseio.com/ingredients/${ingredientId}.json`,
+            {
+                method: 'DELETE'
+            }
+            )
+            .then(response => {
+                setIsLoading(false);
+                // setUserIngredients(prevIngredients =>
+                //   prevIngredients.filter(ingredient => ingredient.id !== ingredientId)
+                // );
+                dispatch({ type: 'DELETE', id: ingredientId });
+            })
+            .catch(error => {
+                setError('Something went wrong!');
+                setIsLoading(false);
+            });
+        };
 
     471. Loading Errors & State Batching
+        Para mostrar un loading, genera un estado solo para eso, la actualiza en el comienzo de la llamada y en el final.
+
+        importa el ErrorModal y en el catch de fetch, setea el error en un nuevo estado que genera especificamente para eso. 
+
+        De manera condicional utiliza el nuevo estado para verificar si tiene algo y sino muestra el modal, muestra un shortcut de ese if que es así:
+
+        const clearError = () => {
+            setError(null);
+            setIsLoading(false)
+        }
+
+       {error && <ErrorModal onClose={clearError}>{error}</ErrorModal>}
+
+        Explica que cuando hay 2 estados que se actualian al mismo tiempo, en realidad react lo que hace es acualizarlos de manera sincronica. O sea, uno por uno, pero después la actualización en si, se hace toda junta "de manera bath"
+        De esta manera solo vamos a tener un solo evento de re-renderizado no dos.
 
     472. More on State Batching & State Updates
         React batches state updates - see: https://github.com/facebook/react/issues/10231#issuecomment-316644950
@@ -3984,8 +4209,77 @@
         Both concepts (batching and when new state is available) behave in the same way for both functional components with hooks as well as class-based components with this.setState()!
 
     473. Understanding useReducer()
+        Son funciones que toman algo y retornan algo. O sea, administran el/los estados y se encargan de retornarte uno.
+
+        Un reducer se utiliza fuera del componente, ya que sino se estaría re-renderizando todo el tiempo. O sea, por fuera de la función (componente).
+
+        state = que puede ser un estado en particular
+        action = es la que se va a encargar de observar la acción y actualizar el estado.
+        en el switch se maneja cada tipo a escuchar.
+
+        const ingredientReducer = (state, action) => {
+            switch(action.type){
+                case 'ADD':
+                    return action.ingredients;
+                case 'SET':
+                    return [...state, action.ingredient]; // esto depende que quieras hacer.
+                case 'DELETE':
+                    return currentIngridients.filter(ing => ing.id !== actions.id);
+                default:
+                    throw new Error("Should not get there");
+            }
+        }
+
+        En el componente, debemos inicializar el reducer, utilizar la función useReducer()
+        
+        Le tenemos que pasar un estado incial en nuestro caso un array vacio porque la pimera vez el estado esta vacio.
+
+        Es parecido a un state, primero el estado después la función que despacha cada acción. NO ES UN SET STATE.
+        Se puede nombrar como se te canta.
+        
+        const [userIngredients, dispatch ] = useReducer(ingredientsReducer, [])
+
+        Ahora todo lo que se manejaba por estado, se tiene que cambiar para usar reducer. O sea:
+        
+        Por ej:
+        en vez de setUserIngrendients(filteredIngredients)
+
+        Por:
+        hay que pasarle un objeto a dispatch.
+
+        dispatch({type: 'SET', ingredientes: filteredIngredients} )
+
+        Las propiedades del objeto son las que utilizamos en el switch.-
+
+        AL UTILIZAR USEREDUCER, EL COMPONENTE SOLO SE VA A RE-RENDERIZAR CUANDO ESTE RETORNE EL NUEVO ESTADO.
 
     474. Using useReducer() for the Http State
+        Genera un reducer para los tipos de acciones al hacer algo http, como enviar, respuesta, error, etc:
+
+        
+        const httpReducer = (curHttpState, action) => {
+        switch (action.type) {
+            case 'SEND':
+            return { loading: true, error: null };
+            case 'RESPONSE':
+            return { ...curHttpState, loading: false };
+            case 'ERROR':
+            return { loading: false, error: action.errorMessage };
+            case 'CLEAR':
+            return { ...curHttpState, error: null };
+            default:
+            throw new Error('Should not be reached!');
+        }
+        };
+
+
+         const [httpState, dispatchHttp] = useReducer(httpReducer, {
+            loading: false,
+            error: null
+        });
+
+        // const [isLoading, setIsLoading] = useState(false);
+        // const [error, setError] = useState();
 
     475. Working with useContext()
 
