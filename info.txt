@@ -2722,7 +2722,7 @@
         Muestra en consola las props que tiene Router.
 
     228. The "withRouter" HOC & Route Props
-        Para pasar props de un componente a otro, al exportar el componente al final hay que envolverlo con withRouer.
+       Para que un componente que esta routeando a otro, a este último, si queremos pasarle la props de ruteo, hay que decorarlo con withRouter.
 
     229. Absolute vs Relative Paths
         Absolute: depende siempre del dominio. 
@@ -2756,26 +2756,173 @@
 
     231. Styling the Active Route
     232. Passing Route Parameters
+         <Route path="/:id" exact component={Post} />
+
+        Soluciones:
+        
+        1) Envolver al post con <Link>, al link en to, agregarle el "/" + id, el key lo tenía post, pero ahora como link es el componente mas externo, lo tiene que manejar él.
 
     233. Extracting Route Parameters
+        Ahora si hacemos props.match.params.id vamos a tener el idque pasamos y seteamos en nuestro <Route>
+
     234. Parsing Query Parameters & the Fragment
+        You learned how to extract route parameters (=> :id  etc). 
+
+        But how do you extract search (also referred to as "query") parameters (=> ?something=somevalue  at the end of the URL)? How do you extract the fragment (=> #something  at the end of the URL)?
+
+        Query Params:
+        You can pass them easily like this:
+
+        <Link to="/my-path?start=5">Go to Start</Link> 
+
+        or
+
+        <Link 
+            to={‌{
+                pathname: '/my-path',
+                search: '?start=5'
+            }}
+            >Go to Start</Link>
+        React router makes it easy to get access to the search string: props.location.search .
+
+        But that will only give you something like ?start=5 
+
+        You probably want to get the key-value pair, without the ?  and the = . Here's a snippet which allows you to easily extract that information:
+
+        componentDidMount() {
+            const query = new URLSearchParams(this.props.location.search);
+            for (let param of query.entries()) {
+                console.log(param); // yields ['start', '5']
+            }
+        }
+        URLSearchParams  is a built-in object, shipping with vanilla JavaScript. It returns an object, which exposes the entries()  method. entries()  returns an Iterator - basically a construct which can be used in a for...of...  loop (as shown above).
+
+        When looping through query.entries() , you get arrays where the first element is the key name (e.g. start ) and the second element is the assigned value (e.g. 5 ).
+
+        Fragment:
+        You can pass it easily like this:
+
+        <Link to="/my-path#start-position">Go to Start</Link> 
+
+        or
+
+        <Link 
+            to={‌{
+                pathname: '/my-path',
+                hash: 'start-position'
+            }}
+            >Go to Start</Link>
+        React router makes it easy to extract the fragment. You can simply access props.location.hash .
+
     235. Using Switch to Load a Single Route
+        Switch basicamente lo que hace es: cargar la primer ruta que realmente coincida y deja de analizar el resto.
+
+        El orden es importante, tampoco es necesario meter todo dentro del switch, hay que ver que hacer depende de lo que necesitemos.
+
     236. Navigating Programmatically
+        Va a mostrar una alternativa a usar link envolviendo en este caso <Post>
+
+        También podemos usar history y pushear la nueva ruta al historial.
+
+        props.history.push({pathname: "/" + props.match.params.id});
+
     237. Additional Information Regarding Active Links
+        Cuando cambiamos de ruta, si estamos usando <NavLink> para estilar. Dice que como es un caso raro, no pasa nada (?)
+   
     238. Understanding Nested Routes
+        Podes utilizar <Route> en cualquier parte de tu aplicación, siempre y cuando el enutador atrape el componente que lo esta utilizando.
+
+        Para que sea realmente dinamico, en vez de hardcodear /post/id, vamos a usar props.match.url, que es la ruta que llamó a ese componente y después se le suma '/:id', por lo tanto va a matchera con la ruta.
+        
     239. Creating Dynamic Nested Routes
+        Desde que hicimos las rutas dinamicas, el componente no carga el post especifico, porque como nota que no cambió nada no lo vuelve a renderizar, por lo que para solucionarlo hay que implementar: 
+
+        componentDidUpdate()
+        
+        mete todo acá y lo llama desde DidUpdate.
+        loadData() 
+
+        cuando hacemos esto, se genera un loop infinito, por lo que:
+            modifica donde usa props.id por props.match.params.id
+        
+        después sigue sin funcionar porque tiene chequeo estricto, así que o convertimos a number o le sacamos el stricto y listo.
+
+        # IMPORTANTE # 
+        Otra manera de convertir algo a number es meterle un + adelante.
+
     240. Redirecting Requests
+        Una solución diferente a poner una ruta abajo de la otra es, en el switch utilizar 
+        <Redirect from="/" to="/post" />
+
+        De esta manera hacemos que el usuario vaya a donde realmente debería estar. 
+
+        Por ej si ahora vamos a  /, nos va a redigir a /posts
+
     241. Conditional Redirects
+        Lo que hace es generar por ejemplo un Redirect, solo si el formulario se submitió, entonces renderiza nu componente <Redirect> condicionalmente.
+
+        <Redirect to="/posts">
+
+        No es necesario que le digamos desde donde from=
+
     242. Using the History Prop to Redirect (Replace)
+        Cambiamos el redirect por push con history.
+        Push, lo que hace es enviar la pagina a la pila, por ende podemos volver atrás.
+        no así con redirect.
+
+        Redirect reemplaza el lugar donde estabamos, por eso no podemos volver atras.
+
+        También existe props.history.replace, que hace lo mismo que redirigir.
+
     243. Working with Guards
+        Basicamente sirve para utilizar en esas surtas que sabes que el usuario necesita estar autenticado.
+        Algo asi como el [Authorized] pero autenticado.
+        
+        te fijas si el usuario esta logueado y sino no renderizas el componente.
+
     244. Handling the 404 Case (Unknown Routes)
+        Si no se puede catchear ninguna ruta, podemos poner un caso de ruta no encontrada de esta manera:
+
+        <Route render={() => <h1>Not found</h1>} />
+
+        O sea, puede existir la ruta, pero si por ejemplo no la mostramos porque el usuario no esta autenticado, va a terminar cayendo en Not found, y esta ok.
+
     245. Loading Routes Lazily
+        Porque cargamos código del componente que todavía no se navego si no estamos autenticados?
+        
+        Todo esta movida vale la pena solamente cuando tenemos una aplicación grande. Cuando es una aplicación chica no se justifica.
+
+        La técnica de descargar solo lo que necesita se conoce como división de código o carga diferida.
+
+        Para esto creamos una carpeta hoc -> AsyncComponent.js
+
+        * ver archivo.
+
     246. Lazy Loading with React Suspense (16.6)
+        En vez de hacer lo que hicimos antes, usamos React.lazy() ej:
+
+        const Post = React.lazy(() => import('./containers/Posts'));
+
+        y después en en vez de levantar el componente en Route, usamos ej:
+
+
+        <Route
+            fallback={<div>Loading...</div>} 
+            path="/posts" 
+            render={() => {
+                <Suspense>
+                    <Posts />
+                </Suspense>
+            }}
+        />
+
+       No necesariamente necesitamos meter esto dentro de BrowserRouter, podemos usar suspense sin Route siquiera.
+
     247. Routing and Server Deployment
+
     Tarea 3: Time to Practice - Routing
     248. Wrap Up
     249. Useful Resources & Links
-        Useful Resources & Links
         React Router Docs: https://reacttraining.com/react-router/web/guides/philosophy
         Recursos de esta clase
         routing--01-start.zip
@@ -2964,6 +3111,44 @@
     275. Improving Visual Feedback
     
     276. Showing Error Messages
+        We're not showing any error messages in our form, but you can of course easily add some.
+
+        The form inputs (<Input />  component) already receives the information whether it's invalid or not. You could of course easily add some conditionally rendered element inside of that component.
+
+        For example (inside <Input />  component function):
+
+        // all the other code from the videos
+        
+        let validationError = null;
+        if (props.invalid && props.touched) {
+            validationError = <p>Please enter a valid value!</p>;
+        }
+        
+        return (
+            <div className={classes.Input}>
+                <label className={classes.Label}>{props.label}</label>
+                {inputElement}
+                {validationError}
+            </div>
+        );
+        This could of course be finetuned. You could also pass the value type (e.g. "email address" ) as a prop:
+
+        validationError = <p>Please enter a valid {props.valueType}</p>; 
+
+        You could also receive the complete error message as a prop:
+
+        validationError = <p>{props.errorMessage}</p>; 
+
+        And of course, also don't forget to style the messages if you want to do that:
+
+        validationError = <p className={classes.ValidationError}>{props.errorMessage}</p>;
+
+        In your CSS file, you could have:
+
+        .ValidationError {
+            color: red;
+            margin: 5px 0;
+        } 
 
     277. Handling Overall Form Validity
 
@@ -3752,6 +3937,34 @@
     412. Production Workflow & Wrap Up
 
     413. Adding babel-polyfill
+        The current setup won't support all browsers theoretically supported by React. Features like Promises and Object.assign()  are missing in older browsers - especially in IE of course.
+
+        If you need to support these browsers, you need to add a polyfill (a package which provides these features for older browsers).
+
+        The Babel docs explain how you can take advantage of Babel's built-in "Polyfill auto injecting" feature: https://babeljs.io/docs/en/babel-polyfill
+
+        Simply install two packages:
+
+        npm install --save core-js
+
+        and
+
+        npm install --save regenerator-runtime 
+
+        Change the config of your @babel/preset-env  babel preset in the .babelrc  file: 
+
+        "presets": [
+            ["@babel/preset-env", {
+                "targets": {
+                    "browsers": [
+                        "> 1%",
+                        "last 2 versions"
+                    ]
+                },
+                "useBuiltIns": "usage"
+            }],
+            ...
+        ],
 
     414. Useful Resources & Links
         Webpack Docs: https://webpack.js.org/concepts/
