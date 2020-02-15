@@ -1712,10 +1712,9 @@
             Podemos poner JSX
         );
 
-        Lo que no entiendo es que al final le saco los parentesis y puso javascript de una.
-            Al parecer cuando no retorn JSX, estás retornando una función normal.
-            es por eso que o usas => ( y lo que queremos renderizar) o => () {}
-
+        Si en una función utilizamos { } y un metodo return -> componente.
+        Si en una función utilizamos { } -> funcion
+        
         Resumen: Hay que tener containers donde se manejen estados y el resto deberían ser funcional components donde 
                 solamente se pasen props.
 
@@ -1753,10 +1752,15 @@
                 NO ACTUALIZAR EL ESTADO ACA. Salvo que se cumpla una promesa sobre un llamado http.
 
     90. Component Creation Lifecycle in Action
+        lifecycle-creation-learning-card (1)
+        cmp-deep-dive-01-creation-lifecycle
 
         mediante console log, muestra como se van ejecutando en orden las cosas, idem las posteriores..
 
     91. Component Update Lifecycle (for props Changes)
+
+        lifecycle-update-external-learning-card (1)
+        cmp-deep-dive-02-updating-lifecycle-props
 
         Ciclo de vida para actualizar los componentes.
             Cuando cambian las props o el estado
@@ -1789,18 +1793,19 @@
                 no actualice el stado aqui porque sino va a causar re-renderizado nuevamente. 
 
     92. Component Update Lifecycle (for state Changes)
+        cmp-deep-dive-03-updating-lifecycle-state
 
     93. Using useEffect() in Functional Components
-
+    
         import React, { useEffect } import 'react'
 
-        Toma una función que corre en cada ciclo de renderizado.
-        useEffect(() => {
+        Toma una función que corre en cada ciclo de renderizado, después que se re-renderiza.
+            useEffect(() => {
 
-        })
+            })
 
         useEffect combina dos :
-        componentDidMount y componentDidUpdate.
+            componentDidMount y componentDidUpdate.
 
     94. Controlling the useEffect() Behavior
 
@@ -1825,7 +1830,10 @@
         Dentro del mismo useEffect, se puede retornar algo mediante una función anonima, para limpiar algo.
 
     96. Cleanup Work with useEffect() - Example
+        useeffect
+
     97. Using shouldComponentUpdate for Optimization
+        https://academind.com/learn/javascript/reference-vs-primitive-values/
 
         shouldComponentUpdate -> se renderizan todos los componentes, pero lo podemos modificar para que se renderice solo el que se actualizó:
 
@@ -2755,6 +2763,17 @@
         Use relative paths if you want to navigate relative to your existing path.
 
     231. Styling the Active Route
+        <NavLink 
+            activeClassName="my-active"
+            actuveStyle={{
+                color: #6546
+                textDecoration: underline
+            }}
+        > 
+        de react-router-dom se usa para estilar los links, magicamente te deja estilar los links tiene otras propiedades también, pero bueno la magia de estilar el link que esta activo se maneja con este componente.
+
+        Con actuveStyle se aplican estilos en linea.
+
     232. Passing Route Parameters
          <Route path="/:id" exact component={Post} />
 
@@ -2919,6 +2938,16 @@
        No necesariamente necesitamos meter esto dentro de BrowserRouter, podemos usar suspense sin Route siquiera.
 
     247. Routing and Server Deployment
+        La primer parte no entendí a que iba, ver otra vez.
+        La segunda parte:
+            
+            Si tu sitio se aloja en lugar y queda algo asi como
+            blabla.com/my-app 
+            hay que comunicarle esto a react.
+
+            basename por default no es necesario escribirlo y siempre apunta a la raiz ="/".
+            
+            Esto se hace en BrowserRouter basename="/my-app"
 
     Tarea 3: Time to Practice - Routing
     248. Wrap Up
@@ -2970,7 +2999,6 @@
 ### Sección 13: Forms and Form Validation
 
     264. Module Introduction
-
     265. Analyzing the App
         Habla de poner los input en su propio componente para poder centralizar, poner label y algún manejo de errores.
 
@@ -3109,7 +3137,8 @@
         }
 
     275. Improving Visual Feedback
-    
+        Agrega la propiedad touche: false, esto es para que los input no arranquen rojos, como que tuvieran mal la validación.
+
     276. Showing Error Messages
         We're not showing any error messages in our form, but you can of course easily add some.
 
@@ -3151,10 +3180,16 @@
         } 
 
     277. Handling Overall Form Validity
+        Agrega formValid a los controles del form.
+
+        Hace que el boton no este habilitado si no estan todos los inputs requeridos validados.
 
     278. Working on an Error
+        Arregla un problema con el combo.
+        Agrega un validation: {} en el control del select, para que no de error.
 
     279. Fixing a Bug
+        Le pone un valor por defecto al combo, para que se posicione en un value, dice que lo va a arreglar después ??
 
     280. Useful Resources & Links
         Validate.js (you may import its functionality into your React projects): https://validatejs.org/
@@ -3340,8 +3375,6 @@
         Ahora tenemos que actualizar en nuestro archivo reducer, el if que verifica las acciones que van llegando.
 
     Tarea 4: Time to Practice - Dispatching Actions
-        // TODO: hacer esta tarea. hacer Quiere que agreguemos al if de las accciones, eliminar y un par mas.
-
     291. Passing and Retrieving Data with Action
         cuando pasamos info al dispatch, en el segundo parametro, podemos pasar info por el action.
         después lo manejamos en el reducer.
@@ -3557,7 +3590,7 @@
 
 
         * No olvidarse que si el usuario recarga la pagina, el estado se pierde, redux no reemplaza una base de datos. * 
-    TODO: Tarea 5: Time to Practice - Redux Basics
+    Tarea 5: Time to Practice - Redux Basics
 
     299. [OPTIONAL] Assignment Solution
         Solución por él de la tarea.
@@ -3724,7 +3757,6 @@
         Reutiliza lo que hizo en el modulo de Form y validaciones.
 
         Le agrega un css, actualiza codigo..etc
-        // TODO: terminar de ver
 
     355. Adding Actions
         Al final termina usando redux.. 
@@ -4388,7 +4420,7 @@
             })
             .catch(error => {
                 setError('Something went wrong!');
-                setIsLoading(false);
+                setIsLoading(false);h
             });
         };
 
@@ -4601,8 +4633,9 @@
         A veces hay que analizar sivale la pena usar react.memo o useCallback o useMemo, porque capaz que son cosas chicas y no valenla pena, porque el costo re-renderizado al de chequeo constante puede ser menos.
 
     477. Getting Started with Custom Hooks
+
         Crea una carpeta hooks y un el archivo http.js, crea un custom hooks, siempre hay que arrancar el nombre con useAlgo, va a ser una función, como cualquier otra.
-        Podes usar cuaqluier hook dentro de tu custom hook.
+        Podes usar cualquier hook dentro de tu custom hook.
 
         Si se usa en diferentes componentes, no es que van a compartir los datos, sino que cada componente va a tener un snapshot del hook. O sea que compartis logica, pero no los datos.
 
@@ -4612,133 +4645,111 @@
             import { useReducer, useCallback } from 'react';
 
             const httpReducer = (curHttpState, action) => {
-            switch (action.type) {
-                case 'SEND':
-                return {
-                    loading: true,
-                    error: null,
-                    data: null,
-                    extra: null,
-                    identifier: action.identifier
-                };
-                case 'RESPONSE':
-                return {
-                    ...curHttpState,
-                    loading: false,
-                    data: action.responseData,
-                    extra: action.extra
-                };
-                case 'ERROR':
-                return { loading: false, error: action.errorMessage };
-                case 'CLEAR':
-                return { ...curHttpState, error: null };
-                default:
-                throw new Error('Should not be reached!');
-            }
+                switch (action.type) {
+                        case 'SEND':
+                            return {
+                                loading: true,
+                                error: null,
+                                data: null,
+                                extra: null,
+                                identifier: action.identifier
+                            };
+                        case 'RESPONSE':
+                            return {
+                                ...curHttpState,
+                                loading: false,
+                                data: action.responseData,
+                                extra: action.extra
+                            };
+                        case 'ERROR':
+                            return { loading: false, error: action.errorMessage };
+                        case 'CLEAR':
+                            return { ...curHttpState, error: null };
+                        default:
+                            throw new Error('Should not be reached!');
+                }
             };
 
             const useHttp = () => {
-            const [httpState, dispatchHttp] = useReducer(httpReducer, {
-                loading: false,
-                error: null,
-                data: null,
-                extra: null,
-                identifier: null
-            });
-
-            const sendRequest = useCallback(
-                (url, method, body, reqExtra, reqIdentifer) => {
-                dispatchHttp({ type: 'SEND', identifier: reqIdentifer });
-                fetch(url, {
-                    method: method,
-                    body: body,
-                    headers: {
-                    'Content-Type': 'application/json'
-                    }
+                const [httpState, dispatchHttp] = useReducer(httpReducer, {
+                    loading: false,
+                    error: null,
+                    data: null,
+                    extra: null,
+                    identifier: null
                 })
+            };
+
+            const sendRequest = useCallback((url, method, body, reqExtra, reqIdentifer) => {
+                dispatchHttp({ type: 'SEND', identifier: reqIdentifer });
+                    fetch(url, {
+                        method: method,
+                        body: body,
+                        headers: {
+                        'Content-Type': 'application/json'
+                        }
+                    })
                     .then(response => {
-                    return response.json();
+                        return response.json();
                     })
                     .then(responseData => {
-                    dispatchHttp({
-                        type: 'RESPONSE',
-                        responseData: responseData,
-                        extra: reqExtra
-                    });
+                        dispatchHttp({
+                            type: 'RESPONSE',
+                            responseData: responseData,
+                            extra: reqExtra
+                        });
                     })
                     .catch(error => {
-                    dispatchHttp({
-                        type: 'ERROR',
-                        errorMessage: 'Something went wrong!'
-                    });
+                        dispatchHttp({
+                            type: 'ERROR',
+                            errorMessage: 'Something went wrong!'
+                        });
                     });
                 },
                 []
             );
 
             return {
-                isLoading: httpState.loading,
-                data: httpState.data,
-                error: httpState.error,
-                sendRequest: sendRequest,
-                reqExtra: httpState.extra,
-                reqIdentifer: httpState.identifier
-            };
+                    isLoading: httpState.loading,
+                    data: httpState.data,
+                    error: httpState.error,
+                    sendRequest: sendRequest,
+                    reqExtra: httpState.extra,
+                    reqIdentifer: httpState.identifier
+                };
             };
 
             export default useHttp;
 
-
     478. Sharing Data Between Custom Hooks & Components
+        Volver a ver.
 
     479. Using the Custom Hook
+        Muestra como usa el hook que creo en las llamadas http del proyecto.
 
     480. Wrap Up
-
     481. What's [LEGACY]?
-
     482. [LEGACY] What are Hooks?
-
     483. [LEGACY] Enabling Hooks
-
     484. [LEGACY] The useState() Hook
-
     485. [LEGACY] Adding Array Destructuring
-
     486. [LEGACY] Using Multiple State
-
     487. [LEGACY] Using One State Instead
-
     488. [LEGACY] The "Rules of Hooks"
-
     489. [LEGACY] Sending Data via Http
-
     490. [LEGACY] The useEffect() Hook
-
     491. [LEGACY] Controlling Effect Execution
-
     492. [LEGACY] Effect Cleanup
-
     493. [LEGACY] Converting the "App" Component
-
     494. [LEGACY] The useContext() Hook
-
     495. [LEGACY] State and Effects Gotchas
-
     496. [LEGACY] The useReducer() Hook
-
     497. [LEGACY] useReducer() vs useState()
-
     498. [LEGACY] Working with References and useRef()
-
     499. [LEGACY] Preparing & Optimizing
-
     500. [LEGACY] Avoiding Unnecessary Re-Rendering
-
     501. [LEGACY] How to think about Functional Components with Hooks
-
     502. [LEGACY] Creating a Custom Hook
-
     503. [LEGACY] Wrap Up
 
 ### Sección 27: Using Hooks in the Burger Builder
@@ -4833,6 +4844,7 @@
 ### Sección 29: Bonus: Building the Burger CSS
 
     533. Building the Burger CSS Code
+        burger-css.pdf
 
 ### Sección 30: Next Steps and Course Roundup
 
