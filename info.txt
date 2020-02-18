@@ -716,8 +716,6 @@
 
     37. Understanding the Children Property
 
-       
-
         Si queremos pasar algo entre la etiqueta de apertura y cierre, tenemos que envolver eso en un elemento padre y usar children.
 
         <div className="App">
@@ -2408,14 +2406,78 @@
         Le pasa por props a OrderSummery los handlers para los botones.
 
     172. Adding the Price to the Order Summary
+        Usa el precio total que viene por props, y lo muestra.
+
     173. Adding a Toolbar
+        crea el toolbar de la burguer y su css. (un nav con 2 menus)
+
     174. Using a Logo in our Application
+        Dentro de componentes crea una carpeta Logo, dentro de assests tiene el logo de la app.
+        
+        Importa el logo como si fuera un package.
+
+        en el src={variableConLaQueLoImporte}
+
+        Usa el componente logo donde lo necesita en el toolbar y listo.
+        
     175. Adding Reusable Navigation Items
-    176. Creating a Responsive Sidedrawer
+        Dentro de la carpeta Navigation aparte del Toolbar, crea una capreta NavigationItem, NavigationItems y sus js.
+
+        Dentro de NavigationItem.js
+            lo que mete acá sería el <li><a href="/"> A Link</a></li>
+
+        Dentro de NavigationItems.js    
+            importa el componente NavigationItem
+
+            Lo que pone acá es el ul y pone los navigationItem que necesita.
+
+        Dentro de Toolbar.
+            Importa NavigationItems y dentro de <nav> pone NavigationItem.
+
+    176. Creating a Responsive SideDrawer
+        Cuando aprestas el boton Menu, el SideDrawer debería aparecer de costado.
+
+        importa el componente Logo y NavigationItems, classes..
+
+        <div className={classes.SideDrawer}>
+            <Logo />
+            <nav>
+                <NavigationItems />
+            </nav>
+        </div>
+
+        Lo que hace es meterlo detro del componente Layout, junto con el Toolbar.
+            <Aux>
+                <Toolbar />
+                <SideDrawer />
+                <main classNAme={classes.Content}>
+                    {props.children}
+                </main>
+            </Aux>
+        
     177. Working on Responsive Adjustments
+        Le hace modificaciones en el css al SideDrawer
     178. More about Responsive Adjustments
+        Css y mas css par todo lo relacionado al layout y mobile.
+
     179. Reusing the Backdrop
-    180. Adding a Sidedrawer Toggle Button
+        El backdrop es como el telon que se pone cuando abris un modal. Ahora lo que hace es reutilizarlo
+        para el SideDrawer.
+
+        Por ende lo importa y lo usa en el SideDrawer y le pasa a su property show, true o false dependiendo si se tiene que ver o ono (idem el SideDrawer)
+        
+        Pasa a layout como componente. y pone los handlers necesarios para manejar el mostrar o no el SideDrawer y el backdrop.
+
+        También agrega código para que cuando se hace clic en el overlay, se cierre todo.
+
+    180. Adding a SideDrawer Toggle Button
+        Intenta que primero lo hagas vos, después da el resultado:
+
+        Dentro de SideDrawer, crea otra carpeta DrawerToggle y su js.
+
+        Después lo importa en Toolbar y reemplaza la parte del menu con el componente DrawerToggle.
+
+        En el componente pasa una prop clicked, por ende maneja el estado en toolbar, pero como este se usa desde Layout, ahí finalmente va a manejar el handler del evento.
 
     181. Adding a Hamburger Icon
         Hace lo que dice el modulo.
@@ -4844,7 +4906,7 @@
 ### Sección 29: Bonus: Building the Burger CSS
 
     533. Building the Burger CSS Code
-        burger-css.pdf
+        Todo el video es sobre css y como crea el icono de hamburguesa, también esta el pdf adjunto: burger-css.pdf
 
 ### Sección 30: Next Steps and Course Roundup
 
