@@ -3028,6 +3028,18 @@
     250. Module Introduction
     251. Building the Checkout Container
 
+         Crea el componente Checkout, para manejar el estado, ya que es donde se procesan todos los ingredientes, pago etc.
+
+         
+        En App.js
+            <Layout>
+                <BurgerBuilder />
+                <Checkout />
+            </Layout>
+
+        Para poner css en linea por ej, hace: 
+            <div style={{with: 100%, margin: 'auto'}}
+
     252. Setting Up Routing & Routes
 
     253. Navigating to the Checkout Page
@@ -4005,33 +4017,246 @@
 ### Sección 22: Bonus: Working with Webpack
 
     400. Module Introduction
-
     401. Introducing Webpack
+        
+        Es un bundler, pero es mas que eso. Un bundler solo concatenaría archivos. 
+
+        También optimiza archivos, conectar complementos, loaders, transformarlos, transpilarlos, etc.
+
+        La de gral es: tenes multiples archivos, js, css e imagenes, cualquier archivo y lo que hace webpack es analizar cada uno, bundlearlos pero a su vez, verificar cuales estan conectados (imports)...
 
     402. How Webpack works
 
+        De tras de escena, webpack tiene 4 features importantes:
+        
+        1) Necesita al menos un entry point, por ej App.js
+            Ya que ahí es donde se inserta todo en el dom y analiza este archivo verificando sus dependencias.
+        
+        2) Loaders:
+            Esto esta en el medio, ej loaders (babel-loader, css-load). O sea, lo que vos le decis al loeader es como va a manejar todos los archivos de un determinado tipo, por ejemplo los de js van a ser manejados por tal package.
+
+        3) Plugins:
+            Concatenan los files, ej uglify, esta de manera global, minifica los archivos, optimizandolos.
+
+        4) Analiza todas las dependencias y genera un unico archivo por ej dist/output.js, de manera ordenada y concatenadas.
+
     403. Basic Workflow Requirements
+
+        Vamos a analizar los requesitos que tenemos:
+            1) Compilar next-gen javascript features.
+            2) Handle JSX, o sea, que podamos usar jsx.
+            3) CSS Autoprefixing. O sea, manejar la mayor cantidad de sintaxis en los diferentes navegadores.
+            4) Soportar imagenes. O sea, importarlas como si fuera un archivo.
+            5) Optimizar el código (minificar los js)
 
     404. Project & npm Setup
 
-    405. Creating a Basic Folder & File Structure
+        1) Crea un archivo .gitignore
+            node_modules
 
+        2) npm init
+        3) npm install --save-dev webpack webpack-dev-server      -> Solo para desarrollo. Estos dos paquetes van de la mano.
+        4) 
+
+    405. Creating a Basic Folder & File Structure
+        
+        Recrea algo semejante a la estructura de cra.
+
+        src/
+            assets/
+            components/
+            containers/
+            index.css               --> para estilos globales. 
+            index.js                   
+            index.html
+                <div id="root">
+            App.js                  --> Mi componente root.
+            
     406. Creating the Basic React Application
+        components/
+            PizzaImage/
+                PizzaImage.js
+                PizzaImage.css
+        
+        containers
+            Pizza.js
+            Users.js
+        
+        assets/
+            pizza.jpg
+
+        
+        hoc/
+            asyncComponent.js       -> Usar el componente que ya creo antes, para cargar componentes de manera lazy. 
+
+        index.js
+            Agrega BrowserRouter y envuelve <App /> y renderiza app con ReactDOM.
 
     407. Installing Production Dependencies
 
+        Core dependencies:
+            npm install --save react react-dom react-router-dom
+
     408. Setting Up the Basic Webpack Config
+
+        Agregar en package.json un script para start
+
+        1) "start": "webpack-dev-server"   -> Usa este package y ejecutalo (así tal cual no pasa nada. hay que instalar una dependencia mas, te lo dice en la consola).
+
+        2) npm install --save-dev webpack-clic
+
+        3) Si intentas correr npm start, te tira un error porque webpack no sabe que hacer con index.js no entiende que tiene que hacer.
+           
+           Agrega un archivo webpack.config.js provee la configuración para webpack.
+
+           const path = require('path');    -> este paquete ya viene con node js.
+           //__dirname  es una variable global que existe en node.
+
+           module.expots = {
+               mode: 'development',         -> le dice a webpack que optimizaciones hacer según el amb.
+               entry: './src/index.js',
+               output: {
+                   path: path.resolve(__dirname, 'dist'),
+                   filename: 'bundle.js',
+                   publicPath: ''
+               },
+               devtool: 'cheap-module-eval-source-map'     -> controla como se genera el source map en debug x ej, si lo transforma o no. en la paguina oficial esta esto.
+           };
 
     409. Adding File Rules & Babel
 
+        Vamos a agregar para que entienda next-gen javascript, para eso tenemos que instalar Babel.
+        
+        Lo que hace Babel es transpilar los features nuevos de javascript a los viejos para que sean compatbiles en todos los navegadores.
+
+        npm install --save-dev @babel/core @babel/preset-env @babel/preset-react @babel/preset-stage-2 babel-loader @babel/plugin-proposal-class-properties
+
+        const path = require('path');    -> este paquete ya viene con node js.
+
+           module.expots = {
+               mode: 'development',         -> le dice a webpack que optimizaciones hacer según el amb.
+               entry: './src/index.js',
+               output: {
+                   path: path.resolve(__dirname, 'dist'),
+                   filename: 'bundle.js',
+                   publicPath: ''
+               },
+               devtool: 'cheap-module-eval-source-map',     -> controla como se genera el source map en debug x ej, si lo transforma o no. en la paguina oficial esta esto.
+               module: {       
+                   rules: [     -> cada regla es un objeto, donde vas a tener una propiedad test con una expression regular, donde vas a indicar que archivos van a estar alcanzados por cierta herramienta/plugin, por ej los archivos javascript, van a ser alcanzados por el loader y la herramienta va a ser babel-loader.
+                       {
+                           test: /\.js$/,
+                           loader: 'babel-loader',
+                           exclude: /node_modules/  -> no queremos que alcance la carpeta.
+                       }
+                   ]
+               }
+           };
+
+            Creamos un nuevo archivo .babelrc es un archivo de confugración para babel que se escribe en formato JSON.
+            Todo esto esta en la pagina oficial de Babel.
+
+            {
+                "presets": [ -> acá tenemos que aplicar todos los presets que queremos.
+                    [
+                        "@babel/preset-env", 
+                        {
+                            "targets": {
+                                "browsers": ["> 1%", "last 2 versions"] -> compila para que compile en estos browser.
+                            }
+                        }
+                    ],
+                    "@babel/preset-react"   -> no necesita ser un array porque no es necesario presets.
+                ],
+                "plugins": [    -> config extra o comportamiento.
+                    "@babel/plugin-proposal-class-properties"   -> controla que sintaxis soporta.
+                ]
+            }
+
     410. Loading CSS Files
+        
+        npm install --save-dev style-loader css-loader (uno analiza los css y el otro toma los css y los inyecta en nuestro html. (style))
+
+        agrega una regla al archivo webpack:
+
+        {
+            test: /\.css$/,
+            exclude: /node_modules/,
+            use: [
+                { loader: 'style-loader' },
+                { 
+                    loader: 'css-loader', 
+                    options: {  -> necesita config extra para aceptar css-modules.
+                        importLoaders: 1,
+                        modules: {
+                            localIndentName: '[name]__[local]__[hash:base:5]'
+                        }
+                    }
+                },
+                { 
+                    loader: 'postcss-loader',  -> nos ayuda con el procesamiento de css y prefinxing para que pueda funcionar en navegadores viejos.
+                    options: {
+                        ident: 'postcsss',
+                        plugins: () => [autoprefixer()]
+                    }
+                }
+
+            ]
+        }
+
+        npm install --save-dev postcss-loader  
+        npm install --save-dev autoprefixer 
+            Abajo del import de path en el archivo webpack:
+
+            const autoprefixer = require('autoprefixer');
+                se agrega a la parte de plugins de postcssloader.
+            
+        en package.json agrega un script debajo de "licence"
+
+        "browserslist": "> 1%, last 2 versions",
 
     411. Loading Images & Injecting into HTML Page
 
+        Nos ayuda a cargar assets
+            npm install --save-dev url-loader
+
+        Dentro de webpackconfig
+            {
+                test: /\.(png|jpe?g'|gif)$/,
+                loader: 'url-loader?limit=8000&name=images/[name].[ext]'
+            }
+
+        Para inyectar todas las transformaciones qe configuramos anteriormente en html:
+            npm install --save-dev html-webpack-plugin
+                arriba de todo abajo de autoprefixer
+                    const HtmlWebpackPlugin = require('html-webpack-plugin');
+
+            dentro del config de webpack, antes del } final:
+
+            plugins: [
+                new HtmlWebpackPlugin({
+                    template: __dirname + '/src/index.html',    
+                    filename: 'index.html',
+                    inject: 'body'
+                })
+            ]
+
+        npm install --save-dev file-loader  -> otro package necesario para webpack.
+
     412. Production Workflow & Wrap Up
 
+        Copiamos y pegamos el webpack config y creamos un webpack.config.prod.js
+
+        modificamos el development mode: 'production', en devtool: 'none'
+        Agregamos un script debajo de start:
+        
+            "build:prod": "webpack --config webpack.config.prod.js"        
+
+        npm start -> vemos como se genera la carpeta dsit y esta todo bundleado.
+
     413. Adding babel-polyfill
-        The current setup won't support all browsers theoretically supported by React. Features like Promises and Object.assign()  are missing in older browsers - especially in IE of course.
+
+        The current setup won't support all browsers theoretically supported by React. Features like Promises and Object.assign() are missing in older browsers - especially in IE of course.
 
         If you need to support these browsers, you need to add a polyfill (a package which provides these features for older browsers).
 
