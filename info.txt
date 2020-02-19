@@ -4297,22 +4297,134 @@
 
     415. Module Introduction
 
+        Es una libreria basada en react, fuerza una estructura especifica y nos da server side rendering y configuración extra que no tenemos que hacer a mano. 
+
+        Server side rendering ayuda mucho a los search engine
+
     416. Understanding Server Side Rendering
 
+        Server Side Rendering simplemente significa, cuando un usuario entre a una url, se va a estar pre-renderizando esa pagina, del lado del servidor y lo va a retornar ya "cocinado"
+
+        O sea, el cliente hace un request al server, el server hace el fetch y renderiza la app, retorna renderizada la primer pagina + react app bundle y en el cliente se re-renderiza la SPA.
+
     417. Setting Up a Project
+        Web Next js: https://nextjs.org/
+        
+        Esto que vamos a hacer lo hace con el paso a paso que esta en github
+            https://github.com/zeit/next.js/
+
+            Actualmente esto no esta mas en github, sino en la pagina oficial, hay ciertas partes que ya no estan igual, yo voy a seguir como lo da el en el curso:
+                https://nextjs.org/learn/basics/getting-started
+
+        1) .gitignore
+        2) npm init
+        3) npm install --save next react react-dom
+        4) package.json
+
+            "scripts": {
+                "dev": "next",
+                "build": "next build",
+                "start": "next start"
+            }
+
+            No se usa react-router, se usa file-system es la API main de Next js. Basicamente lo que se usa es carpetas y archivos para ir ruteando nuestra url, next js parsea esto y usa su propio ruteador interno, pre renderiza y automaticamente splitea y con lazy load lo muestra.
+
+        5) creamos:
+            pages/
+                auth/
+                    index.js
+                index.js
+
+            * podes usar clases, funcional componentes, state, etc.
+
+            index.js
+                import React from 'react';
+
+                const indexPage = () => {
+                    <div>
+                        <h1> Main Page </h1>
+                    </div>
+                };
+
+                export default indexPage;
+
+            auth/index.js
+                import React from 'react';
+
+                const indexPage = () => {
+                    <div>
+                        <h1> Auth index Page </h1>
+                    </div>
+                };
+
+                export default indexPage;
+
+        6) npm run dev
+           
+           En localhost vamos a ver main page y en localhost/auth vamos a ver auth index page :O
 
     418. Understanding the Basics
 
+        import Link from 'next/link';
+        import Router from 'next/router';
+
+        <Link href="/auth"> Auth </Link>
+        <button onClick={() => Router.push('/auth')}> Go to Auth </button>
+
     419. Next.js & Components & Pages
+
+        components/
+            User.js
+
+        Al componente lo importamos en otro js como cualquier import.
 
     420. Styling our App in Next.js
 
+        Next JS tiene su propia manera de estilar. Podemos usar Radium, podes usar estilos en linea, no podemos usar CSS Modules.
+
+        Styled-jsx 
+        
+        <style jsx> {`
+            div {
+                border: 1px solid black;
+            }
+        `} </style>
+
     421. Handling (404) Errors
+        Next js tiene una pagina por default para esto, si se quiere sobreescribir hay que generar un archivo _error.js dentro de pages.
 
     422. A Special Lifecycle Hook
+        
+        Transforma el componente funcional en un componente de clase.
+
+        usa una función nueva que también esta en functional components.
+
+        Static puede ser llamado sin ser instanciado y es asincrono, retorna algo instantaneamente.
+            Se puede usar async o no. * 
+        Sirve para inicializar tu app antes de que se cargue.
+            Podríamos traer info de la bd x ej.
+
+        static async getInitialProps(context){
+            // console.log(context);
+            const promise = new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    resolve({appName: 'Super App});
+                }, 1000);
+            });
+            return promise;
+        }
+
+        Después lo usamos en el retorno de jsx.
+            <h1> this.props.appName </h1>
+
+        Solo va a renderizar esa parte, cuando se retorne la promesa.
+
+        * Hace el ejemplo también con functional components.
 
     423. Deploying our App
 
+        npm run build   -> para buildear el proyecto para deployarlo.
+        
     424. Useful Resources & Links
         Next.js Repo & Docs: https://github.com/zeit/next.js/
         Recursos de esta clase
