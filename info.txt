@@ -3961,21 +3961,171 @@
         Generamos test unitarios
         Simulamos la app, montamos componentes y de esto nos permite consumir el DOM.
         React Test Units.
+        
         Enzyme es otra herramienta como Jest, creada por el equipo de Airbnb (también recomendada por el team de React), esta herramienta hace mas facil montar componentes y navegar entre ellos.
         
     385. What To Test?
 
+        Que NO queres testear:
+            No queres testear la libreria, ni react, ni axios, redux, etc. Todo esto ya fue testeado por el que lo creó.
+
+            No queres testear conecciones complejas.
+
+        Lo que si queres:
+            - Mockear y generar data fake.
+            - Unidades aisladas, por ej una función que creaste, un componente.
+            - Output condicional.
+
     386. Writing our First Test
+        
+        enzyme             -> Nos permite cargar un componente por si mismo, sin dependenr de toda la app.     
+            Estos dos packages, son complementos para enzyme.
+            react-test-render           -> dependencia de enzyme.
+            enzyme-adapter-react-16     -> adaptador de enzyme para nuestra versión actual.
+        
+        jest               -> ya viene instalado.
+
+        npm install --save enzyme react-test-render 
+
+        Va a testear NavigationItems, en la misma carpeta crea un js con el mismo nombre del componente pero le agrega test, ej: NavigationItems.test.js 
+
+        describe es una función que toma 2 argumentos
+            1) Lo que se va a testear, el puso el nombre del componente x ej 
+            2) Testing arrow function.
+
+        It te permite escribir un test individual, también tiene 2 argumentos.
+            1) Una descripción de lo que se esta testeando
+            2) Testing arrow function.
+        
+        import React from 'react';
+        import { configure, shallow } from 'enzyme';
+        import Adapter from 'enzyme-adapter-react-16';
+
+        import NavigationItems from './NavigationItems';
+        import NavigationItem from './NavigationItem/NavigationItem';
+
+        // Para conectar enzyme con mi app.
+        configure({adapter: new Adapter});
+
+        describe('<NavigationItems />', () => {
+            it('should render two <NaviationItems /> elements if not authenticated', () => {
+                // testing logic
+                const wrapper = shallow(<NavigationItems />);
+                expect(wrapper.find(NavigationItem)).toHaveLength(2); // osea, que haya 2 componentes.
+            })
+        })
+
+        * shallow, es un helper (una función),que usamos para renderizar el componente con todo su contenido, pero todo no es completamente cargado, osea no todo el sub arbol de componentes.
+        * wrapper en realidad puede ser pepito.
+        * en expect definimos lo que queremos chequear.
+        * find es una utilidad de enzyme que nos permite ver dentro del componente y chequear si existe lo que necesitamos.
+
+        Para correr los test, primero chequeamos que en package.json este el script de test.
+
+        npm test
+        * Si llega a haber un error, eliminar el test de App.test.js
 
     387. Testing Components Continued
 
+        // Agrego otro test, ahora verifico que haya 3 componentes y le paso al componente la prop que necesita para que se rendericen los 3.
+
+        import React from 'react';
+        import { configure, shallow } from 'enzyme';
+        import Adapter from 'enzyme-adapter-react-16';
+
+        import NavigationItems from './NavigationItems';
+        import NavigationItem from './NavigationItem/NavigationItem';
+
+        // Para conectar enzyme con mi app.
+        configure({adapter: new Adapter});
+
+        describe('<NavigationItems />', () => {
+            // Si se repiten ciertas cosas, podemos usar este setup general:
+            let wrapper;
+
+            beforeEach(() => {
+                wrapper = shallow(<NavigationItems />);
+            })
+
+            it('should render two <NaviationItems /> elements if not authenticated', () => {
+                expect(wrapper.find(NavigationItem)).toHaveLength(2); // osea, que haya 2 componentes.
+            });
+
+            it('should render two <NaviationItems /> elements if not authenticated', () => {
+                // Como este necesitaba que se pase una prop para correr bien, lo podemos setear de esta manera: 
+                wrapper.setProps({ isAuthenticated: true });
+                expect(wrapper.find(NavigationItem)).toHaveLength(3);
+            })
+        })
+
     388. Jest and Enzyme Documentations
+        
+        Para ver todas las cosas que podemos usar de los packages: 
+        Enzyme API: http://airbnb.io/enzyme/docs/api/
+        Jest Docs: https://facebook.github.io/jest/
+
+        it('should render two <NaviationItems /> elements if not authenticated', () => {
+            wrapper.setProps({ isAuthenticated: true });
+            expect(wrapper.contains(<NavigationItem link="/logout"> Logout </NavigationItem)).toEqual(True);
+        })
 
     389. Testing Components Correctly
 
+        Escribir test correctos es complicado. Siempre hay algo que se nos puede escapar.
+        Lo que dice es que hay que escribir test de las cosas que sabemos que pueden romper todo, por ej un if negado, cuando no era negado y así.
+
     390. Testing Containers
 
+        Como tenemos setProps también tenemos setTest para poder mockear estados.
+
+        Le agregamos export adelante de la clase, para exponerla y poder testearla. Esto no choca con el export default que ya tenemos.
+
+        en el test, por ej BurgerBuilder.test.js, la importamos así:
+
+        import { BurgerBuilder } from './BurgerBuilder';
+
+        Lo que hace es verificar si se encontra el componente BurgerBuilder, ya que se muestra solo si no hay ingredientes.
+
     391. How to Test Redux
+        
+        Hay testear Redux, pero hay que tener cuidado qué testeamos.
+        Si seguimos el patron de no poner demasiada logica dentro de en la creación de los actions.
+        Como son sincronicos y funciones que se les pasa y devuelven algo, es mas facil de testear.
+
+        import reducer from './auth';
+        import * as actionTypes from '../actions/actionTypes';
+
+        describe('auth reducer', () => {
+            it('should return the initial state', () => {
+                expect(reducer(undefined, {})).toEqual({
+                    token: null,
+                    userId: null,
+                    error: null,
+                    loading: false,
+                    authRedirectPath: '/'
+                });
+            });
+
+            it('should store the token upon login', () => {
+                expect(reducer({
+                    token: null,
+                    userId: null,
+                    error: null,
+                    loading: false,
+                    authRedirectPath: '/'
+                }, { 
+                    type: actionTypes.AUTH_SUCCESS,
+                    idToken: 'some-token',
+                    userId: 'some-user-id'
+                })).toEqual({
+                    token: 'some-token',
+                    userId: 'some-user-id',
+                    error: null,
+                    loading: false,
+                    authRedirectPath: '/'
+                });
+            })
+        });
 
     392. Wrap Up
     393. Useful Resources & Links
@@ -4424,7 +4574,7 @@
     423. Deploying our App
 
         npm run build   -> para buildear el proyecto para deployarlo.
-        
+
     424. Useful Resources & Links
         Next.js Repo & Docs: https://github.com/zeit/next.js/
         Recursos de esta clase
