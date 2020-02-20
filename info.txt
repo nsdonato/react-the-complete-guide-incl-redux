@@ -3042,6 +3042,7 @@
 
     252. Setting Up Routing & Routes
 
+        npm install --save react-router-dom 
     253. Navigating to the Checkout Page
 
     254. Navigating Back & To Next Page
@@ -5172,9 +5173,11 @@
         Cualquier cosa revisar la sección 7 donde explica mas sobre el contexto.
 
     476. Performance Optimizations with useMemo()
+
         Cuando el componente donde se aloja una función se re-renderiza, la función se vuelve a recrear, es por eso que necesitamos usar useCallback, para que no se recree nuevamente. No es que se  ejecuta, se vuelve a crear.
 
         useMemo es como useCallback pero con un valor. 
+
         Lo que hace es cortar el componente IngridientList y usa useMemo. Lo que hace es que React memoriza el valor que queres retornar, en este caso es un component.
 
         useMemo también tiene segundo parametro como useCallback, solo que le dice a React, cuando debe volver a ejecutar la función para crear un nuevo objeto que debe memorizar, entonces le pasamos las dependencias para que sepa cuando ese componente se tiene que re-renderizar, que es cuando cambian alguno de los dos, un estado y una prop.
@@ -5347,9 +5350,11 @@
 
     519. Module Introduction
     520. Starting Project & Why You Would Replace Redux
+
         Hay dos approach uno bueno y uno que no debería usarse para cualquier opción.
         
     521. Alternative: Using the Context API
+
         La alternativa que no se debe usar siempre (o sea, para cualquier cosa).
         
         Crea una carpeta context > products-context.js
