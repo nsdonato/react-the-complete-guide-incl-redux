@@ -1,7 +1,7 @@
 # TEORIA #: Un concepto puntual que deberíamos saber.
 # IMPORTANTE #: Algo a tener en cuenta, muy particular sobre el lenguaje.
 
-### SECCION 1 ##
+### SECCION 1: ##
 
     1. Introduction
     2. What is React?
@@ -31,20 +31,20 @@
         In the next lecture, we'll write our first React code in Codepen, an online editor (it's only getting used in the next lecture).
         Currently, there seems to be a bug if you add React as shown in the next video.
         To fix it, replace the automatically added import paths (you'll see what I mean) with these:
-            https://cdnjs.cloudflare.com/ajax/libs/react/15.6.1/react.min.js 
-            https://cdnjs.cloudflare.com/ajax/libs/react/15.6.1/react-dom.min.js 
+            https://cdnjs.cloudflare.com/ajax/libs/react/15.6.1/react.min.js
+            https://cdnjs.cloudflare.com/ajax/libs/react/15.6.1/react-dom.min.js
         This should fix. And don't worry about the React version, the entire rest of the course uses 16+ :)
 
     5. Writing our First React Code
-        
+
         Crear una aplicación en Codepen.
             Cuando se repite un elemento pero tiene diferente información adentro, esto ya se puede entender como un componente.
 
         - Importar React:
-            https://cdnjs.cloudflare.com/ajax/libs/react/15.6.1/react.min.js 
+            https://cdnjs.cloudflare.com/ajax/libs/react/15.6.1/react.min.js
 
         - Importar React DOM, la logica para crear los componentes en el DOM real.
-            https://cdnjs.cloudflare.com/ajax/libs/react/15.6.1/react-dom.min.js 
+            https://cdnjs.cloudflare.com/ajax/libs/react/15.6.1/react-dom.min.js
 
         - Para utilizar las últimas caracteristicas de React --> Babel
 
@@ -58,9 +58,9 @@
             );// Sintaxis JSX, para renderizar el DOM.
         }
 
-        ReactDOM.render(<Person />, document.querySelector('#p1')); 
+        ReactDOM.render(<Person />, document.querySelector('#p1'));
 
-        # TEORIA # 
+        # TEORIA #
         El metodo RENDER nos permite representar una función de JavaScript como componente del DOM real, y tratarlo como un componente.
 
         // le decimos que renderice como html ese objeto Person.
@@ -69,10 +69,10 @@
         * El atributo class en el codigo html se tienen que escribir className, porque React renderiza ese html como un componente JavaScript (que es donde se usa la propiedad className)
 
         // Le agrega un argumento que es propio de react
-        
-        # TEORIA #  
+
+        # TEORIA #
         Los datos dinamicos se encierran entre { }
-        
+
         function Person(props){
             return (
                 <div className="person">
@@ -82,11 +82,11 @@
             );// Sintaxis JSX, para renderizar el DOM.
         }
 
-        ReactDOM.render(<Person name="Max" age="28"/>, document.querySelector('#p1')); 
-        ReactDOM.render(<Person name="Manu" age="29"/>, document.querySelector('#p2')); 
+        ReactDOM.render(<Person name="Max" age="28"/>, document.querySelector('#p1'));
+        ReactDOM.render(<Person name="Manu" age="29"/>, document.querySelector('#p2'));
 
         En vez tener un elemento div con la clase p1, ahora solo vamos a tener uno con id Apps
-        
+
         HTML:
             <div id="app"></div>
 
@@ -108,7 +108,7 @@
             );
 
         // En vez de tener dos elementos, tengo uno solo que tenga los 2.
-        ReactDOM.render(<app/>, document.querySelector('#app')); 
+        ReactDOM.render(<app/>, document.querySelector('#app'));
 
         * Este es el mejor modo para crear SAP. Single Page Applications.
 
@@ -116,7 +116,7 @@
 
         Porque en aplicaciones grandes es dificil de manejar el ESTADO.
         Porque cambiar elementos de lugar es mas engorroso, aparte de acomodarlos en pantalla, dependiendo si usaste getQuerySelector o JQuery esto se complica mucho.
-        
+
         React nos permite enfocarnos en nuestra logica de negocios, envitando que nuestra app explote.
         Supuestamente como React tiene una comunidad zarpada, el codigo es excelente.
         Aparte de tener un gran ecosistema, comunidad activa y alta performance.
@@ -143,7 +143,7 @@
 
         Getting started.
             Usar JavaScript moderno porque mantiene limpio y es un estandar para react, funciones de flechas, etc.
-        
+
         React basics.
             Como crear componentes reacts, ver las diferentes maneras que hay de hacerlo y como comunicarse entre componentes.
             Como podemos generar listas, o como podemos presentar contenido de forma condicional.
@@ -151,7 +151,7 @@
         Debug
             Como debuggear react.
 
-        Styling componentes 
+        Styling componentes
             Como darle estilo a los componentes y como podemos asegurarnos de que el estilo que aplicamos a un componente, solo se aplique a ese componente y no a todos.
 
         Componentes Deep Dive
@@ -164,7 +164,7 @@
         Routing.
             Es una caracteristica del Core de las SAP, porque con routing, podemos manejar diferentes urls, /productos /usuarios  diferentes paginas, aunque tengamos un solo HTML, y en realidad
             lo que hacemos es analizar la url y renderizar las diferentes partes que necesitamos, para mostrar "una nueva pagina".
-        
+
         Forms and validation.
             validación de entrada de datos de los usuarios, etc.
 
@@ -183,7 +183,7 @@
 
         Bonus: aplicaciones de react animadas, ubicación de reactores, webpack, etc.
             NextJs, una libreria construida bajo react, donde construimos nuestro propio flujo de trabajo, etc.
-        
+
     10. How to get the Most out of This Course
 
         Como sacarle provecho al curso:
@@ -197,7 +197,7 @@
         Documentación de React: https://reactjs.org/
         El codepen, hecho por él: https://codepen.io/anon/pen/MELQaQ
 
-### Sección: 2 - Refreshing Next Generation JavaScript (Optional) ###
+### Sección 2: - Refreshing Next Generation JavaScript (Optional) ###
 
     12. Module Introduction
         Next-Gen Javascript, para refrescar. React usa esto, así que, hay que saberlo.
@@ -212,7 +212,7 @@
         funciones antes:
             function myFuncion() {
                 ...
-            } 
+            }
 
         funciones ahora:
             const myFuncion = () => {
@@ -221,7 +221,7 @@
 
         * Arrow functions, mejoran el problema de que this, no siempre apuntaba al contexto de ejecución, sino al objeto global.
         * Si no tiene parametros, va solo parentesis
-        * Si tiene uno, es param => 
+        * Si tiene uno, es param =>
         * Si tiene mas de uno, es (param1,param2) =>
         * Si la parte de retorno solo tiene una linea, se puede escribir así: const multiplicar = number => number * 2;
 
@@ -235,12 +235,12 @@
             person.js
                 const person = {
                     name: 'Max'
-                } 
+                }
                 export default person
 
                 // export: sirve para exportar esa función, objeto, etc, desde un archivo.
                 // default: que esa funcion, obj, etc, va a ser la predeterminada.
-                // person: en este caso es el objeto 
+                // person: en este caso es el objeto
 
             utility.js
                 export const clean = () => { ... }
@@ -250,19 +250,19 @@
             app.js
                 // Se pone de alguna de las dos maneras, ya que hace referencia a lo único que se exporto (default)
 
-                    import person from './person.js' 
-                    import prs from './person.js'   
+                    import person from './person.js'
+                    import prs from './person.js'
 
                 // Al ser exportada como diferentes constantes, se usa las { }  para "mejorar el codigo", diciendo que se esta exportando algo especifico
                 // Tiene que respetar el nombre que se le puso en el archivo donde se la exporta obj
                 // se puede ponerle un alias, como en la segunda linea
 
-                    import { baseData } from './utility.js' 
-                    import { baseData as bd } from './utility.js' 
+                    import { baseData } from './utility.js'
+                    import { baseData as bd } from './utility.js'
 
                 // También se podría hacer de esta manera.
 
-                    import { baseData, clean } from './utility.js' 
+                    import { baseData, clean } from './utility.js'
 
     16. Understanding Classes - # TEORIA #
 
@@ -286,7 +286,7 @@
                 this.name = 'Max';
                 this.gender = 'female'; // pero no es correcto usar así.
             }
-            
+
             printMyname (){
                 console.log(this.name);
             }
@@ -295,7 +295,7 @@
         // Instanciar un objeto de esa clase.
         const miPersona = new Person();
         miPersona.printMyname();
-        miPersona.printGender();    
+        miPersona.printGender();
 
     17. Classes, Properties and Methods - # TEORIA #
 
@@ -318,7 +318,7 @@
             miMetodo = () => {
                 ...
             }
-            
+
         * Es mejor usar ambos opciones de ES7, para esto si o si hay que usar ES6/Babel, que transpila el código y lo convierte.
 
     18. The Spread & Rest Operator - # TEORIA #
@@ -349,7 +349,7 @@
                 console.log(newO)
 
         Rest: (Fusión de elementos en un array)
-            
+
             Se utiliza con menos frecuencia.
 
             Se usa para mergear una lista de argumentos de funciones en una matriz.
@@ -359,13 +359,13 @@
             // O sea, en vez de dividir, los une.
 
             function sortArgs(...args){
-                return args.sort[]; 
+                return args.sort[];
             }
 
             sortArgs(1,2,3,4,5);
-        
+
         * Hay que tener en cuenta que si el numero o propiedad / funcion, ya existia en el objeto actual, lo sobreescribe.
-        
+
         array.filter()  // ejecuta una función en cada elemento de la matriz y se verifica si existe un elemento en ella, ej:
         const filter = (...args) => {
             return args.filter(el => el === 1);
@@ -445,9 +445,9 @@
         En realidad, no la próxima generación de JavaScript, pero también es importante: un arreglo de funciones de JavaScript, como map() , filter() , reduce()  etc.
         Me verás usarlos bastante ya que muchos conceptos de React se basan en trabajar con arreglos (de manera inmutable).
 
-        La siguiente página ofrece una buena descripción general de los diversos métodos que puede utilizar en el prototipo de matriz. No dude en hacer clic en ellos y actualizar sus conocimientos según sea necesario:  
+        La siguiente página ofrece una buena descripción general de los diversos métodos que puede utilizar en el prototipo de matriz. No dude en hacer clic en ellos y actualizar sus conocimientos según sea necesario:
             https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array
-            
+
         Particularmente importantes en este curso son:
 
         map()  =>  https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map
@@ -459,33 +459,33 @@
         slice()  =>  https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice
         splice()  =>  https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice
 
-### Sección 3 - Understanding the Base Features & Syntax ###
+### Sección 3: - Understanding the Base Features & Syntax ###
 
     25. Module Introduction
 
         Que es, como usarlo, nuestra primera app react, conceptos generales, sintaxis basicas, etc.
 
-    26. The Build Workflow 
+    26. The Build Workflow
 
         Recomendado para SPA y MPAs
 
-        Porque?     
+        Porque?
                 - Optimización de codigo en grandes apps, para tener también el menor codigo postible, considerando el peso de las app también.
 
                 - Usar nex-gen JS. Mejoramos como desarrolladores, y funcionan mejor las app, porque basicamente usar esto es "comprometerse con las mejores practicas"
                     Como no en todos los browsers se soporta esto, se debe usar un flujo de trabajo diferente, para poder compilar next-gen javascript y usarlo.
 
-                - Ser mas productivo. 
-                    Incluir, auto-prefixing de CSS. 
+                - Ser mas productivo.
+                    Incluir, auto-prefixing de CSS.
                     Linting: una herramienta que te dice si estas escribiendo mal codigo o podes hacer mas optimo algún codigo especifico.
-        
-        Como?       
+
+        Como?
                 - Gestor de dependencias: npm o yarn (3ty parth libraries)
                 - Bundler "Controlador", recomendado: webpack
                     Para escribir codigo modular, para tener una tarea/enfoque claro y nos resulte mas facil de mantener y administrar.
                 - Compilador (para next-gen), recomendado: Babel + presets
-                - Un Web Server de desarrollo. 
-                
+                - Un Web Server de desarrollo.
+
         * Nos va a enseñar una herramienta de desarrollo que hace todo esto menos engorroso y no tenemos qe andar configurando todo, es una herramienta que generó el equipo de React de facebook.
         * En otro modulo enseña como hacer una desde 0 igual.
 
@@ -500,22 +500,22 @@
         > npm start
 
     28. Understanding the Folder Structure
-        
+
         package.json
             Donde estan las dependencias y los diferentes scripts que podemos ejecutar para correr diferentes tareas. Dependencias productivas y de desarrollo.
 
         node_modules
             Donde estan las dependencias de cada paquete, y los paquetes en si de Node.
-        
+
         public
             Es la carpeta raiz, donde van a estar todos los archivos que se le sirven al cliente.
-            
-            index.html 
+
+            index.html
                 Es la única que tenemos y la única que vamos a tener. NUNCA TENEMOS QUE AGREGAR PAGINAS.
                 Si es una MPA (Multi Page Application), el Workflow va a tener que ser diferente.
                 Si queremos agregar otro css, va ahí.
                 No metamos html dentro del html
-            
+
             manifest.json
                 Nos brinda una aplicación web progresiva, lista para usar.
 
@@ -524,10 +524,10 @@
 
             index.js
                 obtiene acceso al elemento raiz de nuestro DOM del arch html, para que dentro del elemento con id="root" se renderice nuestra aplicación react.
-            
-            App.js 
+
+            App.js
                 Actualmente ahí tenemos nuestro primer componente.
-        
+
             registerServiceWorker.js (En la ultima versión no esta este archivo, esta: serviceWorker)
                 Es importante para registrar un service worker, que es generado automaticamente, relacionado a la PWA
                 Basicamente, pre-cachea los archivos scripts.
@@ -537,7 +537,7 @@
 
         - Eliminar el logo de react.svg y la linea que importa el logo.
         - Eliminar del archivo css, todo menos la parte de .App
-        
+
     29. Understanding Component Basics
         index.js
             import React from 'react';
@@ -567,17 +567,17 @@
             export default App;
 
         - Para definir un componente, hay 2 maneras.
-            1) 
-                1.1) Creamos una clase y lo hacemos heredar de Component, 
-                    
+            1)
+                1.1) Creamos una clase y lo hacemos heredar de Component,
+
                     que se importa de la libreria de react.
                     React, se importa porque es necesario para renderizar el componente y el objeto componente.
-                
-                1.2) el metodo render() 
+
+                1.2) el metodo render()
                         sirve para renderizar JSX en la pantalla.
 
             2)
-        - 
+        -
 
         # TEORIA #
         * Por lo general cuando se elige el nombre de un componente, se usa ese nombre para la variable a importar, para el archivo y para el elemento.
@@ -594,7 +594,7 @@
                 // createElement, toma infinitos argumentos, pero el primero es o un elemento o un componente.
                 // 2 arg: puede ser un objeto, aunque es opcional, por lo tanto pasamos null
                 // 3 arg, los hijos: a partir de ese, van separados por comas, y basicamente s todo lo que va a ir, adentro del primer arg, el div en este caso.
-                    1 linea: como el comportamiento por default es tomar todo por texto, va a imprimir en pantalla, h1Iamreactapp, 
+                    1 linea: como el comportamiento por default es tomar todo por texto, va a imprimir en pantalla, h1Iamreactapp,
                     2 lines: así que hay que usar otro react.createelement...
                     3 linea: Para pasarle estilo
 
@@ -611,11 +611,11 @@
     31. JSX Restrictions
 
         # IMPORTANTE #:
-        
+
         - Como en realidad el html que vemos es JSX, no podemos usar palabras reservadas como class, debemos en este caso, por ej usar className, en el elemento.
-        
+
         - No podemos devolver elementos que no tienen un padre. Por ej, no podemos poner un elemento hermano al div root.
-       
+
         - Es buena practica, es meter todo dentro de un contenedor a devolver.
 
     32. Creating a Functional Component
@@ -628,10 +628,10 @@
                     Person.js
             Por convención el nombre comienza con mayus.
             Por convención las funciones van en minuscula.
-        
+
         La gran mayor cantidad de tiempo los componentes se crean como el de app, pero por lo general son solo funciones.
-        
-        Para crear un componente entonces (que no derive de Component): 
+
+        Para crear un componente entonces (que no derive de Component):
             Generamos una función.
             La exportamos como default.
             Retornamos JSX
@@ -650,21 +650,21 @@
         Por lo tanto, una aplicación React típica podría representarse como un árbol de componentes : tiene un componente raíz ("Aplicación") y luego una cantidad potencialmente infinita de componentes secundarios anidados.
         Cada componente debe devolver / generar algún  código JSX ; define qué código HTML React debe procesar al DOM real al final.
         JSX NO es HTML pero se parece mucho a eso. Sin embargo, se pueden ver las diferencias cuando se mira de cerca (por ejemplo, className en JSX vs class en "HTML normal"). JSX es solo azúcar sintáctica para JavaScript, lo que le permite escribir código HTML en lugar de llamadas React.createElement (...) anidadas.
-        
+
         Al crear componentes, puede elegir entre dos formas diferentes:
-            Componentes funcionales (también conocidos como componentes de "presentación", "tontos" o "sin estado"; más información sobre esto más adelante en el curso) =>  
+            Componentes funcionales (también conocidos como componentes de "presentación", "tontos" o "sin estado"; más información sobre esto más adelante en el curso) =>
                 const cmp = () => {
-                    return <div>some JSX</div> 
-                } 
+                    return <div>some JSX</div>
+                }
                 (se recomienda usar las funciones de flecha de ES6 como se muestra aquí, pero es opcional)
 
-            Componentes basados ​​en clase (también conocidos como componentes "contenedores", "inteligentes" o "con estado") => 
-                class Cmp extends Component { 
-                        render () { 
-                            return <div>some JSX</div> 
-                            } 
-                } 
-        
+            Componentes basados ​​en clase (también conocidos como componentes "contenedores", "inteligentes" o "con estado") =>
+                class Cmp extends Component {
+                        render () {
+                            return <div>some JSX</div>
+                            }
+                }
+
         Por supuesto, nos sumergiremos en la diferencia a lo largo de este curso. Ya puede notar que debe usar 1) con la mayor frecuencia posible. Es la mejor práctica.
 
     34. Working with Components & Re-Using Them
@@ -678,7 +678,7 @@
             <Person />
             <Person />
             </div>
-        ); 
+        );
 
         * Esto no es dinamico, así que en el proximo vamos a ver como hacerlo..
 
@@ -700,12 +700,12 @@
             <Person name="Manu" age="29"/>
             <Person name="Noe" age="32"/>
             </div>
-        ); 
-        
+        );
+
         Del componente principal, se le pasa al componente que corresponde el valor de las propiedades.
 
         Person.js
-            #IMPORTANTE: 
+            #IMPORTANTE:
             El argumento es un objeto con toda la info que se le pasa al componente, se puede llamar props, como se puede llamar pepito.
 
             const person = (props) => {
@@ -715,8 +715,6 @@
         Cuanto se usa en una clase-componente (como app), se tiene que usar this.props
 
     37. Understanding the Children Property
-
-       
 
         Si queremos pasar algo entre la etiqueta de apertura y cierre, tenemos que envolver eso en un elemento padre y usar children.
 
@@ -738,7 +736,7 @@
         <button>Cambiar de nombre</button>
 
         State:
-            #IMPORTANTE: 
+            #IMPORTANTE:
                 - SOLO SE PUEDE USAR: En las clases-componentes
                 - es una propiedad especial, donde se establecen y pasan props desde afuera como name, age etc, y que se gestionan dentro del componente.
                     Si cambiamos algo que use esta propiedad, va a renderizar nuevamente el dom/componente.
@@ -766,12 +764,12 @@
 
                 props.children mostraría por ej en el componente Person "My hobbies: Racing"
 
-            this, hace referencia a la clase donde se esta usando 
+            this, hace referencia a la clase donde se esta usando
 
     39. Props & State
         file:///C:/Users/Noe/Downloads/props-state.pdf
 
-        props  y state  son los conceptos CORE de React. Solo props  y/o state activa React para volver a renderizar sus componentes y potencialmente actualizar el DOM en el navegador 
+        props  y state  son los conceptos CORE de React. Solo props  y/o state activa React para volver a renderizar sus componentes y potencialmente actualizar el DOM en el navegador
 
         Props
             props: le permite pasar datos de un componente principal (container) a un componente secundario (embebido).
@@ -789,8 +787,8 @@
             Aquí title  está la propiedad personalizada ( prop ) configurada en el Post  componente personalizado . Básicamente, replicamos el comportamiento del atributo HTML predeterminado que ya conocemos (por ejemplo, <input type="text">  le informamos al navegador acerca de cómo manejar esa entrada).
 
             Post Component:
-                const post = ( props ) => {   
-                    volver ( 
+                const post = ( props ) => {
+                    volver (
                         <div>
                             <h1> { props . título } </ h1 >
                         </ div >
@@ -806,13 +804,13 @@
 
         Ejemplo:
             NewPost Component:
-                ¡La clase NewPost extiende el Componente { // estado solo se puede acceder en los componentes basados ​​en clase!     
-                
+                ¡La clase NewPost extiende el Componente { // estado solo se puede acceder en los componentes basados ​​en clase!
+
                 class NewPost extends Component { // state can only be accessed in class-based components!
                     state = {
                         counter: 1
-                    };  
-                
+                    };
+
                     render () { // Needs to be implemented in class-based components! Needs to return some JSX!
                         return (
                             <div>{this.state.counter}</div>
@@ -821,11 +819,11 @@
                 }
 
             Por supuesto, puede pasar state  a componentes funcionales, pero estos no pueden editarlo directamente.
-            state  => 
-                Simplemente es una propiedad de la clase de componente, debes llamarlo state, obligatoriamente. 
+            state  =>
+                Simplemente es una propiedad de la clase de componente, debes llamarlo state, obligatoriamente.
                 Luego, puede acceder a él a través this.state  de su código JSX de clase (que devuelve en el render()  método requerido ).
-                Cada vez que state  cambia, el componente se volverá a representar y reflejará el nuevo estado. 
-                
+                Cada vez que state  cambia, el componente se volverá a representar y reflejará el nuevo estado.
+
                 La diferencia con props es que esto sucede dentro de un mismo componente: ¡no recibe datos nuevos ( props ) de fuera!
 
     40. Handling Events with Methods
@@ -837,7 +835,7 @@
         switchNameHanlder = () => {
             console.log("click");
         }
-        
+
         a la función no hay que ponerle los () para que no lo llame en ese mismo momento.
 
         <button onClick={this.switchNameHanlder}>Cambiar de nombre</button>
@@ -851,17 +849,17 @@
                 onCopy onCut onPaste
             Properties:
                 DOMDataTransfer clipboardData
-        
+
         Composition Events
             Event names:
                 onCompositionEnd onCompositionStart onCompositionUpdate
             Properties:
                 string data
-            
+
         Keyboard Events
             Event names:
                 onKeyDown onKeyPress onKeyUp
-            
+
             Properties:
                 boolean altKey
                 number charCode
@@ -879,16 +877,16 @@
         Focus Events
             Event names:
                 onFocus onBlur
-            
+
             These focus events work on all elements in the React DOM, not just form elements.
 
             Properties:
                 DOMEventTarget relatedTarget
-        
+
         Form Events
             Event names:
                 onChange onInput onInvalid onSubmit
-            
+
             For more information about the onChange event, see Forms.
 
         Mouse Events
@@ -896,7 +894,7 @@
                 onClick onContextMenu onDoubleClick onDrag onDragEnd onDragEnter onDragExit
                 onDragLeave onDragOver onDragStart onDrop onMouseDown onMouseEnter onMouseLeave
                 onMouseMove onMouseOut onMouseOver onMouseUp
-            
+
             The onMouseEnter and onMouseLeave events propagate from the element being left to the one being entered instead of ordinary bubbling and do not have a capture phase.
 
             Properties:
@@ -917,12 +915,12 @@
         Selection Events
             Event names:
                 onSelect
-        
+
         Touch Events
             Event names:
                 onTouchCancel onTouchEnd onTouchMove onTouchStart
 
-            Properties: 
+            Properties:
                 boolean altKey
                 DOMTouchList changedTouches
                 boolean ctrlKey
@@ -931,7 +929,7 @@
                 boolean shiftKey
                 DOMTouchList targetTouches
                 DOMTouchList touches
-        
+
         UI Events
             Event names:
                 onScroll
@@ -947,7 +945,7 @@
                 number deltaX
                 number deltaY
                 number deltaZ
-        
+
         Media Events
             Event names:
                 onAbort onCanPlay onCanPlayThrough onDurationChange onEmptied onEncrypted
@@ -958,7 +956,7 @@
         Image Events
             Event names:
                 onLoad onError
-        
+
         Animation Events
             Event names:
                 onAnimationStart onAnimationEnd onAnimationIteration
@@ -1010,7 +1008,7 @@
                 })
             }
 
-            * Solo se pueden cambiar props y state 
+            * Solo se pueden cambiar props y state
 
     43. Function Components Naming
 
@@ -1039,19 +1037,19 @@
         Ahora hay una característica llamada React Hooks, se utiliza mas que nada en los componentes de funciones.
 
         IMPORTANTE: El va a seguir enseñando la manera tradicional (clases basadas en componentes) porque en las compañias ya tienen proyectos hechos basados en esto.
-        
+
         Si bien desde React 16.8 podemos usar componentes funcionales para todo, vamos a mantenernos en las clases basadas en componentes, porque el dice que en los laburos se usa mas eso.
-        
-        "react hooks"  
+
+        "react hooks"
             Es una colección de funciones expuestas por React para que puedas en componentes funcionales y demás, una de ellas es useState.
 
-            Cambia el componente app por uno funcional o sea, 
+            Cambia el componente app por uno funcional o sea,
                 const app = props => {
                     useState({
                         mete el array de persons
                     });
 
-                    return() { JSX } 
+                    return() { JSX }
                 }
 
             Este es un componente funcional normal, pero ahora puede usar la función de "react hooks" o una de las funciones de React.
@@ -1067,16 +1065,16 @@
                     2) El segundo elemento en la matriz de estado siempre será una función que nos permita actualice este estado para que react lo sepa y volverá a procesar este componente
                         IMPORTANTE: La 2da función no mergea los cambios, pisa el objeto con el nuevo estado.
 
-                    3) Si estabamos usando this.state ahora debemos cambiarlo por currentState 
-                    
+                    3) Si estabamos usando this.state ahora debemos cambiarlo por currentState
+
     45. Stateless vs Stateful
-        
+
         Functional (Stateless) vs class (Stateful) Components
         La mayoria de las veces vamos a usar funciones stateless, las que reciben props.
-        
+
         La mayor parte de la app, no debería cambiar el estado de la aplicación, se supone que solo va a cambiar en ciertos componentes,
             conocidos como "contenedores" Statefull Components. ej app.js
-        
+
     46. Passing Method References Between Components
         base-syntax--02-state-events.zip
 
@@ -1085,9 +1083,9 @@
         o sea, el hijo termina usando un metodo que esta en el padre.
 
         Si necesitamos pasar parametros hay que usar bind.
-        
+
         this.metodo.bind(this, param)
-        
+
         si en vez de usar esa manera, usamos una funcion de flecha anonima, tenemos que tener en cuenta que cuando escribimos la función en una linea:
             onClick={() => this.metodo()}
 
@@ -1105,19 +1103,19 @@
 
     48. Adding Styling with Stylesheets
 
-        hay que poner un archivo .css en la misma carpeta que el componente e importarlo en el componente.js 
+        hay que poner un archivo .css en la misma carpeta que el componente e importarlo en el componente.js
 
     49. Working with Inline Styles
-        
-        Para usar inline styles, se usa javascript en camelCase, ej lo que en css es background-color, aca es backgroundColor o marginLeft, etc.. en el JSX se usa 
-        
-        Dentro de render () 
+
+        Para usar inline styles, se usa javascript en camelCase, ej lo que en css es background-color, aca es backgroundColor o marginLeft, etc.. en el JSX se usa
+
+        Dentro de render ()
         const style = {
             backgroundColor: color,
         }
 
         <a style={style}></a>
-        
+
         Tarea 1: Time to Practice - The Base Syntax
 
     50. [OPTIONAL] Assignment Solution
@@ -1158,7 +1156,7 @@
         { this.showParrafo === true ?
             <p>hola</p>
         :
-        null 
+        null
         }
 
         significa que o muestro o el parrafo o no muestro (renderizo nada)
@@ -1173,9 +1171,9 @@
             let person = null;
 
             if(this.person == null) {
-                person = ( // esto es como crear un elemento 
+                person = ( // esto es como crear un elemento
                     metemos el html aca que queremos ocultar o no
-                );  
+                );
             }
 
             return (
@@ -1190,7 +1188,7 @@
 
     56. Outputting Lists
 
-        
+
         .map mapea elementos en un array dado (en este caso "elArray"), ejecuta un metodo en cada elemento del array
             el metodo/funcion, es pasado a mapa dentor de los ().
             - .map retorna un nuevo array, react lo que intenta hacer al retornarlo es renderizarlo otra vez en el DOM (si es un JSX valido)
@@ -1206,15 +1204,15 @@
 
     57. Lists & State
         deletePersonHandler = (personIndex) => {
-            
+
             const persons = this.state.persons; // Me guardo el array de personas.
             persons.splice(personIndex, 1); // Splice, sirve para eliminar elementos del array, acá le decimos que elimine 1 solo, y un index en particular.
             this.setState({persons: persons})
 
         }
-        
+
         {this.state.elArray.map( ( elementoDelArray, index ) => {
-            return <Person click={this.deletePersonHandler} name="person.name" age="person.age" />;                                   
+            return <Person click={this.deletePersonHandler} name="person.name" age="person.age" />;
         })}
 
         Supuestamente esto tiene una falla, en el proximo  modulo se va a demostrar esto.
@@ -1230,9 +1228,9 @@
 
         Hay una alternativa (equivalente) a esto, que es usar el operador spread: ... / Si son tres puntos.
         Spread: ... despliega los elementos del array en una lista de elementos, que se agrega a esa matriz, de modo que ahora tenemos una matriz,
-            nueva matriz con los objetos viejos de la matriz vieja, pero no la matriz vieja en si misma.   
-            
-            const persons = [...this.state.persons] 
+            nueva matriz con los objetos viejos de la matriz vieja, pero no la matriz vieja en si misma.
+
+            const persons = [...this.state.persons]
 
         Por ende:
             1) Crear una copia
@@ -1246,29 +1244,29 @@
             se tiene que poner el id de los elementos.
 
             {this.state.elArray.map( ( elementoDelArray, index ) => {
-                return <Person click={this.deletePersonHandler} name="person.name" age="person.age" key="person.id" />;                                   
+                return <Person click={this.deletePersonHandler} name="person.name" age="person.age" key="person.id" />;
             })}
 
     60. Flexible Lists
 
-        1) Le agrega id al array de persons, apenas lo setea 
+        1) Le agrega id al array de persons, apenas lo setea
         2) modifica el elemento Person para que tenga el evento change, pasandole el evento y el id:
 
             {this.state.elArray.map( ( elementoDelArray, index ) => {
-                return <Person 
-                            click={this.deletePersonHandler} 
-                            name="person.name" 
-                            age="person.age" 
+                return <Person
+                            click={this.deletePersonHandler}
+                            name="person.name"
+                            age="person.age"
                             key="person.id"
                             change="{(event) => { this.nameChangeHandler(event, person.id)}} // A la función anonima hay que pasarle el param event, para que después se lo pueda pasar a la función nameChangeHandler
 
-                            />;                                   
+                            />;
             })}
 
         3) Actualiza la función nameChangeHandler, para que seactualice el elemento especifico.
 
             nameChangeHandler = (event, id) => {
-                
+
                 // Obtenemos el index del elemento en la matriz, findIndex retorna true o false si no lo encontró.
                 const personIndex = this.state.persons.findIndex(p => {
                     return p.id === id;
@@ -1278,10 +1276,10 @@
                 const person = {
                     ...this.state.persons[personIndex]
                 }
-                
+
                 // Otra manera de hacerlo sería:
                 // Pasamos un objeto vacio, y como 2do param, el objeto que queremos asignarle.
-                // const person = Object.assign({}, this.state.persons[person]); 
+                // const person = Object.assign({}, this.state.persons[person]);
 
                 // Ya conseguí la copia (no el objeto original)
                 person.name = event.target.name;
@@ -1292,7 +1290,7 @@
 
                 // Finalmente actualizamos el estado con el nuevo array actualizado.
                 this.setState({ persons: persons)}
-            
+
 
             // findIndex como map, recorre cada elemento y busca el index que le pasamos.
 
@@ -1335,7 +1333,7 @@
                 {this.state.persons.map((person, index) => {
                     return <Person
                     click={() => this.deletePersonHandler(index)}
-                    name={person.name} 
+                    name={person.name}
                     age={person.age}
                     key={person.id}
                     changed={(event) => this.nameChangedHandler(event, person.id)} />
@@ -1350,7 +1348,7 @@
 
         // Agrega las clases:
 
-        App.css 
+        App.css
             .red {
                 color: red;
             }
@@ -1358,7 +1356,7 @@
             .bold {
                 font-weight: bold;
             }
-        
+
         App.js
             // Esto usa las clases que declaramos y las une con un espacio en el medio.
             let classes = ['red','bold'].join(' ');
@@ -1369,12 +1367,12 @@
                     <p className={classes}>This is really working!</p>
 
     68. Adding and Using Radium
-        
+
         // Sirve para poder usar, inline styles, pseudo selectores y media queries:
             Para extender el alcance de un componente o cambiarlo dinamicamente.
 
         1) > npm install --save Radium
-        2) import Radium from 'radium'; 
+        2) import Radium from 'radium';
         3) export default Radium(App); // Higher order component, se puede usar en todo tipo de componentes.
 
         const style = {
@@ -1405,13 +1403,13 @@
         Person.js
             const style = {
                 '@media (min-width: 580px': {
-                    
+
                 }
             };
 
     70. Introducing Styled Components
         npm install --save styled-components
-        
+
         import syled from 'styled-components';
         const Button = styled.button`` -> feature: que se llama tacked templates. button es una función o metodo, dentro de los ticks, podes pasar texto.
 
@@ -1434,7 +1432,7 @@
         Esto después lo usamos así:
         <StyledDiv>
         </StyledDiv>
-            
+
     71. More on Styled Components
         Como funcionan realmente?
 
@@ -1450,11 +1448,11 @@
         const StyledButton = styled.button`
             background-color: ${props => props.alt ? 'red' : 'green' }
         `;
-        
+
         Todo esto es javascript, no react, por eso usando los backteacks, se puede usar interpolación de cadenas y a su vez el package hace la magia de poder usar props.
-         
+
     73. Working with CSS Modules
-        npm run eject 
+        npm run eject
         // Esto ya se hace varias veces en el curso, buscarlo en el archivo.
 
         En el caso de que estemos manejando todo el css dentro de un solo arhivo, podríamos indicar adelante de los selectores, el css principal por ejemplo el de App.
@@ -1477,7 +1475,7 @@
         In Post Component File
 
         import classes from './Post.css';
-        
+
         const post = () => (
             <div className={classes.Post}>...</div>
         );
@@ -1489,7 +1487,7 @@
 
         Example:
 
-        :global .Post { ... } 
+        :global .Post { ... }
 
         Now you can use className="Post"  anywhere in your app and receive that styling.
 
@@ -1501,17 +1499,17 @@
         styling--02-styled-components.zip
         styling--03-finished.zip
 
-    Desde acá hasta el 75, cambio todo, esto es viejo: 
+    Desde acá hasta el 75, cambio todo, esto es viejo:
         70. MUST READ: Enabling CSS Modules
 
             // Para habilitar CSS Modules:
             1) commitear los cambios que puedas tener
             2) npm run eject
-            3) Vamos a ver nuevas carpetas: 
+            3) Vamos a ver nuevas carpetas:
                 /config -->
-                /scripts --> Tiene un script por cada comando en scripts a ejecutar 
+                /scripts --> Tiene un script por cada comando en scripts a ejecutar
 
-            4) Modificar el archivo en config/webpack.config.js 
+            4) Modificar el archivo en config/webpack.config.js
 
             test: cssRegex,
                     exclude: cssModuleRegex,
@@ -1523,9 +1521,9 @@
                     }),
 
                 debería modificarse también en el de prod, pero no lo tengo.. igual que otros archivos que el tiene y yo no.
-            5) Modificamos el import del css: import clases from './App.css' 
+            5) Modificamos el import del css: import clases from './App.css'
                 las clases que tenemos en el archivo pasan a ser propiedades :O
-            6) Cambiamos 
+            6) Cambiamos
                 <div className="App">
                 por:
                 <div className={clases.App}>
@@ -1538,11 +1536,11 @@
             // Para habilitar CSS Modules:
             1) commitear los cambios que puedas tener
             2) npm run eject
-            3) Vamos a ver nuevas carpetas: 
+            3) Vamos a ver nuevas carpetas:
                 /config -->
-                /scripts --> Tiene un script por cada comando en scripts a ejecutar 
+                /scripts --> Tiene un script por cada comando en scripts a ejecutar
 
-            4) Modificar el archivo en config/webpack.config.js 
+            4) Modificar el archivo en config/webpack.config.js
 
             test: cssRegex,
                     exclude: cssModuleRegex,
@@ -1554,9 +1552,9 @@
                     }),
 
                 debería modificarse también en el de prod, pero no lo tengo.. igual que otros archivos que el tiene y yo no.
-            5) Modificamos el import del css: import clases from './App.css' 
+            5) Modificamos el import del css: import clases from './App.css'
                 las clases que tenemos en el archivo pasan a ser propiedades :O
-            6) Cambiamos 
+            6) Cambiamos
                 <div className="App">
                 por:
                 <div className={clases.App}>
@@ -1580,7 +1578,7 @@
             In Post Component File
 
             import classes from './Post.css';
-            
+
             const post = () => (
                 <div className={classes.Post}>...</div>
             );
@@ -1592,10 +1590,10 @@
 
             Example:
 
-            :global .Post { ... } 
+            :global .Post { ... }
 
             Now you can use className="Post"  anywhere in your app and receive that styling.
-            
+
         73. Adding Pseudo Selectors
 
             Elimina todo el css que andaba por los archivos. Lo voy a eliminar cualquier cosa ver commit "elime css por curso 72"
@@ -1654,7 +1652,7 @@
     81. Using Error Boundaries (React 16+)
 
         throw new Error("hubo un error");
-        
+
         IMPORTANTE: key, siempre tiene que estar en el elemento "padre";
 
         Crea un componente ErrorBoundary
@@ -1712,11 +1710,10 @@
             Podemos poner JSX
         );
 
-        Lo que no entiendo es que al final le saco los parentesis y puso javascript de una.
-            Al parecer cuando no retorn JSX, estás retornando una función normal.
-            es por eso que o usas => ( y lo que queremos renderizar) o => () {}
+        Si en una función utilizamos { } y un metodo return -> componente.
+        Si en una función utilizamos { } -> funcion
 
-        Resumen: Hay que tener containers donde se manejen estados y el resto deberían ser funcional components donde 
+        Resumen: Hay que tener containers donde se manejen estados y el resto deberían ser funcional components donde
                 solamente se pasen props.
 
     87. Comparing Stateless and Stateful Components
@@ -1753,14 +1750,19 @@
                 NO ACTUALIZAR EL ESTADO ACA. Salvo que se cumpla una promesa sobre un llamado http.
 
     90. Component Creation Lifecycle in Action
+        lifecycle-creation-learning-card (1)
+        cmp-deep-dive-01-creation-lifecycle
 
         mediante console log, muestra como se van ejecutando en orden las cosas, idem las posteriores..
 
     91. Component Update Lifecycle (for props Changes)
 
+        lifecycle-update-external-learning-card (1)
+        cmp-deep-dive-02-updating-lifecycle-props
+
         Ciclo de vida para actualizar los componentes.
             Cuando cambian las props o el estado
-        
+
         1) getDerivedStateFromProps(props, state)
             No se usa amenudo, se utiliza para inicializar el estado de un componente que se actualiza en funcion de los accesorios que esta obteniendo. ej, algun control de form que obtiene propieades externas y luego internamente desea manejar la entrada del usuario pero inicializa su estado o actualiza el estado en función de cmbioas externos.
             Sirve para sincronizar tu estado local dentro del component, no debería realizar side effects, por lo que no se deberían realizar llamadas http.
@@ -1771,8 +1773,8 @@
             tener cuidado porque podes bloquear tus componentes
 
         3) render()
-            revisa el codigo JSX, lo evalua y basicamente construye su dom virtual 
-        
+            revisa el codigo JSX, lo evalua y basicamente construye su dom virtual
+
         4) Update Child Components Props
             Evalua todos los hijos secundarios que tengas en tu JSX y los actualiza
 
@@ -1781,26 +1783,27 @@
             también es un enlace de ciclo de vida que no se usa demasiado.
             se usa para operaciones de ultimo momento en el dom, no cambios, sino como obtener la posición de desplazamiento actual del usuario.
             suponiendo que su proxima actualizacion del dom va a volver a representar el dom y agregara nuevos elementos y por lo tanto queres restaurar donde estaba el usuario posicionado.
-        
+
         6) componentDidUpdate(prevProps, prevState, snapshot)
-            un enlace de ciclo de vida que te "avisa" que terminó la actualización del componente. 
+            un enlace de ciclo de vida que te "avisa" que terminó la actualización del componente.
             acá si se pueden realizar llamadas http
             LOOP INFINITOO ALERT:
-                no actualice el stado aqui porque sino va a causar re-renderizado nuevamente. 
+                no actualice el stado aqui porque sino va a causar re-renderizado nuevamente.
 
     92. Component Update Lifecycle (for state Changes)
+        cmp-deep-dive-03-updating-lifecycle-state
 
     93. Using useEffect() in Functional Components
 
         import React, { useEffect } import 'react'
 
-        Toma una función que corre en cada ciclo de renderizado.
-        useEffect(() => {
+        Toma una función que corre en cada ciclo de renderizado, después que se re-renderiza.
+            useEffect(() => {
 
-        })
+            })
 
         useEffect combina dos :
-        componentDidMount y componentDidUpdate.
+            componentDidMount y componentDidUpdate.
 
     94. Controlling the useEffect() Behavior
 
@@ -1808,7 +1811,7 @@
             useEffect(() => {
 
             },[])
-        
+
         2) cuando se actualiza un estado.
             Lo que hay que hacer sería lo siguiente:
 
@@ -1825,7 +1828,10 @@
         Dentro del mismo useEffect, se puede retornar algo mediante una función anonima, para limpiar algo.
 
     96. Cleanup Work with useEffect() - Example
+        useeffect
+
     97. Using shouldComponentUpdate for Optimization
+        https://academind.com/learn/javascript/reference-vs-primitive-values/
 
         shouldComponentUpdate -> se renderizan todos los componentes, pero lo podemos modificar para que se renderice solo el que se actualizó:
 
@@ -1841,7 +1847,7 @@
 
         IMPORTANTE: Para ver que se refresca en la pantalla > F12 > clic en los 3 puntos > More Tools > Rendering > chequear la opción Paint Flashing
                     Ojo porque a veces parece que refresca la pantalla, pero en realidad esta refrescando el dom virtual.
-        
+
     98. Optimizing Functional Components with React.memo()
 
         En cockppit por ejemplo, al exportar el componente, utilizaríamos memo.
@@ -1854,7 +1860,7 @@
 
     99. When should you optimize?
     100. PureComponents instead of shouldComponentUpdate
-        
+
         Si queremos chequear si alguna de todas las propiedades cambió, no nos conviene usar shouldComponentUpdate.
         Para eso tenemos que extender de otro componente:
 
@@ -1864,7 +1870,7 @@
 
     101. How React Updates the DOM
 
-        render() --> No actualiza inmediatamente al DOM real. Aplica a todo tipo de componentes. 
+        render() --> No actualiza inmediatamente al DOM real. Aplica a todo tipo de componentes.
                     Este puede llegar a dar el mismo resultado que antes, es por eso que se usa shouldComponentUpdate, para manejar que es lo que realmente se debería renderizar.
 
                     Lo que hace es compara el viejo DOM con el nuevo DOM (virtuals)
@@ -1875,7 +1881,7 @@
                     Una vez que termina llama al DOM real y lo actualiza, y no lo re-renderiza por completo, solo lo que fue detectado para updetear.
 
                     Si no encuentra diferencias, se ejecuta render y ahí es donde shouldComponentUpdate debería prevenir que llame al dom real, si realmente nada cambio.
-                    
+
     102. Rendering Adjacent JSX Elements
 
         En vez de envolver los elementos en un div, podemos usar:
@@ -1888,9 +1894,9 @@
             El tema es que hay que generar una key, para cada elemento, si no tenes que generar identificadores unico igual.
 
         Otra manera de hacer esto es:
-        
+
             Crear una carpeta hoc (High order component)
-            Después hay que crear un archivo Aux.js (mac) Auxiliary.js (Windows) 
+            Después hay que crear un archivo Aux.js (mac) Auxiliary.js (Windows)
 
             import React from 'react';
 
@@ -1927,12 +1933,12 @@
     104. Using React.Fragment
 
         En vez de usar Aux, se puede usar <React.Fragment> si no queremos usarlo así (separado por el punto, hay que importar Fragment)
-        import React, { Fragment} from 'react' 
+        import React, { Fragment} from 'react'
 
         Hace lo mismo que Aux.
 
     105. Higher Order Components (HOC) - Introduction
-        
+
         Se llama así porque contiene un componente, no hace nada.
 
         También puede haber componentes HOC:
@@ -1952,13 +1958,13 @@
             export default withClass;
 
         CONVENCIÓN: Los archivos de hoc, tienen que tener With adelante.
-        
+
         Cambia el div de app por este withClass y le pasa classes por props.
 
     106. Another Form of HOCs
 
         Existe otra manera de crear las clases tipo withClass.
-        
+
         Devolver una función comun de Javascript.
         1) parametro que debe arrancar con mayuscula
         2) algo que necesitemos en el componente hoc.
@@ -1972,7 +1978,7 @@
                 </div>
             );
         };
-        
+
         4) Usamos el componente Aux en App y cambiamos el nombre del js a tener w minuscula, porque ahora estamos devolviendo una función no un componente.
         5) modificamos el export de App:
             export default withClass(App, classes.App);
@@ -2008,13 +2014,13 @@
         No necesariamente son necesarias, pero cuando trabaja en un equipo grande o que queres distribuir lo que estás haciendo, evitas que la gente pase mal las propiedades.
 
         Hay que:
-        
+
             1) Instalar prop-types
                 > npm install --save prop-types
-            2) Importarlo: 
+            2) Importarlo:
                 import PropTypes from 'prop-types';
             3) Agregar antes del export:
-                
+
                 NOTA: va con minuscula acá:
 
                 Person.propTypes = {
@@ -2022,8 +2028,8 @@
                     name: PropTypes.string,
                     age: PropTypes.number
                 }
-        
-        IMPORTANTE: 
+
+        IMPORTANTE:
             - Funciona en cualquier tipo de componente.
             - Te avisa si estas pasando una propiedad incorrecta EN DEVELOPMENT MODE.
             - Podes usarlo en el componente que creas necesario.
@@ -2032,23 +2038,23 @@
 
         Solo funciona en componentes basados en clases.
         Ejemplo para ponerle el foco en el ultimo elemento de una lista de 3 elementos input:
-        
+
         ref:
             es una key especial, que le podes pasar a cualquier componente.
             Se puede usar de varias maneras, una es esta:
 
                 Lo usas con una función anonima en la que obtenes tenes la referencia, de donde pongas ref.
-                y le pones el nombre que quieras, por ej inputEl, 
-                en el cuerpo de la función podes asignar ese elemento a una nueva propiedad de clase 
+                y le pones el nombre que quieras, por ej inputEl,
+                en el cuerpo de la función podes asignar ese elemento a una nueva propiedad de clase
 
                 ComponentDidMount() {
                     this.inputElement.focus();
                 }
 
-                <input 
+                <input
                     ref={ ( inputEl ) => { this.inputElement = inputEl }}
                 />
-            
+
             Otra es:
                 constructor() {
                     super(props);
@@ -2059,7 +2065,7 @@
                     this.inputElementRef.current.focus();
                 }
 
-                <input 
+                <input
                     ref={ this.inputElementRef }
                 />
 
@@ -2084,18 +2090,18 @@
         PROVIDER: se crea el context para que los componentes después, lo puedan CONSUMIR.
             - React create context, nos permite inicializar nuestro contexto con un valor inicial, puede ser cualquiera cosa, obj, array, etc. También se inicializa para poder usar el intellisense, pero generalmente la inicialización no se utiliza salvo que no se pase nada al atributo value del componente.
 
-            - Crete context es un "objeto global" de javascript. O sea, en realidad no es que es un objeto global, 
+            - Crete context es un "objeto global" de javascript. O sea, en realidad no es que es un objeto global,
             sino que vos decidis donde se va a aplicar.
-            
+
             - En el contexto tengo que guardar todo lo que quiero acceder desde mis diferentes componentes.
-            
+
             - Con nuestro nuevo componente, en este caso authContext, tenemos que envolver, los componentes, que querramos que tengan acceso a esta información.
-        
+
         CONSUMER:
             - Se debe importar el context, y en el return, debemos utilizar el componente, englobando los componentes que necesitan esa info, pero con <AuthContext.Consumer> ver ej mas abajo:
             - No toma JSX como un hijo, pero si una función, ver ej de como realizar esto.
             - Se utiliza en el componente que este lo mas abajo posible, ya que sino tenemos que andar pasando cosas por props y justamente esa no es la idea.
-        
+
         EJEMPLO:
         Agrega una nueva carpeta /context y después un archivo aux-context.js
             import React from 'react';
@@ -2125,7 +2131,7 @@
 
     114. contextType & useContext()
 
-        
+
         COMPONENTES BASADOS EN CLASES:
 
             Como en ComponentDidMount, puede que tengas que hacer un llamado HTTP y necesites el context y ahí no se puede obtener la info como la aprendimos.
@@ -2146,7 +2152,7 @@
 
             authContext.authenticated
 
-            en coockpit, cambias el elemento por esto y listo. 
+            en coockpit, cambias el elemento por esto y listo.
 
     115. Wrap Up
     116. Useful Resources & Links
@@ -2175,55 +2181,15 @@
         cmp-deep-dive-11-refs.zip
         cmp-deep-dive-12-finished.zip
 
-    117. MUST READ: Legacy Lectures
-        DON'T SKIP THIS!
-
-        ---
-
-        With React 16.8, a new feature called "React Hooks" was introduced. This course already covers this feature and this module, up to this point, is 100% up-to-date with that feature (e.g. you learned about useEffect()).
-
-        The upcoming lectures marked as "[LEGACY]" are only there to allow existing students who started this module before the update (on February 6th) to continue smoothly.
-
-        You can skip all remaining lectures in this module (i.e. the lectures with "[LEGACY]") if you watched all the other lectures prior to this one.
-    118. [LEGACY] Splitting an App Into Components
-    119. [LEGACY] Comparing Stateless and Stateful Components
-    120. [LEGACY] Understanding the Component Lifecycle
-    121. [LEGACY] Converting Stateless to Stateful Components
-    122. [LEGACY] Component Creation Lifecycle in Action
-    123. [LEGACY] componentWillUnmount()
-    124. [LEGACY] Component Updating Lifecycle Hooks
-    125. [LEGACY] Component Updating Lifecycle in Action
-    126. [LEGACY] Updating Lifecycle Hooks (Triggered by State Changes)
-    127. [LEGACY] Performance Gains with PureComponents
-    128. [LEGACY] How React Updates the App & Component Tree
-    129. [LEGACY] Understanding React's DOM Updating Strategy
-    130. [LEGACY] Windows Users Must Read - File Downloads
-    131. [LEGACY] Returning Adjacent Elements (React 16+)
-    132. [LEGACY] React 16.2 Feature: Fragments
-    133. [LEGACY] Understanding Higher Order Components (HOCs)
-    134. [LEGACY] A Different Approach to HOCs
-    135. [LEGACY] Passing Unknown Props
-    136. [LEGACY] Using setState Correctly
-    137. [LEGACY] Validating Props
-    138. [LEGACY] Available PropTypes
-    139. [LEGACY] Using References ("ref")
-    140. [LEGACY] More on the React ref API (16.3)
-    141. [LEGACY] The Context API (React
-    142. [LEGACY] More on the Context API (16.6)
-    143. [LEGACY] Updated Lifecycle Hooks (React 16.3)
-    144. [LEGACY] The "memo" Method (16.4)
-    145. [LEGACY] Wrap Up
-    146. [LEGACY] Useful Resources &
-
 ### Sección 8: A Real App: The Burger Builder (Basic Version)
 
-    147. About React Hooks
+    117. About React Hooks
 
         As mentioned before, we'll build the course project without React Hooks for now (React Hooks are a new feature, introduced with React 16.8, I'll introduce them in-depth later).
         Towards the end of the course, we'll have an entire module where we convert it to use React Hooks though (after having yet another Hooks deep-dive module of course).
 
-    148. Module Introduction
-    149. Planning an App in React - Core Steps
+    118. Module Introduction
+    119. Planning an App in React - Core Steps
 
         Como planear una applicación React: Pasos Core
 
@@ -2232,11 +2198,11 @@
         3) Componentes vs Contenedores (cuales tienen que mantener el estado y cuales no)
             Es normal que a veces cambiemos sobre la marcha, porque nos damos cuenta que es mejor otra cosa..
 
-    150. Planning our App - Layout and Component Tree
+    120. Planning our App - Layout and Component Tree
 
         Modela como va a ser la pagina, y los componentes que va a necesitar.
 
-    151. Planning the State
+    121. Planning the State
 
         Identificar donde necesitamos state, va a ayudar a saber que va a ser un componente o no
 
@@ -2247,7 +2213,7 @@
             -comprado: true/false
             -totalPrice: 0
             ...
-    152. MUST READ: Enabling CSS Modules
+    122. MUST READ: Enabling CSS Modules
 
         MUST READ (at least the first few paragraphs ... ;-))
 
@@ -2302,11 +2268,11 @@
         }),
         }
         You can ignore me editing the webpack.config.prod.js file - with the latest version of create-react-app, ejecting only gives you ONE webpack config file (which you edit as described above).
-    153. Setting up the Project
+    123. Setting up the Project
         Habilita Csss Modules, que ahora ya esta habilitada desde la nueva versión.
         Agrega el css de una tipografia y nadamas..
 
-    154. Creating a Layout Component
+    124. Creating a Layout Component
         Crea las carpetas de componentes/contenedores.
         Crea el componente layout y comenta que usa props.children porque de esa manera va a ir mostrando las cosas en pantalla que esten por debajo de ese componente ??¿¿
 
@@ -2314,19 +2280,19 @@
             const aux = (props) => props.childre;
             export default aux;
 
-    155. Starting Implementation of The Burger Builder Container
+    125. Starting Implementation of The Burger Builder Container
         para agregar estilo, se pone el css y después se importa donde se necesita el estilo y con js se agrega, ej:
-        
+
         import classes from './Layout/Layout.css'
         className={classes.laClaseQueHice}
 
-    156. Adding a Dynamic Ingredient Component
+    126. Adding a Dynamic Ingredient Component
         Si queremos tener un poco de logica nuestra función tiene que arrancar con llaves, sino directamente con parentesis.
-        
+
         Arma toda la parte de los ingredientes de la hamburguesa con una clase de css que el tenía.
 
-    157. Adding Prop Type Validation
-        npm install --save prop-types 
+    127. Adding Prop Type Validation
+        npm install --save prop-types
 
         sirve para validar lo que le pasamos a las properties sea lo que realmente esperamos.
 
@@ -2334,94 +2300,158 @@
             type: PropTypes.string,isRequired;
         }
 
-    158. Starting the Burger Component
-        Estila Burger.css 
+    128. Starting the Burger Component
+        Estila Burger.css
 
         En el componente BurgerBuilder, agrega el componente Burger.
 
-    159. Outputting Burger Ingredients Dynamically
+    129. Outputting Burger Ingredients Dynamically
         Hace toda una función para mostrar pseudo dinamicament los ingredientes de la hamburgeusa (heardcoders), pero recorre todo el objeto.
 
-    160. Calculating the Ingredient Sum Dynamically
+    130. Calculating the Ingredient Sum Dynamically
         .reduce((previosValue, currentValue) => {
             return previosValue.concat(currentValue)
         }, [])
 
         hace esto para poder verificar si no hay ingredientes y mostrar un texto para que el usuario empiece a agregarlos.
 
-    161. Adding the Build Control Component
+    131. Adding the Build Control Component
         Agrega un BuildControls y crea un componente BuildControl, lo estila..
 
-    162. Outputting Multiple Build Controls
+    132. Outputting Multiple Build Controls
         agrega el control al componente principal y con map, mapea todos los controles para agregar los distintos ingredientes.
 
-    163. Connecting State to Build Controls
+    133. Connecting State to Build Controls
         genera las funciones de remover y agregar, agrega el codigo necesario a add, como actualizar el precio, y los ingredientes.
 
         en el componente de mas abajo de todos de los controles, no el ultimo, ya que ese es el que ejuta la funcion nad amas, el anterior, a la función le pase el tipo cuando hace clic, el se encarga de hacer eso no el padre de todos esos componentes, porque es el que tiene la función y el que pasa la referencia a sus componentes hijos.
 
-    164. Removing Ingredients Safely
+    134. Removing Ingredients Safely
         copia y pega la de agregar y la modifica para el removr.
         también valida que los ingredientes sean mayor a 0, así cuando intenta remover mas y no hay mas, no hay errres.
-        
+
         genera un flag que inhabilita el ctrl de el ingrediente cuando no hay mas de ese especifico
 
         pasa la property de disable entre los componentes.
 
-    165. Displaying and Updating the Burger Price
+    135. Displaying and Updating the Burger Price
         con .toFixed(2) -> dice que el precio muestre con 2 decimales.
 
-    166. Adding the Order Button
+    136. Adding the Order Button
         genera la función que valida si hay al menos u ingrediente para que se habilite el boton de ordernar ahora. agrega la función al final del remover ingredientes o agregar ingredientes para que se llame y justamente verifique si tiene que habilitar el boton o no.
 
-    167. Creating the Order Summary Modal
+    137. Creating the Order Summary Modal
         crea una carpeta Ui dentro decomponentes, para poner el modal y un par mas,
         a la misma altura que los controles crea un componente orderSumarr que se va a ir actualizando desde el componente raiz con los ingredientes.
-        
-    168. Showing & Hiding the Modal (with Animation!)
+
+    138. Showing & Hiding the Modal (with Animation!)
         crea el código para mostrar u ocultar el modal y le da un poco de estilo.
         En el interin tiene un problema con this, por la manera que escribio la función, así que la pasa a una arrow function y listo, solucionado.
 
         El error pasó porque la función se ejecutaba después de un evento y eso hacía que this no apunte a la función.
 
-    169. Implementing the Backdrop Component
+    139. Implementing the Backdrop Component
          Se puede retornar null en un componente, esta ok, significa que no queres mostrar nada.
 
          Genera el overlay y pone el componente dentro del modal porque estan totalmente relacionados.
 
-    170. Adding a Custom Button Component
+    140. Adding a Custom Button Component
         Agregar los botones confirmar y cancelar.
         Genera en UI un componente nuevo Button, y le define las propiedades necesarias para utilizarlo y qe sea generico.
 
         de clase le passa un array, ya que le agrega 2 o mas segun el estado del boton.
 
-    171. Implementing the Button Component
+    141. Implementing the Button Component
         Lo implementa en OrderSummery
         Le pasa por props a OrderSummery los handlers para los botones.
 
-    172. Adding the Price to the Order Summary
-    173. Adding a Toolbar
-    174. Using a Logo in our Application
-    175. Adding Reusable Navigation Items
-    176. Creating a Responsive Sidedrawer
-    177. Working on Responsive Adjustments
-    178. More about Responsive Adjustments
-    179. Reusing the Backdrop
-    180. Adding a Sidedrawer Toggle Button
+    142. Adding the Price to the Order Summary
+        Usa el precio total que viene por props, y lo muestra.
 
-    181. Adding a Hamburger Icon
+    143. Adding a Toolbar
+        crea el toolbar de la burguer y su css. (un nav con 2 menus)
+
+    144. Using a Logo in our Application
+        Dentro de componentes crea una carpeta Logo, dentro de assests tiene el logo de la app.
+
+        Importa el logo como si fuera un package.
+
+        en el src={variableConLaQueLoImporte}
+
+        Usa el componente logo donde lo necesita en el toolbar y listo.
+
+    145. Adding Reusable Navigation Items
+        Dentro de la carpeta Navigation aparte del Toolbar, crea una capreta NavigationItem, NavigationItems y sus js.
+
+        Dentro de NavigationItem.js
+            lo que mete acá sería el <li><a href="/"> A Link</a></li>
+
+        Dentro de NavigationItems.js
+            importa el componente NavigationItem
+
+            Lo que pone acá es el ul y pone los navigationItem que necesita.
+
+        Dentro de Toolbar.
+            Importa NavigationItems y dentro de <nav> pone NavigationItem.
+
+    146. Creating a Responsive SideDrawer
+        Cuando aprestas el boton Menu, el SideDrawer debería aparecer de costado.
+
+        importa el componente Logo y NavigationItems, classes..
+
+        <div className={classes.SideDrawer}>
+            <Logo />
+            <nav>
+                <NavigationItems />
+            </nav>
+        </div>
+
+        Lo que hace es meterlo detro del componente Layout, junto con el Toolbar.
+            <Aux>
+                <Toolbar />
+                <SideDrawer />
+                <main classNAme={classes.Content}>
+                    {props.children}
+                </main>
+            </Aux>
+
+    147. Working on Responsive Adjustments
+        Le hace modificaciones en el css al SideDrawer
+    148. More about Responsive Adjustments
+        Css y mas css par todo lo relacionado al layout y mobile.
+
+    149. Reusing the Backdrop
+        El backdrop es como el telon que se pone cuando abris un modal. Ahora lo que hace es reutilizarlo
+        para el SideDrawer.
+
+        Por ende lo importa y lo usa en el SideDrawer y le pasa a su property show, true o false dependiendo si se tiene que ver o ono (idem el SideDrawer)
+
+        Pasa a layout como componente. y pone los handlers necesarios para manejar el mostrar o no el SideDrawer y el backdrop.
+
+        También agrega código para que cuando se hace clic en el overlay, se cierre todo.
+
+    150. Adding a SideDrawer Toggle Button
+        Intenta que primero lo hagas vos, después da el resultado:
+
+        Dentro de SideDrawer, crea otra carpeta DrawerToggle y su js.
+
+        Después lo importa en Toolbar y reemplaza la parte del menu con el componente DrawerToggle.
+
+        En el componente pasa una prop clicked, por ende maneja el estado en toolbar, pero como este se usa desde Layout, ahí finalmente va a manejar el handler del evento.
+
+    151. Adding a Hamburger Icon
         Hace lo que dice el modulo.
 
-    182. Improving the App - Introduction
+    152. Improving the App - Introduction
         Habla sobre todo lo que nos enseño, su manera de pensar, que si hay componentes que se podrían mejorar, unir, si hay mejoras de performance que hacer, se va a tratar todo en las siguientes clases.
 
-    183. Prop Type Validation
+    153. Prop Type Validation
         Comenta que solamente hice una validación de propiedades, porque es una app que esta haciendo el solo, que si lo aplicaría para un team de trabajo, o si esta haciendo algo open source, etc.
-        
-    184. Improving Performance
+
+    154. Improving Performance
         Empieza a analizar la aplicación y comenta que en OrderSummery, se esta re-renderizando el componente, aún cuando el modal no esta visible, por lo que va a optimizar eso:
 
-        Para verificar eso, pasa el componente de Order a una clase y utiliza el metodo ComponentWillUpdate(), si falla por la versión que tenemos, se puede usar también ComponenteDidUpdate() 
+        Para verificar eso, pasa el componente de Order a una clase y utiliza el metodo ComponentWillUpdate(), si falla por la versión que tenemos, se puede usar también ComponenteDidUpdate()
 
         Hace lo mismo con el modal, ya que verificó que realmente cada vez que agrega un ingrediente se actualiza Order.
         A modal también lo convierte a clase y usa la función shouldComponentUpdate y solo va a actualizar las cosas si show (muestra o no el modal, se cambia a verdadero)
@@ -2432,21 +2462,21 @@
         }
 
         También comenta que no es necesario que se convierta en una clase, que debería ser un componente funcional.
-    
-    185. Using Component Lifecycle Methods
+
+    155. Using Component Lifecycle Methods
         Side effects en realidad aca se usa como llegar a hacer una llamada a una api y obtener datos de ella.
         Explica la importancia de los metodos que ayudan a verificar si se actualizó un estado o no, etc.
 
-    186. Changing the Folder Structure
+    156. Changing the Folder Structure
         Explica que Layout es un HOC, que podría estar en esa carpeta, pero que tampoco esta mal que este en containers, porque maneja el estado y se lo pasa a los componentes que esta conteniendo.
-        
-        Que no necesariamente hay que tener una carpeta hoc, podriamos tener solo componentes y containers y tampoco estaría mal. 
+
+        Que no necesariamente hay que tener una carpeta hoc, podriamos tener solo componentes y containers y tampoco estaría mal.
 
         Dentro de la carpeta hoc, agrega una Aux y mete ahí el archivo Aux.js
-    187. Wrap Up
+    157. Wrap Up
         Explica que hicimos nuestra primer app en react, que aprendimos, etc.
 
-    188. Useful Resources & Links
+    158. Useful Resources & Links
         Useful Resources & Links
         Find the finished code (as well as in-between steps) for this module attached to this lecture.
 
@@ -2460,16 +2490,16 @@
 
 ### Sección 9: Reaching out to the Web (Http / Ajax)
 
-    189. Module Introduction
-    190. Understanding Http Requests in React
+    159. Module Introduction
+    160. Understanding Http Requests in React
         explica como funciona cuando un cliente hace un request mediante el navegador y que responde el servidor..
 
-    191. Understanding our Project and Introducing Axios
+    161. Understanding our Project and Introducing Axios
         Habla de que se puede hacer algo con Javascript, pero ya existen paquetes que hacen todo mas facil, como axios.
 
         npm install axios --save
 
-    192. Creating a Http Request to GET Data
+    162. Creating a Http Request to GET Data
         simula llamadas a una api, con json placeholder
 
         axios.get(url)
@@ -2477,42 +2507,42 @@
                 console.log(response);
             }) // cuando se resuelva la promesa, cae en then.
 
-    193. Rendering Fetched Data to the Screen
+    163. Rendering Fetched Data to the Screen
         guarda la info que retorna la api en el state, y después con map genera los componentes necesarios dependiendo de cuanta info vino en el repsonse.
 
-    194. Transforming Data
+    164. Transforming Data
         usa slice para en vez de mostrar todos los elementos del response, mostrar solo los primeros 4.
         Envia por atributos/props la info y arregla el componente para que muestre bien todo.
-        
-    195. Making a Post Selectable   
+
+    165. Making a Post Selectable
         Hace una función y se la pasa al componente que termina renderizando un mensaje o la info que seleccionaste.
 
-    196. Fetching Data on Update (without Creating Infinite Loops)
+    166. Fetching Data on Update (without Creating Infinite Loops)
         Valida que el fetch se haga si y solo si, el id que esta queriendo cargar es difernete al que esta cargado.
         Sino esto genera un loop infinito de requests.
 
-    197. POSTing Data to the Server
+    167. POSTing Data to the Server
         axios.post(url, data)
             .then(response => {
                 console.log(response);
             })
 
-    198. Sending a DELETE Request
+    168. Sending a DELETE Request
         axios.delete(url, this.props.id)
             .then(response => {
                 console.log(response);
             })
 
-    199. Fixing a Bug
+    169. Fixing a Bug
         arregla un temita que no se había dado cuenta, que era que cuando hacia click en un post se mostraba el titulo y no el contendido, nad amas.
 
-    200. Handling Errors Locally
-        a la llamada de axios aparte de .then, se le puede agregar 
+    170. Handling Errors Locally
+        a la llamada de axios aparte de .then, se le puede agregar
         .catch(response => {
-            this.setState({error: true}); 
+            this.setState({error: true});
         })
 
-    201. Adding Interceptors to Execute Code Globally
+    171. Adding Interceptors to Execute Code Globally
         Para cuando queres hacer cosas como agregar headers que tienen que ir siempre, en app.js
         importa axios.
         Tiene 2 parametros, en uno recibimos la config del request y después podemos manejar los errores que puedean ocurrir.
@@ -2538,20 +2568,20 @@
 
         Hay otr manera también de acceder a las configuraciones, la muestra en la proxima.
 
-    202. Removing Interceptors
+    172. Removing Interceptors
         You learned how to add an interceptor, getting rid of one is also easy. Simply store the reference to the interceptor in a variable and call eject  with that reference as an argument, to remove it (more info: https://github.com/axios/axios#interceptors):
 
         var myInterceptor = axios.interceptors.request.use(function () {/*...*/});
         axios.interceptors.request.eject(myInterceptor);
 
-    203. Setting a Default Global Configuration for Axios
+    173. Setting a Default Global Configuration for Axios
         En app.js
 
         axios.defaults.BaseUrl = 'la url de mi api'; -> sacamos en nuestras llamadas la parte del server:port
         axios.defaults.headers.common['Authorization'] = 'AUTH TOKEN'; -> que venga con el token
         axios.defaults.headers.post['Content-Type'] = 'application/json' -> que solo para los post pida esto, se puede con cualquier metodo
 
-    204. Creating and Using Axios Instances
+    174. Creating and Using Axios Instances
         se puede configurar diferentes url base, usando diferentes instancias.
 
         crea un nuevo archivo axios.js y:
@@ -2569,8 +2599,8 @@
 
         en donde la necesitamos ahora importamos este archivo en vez de axios.
 
-    205. Wrap Up
-    206. Useful Resources & Links
+    175. Wrap Up
+    176. Useful Resources & Links
         Useful Resources & Links
         Axios Docs: https://github.com/axios/axios
         Recursos de esta clase
@@ -2582,15 +2612,15 @@
 
 ### Sección 10: Burger Builder Project: Accessing a Server
 
-    207. Module Introduction
-    208. Firebase & The Right Database
+    177. Module Introduction
+    178. Firebase & The Right Database
         The Firebase Database console - which we'll see in the next lecture - changed visually.
 
         Important: Make sure you pick the Realtime Database, NOT Firestore!
 
-    209. Creating the Firebase Project
-        Ir a consola > Nuevo proyecto > poner el nombre > destilde Google Analytics. 
-        
+    179. Creating the Firebase Project
+        Ir a consola > Nuevo proyecto > poner el nombre > destilde Google Analytics.
+
         Dice que hay que tener en cuenta los planes...
         Setea en rules en true, la opción de lectura/escritura, al menos por el momento.
         Copia la url que le provee que es como un endpoint al que le pegas a la base.
@@ -2599,46 +2629,46 @@
         * La consola que muestra el es bastante diferente de la que tiene actualmente firebase.
           El en este curso usa la opción de realtime database, por si en algún lugar de la consola se llega a ver eso.
 
-    210. Creating the Axios Instance
+    180. Creating the Axios Instance
         crea un archivo axios-order.js y genera una instancia de axios para hacer posteos
 
-    211. Sending a POST Request
+    181. Sending a POST Request
         Dentro de la función purchaseContinueHandler
 
         hace la llamada a axios, y hay que tener en cuenta que para pegarle a la base a la tabla que corresponde en firebase, hay que poner por ej:
 
         axios.post('/orders.json', objetoConInfo);
 
-    212. Displaying a Spinner while Sending a Request
-        
+    182. Displaying a Spinner while Sending a Request
+
         Crea dentro de la carpeta UI un spinner.js
-        Busca en google css spinner, se copia el css, 
+        Busca en google css spinner, se copia el css,
         genera el componente en el archivo, props, estado.
 
-        Dentro del modal, en el metodo shouldComponentUpdate, agrega una condición al if, que se renderice lo que esta adentro del componente si cambia show o si nextProps.children !== this.props.children 
+        Dentro del modal, en el metodo shouldComponentUpdate, agrega una condición al if, que se renderice lo que esta adentro del componente si cambia show o si nextProps.children !== this.props.children
 
-    213. Handling Errors
+    183. Handling Errors
         Implementar Global Error Handling.
 
         Crea un componente hoc, withErrorHandler, con minuscula (es otra manera de crear un componente), no va a devolver JSX.
         Usa el interceptor de response de axios para obtener si hubo algun error en alguna llamada en el response.
         Crea una función para setear el error en nulo cuando cierra el modal de error.
 
-    214. Retrieving Data from the Backend
+    184. Retrieving Data from the Backend
         En FireBase, crea la "tabla" ingredients, con las mismas propiedades del objeto con el que inicializaba, ahora en componentDidUpdate realiza la llamada a la base y mete una validación para que no rompa la app ya que ahora ingredients en el state es nulo al arrancar, porque se actualiza después con lo de la base.
 
         Hay un error por la manera en la que se llaman los componentes cuando son clases y el problema lo tiene porque se utlizan los interceptores, por lo que cambia componentDidUpdate por componentWillMount, en la versión 16.8 ya no existe.
         Agrega los catch a las llamadas con axios que faltaban.
 
-    215. Removing Old Interceptors
+    185. Removing Old Interceptors
         Genera propiedades a la clase donde pone el resultado de los interceptors de req y resp, para usarlo en el componentWillUnmount.
-        
+
         Y utiliza axios.interceptors.request.eject(this.reqInterceptor)
         Y utiliza axios.interceptors.response.eject(this.reqResponse)
 
         con esto evitamos crear y crear interceptors.
 
-    216. Useful Resources & Links
+    186. Useful Resources & Links
         Useful Resources & Links
         Find the source code for this module attached to this lecture.
 
@@ -2649,17 +2679,17 @@
 
 ### Sección 11: Multi-Page-Feeling in a Single-Page-App: Routing
 
-    217. Module Introduction
-    218. Routing and SPAs
+    187. Module Introduction
+    188. Routing and SPAs
         El enrutamiento se trata de poder mostrar diferentes paginas a el usuario.
-                        
+
         Router Package:
         Parsear url / path -> configurar las rutas ->  renderiza / carga el jsx apropiado / componente
 
-    219. Setting Up Links
+    189. Setting Up Links
         Agrega un nav y los links necesarios.
-        
-    220. Setting Up the Router Package
+
+    190. Setting Up the Router Package
         npm install --save react-router react-router-dom
 
         importamos BrowserRouter y envolvemos el div de app por ej, a partir de ahí en todos los subcomponentes se van a poder acceder a las funcionalidades de este componente. (La funcionalidad sería parecida a la de Context)
@@ -2669,16 +2699,16 @@
         ...
         </BrowserRouter>
 
-    221. react-router vs react-router-dom
+    191. react-router vs react-router-dom
 
-        We installed both react-router  and react-router-dom . Technically, only react-router-dom  is required for web development. It wraps react-router  and therefore uses it as a dependency. 
+        We installed both react-router  and react-router-dom . Technically, only react-router-dom  is required for web development. It wraps react-router  and therefore uses it as a dependency.
 
         We don't need to install react-router  on our own for it to work. You can omit this installation step, I left it in there for historic reasons and because I like to emphasize that the main package is named react-router. If you ever search for assistance, you probably want to search for "react router" - that's the name of the package.
 
-    222. Preparing the Project For Routing
+    192. Preparing the Project For Routing
         Modifica la estructura, cambiando componentes de lugar Post lo saca de adentro de blog...
 
-    223. Setting Up and Rendering Routes
+    193. Setting Up and Rendering Routes
         En Blog, importa Route de react-router-dom
 
         render -> se le pasa una función por esta prop, dentro de la función se debe retornar jsx
@@ -2686,18 +2716,18 @@
 
         <Route path="/" render={() => <h1>Home</h1>}>
 
-    224. Rendering Components for Routes
+    194. Rendering Components for Routes
         component tiene que hacer referencia a la función o clase que queremos usar por ej Post dentro de Blog.
         En render no debería renderizarse componentes enteros, porque es dificil de mantener después.
 
         <Route path="/" component={Post}>
 
-    225. Switching Between Pages
+    195. Switching Between Pages
         <Route path="/" component={NewPost}>
 
         Si bien funciona, al pasar de una pagina a otra se recarga toda la pagina y por lo tanto se pierde el state, en el prox muestra como soucionar esto.
 
-    226. Using Links to Switch Pages
+    196. Using Links to Switch Pages
         Comenta que no es correcto usar Route, sino que hay que importar y usar Link
 
         Para eso modifica en en el nav, los <a> por el componente link
@@ -2706,45 +2736,45 @@
 
         hash -> esto sirve para si hay algún id con submit, directamente vaya a esa pagina.
         search -> nos habilita a pasar parametros por query
-        
+
         <Link to="/"> Home</Link>
-        
+
         Son ejemplos para que sepamos que existen, pero no lo vamos a usar así.
         <Link to={{
             pathname: '/new-post',
-            hash: '#submit', 
-            search: '?quick-submit=true', 
+            hash: '#submit',
+            search: '?quick-submit=true',
         }}> New Post</Link>
 
         Si hacemos click ahora vamos a ver que no se actualiza la pagina entera (se nota en el icono de reload del navegador, que no se mueve esta vez-)
 
-    227. Using Routing-Related Props
+    197. Using Routing-Related Props
         Muestra en consola las props que tiene Router.
 
-    228. The "withRouter" HOC & Route Props
-        Para que un componente que esta routeando a otro, a este último, si queremos pasarle la props de ruteo, hay que decorarlo con withRouter.
+    198. The "withRouter" HOC & Route Props
+       Para que un componente que esta routeando a otro, a este último, si queremos pasarle la props de ruteo, hay que decorarlo con withRouter.
 
-    229. Absolute vs Relative Paths
-        Absolute: depende siempre del dominio. 
+    199. Absolute vs Relative Paths
+        Absolute: depende siempre del dominio.
 
         Relative: podes construir la url con las props, ya que vimos que en match viene parte de la url, entonces lo que harías es:
         pathname: this.props.match + '/new-posts'
 
-    230. Absolute vs Relative Paths (Article)
+    200. Absolute vs Relative Paths (Article)
         Absolute vs Relative Paths (Article)
         You learned about <Link> , you learned about the to  property it uses.
 
-        The path you can use in to can be either absolute or relative. 
+        The path you can use in to can be either absolute or relative.
 
         Absolute Paths
-        By default, if you just enter to="/some-path"  or to="some-path" , that's an absolute path. 
+        By default, if you just enter to="/some-path"  or to="some-path" , that's an absolute path.
 
         Absolute path means that it's always appended right after your domain. Therefore, both syntaxes (with and without leading slash) lead to example.com/some-path .
 
         Relative Paths
         Sometimes, you might want to create a relative path instead. This is especially useful, if your component is already loaded given a specific path (e.g. posts ) and you then want to append something to that existing path (so that you, for example, get /posts/new ).
 
-        If you're on a component loaded via /posts , to="new"  would lead to example.com/new , NOT example.com/posts/new . 
+        If you're on a component loaded via /posts , to="new"  would lead to example.com/new , NOT example.com/posts/new .
 
         To change this behavior, you have to find out which path you're on and add the new fragment to that existing path. You can do that with the url  property of props.match :
 
@@ -2754,78 +2784,196 @@
 
         Use relative paths if you want to navigate relative to your existing path.
 
-    231. Styling the Active Route
-    232. Passing Route Parameters
-        
-    233. Extracting Route Parameters
-        
-    234. Parsing Query Parameters & the Fragment
-            Parsing Query Parameters & the Fragment
-            You learned how to extract route parameters (=> :id  etc). 
+    201. Styling the Active Route
+        <NavLink
+            activeClassName="my-active"
+            actuveStyle={{
+                color: #6546
+                textDecoration: underline
+            }}
+        >
+        de react-router-dom se usa para estilar los links, magicamente te deja estilar los links tiene otras propiedades también, pero bueno la magia de estilar el link que esta activo se maneja con este componente.
 
-            But how do you extract search (also referred to as "query") parameters (=> ?something=somevalue  at the end of the URL)? How do you extract the fragment (=> #something  at the end of the URL)?
+        Con actuveStyle se aplican estilos en linea.
 
-            Query Params:
-            You can pass them easily like this:
+    202. Passing Route Parameters
+         <Route path="/:id" exact component={Post} />
 
-            <Link to="/my-path?start=5">Go to Start</Link> 
+        Soluciones:
 
-            or
+        1) Envolver al post con <Link>, al link en to, agregarle el "/" + id, el key lo tenía post, pero ahora como link es el componente mas externo, lo tiene que manejar él.
 
-            <Link 
-                to={‌{
-                    pathname: '/my-path',
-                    search: '?start=5'
-                }}
-                >Go to Start</Link>
-            React router makes it easy to get access to the search string: props.location.search .
+    203. Extracting Route Parameters
+        Ahora si hacemos props.match.params.id vamos a tener el idque pasamos y seteamos en nuestro <Route>
 
-            But that will only give you something like ?start=5 
+    204. Parsing Query Parameters & the Fragment
+        You learned how to extract route parameters (=> :id  etc).
 
-            You probably want to get the key-value pair, without the ?  and the = . Here's a snippet which allows you to easily extract that information:
+        But how do you extract search (also referred to as "query") parameters (=> ?something=somevalue  at the end of the URL)? How do you extract the fragment (=> #something  at the end of the URL)?
 
-            componentDidMount() {
-                const query = new URLSearchParams(this.props.location.search);
-                for (let param of query.entries()) {
-                    console.log(param); // yields ['start', '5']
-                }
+        Query Params:
+        You can pass them easily like this:
+
+        <Link to="/my-path?start=5">Go to Start</Link>
+
+        or
+
+        <Link
+            to={‌{
+                pathname: '/my-path',
+                search: '?start=5'
+            }}
+            >Go to Start</Link>
+        React router makes it easy to get access to the search string: props.location.search .
+
+        But that will only give you something like ?start=5
+
+        You probably want to get the key-value pair, without the ?  and the = . Here's a snippet which allows you to easily extract that information:
+
+        componentDidMount() {
+            const query = new URLSearchParams(this.props.location.search);
+            for (let param of query.entries()) {
+                console.log(param); // yields ['start', '5']
             }
-            URLSearchParams  is a built-in object, shipping with vanilla JavaScript. It returns an object, which exposes the entries()  method. entries()  returns an Iterator - basically a construct which can be used in a for...of...  loop (as shown above).
+        }
+        URLSearchParams  is a built-in object, shipping with vanilla JavaScript. It returns an object, which exposes the entries()  method. entries()  returns an Iterator - basically a construct which can be used in a for...of...  loop (as shown above).
 
-            When looping through query.entries() , you get arrays where the first element is the key name (e.g. start ) and the second element is the assigned value (e.g. 5 ).
+        When looping through query.entries() , you get arrays where the first element is the key name (e.g. start ) and the second element is the assigned value (e.g. 5 ).
 
-            Fragment:
-            You can pass it easily like this:
+        Fragment:
+        You can pass it easily like this:
 
-            <Link to="/my-path#start-position">Go to Start</Link> 
+        <Link to="/my-path#start-position">Go to Start</Link>
 
-            or
+        or
 
-            <Link 
-                to={‌{
-                    pathname: '/my-path',
-                    hash: 'start-position'
-                }}
-                >Go to Start</Link>
-            React router makes it easy to extract the fragment. You can simply access props.location.hash .
+        <Link
+            to={‌{
+                pathname: '/my-path',
+                hash: 'start-position'
+            }}
+            >Go to Start</Link>
+        React router makes it easy to extract the fragment. You can simply access props.location.hash .
 
-    235. Using Switch to Load a Single Route
-    236. Navigating Programmatically
-    237. Additional Information Regarding Active Links
-    238. Understanding Nested Routes
-    239. Creating Dynamic Nested Routes
-    240. Redirecting Requests
-    241. Conditional Redirects
-    242. Using the History Prop to Redirect (Replace)
-    243. Working with Guards
-    244. Handling the 404 Case (Unknown Routes)
-    245. Loading Routes Lazily
-    246. Lazy Loading with React Suspense (16.6)
-    247. Routing and Server Deployment
+    205. Using Switch to Load a Single Route
+        Switch basicamente lo que hace es: cargar la primer ruta que realmente coincida y deja de analizar el resto.
+
+        El orden es importante, tampoco es necesario meter todo dentro del switch, hay que ver que hacer depende de lo que necesitemos.
+
+    206. Navigating Programmatically
+        Va a mostrar una alternativa a usar link envolviendo en este caso <Post>
+
+        También podemos usar history y pushear la nueva ruta al historial.
+
+        props.history.push({pathname: "/" + props.match.params.id});
+
+    207. Additional Information Regarding Active Links
+        Cuando cambiamos de ruta, si estamos usando <NavLink> para estilar. Dice que como es un caso raro, no pasa nada (?)
+
+    208. Understanding Nested Routes
+        Podes utilizar <Route> en cualquier parte de tu aplicación, siempre y cuando el enutador atrape el componente que lo esta utilizando.
+
+        Para que sea realmente dinamico, en vez de hardcodear /post/id, vamos a usar props.match.url, que es la ruta que llamó a ese componente y después se le suma '/:id', por lo tanto va a matchera con la ruta.
+
+    209. Creating Dynamic Nested Routes
+        Desde que hicimos las rutas dinamicas, el componente no carga el post especifico, porque como nota que no cambió nada no lo vuelve a renderizar, por lo que para solucionarlo hay que implementar:
+
+        componentDidUpdate()
+
+        mete todo acá y lo llama desde DidUpdate.
+        loadData()
+
+        cuando hacemos esto, se genera un loop infinito, por lo que:
+            modifica donde usa props.id por props.match.params.id
+
+        después sigue sin funcionar porque tiene chequeo estricto, así que o convertimos a number o le sacamos el stricto y listo.
+
+        # IMPORTANTE #
+        Otra manera de convertir algo a number es meterle un + adelante.
+
+    210. Redirecting Requests
+        Una solución diferente a poner una ruta abajo de la otra es, en el switch utilizar
+        <Redirect from="/" to="/post" />
+
+        De esta manera hacemos que el usuario vaya a donde realmente debería estar.
+
+        Por ej si ahora vamos a  /, nos va a redigir a /posts
+
+    211. Conditional Redirects
+        Lo que hace es generar por ejemplo un Redirect, solo si el formulario se submitió, entonces renderiza nu componente <Redirect> condicionalmente.
+
+        <Redirect to="/posts">
+
+        No es necesario que le digamos desde donde from=
+
+    212. Using the History Prop to Redirect (Replace)
+        Cambiamos el redirect por push con history.
+        Push, lo que hace es enviar la pagina a la pila, por ende podemos volver atrás.
+        no así con redirect.
+
+        Redirect reemplaza el lugar donde estabamos, por eso no podemos volver atras.
+
+        También existe props.history.replace, que hace lo mismo que redirigir.
+
+    213. Working with Guards
+        Basicamente sirve para utilizar en esas surtas que sabes que el usuario necesita estar autenticado.
+        Algo asi como el [Authorized] pero autenticado.
+
+        te fijas si el usuario esta logueado y sino no renderizas el componente.
+
+    214. Handling the 404 Case (Unknown Routes)
+        Si no se puede catchear ninguna ruta, podemos poner un caso de ruta no encontrada de esta manera:
+
+        <Route render={() => <h1>Not found</h1>} />
+
+        O sea, puede existir la ruta, pero si por ejemplo no la mostramos porque el usuario no esta autenticado, va a terminar cayendo en Not found, y esta ok.
+
+    215. Loading Routes Lazily
+        Porque cargamos código del componente que todavía no se navego si no estamos autenticados?
+
+        Todo esta movida vale la pena solamente cuando tenemos una aplicación grande. Cuando es una aplicación chica no se justifica.
+
+        La técnica de descargar solo lo que necesita se conoce como división de código o carga diferida.
+
+        Para esto creamos una carpeta hoc -> AsyncComponent.js
+
+        * ver archivo.
+
+    216. Lazy Loading with React Suspense (16.6)
+        En vez de hacer lo que hicimos antes, usamos React.lazy() ej:
+
+        const Post = React.lazy(() => import('./containers/Posts'));
+
+        y después en en vez de levantar el componente en Route, usamos ej:
+
+
+        <Route
+            fallback={<div>Loading...</div>}
+            path="/posts"
+            render={() => {
+                <Suspense>
+                    <Posts />
+                </Suspense>
+            }}
+        />
+
+       No necesariamente necesitamos meter esto dentro de BrowserRouter, podemos usar suspense sin Route siquiera.
+
+    217. Routing and Server Deployment
+        La primer parte no entendí a que iba, ver otra vez.
+        La segunda parte:
+
+            Si tu sitio se aloja en lugar y queda algo asi como
+            blabla.com/my-app
+            hay que comunicarle esto a react.
+
+            basename por default no es necesario escribirlo y siempre apunta a la raiz ="/".
+
+            Esto se hace en BrowserRouter basename="/my-app"
+
     Tarea 3: Time to Practice - Routing
-    248. Wrap Up
-    249. Useful Resources & Links
-        Useful Resources & Links
+    218. Wrap Up
+    219. Useful Resources & Links
         React Router Docs: https://reacttraining.com/react-router/web/guides/philosophy
         Recursos de esta clase
         routing--01-start.zip
@@ -2837,32 +2985,69 @@
 
 ### Sección 12: Adding Routing to our Burger Project
 
-    250. Module Introduction
-    251. Building the Checkout Container
+    220. Module Introduction
+    221. Building the Checkout Container
 
-    252. Setting Up Routing & Routes
+         Crea el componente Checkout, para manejar el estado, ya que es donde se procesan todos los ingredientes, pago etc.
 
-    253. Navigating to the Checkout Page
 
-    254. Navigating Back & To Next Page
+        En App.js
+            <Layout>
+                <BurgerBuilder />
+                <Checkout />
+            </Layout>
 
-    255. Passing Ingredients via Query Params
+        Para poner css en linea por ej, hace:
+            <div style={{with: 100%, margin: 'auto'}}
 
-    256. Navigating to the Contact Data Component
+    222. Setting Up Routing & Routes
 
-    257. Order Submission & Passing Data Between Pages
+        npm install --save react-router-dom
 
-    258. Adding an Orders Page
+        En index envuelve app con BrowserRouter.
+        En App, usa switch y router para los componentes quee estaba cargando.
 
-    259. Implementing Navigation Links
+    223. Navigating to the Checkout Page
 
-    260. Fetching Orders
+        this.props.history.push('/checkout')
 
-    261. Outputting the Orders
+    224. Navigating Back & To Next Page
 
-    262. Wrap Up
+        en el cancel usa this.props.history.goBack();
+        en el de continuar history.replace('/checkout/contact-data')
 
-    263. Useful Resources & Links
+    225. Passing Ingredients via Query Params
+
+        const queryParams = [];
+        for (let i in this.state.ingridients){
+            queryParams.push(encodedURIcomponent(i) + '=' + encodedURIcomponent(this.state.ingridients[i]))
+        }
+        const queryString = queryParams.join('&');
+
+        this.props.history.push({
+            pathName: '/checkout',
+            search= '?' + queryString
+        })
+
+        En Checkout, agrega la logica para obtener la info.
+
+        Ver en resources/section_12/routing-burger-02-query-params
+
+    226. Navigating to the Contact Data Component
+
+    227. Order Submission & Passing Data Between Pages
+
+    228. Adding an Orders Page
+
+    229. Implementing Navigation Links
+
+    230. Fetching Orders
+
+    231. Outputting the Orders
+
+    232. Wrap Up
+
+    233. Useful Resources & Links
         Find the source code for the module attached to this lecture.
 
         Recursos de esta clase
@@ -2872,15 +3057,15 @@
 
 ### Sección 13: Forms and Form Validation
 
-    264. Module Introduction
-    265. Analyzing the App
+    234. Module Introduction
+    235. Analyzing the App
         Habla de poner los input en su propio componente para poder centralizar, poner label y algún manejo de errores.
 
-    266. Creating a Custom Dynamic Input Component
-        Lo mete dentro de la carpeta components > UI 
+    236. Creating a Custom Dynamic Input Component
+        Lo mete dentro de la carpeta components > UI
         Genera css, y le pasa la info desde el form que lo usa, no más que eso
 
-    267. Setting Up a JS Config for the Form
+    237. Setting Up a JS Config for the Form
         Genera un objeto con los inputs que va a tener el formulario, ej:
 
         orderForm: {
@@ -2899,13 +3084,12 @@
             },
         }
 
-       
-    268. Dynamically Create Inputs based on JS Config
+    238. Dynamically Create Inputs based on JS Config
          después dinamicamente genera el form:
 
         <form onSubmit={this.orderHandler}>
                 {formElementsArray.map(formElement => (
-                    <Input 
+                    <Input
                         key={formElement.id}
                         elementType={formElement.config.elementType}
                         elementConfig={formElement.config.elementConfig}
@@ -2917,39 +3101,38 @@
                 ))}
                 <Button btnType="Success" disabled={!this.state.formIsValid}>ORDER</Button>
             </form>
-            
 
-    269. Adding a Dropdown Component
+    239. Adding a Dropdown Component
         Genera en el switch el código para renderizar selects
 
-    270. Handling User Input
+    230. Handling User Input
         Le agrega los onchage a los input y genera la función:
 
         inputChangedHandler = (event, inputIdentifier) => {
             const updatedOrderForm = {
                 ...this.state.orderForm
             };
-            const updatedFormElement = { 
+            const updatedFormElement = {
                 ...updatedOrderForm[inputIdentifier]
             };
             updatedFormElement.value = event.target.value;
             updatedFormElement.valid = this.checkValidity(updatedFormElement.value, updatedFormElement.validation);
             updatedFormElement.touched = true;
             updatedOrderForm[inputIdentifier] = updatedFormElement;
-            
+
             let formIsValid = true;
             for (let inputIdentifier in updatedOrderForm) {
                 formIsValid = updatedOrderForm[inputIdentifier].valid && formIsValid;
             }
             this.setState({orderForm: updatedOrderForm, formIsValid: formIsValid});
         }
-    
-    271. Handling Form Submission
+
+    241. Handling Form Submission
         Genera la función que va a utilizar el formulario al submitirse.
 
         orderHandler = ( event ) => {
             event.preventDefault();
-    
+
             const formData = {};
             for (let formElementIdentifier in this.state.orderForm) {
                 formData[formElementIdentifier] = this.state.orderForm[formElementIdentifier].value;
@@ -2962,18 +3145,18 @@
             }
 
             this.props.onOrderBurger(order, this.props.token);
-            
+
         }
 
-    272. Adding Custom Form Validation
+    242. Adding Custom Form Validation
         Genera la función, con la que se valida si esta bien lla info ingresada en los input o no.
-        
+
         checkValidity(value, rules) {
             let isValid = true;
             if (!rules) {
                 return true;
             }
-            
+
             if (rules.required) {
                 isValid = value.trim() !== '' && isValid;
             }
@@ -2998,29 +3181,74 @@
 
             return isValid;
         }
-    273. Fixing a Common Validation Gotcha
+    243. Fixing a Common Validation Gotcha
         Mejora esto:
-        
+
         if (rules.required) {
             isValid = value.trim() !== '' && isValid;
         }
 
-    274. Adding Validation Feedback
+    244. Adding Validation Feedback
         if (props.invalid && props.shouldValidate && props.touched) {
             inputClasses.push(classes.Invalid);
         }
 
-    275. Improving Visual Feedback
-    
-    276. Showing Error Messages
+    245. Improving Visual Feedback
+        Agrega la propiedad touche: false, esto es para que los input no arranquen rojos, como que tuvieran mal la validación.
 
-    277. Handling Overall Form Validity
+    274. Showing Error Messages
+        We're not showing any error messages in our form, but you can of course easily add some.
 
-    278. Working on an Error
+        The form inputs (<Input />  component) already receives the information whether it's invalid or not. You could of course easily add some conditionally rendered element inside of that component.
 
-    279. Fixing a Bug
+        For example (inside <Input />  component function):
 
-    280. Useful Resources & Links
+        // all the other code from the videos
+
+        let validationError = null;
+        if (props.invalid && props.touched) {
+            validationError = <p>Please enter a valid value!</p>;
+        }
+
+        return (
+            <div className={classes.Input}>
+                <label className={classes.Label}>{props.label}</label>
+                {inputElement}
+                {validationError}
+            </div>
+        );
+        This could of course be finetuned. You could also pass the value type (e.g. "email address" ) as a prop:
+
+        validationError = <p>Please enter a valid {props.valueType}</p>;
+
+        You could also receive the complete error message as a prop:
+
+        validationError = <p>{props.errorMessage}</p>;
+
+        And of course, also don't forget to style the messages if you want to do that:
+
+        validationError = <p className={classes.ValidationError}>{props.errorMessage}</p>;
+
+        In your CSS file, you could have:
+
+        .ValidationError {
+            color: red;
+            margin: 5px 0;
+        }
+
+    247. Handling Overall Form Validity
+        Agrega formValid a los controles del form.
+
+        Hace que el boton no este habilitado si no estan todos los inputs requeridos validados.
+
+    248. Working on an Error
+        Arregla un problema con el combo.
+        Agrega un validation: {} en el control del select, para que no de error.
+
+    249. Fixing a Bug
+        Le pone un valor por defecto al combo, para que se posicione en un value, dice que lo va a arreglar después ??
+
+    250. Useful Resources & Links
         Validate.js (you may import its functionality into your React projects): https://validatejs.org/
         Get more ideas about potential validation approaches: https://react.rocks/tag/Validation
         Alternatives to the manual approach taken in this course:
@@ -3034,33 +3262,33 @@
 
 ### Sección 14: Redux
 
-    281. Module Introduction
+    251. Module Introduction
         State management, que es el estado y como funciona redux.
 
-    282. Understanding State
+    252. Understanding State
         Ingredientes nuevos
         Esta el usuario autenticado?
         El modal esta abierto?
         lista de posteos en nuestro blog, etc...
 
-    283. The Complexity of Managing State
+    253. The Complexity of Managing State
         Si bien podemos manejar el estado y pasar información de un componente A a un componente B mediante queryString a travez de las rutas, se vuelve inmanejable cuando crece la app.
 
         Si queremos pasar por ej, la información de autenticación de un componente A a B, se puede tornar muy engorroso ya que o lo vamos a manejar pasando de props en props y componentes.. o queryStrings, ahí aparece redux en acción...
 
-    284. Understanding the Redux Flow
+    254. Understanding the Redux Flow
         Redux es una libreria de terceros, que si bien vemos que se puede integrar con React, se puede usar sola.
 
         Como maneja los datos y como se actualiza?
-        
-        CentralStorage: 
+
+        CentralStorage:
             Tiene el estado de toda la aplicación
 
         Acciones:
-            - Se envian (dispatch) desde los componentes. 
+            - Se envian (dispatch) desde los componentes.
             - Un action, es un es un paquete de información predefinida, por ej "Agregar componente" o "Eliminar componente"
             - Posiblemente también tenga un payload, por ej, si la acción es un ingrediente, necesitamos pasar toda la información sobre QUE ingrediente
-            - Una acción no sabe como operar el central storage, no tiene logica, es solo un mensajero. 
+            - Una acción no sabe como operar el central storage, no tiene logica, es solo un mensajero.
 
         Reducers:
             - Se utiliza para cambiar el central storage.
@@ -3071,12 +3299,12 @@
             - El reducer actualiza el estado del central storage, de una manera inmutable, por lo que siempre retornamos un nuevo estado, que es basado en el viejo pero es tecnicamente un nuevo objeto javascript, porque los objetos son de tipo de referencia y no queremos que accidentalmente cambiemos el objeto viejo.
 
         Subscriptions Model (Subscriptors?):
-             - Sirve para que una vez que el reducer actualiza el estado del central storage, se triggeree la finromación nuevamente al componente que lo necesitaba, para ello el componente debe estar subscripto al modelo de subscripción.   
+             - Sirve para que una vez que el reducer actualiza el estado del central storage, se triggeree la finromación nuevamente al componente que lo necesitaba, para ello el componente debe estar subscripto al modelo de subscripción.
 
         EJ:
             Tenemos un componente que quiere manipular el estado, este no lo actualiza directamente modificando central storage
 
-    285. Setting Up Reducer and Store
+    255. Setting Up Reducer and Store
         Comenta que agrego un proyecto para que bajemos y con el que vamos a ejercitar redux.
 
         1) Instalación redux:
@@ -3091,7 +3319,7 @@
         Reducer:
             Es una función rootReducer que recibe el estado y la acción por parametro.
             return state;
-            
+
             const rootReducer = (state = initialState, action) => {
                 return state;
             }
@@ -3100,8 +3328,8 @@
             const store = createSotre(rootReducer) ;nos habilita a crear un nuevo store.
                                                     un Store, necesita ser inicializado con un reducer.
             connsole.log(sotre);
-    
-    286. Dispatching Actions
+
+    256. Dispatching Actions
         Una acción es "enviada" por simplemente acceder al store.
 
 
@@ -3123,17 +3351,17 @@
             return state;
         }
 
-    287. Adding Subscriptions
+    257. Adding Subscriptions
         // Subscription -> Tienqe que ir antes de los dispatchers.
 
         store.suscribe(() => {
             console.log('[Suscripción]', store.getState());
         }) // como parametro toma una función que se va a ejecutar cada vez que se actualice el estado.
 
-    288. Connecting React to Redux
+    258. Connecting React to Redux
          Tenemos que tener en cuenta que hay aplicaciones que no necesitan redux porque no son tan complejas...
 
-         en el archivo index.js, importamos redux: 
+         en el archivo index.js, importamos redux:
             import { createStore } from 'redux';
 
             // antes de que se renderice la app:
@@ -3153,7 +3381,7 @@
 
             export default reducer;
 
-    289. Connecting the Store to React
+    259. Connecting the Store to React
         Instalamos react-redux, para conectar el store con nuestra app react:
             npm install --save react-redux;
 
@@ -3162,12 +3390,12 @@
 
             envolvemos el componente a renderizar <App /> con el componente Provider.
 
-        Provider: 
+        Provider:
             Es un helper component, que nos habilita a "inyectar" nuestro store dentro de los componentes de react.
             le tenemos que pasar una propiedad, le vamos a poner store por sentido comun, y le pasamos el store que creamos.
             <Provider store={}> <App /> </Provider>
 
-        Counter.js 
+        Counter.js
             Importamos un hoc, una función de redux que nos permite ocnectar con nuestro store. O sea, no es realmente un hoc, sino una función que retorna un hoc.
             En grandes aplicaciones podríamos tener montones y montones de diferentes estados y piezas de estados que manejar.
 
@@ -3185,11 +3413,11 @@
             // value={this.state.counter}
             <CounterOutput value={this.props.ctr} />
 
-    290. Dispatching Actions from within the Component
+    260. Dispatching Actions from within the Component
         Ahora vamos a aprender a enviar acciones desde nuestro componente.
 
         También necesitamos una función para enviarle por parametro a connect e informarle que acciones queremos realmente que se envien.
-        
+
         // retorna un obj javascript que va a tener la función que cuando se ejecute va a enviar una acción.
         // pasariamos como nulo el primer parametro a connect si no es necesario, segun lo que tengamos en nuestro componente.
         const mapDispatchToProps = dispatch => {
@@ -3204,18 +3432,16 @@
         Ahora tenemos que actualizar en nuestro archivo reducer, el if que verifica las acciones que van llegando.
 
     Tarea 4: Time to Practice - Dispatching Actions
-        // TODO: hacer esta tarea. hacer Quiere que agreguemos al if de las accciones, eliminar y un par mas.
-
-    291. Passing and Retrieving Data with Action
+    261. Passing and Retrieving Data with Action
         cuando pasamos info al dispatch, en el segundo parametro, podemos pasar info por el action.
         después lo manejamos en el reducer.
 
-    292. Switch-Case in the Reducer
-        statement expression: switch 
+    262. Switch-Case in the Reducer
+        statement expression: switch
 
         en el caso default, retornamos solo state;
 
-    293. Updating State Immutably
+    263. Updating State Immutably
         en el case arregla los return:
 
         const newState = Object.assign({}, state);
@@ -3227,7 +3453,7 @@
         case 'DECREMENT':
             return {
                 ...state,
-                counter: state.counter + action.val 
+                counter: state.counter + action.val
             }
 
         // en este caso esta es la manera correcta:
@@ -3241,12 +3467,12 @@
 
             storedResults: state.results;
 
-    294. Updating Arrays Immutably
-        
+    264. Updating Arrays Immutably
+
 
         Para eliminar info de un array se usa splice, pero como este lo hace sobre el array existe y nosotros no podemos mutar el original, muestra dos opciones:
 
-        1) 
+        1)
             const id = 2;
             const newArray = [...state.results]
             newArray.splice(id, 1);
@@ -3254,18 +3480,18 @@
             case 'DELETE_RESULT':
             return {
                 ...state,
-                results: newArray       
+                results: newArray
             }
 
         2) const updatedArray = state.results.filter(result => result.id !== action.resultElId);
-            
+
             case 'DELETE_RESULT':
             return {
                 ...state,
                 results: updatedArray
             }
 
-    295. Immutable Update Patterns
+    265. Immutable Update Patterns
         Immutable Update Patterns on reduxjs.org: http://redux.js.org/docs/recipes/reducers/ImmutableUpdatePatterns.html
 
         Updating Nested Objects
@@ -3278,7 +3504,7 @@
             let nestedState = state.nestedState;
             // ERROR: this directly modifies the existing object reference - don't do this!
             nestedState.nestedField = action.data;
-        
+
             return {
                 ...state,
                 nestedState
@@ -3292,10 +3518,10 @@
         function updateNestedState(state, action) {
             // Problem: this only does a shallow copy!
             let newState = {...state};
-        
+
             // ERROR: nestedState is still the same object!
             newState.nestedState.nestedField = action.data;
-        
+
             return newState;
         }
         Doing a shallow copy of the top level is not sufficient - the nestedState object should be copied as well.
@@ -3330,7 +3556,7 @@
                 ...array.slice(action.index)
             ]
         }
-        
+
         function removeItem(array, action) {
             return [
                 ...array.slice(0, action.index),
@@ -3346,7 +3572,7 @@
             newArray.splice(action.index, 0, action.item);
             return newArray;
         }
-        
+
         function removeItem(array, action) {
             let newArray = array.slice();
             newArray.splice(action.index, 1);
@@ -3366,12 +3592,12 @@
                     // This isn't the item we care about - keep it as-is
                     return item;
                 }
-        
+
                 // Otherwise, this is the one we want - return an updated value
                 return {
                     ...item,
                     ...action.item
-                };    
+                };
             });
         }
         Immutable Update Utility Libraries
@@ -3386,14 +3612,14 @@
 
         Immutable Data#Immutable Update Utilities section of the Redux Addons Catalog.
 
-    296. Outsourcing Action Types
+    266. Outsourcing Action Types
         Recomienda por ej en un archivo acions.js crear constantes para las acciones, así si hay un error de tipo sabes donde puede estar el problema, y no tenes que andar buscando por toda la app donde pusiste esa variable para el dispatcher y que le pifiaste.
 
         export const INCREMENTE = 'INCREMENT';
         export const DECREMENT = 'DECREMENT';
         ...ETC
 
-    297. Combining Multiple Reducers
+    267. Combining Multiple Reducers
         Divide los reducers en diferentes archivos. Crea una carpeta reducers > counter.js, result.js
 
         en counter pone los de decremento y incremento.
@@ -3409,7 +3635,7 @@
 
         y después al createStore se le pasa rootReducer.
 
-    298. Understanding State Types
+    268. Understanding State Types
         Dice que para una aplicación chiquita no es necesario usar redux, pero para una chica>mediana, si. Pero que de todas maneras no es necesario que toda la app lo use, simplemente hay que analizar donde se necesita.
 
         Tipos de estado:
@@ -3420,17 +3646,17 @@
         Client State        Esta autenticado? Filter set by User        Managed via Redux.
 
 
-        * No olvidarse que si el usuario recarga la pagina, el estado se pierde, redux no reemplaza una base de datos. * 
-    TODO: Tarea 5: Time to Practice - Redux Basics
+        * No olvidarse que si el usuario recarga la pagina, el estado se pierde, redux no reemplaza una base de datos. *
+    Tarea 5: Time to Practice - Redux Basics
 
-    299. [OPTIONAL] Assignment Solution
+    269. [OPTIONAL] Assignment Solution
         Solución por él de la tarea.
-        
-    300. Combining Local UI State and Redux
-        Muestra combina los dos, useState para manejar los valores que usa el usuario en los input. 
+
+    270. Combining Local UI State and Redux
+        Muestra combina los dos, useState para manejar los valores que usa el usuario en los input.
         Y en el boton que usa la función que se creo para redux dentro de mapDispatchToProps
 
-    301. Wrap Up
+    271. Wrap Up
     302. Useful Resources & Links
         Redux Docs: http://redux.js.org/
         Core Concepts: http://redux.js.org/docs/introduction/CoreConcepts.html
@@ -3448,27 +3674,27 @@
 
 ### Sección 15: Adding Redux to our Project
 
-    303. Module Introduction
+    273. Module Introduction
         Analiza la app de la hamburguesa, para ver donde puede usar Redux y donde deja state.
 
         Analiza que es local ui state.
 
-    304. Installing Redux and React Redux
+    274. Installing Redux and React Redux
 
-    305. Basic Redux Setup
+    275. Basic Redux Setup
 
-    306. Finishing the Reducer for Ingredients
+    276. Finishing the Reducer for Ingredients
 
-    307. Connecting the Burger Builder Container to our Store
+    277. Connecting the Burger Builder Container to our Store
 
-    308. Working on the Total Price Calculation
+    278. Working on the Total Price Calculation
 
-    309. Redux & UI State
+    279. Redux & UI State
 
-    310. Adjusting Checkout and Contact Data
+    280. Adjusting Checkout and Contact Data
 
-    311. Wrap Up
-    312. Useful Resources & Links
+    281. Wrap Up
+    282. Useful Resources & Links
         Find the source code for this module attached to this lecture.
 
         Recursos de esta clase
@@ -3477,36 +3703,36 @@
 
 ### Sección 16: Redux Advanced
 
-    313. Module Introduction
+    283. Module Introduction
 
-    314. Adding Middleware
+    284. Adding Middleware
 
-    315. Using the Redux Devtools
+    285. Using the Redux Devtools
 
-    316. Executing Asynchronous Code - Introduction
+    286. Executing Asynchronous Code - Introduction
 
-    317. Introducing Action Creators
+    287. Introducing Action Creators
 
-    318. Action Creators & Async Code
+    288. Action Creators & Async Code
 
-    319. Handling Asynchronous Code
+    289. Handling Asynchronous Code
 
-    320. Restructuring Actions
+    290. Restructuring Actions
 
-    321. Where to Put Data Transforming Logic?
+    291. Where to Put Data Transforming Logic?
 
-    322. Using Action Creators and Get State
+    292. Using Action Creators and Get State
 
-    323. Using Utility Functions
+    293. Using Utility Functions
 
-    324. A Leaner Switch Case Statement
+    294. A Leaner Switch Case Statement
 
-    325. An Alternative Folder Structure
+    295. An Alternative Folder Structure
 
-    326. Diving Much Deeper
+    296. Diving Much Deeper
 
-    327. Wrap Up
-    328. Useful Resources & Links
+    297. Wrap Up
+    298. Useful Resources & Links
         Middleware: http://redux.js.org/docs/advanced/Middleware.html
 
         redux-thunk package: https://github.com/gaearon/redux-thunk
@@ -3521,48 +3747,48 @@
 
 ### Sección 17: Redux Advanced: Burger Project
 
-    329. Module Introduction
+    299. Module Introduction
 
-    330. Installing the Redux Devtools
+    300. Installing the Redux Devtools
 
-    331. Preparing the Folder Structure
+    301. Preparing the Folder Structure
 
-    332. Creating Action Creators
+    302. Creating Action Creators
 
-    333. Executing Asynchronous Code
+    303. Executing Asynchronous Code
 
-    334. Fetching Ingredients Asynchronously
+    304. Fetching Ingredients Asynchronously
 
-    335. Initializing Ingredients in the BurgerBuilder
+    305. Initializing Ingredients in the BurgerBuilder
 
-    336. Changing the Order of our Ingredients Manually
+    306. Changing the Order of our Ingredients Manually
 
-    337. Adding Order Actions
+    307. Adding Order Actions
 
-    338. Connecting Contact Data Container & Actions
+    308. Connecting Contact Data Container & Actions
 
-    339. The Order Reducer
+    309. The Order Reducer
 
-    340. Working on Order Actions
+    310. Working on Order Actions
 
-    341. Redirect to Improve UX
+    311. Redirect to Improve UX
 
-    342. Combining Reducers
+    312. Combining Reducers
 
-    343. Handling Purchases & Updating the UI
+    313. Handling Purchases & Updating the UI
 
-    344. Resetting the Price after Purchases
+    314. Resetting the Price after Purchases
 
-    345. Fetching Orders (via Redux)
+    315. Fetching Orders (via Redux)
 
-    346. Checking our Implemented Functionalities
+    316. Checking our Implemented Functionalities
 
-    347. Refactoring Reducers
+    317. Refactoring Reducers
 
-    348. Refactoring Reducers Continued
+    318. Refactoring Reducers Continued
 
-    349. Wrap Up
-    350. Useful Resources & Links
+    319. Wrap Up
+    320. Useful Resources & Links
         Find the source code for this module attached to this lecture.
 
         Recursos de esta clase
@@ -3571,80 +3797,79 @@
 
 ### Sección 18: Adding Authentication to our Burger Project
 
-    351. Module Introduction
+    321. Module Introduction
         En MPA generalmente esto se maneja en el servidor mediante session. Acá tenemos un solo archivo, así que vamos a ver como se maneja...
 
-    352. Understanding Authentication in Single Page Applications
+    322. Understanding Authentication in Single Page Applications
         SPA -> envia un auth al SERVER, el server no devuelve una sesión sino un TOKEN (json), generalmente se guarda en el localStorage, no se puede guardar en el estado porque si refresca la pagina se pierde..
         Para hacer ciertos request necesitamos estar autenticados, entonces para no andar validando eso todo el tiempo en el request se envia el token con cierta información
 
         Si bien acá usamos Firebase, el token se puede generar en cualuqier server.
-                                       
-    353. Required App Adjustments
+
+    323. Required App Adjustments
         Comenta que va a agregar una vista, que es el formulario de inicio de sesión, que también tenemos que manejar en que endpoints vamos a pedir autenticación y por ultimo tenemos que pasar el token para poder hacer lo anterior.
 
-    354. Adding an Auth Form
+    324. Adding an Auth Form
         Dentro de containers crea un nuevo componente Auth.
         Reutiliza lo que hizo en el modulo de Form y validaciones.
 
         Le agrega un css, actualiza codigo..etc
-        // TODO: terminar de ver
 
-    355. Adding Actions
-        Al final termina usando redux.. 
+    325. Adding Actions
+        Al final termina usando redux..
         Agrega un tipo de acción al archivo actionsTypes.js
         crea un archivo auth.js dentro de la carpeta actions.
         // TODO: terminar de ver
 
-    356. Getting a Token from the Backend
+    326. Getting a Token from the Backend
         En firebase va a la sección de autenticación, y muestra que hay una opción para marcar donde elegis quedarte con el usuario y password del usuario y se aloja en firebase.
         Enable > save.
 
-        Busca en Google firebase rest auth 
-        Busca en Firebase el api key, para pegarle al nuevo endpoint. 
-        Autenticación > web setup 
+        Busca en Google firebase rest auth
+        Busca en Firebase el api key, para pegarle al nuevo endpoint.
+        Autenticación > web setup
 
         Elige la url de sing up, la pone dentro del archivo auth, que esta dentro de la carpeta store > actions > auth.js en la parte donde se exporta la función auth, ahí hace el post.
 
         Verifica que datos tiene que mandarle en el body al endpoint, lo prueba y muestra por consola que le retorno bien la info.
 
-    357. Adding Sign-In
+    327. Adding Sign-In
 
-    358. Storing the Token
-        Dentro de la carpeta reducer, genera un archivo auth.js 
+    328. Storing the Token
+        Dentro de la carpeta reducer, genera un archivo auth.js
 
-    359. Adding a Spinner
+    329. Adding a Spinner
 
-    360. Logging Users Out
+    330. Logging Users Out
 
-    361. Accessing Protected Resources
+    331. Accessing Protected Resources
 
-    362. Updating the UI Depending on Auth State
+    332. Updating the UI Depending on Auth State
 
-    363. Adding a Logout Link
+    333. Adding a Logout Link
 
-    364. Forwarding Unauthenticated Users
+    334. Forwarding Unauthenticated Users
 
-    365. Redirecting the User to the Checkout Page
+    335. Redirecting the User to the Checkout Page
 
-    366. Persistent Auth State with localStorage
+    336. Persistent Auth State with localStorage
         Agrega en el local storage el token que obtiene, y también en localStorage agrega un expirationDate.
 
         let expirationDate = new Date(new Date().getTime() + response.data.expiresIn * 1000);
         localStorage('expirationDate', expirationDate);
 
-    367. Fixing Connect + Routing Errors
+    337. Fixing Connect + Routing Errors
 
-    368. Ensuring App Security
+    338. Ensuring App Security
 
-    369. Guarding Routes
+    339. Guarding Routes
 
-    370. Displaying User Specific Orders
+    340. Displaying User Specific Orders
 
-    371. Wrap Up
-    372. Useful Resources & Links
+    341. Wrap Up
+    342. Useful Resources & Links
         SPA Authentication in general: https://stormpath.com/blog/token-auth-spa
-        Firebase authentication REST API: https://firebase.google.com/docs/reference/rest/auth/ 
+        Firebase authentication REST API: https://firebase.google.com/docs/reference/rest/auth/
         Recursos de esta clase
         auth--01-form-actions.zip
         auth--02-auth-store.zip
@@ -3653,8 +3878,8 @@
 
 ### Sección 19: Improving our Burger Project
 
-    373. Module Introduction
-    374. Fixing the Redirect to the Frontpage
+    343. Module Introduction
+    344. Fixing the Redirect to the Frontpage
         Arregla un flag que le había quedado mal en purchaseBurgerStart (el loading lo pasó a true)
 
         Cuando submite la orden, se redirige al index con todo vacio.
@@ -3662,11 +3887,11 @@
 
         fixea el css de la hamburgeusa porque no esta bien centrado..
 
-    375. Using updateObject in the Entire App
+    345. Using updateObject in the Entire App
         Crea una carpeta shared y pasa el archivo utility.js ahí adentro.
         actualiza las referencias al archivo en los import.
 
-        en updatedFormElement = updateObject(this.state.orderForm[inputIdentifier], 
+        en updatedFormElement = updateObject(this.state.orderForm[inputIdentifier],
             value: event.target.value,
             valid: this.checkValidity(updatedFormElement.value, updatedFormElement.validation),
             touched: true
@@ -3676,28 +3901,28 @@
 
         verifica en otros archivos y hace lo mismo.
 
-    376. Sharing the Validation Method
+    346. Sharing the Validation Method
         a la función checkValidity, la mete en el archivo utility.js, la usa para validar cosas del formulario.
 
         elimina el metodo de los archivos, importa la función y le saca el this a la función en los archvos.
 
-    377. Using Environment Variables
+    347. Using Environment Variables
         Hace que la dev tools de redux se vea solo en dev con las variables de entorno.
 
-    378. Removing console.log()s
+    348. Removing console.log()s
         Elimina los console.log...
-        
-    379. Adding Lazy Loading
+
+    349. Adding Lazy Loading
         Carga diferida.
-        Agrega dentro de la carpeta hoc > asyncComponent 
+        Agrega dentro de la carpeta hoc > asyncComponent
         le pega info que hizo en la sección de enrutamiento
 
         Genera una para cada una, order, auth, etc.
 
         * No se debe usar siempre y para cualquier cosa, porque si son cosas chicas ni vale la pena hacer esto.
 
-    380. Wrap Up
-    381. Useful Resources & Links
+    350. Wrap Up
+    351. Useful Resources & Links
         Find the source code for this module attached to this lecture.
 
         Recursos de esta clase
@@ -3705,11 +3930,11 @@
 
 ### Sección 20: Testing
 
-    382. Module Introduction
-    383. What is Testing?
+    352. Module Introduction
+    353. What is Testing?
         Build App > Testear manualmente en el navegador > Tests Automaticos > Ship App to Server.
 
-    384. Required Testing Tools
+    354. Required Testing Tools
         Necesitamos 2 cosas:
 
         Un corredor de test.
@@ -3719,24 +3944,174 @@
         Generamos test unitarios
         Simulamos la app, montamos componentes y de esto nos permite consumir el DOM.
         React Test Units.
+
         Enzyme es otra herramienta como Jest, creada por el equipo de Airbnb (también recomendada por el team de React), esta herramienta hace mas facil montar componentes y navegar entre ellos.
-        
-    385. What To Test?
 
-    386. Writing our First Test
+    355. What To Test?
 
-    387. Testing Components Continued
+        Que NO queres testear:
+            No queres testear la libreria, ni react, ni axios, redux, etc. Todo esto ya fue testeado por el que lo creó.
 
-    388. Jest and Enzyme Documentations
+            No queres testear conecciones complejas.
 
-    389. Testing Components Correctly
+        Lo que si queres:
+            - Mockear y generar data fake.
+            - Unidades aisladas, por ej una función que creaste, un componente.
+            - Output condicional.
 
-    390. Testing Containers
+    356. Writing our First Test
 
-    391. How to Test Redux
+        enzyme             -> Nos permite cargar un componente por si mismo, sin dependenr de toda la app.
+            Estos dos packages, son complementos para enzyme.
+            react-test-render           -> dependencia de enzyme.
+            enzyme-adapter-react-16     -> adaptador de enzyme para nuestra versión actual.
 
-    392. Wrap Up
-    393. Useful Resources & Links
+        jest               -> ya viene instalado.
+
+        npm install --save enzyme react-test-render
+
+        Va a testear NavigationItems, en la misma carpeta crea un js con el mismo nombre del componente pero le agrega test, ej: NavigationItems.test.js
+
+        describe es una función que toma 2 argumentos
+            1) Lo que se va a testear, el puso el nombre del componente x ej
+            2) Testing arrow function.
+
+        It te permite escribir un test individual, también tiene 2 argumentos.
+            1) Una descripción de lo que se esta testeando
+            2) Testing arrow function.
+
+        import React from 'react';
+        import { configure, shallow } from 'enzyme';
+        import Adapter from 'enzyme-adapter-react-16';
+
+        import NavigationItems from './NavigationItems';
+        import NavigationItem from './NavigationItem/NavigationItem';
+
+        // Para conectar enzyme con mi app.
+        configure({adapter: new Adapter});
+
+        describe('<NavigationItems />', () => {
+            it('should render two <NaviationItems /> elements if not authenticated', () => {
+                // testing logic
+                const wrapper = shallow(<NavigationItems />);
+                expect(wrapper.find(NavigationItem)).toHaveLength(2); // osea, que haya 2 componentes.
+            })
+        })
+
+        * shallow, es un helper (una función),que usamos para renderizar el componente con todo su contenido, pero todo no es completamente cargado, osea no todo el sub arbol de componentes.
+        * wrapper en realidad puede ser pepito.
+        * en expect definimos lo que queremos chequear.
+        * find es una utilidad de enzyme que nos permite ver dentro del componente y chequear si existe lo que necesitamos.
+
+        Para correr los test, primero chequeamos que en package.json este el script de test.
+
+        npm test
+        * Si llega a haber un error, eliminar el test de App.test.js
+
+    357. Testing Components Continued
+
+        // Agrego otro test, ahora verifico que haya 3 componentes y le paso al componente la prop que necesita para que se rendericen los 3.
+
+        import React from 'react';
+        import { configure, shallow } from 'enzyme';
+        import Adapter from 'enzyme-adapter-react-16';
+
+        import NavigationItems from './NavigationItems';
+        import NavigationItem from './NavigationItem/NavigationItem';
+
+        // Para conectar enzyme con mi app.
+        configure({adapter: new Adapter});
+
+        describe('<NavigationItems />', () => {
+            // Si se repiten ciertas cosas, podemos usar este setup general:
+            let wrapper;
+
+            beforeEach(() => {
+                wrapper = shallow(<NavigationItems />);
+            })
+
+            it('should render two <NaviationItems /> elements if not authenticated', () => {
+                expect(wrapper.find(NavigationItem)).toHaveLength(2); // osea, que haya 2 componentes.
+            });
+
+            it('should render two <NaviationItems /> elements if not authenticated', () => {
+                // Como este necesitaba que se pase una prop para correr bien, lo podemos setear de esta manera:
+                wrapper.setProps({ isAuthenticated: true });
+                expect(wrapper.find(NavigationItem)).toHaveLength(3);
+            })
+        })
+
+    358. Jest and Enzyme Documentations
+
+        Para ver todas las cosas que podemos usar de los packages:
+        Enzyme API: http://airbnb.io/enzyme/docs/api/
+        Jest Docs: https://facebook.github.io/jest/
+
+        it('should render two <NaviationItems /> elements if not authenticated', () => {
+            wrapper.setProps({ isAuthenticated: true });
+            expect(wrapper.contains(<NavigationItem link="/logout"> Logout </NavigationItem)).toEqual(True);
+        })
+
+    359. Testing Components Correctly
+
+        Escribir test correctos es complicado. Siempre hay algo que se nos puede escapar.
+        Lo que dice es que hay que escribir test de las cosas que sabemos que pueden romper todo, por ej un if negado, cuando no era negado y así.
+
+    360. Testing Containers
+
+        Como tenemos setProps también tenemos setTest para poder mockear estados.
+
+        Le agregamos export adelante de la clase, para exponerla y poder testearla. Esto no choca con el export default que ya tenemos.
+
+        en el test, por ej BurgerBuilder.test.js, la importamos así:
+
+        import { BurgerBuilder } from './BurgerBuilder';
+
+        Lo que hace es verificar si se encontra el componente BurgerBuilder, ya que se muestra solo si no hay ingredientes.
+
+    361. How to Test Redux
+
+        Hay testear Redux, pero hay que tener cuidado qué testeamos.
+        Si seguimos el patron de no poner demasiada logica dentro de en la creación de los actions.
+        Como son sincronicos y funciones que se les pasa y devuelven algo, es mas facil de testear.
+
+        import reducer from './auth';
+        import * as actionTypes from '../actions/actionTypes';
+
+        describe('auth reducer', () => {
+            it('should return the initial state', () => {
+                expect(reducer(undefined, {})).toEqual({
+                    token: null,
+                    userId: null,
+                    error: null,
+                    loading: false,
+                    authRedirectPath: '/'
+                });
+            });
+
+            it('should store the token upon login', () => {
+                expect(reducer({
+                    token: null,
+                    userId: null,
+                    error: null,
+                    loading: false,
+                    authRedirectPath: '/'
+                }, {
+                    type: actionTypes.AUTH_SUCCESS,
+                    idToken: 'some-token',
+                    userId: 'some-user-id'
+                })).toEqual({
+                    token: 'some-token',
+                    userId: 'some-user-id',
+                    error: null,
+                    loading: false,
+                    authRedirectPath: '/'
+                });
+            })
+        });
+
+    362. Wrap Up
+    363. Useful Resources & Links
         Enzyme API: http://airbnb.io/enzyme/docs/api/
         Jest Docs: https://facebook.github.io/jest/
         Recursos de esta clase
@@ -3744,28 +4119,28 @@
 
 ### Sección 21: Deploying the App to the Web
 
-    394. Module Introduction
-    395. Deployment Steps
+    364. Module Introduction
+    365. Deployment Steps
         chequear y quizas actualizar basePath
-        buildear y optimizar el proyecto. 
+        buildear y optimizar el proyecto.
             -> npm run build // in create-react-app project
-        el servidor siempre tiene que servir el index.html (sino da 404) -> 
-        actualizar el artefacto a static del build 
+        el servidor siempre tiene que servir el index.html (sino da 404) ->
+        actualizar el artefacto a static del build
             ->  githubpages o firebase se puede implementar porque es todo estatico, no hace falta un servidor, tendría que haber una carpeta /build
 
-    396. Building the Project
+    366. Building the Project
         corre el comando npm run build
         muestra la carpeta build que se creo con todo minimizado...
 
-    397. Example: Deploying on Firebase
+    367. Example: Deploying on Firebase
         En la consola de firebase > setup hosting > npm install -g firebase-tools > continue > firebase login > firebase init > firebase deploy
         hosting hay que elegir en login, después la carpeta build, si, es una SPA, no a sobreescribir el index y listo
         te genara un link tipo firebase.burgerApp.com bla entras y listo.
 
         parecido a heroku.
 
-    398. Wrap Up
-    399. Useful Resources & Links
+    368. Wrap Up
+    369. Useful Resources & Links
         Useful Resources & Links
         Attached to this lecture, you'll find the module source code.
 
@@ -3774,35 +4149,276 @@
 
 ### Sección 22: Bonus: Working with Webpack
 
-    400. Module Introduction
+    370. Module Introduction
+    371. Introducing Webpack
 
-    401. Introducing Webpack
+        Es un bundler, pero es mas que eso. Un bundler solo concatenaría archivos.
 
-    402. How Webpack works
+        También optimiza archivos, conectar complementos, loaders, transformarlos, transpilarlos, etc.
 
-    403. Basic Workflow Requirements
+        La de gral es: tenes multiples archivos, js, css e imagenes, cualquier archivo y lo que hace webpack es analizar cada uno, bundlearlos pero a su vez, verificar cuales estan conectados (imports)...
 
-    404. Project & npm Setup
+    372. How Webpack works
 
-    405. Creating a Basic Folder & File Structure
+        De tras de escena, webpack tiene 4 features importantes:
 
-    406. Creating the Basic React Application
+        1) Necesita al menos un entry point, por ej App.js
+            Ya que ahí es donde se inserta todo en el dom y analiza este archivo verificando sus dependencias.
 
-    407. Installing Production Dependencies
+        2) Loaders:
+            Esto esta en el medio, ej loaders (babel-loader, css-load). O sea, lo que vos le decis al loeader es como va a manejar todos los archivos de un determinado tipo, por ejemplo los de js van a ser manejados por tal package.
 
-    408. Setting Up the Basic Webpack Config
+        3) Plugins:
+            Concatenan los files, ej uglify, esta de manera global, minifica los archivos, optimizandolos.
 
-    409. Adding File Rules & Babel
+        4) Analiza todas las dependencias y genera un unico archivo por ej dist/output.js, de manera ordenada y concatenadas.
 
-    410. Loading CSS Files
+    373. Basic Workflow Requirements
 
-    411. Loading Images & Injecting into HTML Page
+        Vamos a analizar los requesitos que tenemos:
+            1) Compilar next-gen javascript features.
+            2) Handle JSX, o sea, que podamos usar jsx.
+            3) CSS Autoprefixing. O sea, manejar la mayor cantidad de sintaxis en los diferentes navegadores.
+            4) Soportar imagenes. O sea, importarlas como si fuera un archivo.
+            5) Optimizar el código (minificar los js)
 
-    412. Production Workflow & Wrap Up
+    374. Project & npm Setup
 
-    413. Adding babel-polyfill
+        1) Crea un archivo .gitignore
+            node_modules
 
-    414. Useful Resources & Links
+        2) npm init
+        3) npm install --save-dev webpack webpack-dev-server      -> Solo para desarrollo. Estos dos paquetes van de la mano.
+        4)
+
+    375. Creating a Basic Folder & File Structure
+
+        Recrea algo semejante a la estructura de cra.
+
+        src/
+            assets/
+            components/
+            containers/
+            index.css               --> para estilos globales.
+            index.js
+            index.html
+                <div id="root">
+            App.js                  --> Mi componente root.
+
+    376. Creating the Basic React Application
+        components/
+            PizzaImage/
+                PizzaImage.js
+                PizzaImage.css
+
+        containers
+            Pizza.js
+            Users.js
+
+        assets/
+            pizza.jpg
+
+
+        hoc/
+            asyncComponent.js       -> Usar el componente que ya creo antes, para cargar componentes de manera lazy.
+
+        index.js
+            Agrega BrowserRouter y envuelve <App /> y renderiza app con ReactDOM.
+
+    377. Installing Production Dependencies
+
+        Core dependencies:
+            npm install --save react react-dom react-router-dom
+
+    378. Setting Up the Basic Webpack Config
+
+        Agregar en package.json un script para start
+
+        1) "start": "webpack-dev-server"   -> Usa este package y ejecutalo (así tal cual no pasa nada. hay que instalar una dependencia mas, te lo dice en la consola).
+
+        2) npm install --save-dev webpack-clic
+
+        3) Si intentas correr npm start, te tira un error porque webpack no sabe que hacer con index.js no entiende que tiene que hacer.
+
+           Agrega un archivo webpack.config.js provee la configuración para webpack.
+
+           const path = require('path');    -> este paquete ya viene con node js.
+           //__dirname  es una variable global que existe en node.
+
+           module.expots = {
+               mode: 'development',         -> le dice a webpack que optimizaciones hacer según el amb.
+               entry: './src/index.js',
+               output: {
+                   path: path.resolve(__dirname, 'dist'),
+                   filename: 'bundle.js',
+                   publicPath: ''
+               },
+               devtool: 'cheap-module-eval-source-map'     -> controla como se genera el source map en debug x ej, si lo transforma o no. en la paguina oficial esta esto.
+           };
+
+    379. Adding File Rules & Babel
+
+        Vamos a agregar para que entienda next-gen javascript, para eso tenemos que instalar Babel.
+
+        Lo que hace Babel es transpilar los features nuevos de javascript a los viejos para que sean compatbiles en todos los navegadores.
+
+        npm install --save-dev @babel/core @babel/preset-env @babel/preset-react @babel/preset-stage-2 babel-loader @babel/plugin-proposal-class-properties
+
+        const path = require('path');    -> este paquete ya viene con node js.
+
+           module.expots = {
+               mode: 'development',         -> le dice a webpack que optimizaciones hacer según el amb.
+               entry: './src/index.js',
+               output: {
+                   path: path.resolve(__dirname, 'dist'),
+                   filename: 'bundle.js',
+                   publicPath: ''
+               },
+               devtool: 'cheap-module-eval-source-map',     -> controla como se genera el source map en debug x ej, si lo transforma o no. en la paguina oficial esta esto.
+               module: {
+                   rules: [     -> cada regla es un objeto, donde vas a tener una propiedad test con una expression regular, donde vas a indicar que archivos van a estar alcanzados por cierta herramienta/plugin, por ej los archivos javascript, van a ser alcanzados por el loader y la herramienta va a ser babel-loader.
+                       {
+                           test: /\.js$/,
+                           loader: 'babel-loader',
+                           exclude: /node_modules/  -> no queremos que alcance la carpeta.
+                       }
+                   ]
+               }
+           };
+
+            Creamos un nuevo archivo .babelrc es un archivo de confugración para babel que se escribe en formato JSON.
+            Todo esto esta en la pagina oficial de Babel.
+
+            {
+                "presets": [ -> acá tenemos que aplicar todos los presets que queremos.
+                    [
+                        "@babel/preset-env",
+                        {
+                            "targets": {
+                                "browsers": ["> 1%", "last 2 versions"] -> compila para que compile en estos browser.
+                            }
+                        }
+                    ],
+                    "@babel/preset-react"   -> no necesita ser un array porque no es necesario presets.
+                ],
+                "plugins": [    -> config extra o comportamiento.
+                    "@babel/plugin-proposal-class-properties"   -> controla que sintaxis soporta.
+                ]
+            }
+
+    380. Loading CSS Files
+
+        npm install --save-dev style-loader css-loader (uno analiza los css y el otro toma los css y los inyecta en nuestro html. (style))
+
+        agrega una regla al archivo webpack:
+
+        {
+            test: /\.css$/,
+            exclude: /node_modules/,
+            use: [
+                { loader: 'style-loader' },
+                {
+                    loader: 'css-loader',
+                    options: {  -> necesita config extra para aceptar css-modules.
+                        importLoaders: 1,
+                        modules: {
+                            localIndentName: '[name]__[local]__[hash:base:5]'
+                        }
+                    }
+                },
+                {
+                    loader: 'postcss-loader',  -> nos ayuda con el procesamiento de css y prefinxing para que pueda funcionar en navegadores viejos.
+                    options: {
+                        ident: 'postcsss',
+                        plugins: () => [autoprefixer()]
+                    }
+                }
+
+            ]
+        }
+
+        npm install --save-dev postcss-loader
+        npm install --save-dev autoprefixer
+            Abajo del import de path en el archivo webpack:
+
+            const autoprefixer = require('autoprefixer');
+                se agrega a la parte de plugins de postcssloader.
+
+        en package.json agrega un script debajo de "licence"
+
+        "browserslist": "> 1%, last 2 versions",
+
+    381. Loading Images & Injecting into HTML Page
+
+        Nos ayuda a cargar assets
+            npm install --save-dev url-loader
+
+        Dentro de webpackconfig
+            {
+                test: /\.(png|jpe?g'|gif)$/,
+                loader: 'url-loader?limit=8000&name=images/[name].[ext]'
+            }
+
+        Para inyectar todas las transformaciones qe configuramos anteriormente en html:
+            npm install --save-dev html-webpack-plugin
+                arriba de todo abajo de autoprefixer
+                    const HtmlWebpackPlugin = require('html-webpack-plugin');
+
+            dentro del config de webpack, antes del } final:
+
+            plugins: [
+                new HtmlWebpackPlugin({
+                    template: __dirname + '/src/index.html',
+                    filename: 'index.html',
+                    inject: 'body'
+                })
+            ]
+
+        npm install --save-dev file-loader  -> otro package necesario para webpack.
+
+    382. Production Workflow & Wrap Up
+
+        Copiamos y pegamos el webpack config y creamos un webpack.config.prod.js
+
+        modificamos el development mode: 'production', en devtool: 'none'
+        Agregamos un script debajo de start:
+
+            "build:prod": "webpack --config webpack.config.prod.js"
+
+        npm start -> vemos como se genera la carpeta dsit y esta todo bundleado.
+
+    383. Adding babel-polyfill
+
+        The current setup won't support all browsers theoretically supported by React. Features like Promises and Object.assign() are missing in older browsers - especially in IE of course.
+
+        If you need to support these browsers, you need to add a polyfill (a package which provides these features for older browsers).
+
+        The Babel docs explain how you can take advantage of Babel's built-in "Polyfill auto injecting" feature: https://babeljs.io/docs/en/babel-polyfill
+
+        Simply install two packages:
+
+        npm install --save core-js
+
+        and
+
+        npm install --save regenerator-runtime
+
+        Change the config of your @babel/preset-env  babel preset in the .babelrc  file:
+
+        "presets": [
+            ["@babel/preset-env", {
+                "targets": {
+                    "browsers": [
+                        "> 1%",
+                        "last 2 versions"
+                    ]
+                },
+                "useBuiltIns": "usage"
+            }],
+            ...
+        ],
+
+    384. Useful Resources & Links
         Webpack Docs: https://webpack.js.org/concepts/
         More about Babel: https://babeljs.io/
         Recursos de esta clase
@@ -3812,61 +4428,173 @@
 
 ### Sección 23: Bonus: Next.js
 
-    415. Module Introduction
+    385. Module Introduction
 
-    416. Understanding Server Side Rendering
+        Es una libreria basada en react, fuerza una estructura especifica y nos da server side rendering y configuración extra que no tenemos que hacer a mano.
 
-    417. Setting Up a Project
+        Server side rendering ayuda mucho a los search engine
 
-    418. Understanding the Basics
+    386. Understanding Server Side Rendering
 
-    419. Next.js & Components & Pages
+        Server Side Rendering simplemente significa, cuando un usuario entre a una url, se va a estar pre-renderizando esa pagina, del lado del servidor y lo va a retornar ya "cocinado"
 
-    420. Styling our App in Next.js
+        O sea, el cliente hace un request al server, el server hace el fetch y renderiza la app, retorna renderizada la primer pagina + react app bundle y en el cliente se re-renderiza la SPA.
 
-    421. Handling (404) Errors
+    387. Setting Up a Project
+        Web Next js: https://nextjs.org/
 
-    422. A Special Lifecycle Hook
+        Esto que vamos a hacer lo hace con el paso a paso que esta en github
+            https://github.com/zeit/next.js/
 
-    423. Deploying our App
+            Actualmente esto no esta mas en github, sino en la pagina oficial, hay ciertas partes que ya no estan igual, yo voy a seguir como lo da el en el curso:
+                https://nextjs.org/learn/basics/getting-started
 
-    424. Useful Resources & Links
+        1) .gitignore
+        2) npm init
+        3) npm install --save next react react-dom
+        4) package.json
+
+            "scripts": {
+                "dev": "next",
+                "build": "next build",
+                "start": "next start"
+            }
+
+            No se usa react-router, se usa file-system es la API main de Next js. Basicamente lo que se usa es carpetas y archivos para ir ruteando nuestra url, next js parsea esto y usa su propio ruteador interno, pre renderiza y automaticamente splitea y con lazy load lo muestra.
+
+        5) creamos:
+            pages/
+                auth/
+                    index.js
+                index.js
+
+            * podes usar clases, funcional componentes, state, etc.
+
+            index.js
+                import React from 'react';
+
+                const indexPage = () => {
+                    <div>
+                        <h1> Main Page </h1>
+                    </div>
+                };
+
+                export default indexPage;
+
+            auth/index.js
+                import React from 'react';
+
+                const indexPage = () => {
+                    <div>
+                        <h1> Auth index Page </h1>
+                    </div>
+                };
+
+                export default indexPage;
+
+        6) npm run dev
+
+           En localhost vamos a ver main page y en localhost/auth vamos a ver auth index page :O
+
+    388. Understanding the Basics
+
+        import Link from 'next/link';
+        import Router from 'next/router';
+
+        <Link href="/auth"> Auth </Link>
+        <button onClick={() => Router.push('/auth')}> Go to Auth </button>
+
+    389. Next.js & Components & Pages
+
+        components/
+            User.js
+
+        Al componente lo importamos en otro js como cualquier import.
+
+    390. Styling our App in Next.js
+
+        Next JS tiene su propia manera de estilar. Podemos usar Radium, podes usar estilos en linea, no podemos usar CSS Modules.
+
+        Styled-jsx
+
+        <style jsx> {`
+            div {
+                border: 1px solid black;
+            }
+        `} </style>
+
+    391. Handling (404) Errors
+        Next js tiene una pagina por default para esto, si se quiere sobreescribir hay que generar un archivo _error.js dentro de pages.
+
+    392. A Special Lifecycle Hook
+
+        Transforma el componente funcional en un componente de clase.
+
+        usa una función nueva que también esta en functional components.
+
+        Static puede ser llamado sin ser instanciado y es asincrono, retorna algo instantaneamente.
+            Se puede usar async o no. *
+        Sirve para inicializar tu app antes de que se cargue.
+            Podríamos traer info de la bd x ej.
+
+        static async getInitialProps(context){
+            // console.log(context);
+            const promise = new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    resolve({appName: 'Super App});
+                }, 1000);
+            });
+            return promise;
+        }
+
+        Después lo usamos en el retorno de jsx.
+            <h1> this.props.appName </h1>
+
+        Solo va a renderizar esa parte, cuando se retorne la promesa.
+
+        * Hace el ejemplo también con functional components.
+
+    393. Deploying our App
+
+        npm run build   -> para buildear el proyecto para deployarlo.
+
+    394. Useful Resources & Links
         Next.js Repo & Docs: https://github.com/zeit/next.js/
         Recursos de esta clase
         nextjs--01-finished.zip
 
 ### Sección 24: Bonus: Animations in React Apps
 
-    425. Module Introduction
+    395. Module Introduction
 
-    426. Preparing the Demo Project
+    396. Preparing the Demo Project
 
-    427. Using CSS Transitions
+    397. Using CSS Transitions
 
-    428. Using CSS Animations
+    398. Using CSS Animations
 
-    429. CSS Transition & Animations Limitations
+    399. CSS Transition & Animations Limitations
 
-    430. Using ReactTransitionGroup
+    400. Using ReactTransitionGroup
 
-    431. Using the Transition Component
+    401. Using the Transition Component
 
-    432. Wrapping the Transition Component
+    402. Wrapping the Transition Component
 
-    433. Animation Timings
+    403. Animation Timings
 
-    434. Transition Events
+    404. Transition Events
 
-    435. The CSSTransition Component
+    405. The CSSTransition Component
 
-    436. Customizing CSS Classnames
+    406. Customizing CSS Classnames
 
-    437. Animating Lists
+    407. Animating Lists
 
-    438. Alternative Animation Packages
+    408. Alternative Animation Packages
 
-    439. Wrap Up
-    440. Useful Resources & Links
+    409. Wrap Up
+    410. Useful Resources & Links
         More on CSS Transitions: https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Transitions/Using_CSS_transitions
         More on CSS Animations: https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Animations/Using_CSS_animations
         More on ReactTransitionGroup: https://github.com/reactjs/react-transition-group
@@ -3876,31 +4604,31 @@
 
 ### Sección 25: Bonus: A Brief Introduction to Redux Saga
 
-    441. Module Introduction
+    411. Module Introduction
 
-    442. Installing Redux Saga
+    412. Installing Redux Saga
 
-    443. Creating our First Saga
+    413. Creating our First Saga
 
-    444. Hooking the Saga Up (to the Store and Actions)
+    414. Hooking the Saga Up (to the Store and Actions)
 
-    445. Moving Logic from the Action Creator to a Saga
+    415. Moving Logic from the Action Creator to a Saga
 
-    446. Moving More Logic Into Sagas
+    416. Moving More Logic Into Sagas
 
-    447. Handling Authentication with a Saga
+    417. Handling Authentication with a Saga
 
-    448. Handling Auto-Sign-In with a Saga
+    418. Handling Auto-Sign-In with a Saga
 
-    449. Moving the BurgerBuilder Side Effects into a Saga
+    419. Moving the BurgerBuilder Side Effects into a Saga
 
-    450. Moving the Orders Side Effects into Sagas
+    420. Moving the Orders Side Effects into Sagas
 
-    451. Why Sagas can be Helpful
+    421. Why Sagas can be Helpful
 
-    452. Diving Deeper into Sagas
+    422. Diving Deeper into Sagas
 
-    453. Useful Resources & Links
+    423. Useful Resources & Links
         Find the module source code attached to this lecture.
 
         Useful Links:
@@ -3918,8 +4646,8 @@
 
 ### Sección 26: React Hooks - # TEORIA #
 
-    454. Introduction
-    455. What are "React Hooks"?
+    424. Introduction
+    425. What are "React Hooks"?
 
         Nos ayuda a trabajar con nuestros componentes de una manera mas eficiente.
 
@@ -3928,10 +4656,10 @@
             Great for Presentational
             Focused on one/few purpose(s)
 
-        2)  Funcional With Hooks 
+        2)  Funcional With Hooks
             Nos permite trabajar con functional components only.
-            Hooks, reemplaza las funcionalidades de las clases (el manejo de estado) 
-                (que por eso las teníamos que usar, si bien podes crear clases, no es obligación. 
+            Hooks, reemplaza las funcionalidades de las clases (el manejo de estado)
+                (que por eso las teníamos que usar, si bien podes crear clases, no es obligación.
 
         3) Class-based:
             Uses props and state
@@ -3940,8 +4668,8 @@
             Lifecycle hooks (can be hard to use)
 
         - Para usar uno u otro, hay que convertirlos o desconvertirlos y es bastanta molesto.
-        
-        React hooks: 
+
+        React hooks:
                 Estan en React desde la versión 16.8
                 Se llaman así porque "enganchas" un "function component", con cierta funcionalidad.
                 simplemente funciones javascript.
@@ -3949,7 +4677,7 @@
                 Con Hooks, podes hacer que todo sean functional components, no necesitas mas clases.
 
             Se pueden usar:
-                dentro de funcional components.        
+                dentro de funcional components.
                 dentro de otros hooks.
                 Son reutilizables e independientes de cada componente.
 
@@ -3959,35 +4687,35 @@
 
             No son - no tienen que ver:
                 No se pueden reemplazar los metodos de ciclo de vida con react hooks.
-            
+
         La idea de los hooks, es que vos podes exponer cierta (posiblemente stateful funcionalities) a functions components, como manejar el estado, como el ciclo de vida de los componentes.
 
         # IMPORTANTE #
             Lifecycle hooks, son sinonimo de los metodos de ciclo de vida y solo se pueden usar en componentes basados en clases.
 
-    456. The Starting Project
-        
+    426. The Starting Project
+
         Habla sobre el proyecto que dejó adjunto y sobre que no tiene ni una clase, son todos componentes de funciones.
 
-    457. Getting Started with useState()
+    427. Getting Started with useState()
         Core Hook!
 
         Como usarlo:
             - Agregar al import de react, useState entre { }
             - useState() -> puede ser inicializado con cualquier tipo. No solo con un objeto como en las clases componentes.
             - Es mas facil inicialiarlos como string, ya que por mas que el input sea de otro tipo, el valor que se pone en el atributo value termina siendo siempre un string.
-            - Devuelve una matriz con exactamente dos elemetos: 
-        
-            1) el valor actual 
+            - Devuelve una matriz con exactamente dos elemetos:
+
+            1) el valor actual
             2) una función que te permite retornar el valor actualizado.
 
             const inputState = useState({title: '', amount: ''});
 
             en nuestro input:
-                value={inputState[0].title} 
+                value={inputState[0].title}
                 onChange={event => useState[1]({title: event.target.value})}
 
-    458. More on useState() & State Updating
+    428. More on useState() & State Updating
         https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures
 
         Los que nos enseño recién NO SIRVE, NO SE HACE ASÍ, porque se esta pisando la información, no actualizando la propiedad especifica del objeto, esta creando un objeto nuevo y perdiendo la información de amount o de title si es que empezas a escribir por amount.
@@ -3997,46 +4725,46 @@
         Se podría solucionar así, pero tampoco es la manera correcta, porque no podemos quedarnos tranquilos de que sea el ultimo snapshot del estado de los elementos.
 
             en nuestro input:
-                value={inputState[0].title} 
+                value={inputState[0].title}
                 onChange={event => inputState[1]({title: event.target.value, amount: useState[0].amount })}
 
         La solución es:
-            value={inputState[0].title} 
+            value={inputState[0].title}
             onChange={event => {
                 const newTitle = event.target.value;
                 inputState[1](prevInputState => ({
-                    title: newTitle, 
-                    amount: prevInputState.amount 
+                    title: newTitle,
+                    amount: prevInputState.amount
                 }));
             }}
 
-    459. Array Destructuring 
+    429. Array Destructuring
 
         const [ inputState, setInputState ] = useState({title: '', amount: ''});
 
-        value={inputState.title} 
+        value={inputState.title}
         onChange={event => {
             const newTitle = event.target.value;
             setInputState(prevInputState => ({
-                title: newTitle, 
-                amount: prevInputState.amount 
+                title: newTitle,
+                amount: prevInputState.amount
             }));
         }}
 
-    460. Multiple States
+    430. Multiple States
         La manera correcta ya que la otra es inmantenible y aparte si tenes mas de un input en el form te volves loco, es:
         const [ enteredTitle, setEnteredTitle ] = useState('');
         const [ enteredAmount, setEnteredAmount ] = useState('');
 
-        value={enteredTitle} 
+        value={enteredTitle}
         onChange={event => {
             setEnteredTitle(event.target.value);
         }}
 
-    461. Rules of Hooks
+    431. Rules of Hooks
         Entendiendo useState...
 
-        - Podemos llamarlo con un estado inicial o no. 
+        - Podemos llamarlo con un estado inicial o no.
         - Se crea un estado que se maneja "detras de escena" por React, que sobrevive re-render cicles.
         - Lo que obtenemos es una matriz con dos elementos, el primero es un puntero a tu estado y es el segundo es    una función de update del estado.
 
@@ -4049,7 +4777,7 @@
                 useState() -> usarlo acá adentro.
             }
 
-    462. Passing State Data Across Components   
+    432. Passing State Data Across Components
         Explica como hacer para agregar ingredientes y pasarselo al otro componente.
         O sea, modifica el componente de Ingredientes, donde:
         Agrega el componente IngredientList y le pasa por prop el esado con los ingredients.
@@ -4058,29 +4786,29 @@
     Tarea 6: Time to Practice: Hooks Basics
         Deje la solución por la mitad.
 
-    463. Sending Http Requests
+    433. Sending Http Requests
         Creó un nuevo proyecto en Firebase.
         va a usar fetch y agrega la url del nuevo proyecto, configura el metodo como post, un body de lo que queres enviar (data en formato json), le envia el ingrediente sin id porque ahora eso lo va a generar firebase.
-        
+
         # IMPORTANTE #
         Explica que en fetch es obligatorio poner el header de app/json para que parsee eso a json, en axios no es necesario.
 
         response.json() -> toma el body y lo convierte a json.
 
-    464. useEffect() & Loading Data
+    434. useEffect() & Loading Data
 
         https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures
 
         Solo sepuede usar en componentes funcionales, y en el componente root.
 
         Side effect, basicamente significa que tenes cierta logica que afecta a tu aplicación.
-        Por ejemplo, que dentro de la función estemos llamando a algo que no se termine en este ciclo de renderización o talvez afecta algo que esta afuera del alcance del código jsx. 
+        Por ejemplo, que dentro de la función estemos llamando a algo que no se termine en este ciclo de renderización o talvez afecta algo que esta afuera del alcance del código jsx.
         Por ejemplo setear el titulo del documento, algo así.
 
         useEffect se ejecuta después de que cada componente procesa su ciclo.
         O sea, después de que el componente donde se esta por usar se haya procesado por primera vez, la función que le pasas a useEffect, va a ser ejecutada.
 
-        # IMPORTANTE # 
+        # IMPORTANTE #
         Se ejecuta cada vez que el componente se vaya a re-renderizar.
 
         Dentro de la función useEffect, hace un llamado a firebase con un get, para obtener los ingredientes.
@@ -4090,17 +4818,17 @@
 
         A tener en cuenta: useEffect actua como componentDidUpdate().
 
-        En useEffect el primer parametro es la función que se ejecuta después de cada ciclo de renderizado, la segunda es una array con las dependencias de esa función, o sea, que solo va a correr la función cuando sus dependencias cambien. Para que corra solo una vez se agrega el array vacio, que no necesita dependencias, por ende solo ejecuta una vez. 
+        En useEffect el primer parametro es la función que se ejecuta después de cada ciclo de renderizado, la segunda es una array con las dependencias de esa función, o sea, que solo va a correr la función cuando sus dependencias cambien. Para que corra solo una vez se agrega el array vacio, que no necesita dependencias, por ende solo ejecuta una vez.
 
-    465. Understanding useEffect() Dependencies
-        
+    435. Understanding useEffect() Dependencies
+
         # IMPORTANTE #
         Se puede tener tantos useEffect como necesites, como useState.
 
         Si le pasamos una dependencia, useEffect va a correr solo cuando a esa dependencia se le cambie algo (State, props
         )
-        
-    466. More on useEffect()
+
+    436. More on useEffect()
 
         Va a usar useEffect para hacer un request a firebase cada vez que el usuario pulse una tecla.
         Por ende en vez de un array vacio, le pasa enteredFilter, que es el estado actualizado de las letras que se van escribiendo en el value.
@@ -4120,30 +4848,30 @@
 
         esto da un loop infinito, lo resuelve en el proximo video.
 
-    467. What's useCallback()?
-        
+    437. What's useCallback()?
+
         Al re-renderizarse el componente, las funciones se vuelven a crear, es esto lo que esta causando el lopp infinito.
 
-        Para prevenir esto, hay otro hook que se llama useCallback. 
+        Para prevenir esto, hay otro hook que se llama useCallback.
 
         Nos permite envolver nuestra función y pasarle un 2do argumento con las dependencias del argumento, como nuestra funcion setUserIngredients, no tiene dependencias, entonces le especificamos a useCallback un array vacio, como useeffect.
 
          Lo que hace useCallback es cachear la función y que sobreviva a las re-renderizaciones, o sea, no se va a recrear la funcion cuando el componente se re-renderice.
 
-         Si bien elimina el loop infinito en la solapa de network verifica porque hay 2 peticiones. 
+         Si bien elimina el loop infinito en la solapa de network verifica porque hay 2 peticiones.
 
          Una es para obtener los ingredientes, la otra es desde ingredientes.
 
-    468. Working with Refs & useRef()
-        
-        Vamos a arreglar un problema, que es que cada vez que pulsamos una tecla se esta haciendo un request al servidor. 
+    438. Working with Refs & useRef()
+
+        Vamos a arreglar un problema, que es que cada vez que pulsamos una tecla se esta haciendo un request al servidor.
         Lo que quiere hacer es que después de un tiempo especifico se envie la consulta y no todo el tiempo.
 
         Con useRef(), podemos generar una variable de referencia.
 
         EL PROBLEMA DE ESTO ES QUE ESTAMOS GENERANDO UN NUEVO TIMEOUT TODO EL TIEMPO, PORQUE SE ACTUALIZA EL ESTADO CADA VEZ QUE TECLEAMOS. Y PORQUE ESTAMOS PASANDO DEPENDENCIAS A USEEFFECT.
-        
-        
+
+
         const inputRef = useRef();
 
         useEffect(() => {
@@ -4172,7 +4900,7 @@
             }, 500);
         }, [enteredFilter, onLoadIngredients, inputRef]);
 
-    469. Cleaning Up with useEffect()
+    439. Cleaning Up with useEffect()
         Acá la función ya esta arreglada, la arreglaba en el proximo video.
 
         Como setTimeout es un puntero a la función de timer, la guarda en una variable para después limpiarla con la función clearTimeout.
@@ -4204,9 +4932,9 @@
         clearTimeout(timer);
         };
 
-    470. Deleting Ingredients
+    440. Deleting Ingredients
         Actualiza la función de eliminar ingredientes, para que los elimine de firebase
-        
+
         const removeIngredientHandler = ingredientId => {
             setIsLoading(true);
             fetch(
@@ -4224,14 +4952,14 @@
             })
             .catch(error => {
                 setError('Something went wrong!');
-                setIsLoading(false);
+                setIsLoading(false);h
             });
         };
 
-    471. Loading Errors & State Batching
+    441. Loading Errors & State Batching
         Para mostrar un loading, genera un estado solo para eso, la actualiza en el comienzo de la llamada y en el final.
 
-        importa el ErrorModal y en el catch de fetch, setea el error en un nuevo estado que genera especificamente para eso. 
+        importa el ErrorModal y en el catch de fetch, setea el error en un nuevo estado que genera especificamente para eso.
 
         De manera condicional utiliza el nuevo estado para verificar si tiene algo y sino muestra el modal, muestra un shortcut de ese if que es así:
 
@@ -4245,7 +4973,7 @@
         Explica que cuando hay 2 estados que se actualian al mismo tiempo, en realidad react lo que hace es acualizarlos de manera sincronica. O sea, uno por uno, pero después la actualización en si, se hace toda junta "de manera bath"
         De esta manera solo vamos a tener un solo evento de re-renderizado no dos.
 
-    472. More on State Batching & State Updates
+    442. More on State Batching & State Updates
         React batches state updates - see: https://github.com/facebook/react/issues/10231#issuecomment-316644950
 
         That simply means that calling
@@ -4267,7 +4995,7 @@
 
         Both concepts (batching and when new state is available) behave in the same way for both functional components with hooks as well as class-based components with this.setState()!
 
-    473. Understanding useReducer()
+    443. Understanding useReducer()
         Son funciones que toman algo y retornan algo. O sea, administran el/los estados y se encargan de retornarte uno.
 
         Un reducer se utiliza fuera del componente, ya que sino se estaría re-renderizando todo el tiempo. O sea, por fuera de la función (componente).
@@ -4290,16 +5018,16 @@
         }
 
         En el componente, debemos inicializar el reducer, utilizar la función useReducer()
-        
+
         Le tenemos que pasar un estado incial en nuestro caso un array vacio porque la pimera vez el estado esta vacio.
 
         Es parecido a un state, primero el estado después la función que despacha cada acción. NO ES UN SET STATE.
         Se puede nombrar como se te canta.
-        
+
         const [userIngredients, dispatch ] = useReducer(ingredientsReducer, [])
 
         Ahora todo lo que se manejaba por estado, se tiene que cambiar para usar reducer. O sea:
-        
+
         Por ej:
         en vez de setUserIngrendients(filteredIngredients)
 
@@ -4312,11 +5040,11 @@
 
         AL UTILIZAR USEREDUCER, EL COMPONENTE SOLO SE VA A RE-RENDERIZAR CUANDO ESTE RETORNE EL NUEVO ESTADO.
 
-    474. Using useReducer() for the Http State
+    444. Using useReducer() for the Http State
         Genera un reducer para los tipos de acciones al hacer algo http, como enviar, respuesta, error, etc:
 
         Solo manejamos estados, no es que vamos a hacer las llamadas ahí.
-        
+
         const httpReducer = (curHttpState, action) => {
         switch (action.type) {
             case 'SEND':
@@ -4341,7 +5069,7 @@
         // const [isLoading, setIsLoading] = useState(false);
         // const [error, setError] = useState();
 
-    475. Working with useContext()
+    445. Working with useContext()
         Crea una carpeta context (porque a el le gusta hacerlo así): de esta manera todos los componentes que esten envueltos en el componente AuthContext, van a "escuchar" las actualizaciones sobre los estados isAuth y login.
 
         auth-context.js
@@ -4426,187 +5154,145 @@
 
         Cualquier cosa revisar la sección 7 donde explica mas sobre el contexto.
 
-    476. Performance Optimizations with useMemo()
+    446. Performance Optimizations with useMemo()
+
         Cuando el componente donde se aloja una función se re-renderiza, la función se vuelve a recrear, es por eso que necesitamos usar useCallback, para que no se recree nuevamente. No es que se  ejecuta, se vuelve a crear.
 
-        useMemo es como useCallback pero con un valor. 
+        useMemo es como useCallback pero con un valor.
+
         Lo que hace es cortar el componente IngridientList y usa useMemo. Lo que hace es que React memoriza el valor que queres retornar, en este caso es un component.
 
         useMemo también tiene segundo parametro como useCallback, solo que le dice a React, cuando debe volver a ejecutar la función para crear un nuevo objeto que debe memorizar, entonces le pasamos las dependencias para que sepa cuando ese componente se tiene que re-renderizar, que es cuando cambian alguno de los dos, un estado y una prop.
 
         A veces hay que analizar sivale la pena usar react.memo o useCallback o useMemo, porque capaz que son cosas chicas y no valenla pena, porque el costo re-renderizado al de chequeo constante puede ser menos.
 
-    477. Getting Started with Custom Hooks
+    447. Getting Started with Custom Hooks
+
         Crea una carpeta hooks y un el archivo http.js, crea un custom hooks, siempre hay que arrancar el nombre con useAlgo, va a ser una función, como cualquier otra.
-        Podes usar cuaqluier hook dentro de tu custom hook.
+        Podes usar cualquier hook dentro de tu custom hook.
 
         Si se usa en diferentes componentes, no es que van a compartir los datos, sino que cada componente va a tener un snapshot del hook. O sea que compartis logica, pero no los datos.
 
         No se importa React, porque no se esta haciendo un componente.
-        
+
         https.js:
             import { useReducer, useCallback } from 'react';
 
             const httpReducer = (curHttpState, action) => {
-            switch (action.type) {
-                case 'SEND':
-                return {
-                    loading: true,
-                    error: null,
-                    data: null,
-                    extra: null,
-                    identifier: action.identifier
-                };
-                case 'RESPONSE':
-                return {
-                    ...curHttpState,
-                    loading: false,
-                    data: action.responseData,
-                    extra: action.extra
-                };
-                case 'ERROR':
-                return { loading: false, error: action.errorMessage };
-                case 'CLEAR':
-                return { ...curHttpState, error: null };
-                default:
-                throw new Error('Should not be reached!');
-            }
+                switch (action.type) {
+                        case 'SEND':
+                            return {
+                                loading: true,
+                                error: null,
+                                data: null,
+                                extra: null,
+                                identifier: action.identifier
+                            };
+                        case 'RESPONSE':
+                            return {
+                                ...curHttpState,
+                                loading: false,
+                                data: action.responseData,
+                                extra: action.extra
+                            };
+                        case 'ERROR':
+                            return { loading: false, error: action.errorMessage };
+                        case 'CLEAR':
+                            return { ...curHttpState, error: null };
+                        default:
+                            throw new Error('Should not be reached!');
+                }
             };
 
             const useHttp = () => {
-            const [httpState, dispatchHttp] = useReducer(httpReducer, {
-                loading: false,
-                error: null,
-                data: null,
-                extra: null,
-                identifier: null
-            });
-
-            const sendRequest = useCallback(
-                (url, method, body, reqExtra, reqIdentifer) => {
-                dispatchHttp({ type: 'SEND', identifier: reqIdentifer });
-                fetch(url, {
-                    method: method,
-                    body: body,
-                    headers: {
-                    'Content-Type': 'application/json'
-                    }
+                const [httpState, dispatchHttp] = useReducer(httpReducer, {
+                    loading: false,
+                    error: null,
+                    data: null,
+                    extra: null,
+                    identifier: null
                 })
+            };
+
+            const sendRequest = useCallback((url, method, body, reqExtra, reqIdentifer) => {
+                dispatchHttp({ type: 'SEND', identifier: reqIdentifer });
+                    fetch(url, {
+                        method: method,
+                        body: body,
+                        headers: {
+                        'Content-Type': 'application/json'
+                        }
+                    })
                     .then(response => {
-                    return response.json();
+                        return response.json();
                     })
                     .then(responseData => {
-                    dispatchHttp({
-                        type: 'RESPONSE',
-                        responseData: responseData,
-                        extra: reqExtra
-                    });
+                        dispatchHttp({
+                            type: 'RESPONSE',
+                            responseData: responseData,
+                            extra: reqExtra
+                        });
                     })
                     .catch(error => {
-                    dispatchHttp({
-                        type: 'ERROR',
-                        errorMessage: 'Something went wrong!'
-                    });
+                        dispatchHttp({
+                            type: 'ERROR',
+                            errorMessage: 'Something went wrong!'
+                        });
                     });
                 },
                 []
             );
 
             return {
-                isLoading: httpState.loading,
-                data: httpState.data,
-                error: httpState.error,
-                sendRequest: sendRequest,
-                reqExtra: httpState.extra,
-                reqIdentifer: httpState.identifier
-            };
+                    isLoading: httpState.loading,
+                    data: httpState.data,
+                    error: httpState.error,
+                    sendRequest: sendRequest,
+                    reqExtra: httpState.extra,
+                    reqIdentifer: httpState.identifier
+                };
             };
 
             export default useHttp;
 
+    448. Sharing Data Between Custom Hooks & Components
+        Volver a ver.
 
-    478. Sharing Data Between Custom Hooks & Components
+    449. Using the Custom Hook
+        Muestra como usa el hook que creo en las llamadas http del proyecto.
 
-    479. Using the Custom Hook
-
-    480. Wrap Up
-
-    481. What's [LEGACY]?
-
-    482. [LEGACY] What are Hooks?
-
-    483. [LEGACY] Enabling Hooks
-
-    484. [LEGACY] The useState() Hook
-
-    485. [LEGACY] Adding Array Destructuring
-
-    486. [LEGACY] Using Multiple State
-
-    487. [LEGACY] Using One State Instead
-
-    488. [LEGACY] The "Rules of Hooks"
-
-    489. [LEGACY] Sending Data via Http
-
-    490. [LEGACY] The useEffect() Hook
-
-    491. [LEGACY] Controlling Effect Execution
-
-    492. [LEGACY] Effect Cleanup
-
-    493. [LEGACY] Converting the "App" Component
-
-    494. [LEGACY] The useContext() Hook
-
-    495. [LEGACY] State and Effects Gotchas
-
-    496. [LEGACY] The useReducer() Hook
-
-    497. [LEGACY] useReducer() vs useState()
-
-    498. [LEGACY] Working with References and useRef()
-
-    499. [LEGACY] Preparing & Optimizing
-
-    500. [LEGACY] Avoiding Unnecessary Re-Rendering
-
-    501. [LEGACY] How to think about Functional Components with Hooks
-
-    502. [LEGACY] Creating a Custom Hook
-
-    503. [LEGACY] Wrap Up
+    450. Wrap Up
 
 ### Sección 27: Using Hooks in the Burger Builder
 
-    504. Introduction
+    451. Introduction
 
-    505. Converting <App>
+    452. Converting <App>
 
-    506. Routing with React.lazy()
+    453. Routing with React.lazy()
 
-    507. Converting the Layout Component
+    454. Converting the Layout Component
 
-    508. Converting withErrorHandler HOC
-    
-    509. Adjusting the Order & Checkout Containers
+    455. Converting withErrorHandler HOC
 
-    510. Add Hooks to ContactData
+    456. Adjusting the Order & Checkout Containers
 
-    511. Converting the BurgerBuilder Container
+    457. Add Hooks to ContactData
 
-    512. Adjusting Auth & Logout Components
+    458. Converting the BurgerBuilder Container
 
-    513. Using React.memo() & More!
+    459. Adjusting Auth & Logout Components
 
-    514. Adding a Custom Error Handling Hook
+    460. Using React.memo() & More!
 
-    515. Setting the right useEffect() Dependencies
+    461. Adding a Custom Error Handling Hook
 
-    516. Working with useSelector() and useDispatch()
+    462. Setting the right useEffect() Dependencies
 
-    517. Wrap Up
-    518. Useful Resources & Links
+    463. Working with useSelector() and useDispatch()
+
+    464. Wrap Up
+    465. Useful Resources & Links
         Official Hooks Docs: https://reactjs.org/docs/hooks-intro.html
 
         Recursos de esta clase
@@ -4621,35 +5307,37 @@
 
 ### Sección 28: Bonus: Replacing Redux with React Hooks
 
-    519. Module Introduction
-    520. Starting Project & Why You Would Replace Redux
+    466. Module Introduction
+    467. Starting Project & Why You Would Replace Redux
+
         Hay dos approach uno bueno y uno que no debería usarse para cualquier opción.
-        
-    521. Alternative: Using the Context API
+
+    468. Alternative: Using the Context API
+
         La alternativa que no se debe usar siempre (o sea, para cualquier cosa).
-        
+
         Crea una carpeta context > products-context.js
-    
-    522. Toggling Favorites with the Context API
 
-    523. Context API Summary (and why NOT to use it instead of Redux)
+    469. Toggling Favorites with the Context API
 
-    524. Getting Started with a Custom Hook as a Store
+    470. Context API Summary (and why NOT to use it instead of Redux)
 
-    525. Finishing the Store Hook
+    471. Getting Started with a Custom Hook as a Store
 
-    526. Creating a Concrete Store
+    472. Finishing the Store Hook
 
-    527. Using the Custom Store
+    473. Creating a Concrete Store
 
-    528. Custom Hook Store Summary
+    474. Using the Custom Store
 
-    529. Optimizing the Custom Hook Store
+    475. Custom Hook Store Summary
 
-    530. Bonus: Managing Multiple State Slices with the Custom Store Hook
+    476. Optimizing the Custom Hook Store
 
-    531. Wrap Up
-    532. Useful Resources & Links
+    477. Bonus: Managing Multiple State Slices with the Custom Store Hook
+
+    478. Wrap Up
+    479. Useful Resources & Links
         Attached, you find the module source code.
 
         These resources might also be helpful:
@@ -4668,37 +5356,38 @@
 
 ### Sección 29: Bonus: Building the Burger CSS
 
-    533. Building the Burger CSS Code
+    480. Building the Burger CSS Code
+        Todo el video es sobre css y como crea el icono de hamburguesa, también esta el pdf adjunto: burger-css.pdf
 
 ### Sección 30: Next Steps and Course Roundup
 
-    534. Module Introduction
+    481. Module Introduction
         Practicar, practicar...
 
-    535. React Rocks! Where to find more Examples
+    482. React Rocks! Where to find more Examples
         http://react.rocks
         Tiene mas ejemplos, no necesariamente pueden estar bien codeados, pero tenes muchos ejemplos.
 
-    536. More Inspiration: Real-World Projects Built with React
+    483. More Inspiration: Real-World Projects Built with React
         build with react.
         es un repo de git que tenes un monton de opciones para elegir que hacer en react.
 
-    537. Static React Apps with Gatsby.js
-        sitios web staticos con react. 
+    484. Static React Apps with Gatsby.js
+        sitios web staticos con react.
 
-    538. Introducing React Native
+    485. Introducing React Native
         ...
-    539. Component Libraries (Example: Material UI)
+    486. Component Libraries (Example: Material UI)
         material-ui.com
 
-    540. Smaller Apps with Preact
+    487. Smaller Apps with Preact
         mas liviano que react. no lo termine de ver
 
-    541. Comparing React with Preact
+    488. Comparing React with Preact
         no lo vi.
-    542. Congratulations
+    489. Congratulations
         ...
-    543. Bonus: More Content!
+    490. Bonus: More Content!
         I got a lot of other high-quality & bestselling courses you might be interested in: https://academind.com/learn/our-courses/
 
         I'd love to welcome you on board of any of these courses! :-)

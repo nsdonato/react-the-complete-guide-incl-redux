@@ -22,7 +22,6 @@ class App extends Component {
     }
 
     return (
-      
       <div className="App">
         <UserOutput username={this.state.username} />
         <UserOutput username="Test" />
