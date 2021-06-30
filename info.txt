@@ -1,22 +1,47 @@
-# TEORIA #: Un concepto puntual que deberíamos saber.
-# IMPORTANTE #: Algo a tener en cuenta, muy particular sobre el lenguaje.
 
-### SECCION 1: ##
+# Section 1: Getting Started
 
-    1. Introduction
-    2. What is React?
+    1. Welcome To The Course!
+        ...
 
+    2. What is React.js?
         Que, como y porque:
-        # TEORIA #
-            Una /libreria de JavaScript/ para crear interfaces de usuario (Componentes)
 
-            - Basicamente, se crean aplicaciones Javascript, que corren en el navegador, no corren en el servidor. No tenemos que esperar una respuesta del servidor para obtener una nueva página o para renderizar algo nuevo.
+        Una /libreria de JavaScript/ para crear interfaces de usuario (Componentes)
 
-            - User interface: Interfaz de usuario, es lo que el usuario puede ver. Con React construimos componentes, para la interfaz de usuario, que a su vez, se pueden reutilizar.
+        - Basicamente, se crean aplicaciones Javascript, que corren en el navegador, no corren en el servidor. No tenemos que esperar una respuesta del servidor para obtener una nueva página o para renderizar algo nuevo.
 
-    3. Join our Online Learning Community
+        - User interface: Interfaz de usuario, es lo que el usuario puede ver. Con React construimos componentes, para la interfaz de usuario, que a su vez, se pueden reutilizar.
 
-        As a student of this course you also get free access to our "Academind Community" on Discord: https://discord.gg/gxvEWGU
+        Joining it is of course free and 100% optional.
+
+    3. Why React Instead Of "Just JavaScript"?
+        
+        https://github.com/academind/react-complete-guide-code/tree/01-getting-started/code/
+        react-vs-vanilla-js-example
+
+        Porque tendríamos que repetir código y con react creamos componentes y reutilizamos lso mismos.
+
+    4. Building Single-Page Applications (SPAs) with React
+        
+        React puede ser usado para controlar partes de una pagina html o la pagina entera
+            "Widget" approach on a multi-page-application, algunas paginas siguen siendo renderizadas y servidas por un servidir backend.
+
+        React también puede ser usado para controlar una frontend entero o una app web.
+            "SPA" approach. El servidor envia solamente UN HTML y toma control de la UI.
+
+    5. Exploring React.js Alternatives (Angular / Vue)
+
+        Angular 
+            Te sirve para enforcarte en la logica y en el modelo de negocio, y no tanto en el aspecto del elemento en particular que querías cambiar (como en react). Podrian no convenir para proyectos pequeños ya que encima tenes que saber TypeScript.
+
+        Vue.js
+            Complete component based UI fw, incluye most core features. Menos popu que react y angular.
+
+    6. Join our Online Learning Community
+
+        Join our Online Learning Community
+        As a student of this course you also get free access to our "Academind Community" on Discord: https://academind.com/community/
 
         There, you can find like-minded people, discuss issues, help each other, share progress, successes and ideas and simply have a good time!
 
@@ -24,190 +49,35 @@
 
         Joining it is of course free and 100% optional.
 
-    4. Real-World SPAs & React Web Apps
+    7. About This Course & Course Outline
+        ...
 
-        Adding the Right React Version to Codepen
+    8. The Two Ways (Paths) Of Taking This Course
+        Standar (recomendado)   
+            Arrancar por el principio, skipear el javascript refresher si no lo necesitas, mirar los summary para refrescar lo que aprendiste.
 
-        In the next lecture, we'll write our first React code in Codepen, an online editor (it's only getting used in the next lecture).
-        Currently, there seems to be a bug if you add React as shown in the next video.
-        To fix it, replace the automatically added import paths (you'll see what I mean) with these:
-            https://cdnjs.cloudflare.com/ajax/libs/react/15.6.1/react.min.js
-            https://cdnjs.cloudflare.com/ajax/libs/react/15.6.1/react-dom.min.js
-        This should fix. And don't worry about the React version, the entire rest of the course uses 16+ :)
+        Enfoque resumido:
+            saltear el modulo de resumen
+            opcional tomar el refresher de js
+            mirar todo el curso antes que los summary
+        
+    9. Getting The Most Out Of This Course
+        Te recomienda como ver el curso para sacarle jugo..
 
-    5. Writing our First React Code
+    10. Setting Up The Course Dev Environment (Code Editor)
+        Instala VS Code
 
-        Crear una aplicación en Codepen.
-            Cuando se repite un elemento pero tiene diferente información adentro, esto ya se puede entender como un componente.
+# Sección 2: - Refreshing Next Generation JavaScript (Optional)
 
-        - Importar React:
-            https://cdnjs.cloudflare.com/ajax/libs/react/15.6.1/react.min.js
-
-        - Importar React DOM, la logica para crear los componentes en el DOM real.
-            https://cdnjs.cloudflare.com/ajax/libs/react/15.6.1/react-dom.min.js
-
-        - Para utilizar las últimas caracteristicas de React --> Babel
-
-        // Tiene que comenzar con mayuscula para que funcione bien.
-        function Person(){
-            return (
-                <div className="person">
-                    <h1>Max</h1>
-                    <p>Your Age: 28</p>
-                </div>
-            );// Sintaxis JSX, para renderizar el DOM.
-        }
-
-        ReactDOM.render(<Person />, document.querySelector('#p1'));
-
-        # TEORIA #
-        El metodo RENDER nos permite representar una función de JavaScript como componente del DOM real, y tratarlo como un componente.
-
-        // le decimos que renderice como html ese objeto Person.
-        // le decimos en donde queremos que se vea ese componente.
-
-        * El atributo class en el codigo html se tienen que escribir className, porque React renderiza ese html como un componente JavaScript (que es donde se usa la propiedad className)
-
-        // Le agrega un argumento que es propio de react
-
-        # TEORIA #
-        Los datos dinamicos se encierran entre { }
-
-        function Person(props){
-            return (
-                <div className="person">
-                    <h1>{props.name}</h1>
-                    <p>{props.age}</p>
-                </div>
-            );// Sintaxis JSX, para renderizar el DOM.
-        }
-
-        ReactDOM.render(<Person name="Max" age="28"/>, document.querySelector('#p1'));
-        ReactDOM.render(<Person name="Manu" age="29"/>, document.querySelector('#p2'));
-
-        En vez tener un elemento div con la clase p1, ahora solo vamos a tener uno con id Apps
-
-        HTML:
-            <div id="app"></div>
-
-        JS:
-            function Person(props){
-                return (
-                    <div className="person">
-                        <h1>{props.name}</h1>
-                        <p>{props.age}</p>
-                    </div>
-                );// Sintaxis JSX, para renderizar el DOM.
-            }
-
-            var app = (
-                <div>
-                    <Person name="Max" age="28" />
-                    <Person name="Manu" age="29" />
-                </div>
-            );
-
-        // En vez de tener dos elementos, tengo uno solo que tenga los 2.
-        ReactDOM.render(<app/>, document.querySelector('#app'));
-
-        * Este es el mejor modo para crear SAP. Single Page Applications.
-
-    6. Why should we choose react?
-
-        Porque en aplicaciones grandes es dificil de manejar el ESTADO.
-        Porque cambiar elementos de lugar es mas engorroso, aparte de acomodarlos en pantalla, dependiendo si usaste getQuerySelector o JQuery esto se complica mucho.
-
-        React nos permite enfocarnos en nuestra logica de negocios, envitando que nuestra app explote.
-        Supuestamente como React tiene una comunidad zarpada, el codigo es excelente.
-        Aparte de tener un gran ecosistema, comunidad activa y alta performance.
-
-    7. React alternatives.
-
-        Angular y Vue.js
-            Te sirve para enforcarte en la logica y en el modelo de negocio, y no tanto en el aspecto del elemento en particular que        querías cambiar (como en react)
-
-    8. Understanding Single Page Applications and Multi Page Applications.
-
-        SAP:
-            Solo recuperamos un solo archivo html, el contenido es renderizado en el cliente.
-            Esta construidda por componentes, y cada componente es un componente React, también es mantenida por un componente root de React, que esta bajo el control de React.
-            Tipicalmente tenemos una llamada reactDOM.render(), se necesita una sola porque tenemos un componente raiz, que esta montado en el DOM que tiene todo el resto de componentes.
-
-        MPA:
-            Recuperamos varias paginas determinadas, donde cada pagina tiene el contenido para una ruta determinada, y el contenido es renderizado en el servidor.
-            Algunas partes de la pagina son componentes React.
-            Los widgets individuales no conocen la existencia de otros.
-            Vamos a tener varios reactDOM.render para los diferentes componentes, en difernetes lugares de la app.
-
-    9. Course outline.
-
-        Getting started.
-            Usar JavaScript moderno porque mantiene limpio y es un estandar para react, funciones de flechas, etc.
-
-        React basics.
-            Como crear componentes reacts, ver las diferentes maneras que hay de hacerlo y como comunicarse entre componentes.
-            Como podemos generar listas, o como podemos presentar contenido de forma condicional.
-
-        Debug
-            Como debuggear react.
-
-        Styling componentes
-            Como darle estilo a los componentes y como podemos asegurarnos de que el estilo que aplicamos a un componente, solo se aplique a ese componente y no a todos.
-
-        Componentes Deep Dive
-            Pronfudización en los componentes, ya que tendremos mucho conocimiento de ellos, vamos a aprender cual es su ciclo de vida.
-            Como comprobar actualizaciones a menudo o no.
-
-        HTTP Request
-            Como conectarla con el mundo exterior, como obtener datos de un servidor o subirlos al servidor.
-
-        Routing.
-            Es una caracteristica del Core de las SAP, porque con routing, podemos manejar diferentes urls, /productos /usuarios  diferentes paginas, aunque tengamos un solo HTML, y en realidad
-            lo que hacemos es analizar la url y renderizar las diferentes partes que necesitamos, para mostrar "una nueva pagina".
-
-        Forms and validation.
-            validación de entrada de datos de los usuarios, etc.
-
-        Redux
-            es una biblioteca de terceros pero se usa muchisimo con react.
-            acciones asincronas, etc.
-
-        Authentication
-            login de usuario.
-
-        Testing
-            Introducción a como probar app de react.
-
-        Deployment
-            Como publicar en producción
-
-        Bonus: aplicaciones de react animadas, ubicación de reactores, webpack, etc.
-            NextJs, una libreria construida bajo react, donde construimos nuestro propio flujo de trabajo, etc.
-
-    10. How to get the Most out of This Course
-
-        Como sacarle provecho al curso:
-            Codificar solo.
-            Si algo no funciona, chequear contra su codigo.
-            Si estas atascado, usar lar parte donde se hacen las preguntas, primero buscar porque seguro alguien ya pregunto.
-            Practicar.
-
-    11. Useful Resources & Links
-
-        Documentación de React: https://reactjs.org/
-        El codepen, hecho por él: https://codepen.io/anon/pen/MELQaQ
-
-### Sección 2: - Refreshing Next Generation JavaScript (Optional) ###
-
-    12. Module Introduction
+    11. Module Introduction
         Next-Gen Javascript, para refrescar. React usa esto, así que, hay que saberlo.
 
-    13. Understanding "let" and "const" - # TEORIA #
+    12. Understanding "let" and "const" - 
 
         let = var (cambia el tema del scope, porque ahora es de bloque.)
         const = para info que no va a cambiar.
 
-    14. Arrow Functions - # TEORIA #
+    13. Arrow Functions - 
 
         funciones antes:
             function myFuncion() {
@@ -225,11 +95,11 @@
         * Si tiene mas de uno, es (param1,param2) =>
         * Si la parte de retorno solo tiene una linea, se puede escribir así: const multiplicar = number => number * 2;
 
-    15. Exports and Imports - # TEORIA #
+    14. Exports and Imports - 
 
         Para modular el código, para dividir los archivos js en varios archivos.
             Si bien ya se puede (porque agregas diferentes archivos en el html, de manera ordenada)
-            Lo que pasa ahora es que desde un js, se puede usar info de otro js.
+            Ahora desde un js, se puede usar info de otro js.
 
         EXPORTAR
             person.js
@@ -264,7 +134,7 @@
 
                     import { baseData, clean } from './utility.js'
 
-    16. Understanding Classes - # TEORIA #
+    15. Understanding Classes - 
 
         - Los metodos son como: funciones atachados a esa clase/objetos,
         - las propiedades son como: variables, atachadas a esa clase/objetos,
@@ -297,7 +167,7 @@
         miPersona.printMyname();
         miPersona.printGender();
 
-    17. Classes, Properties and Methods - # TEORIA #
+    16. Classes, Properties and Methods - 
 
         ES6
         Propiedades:
@@ -321,7 +191,7 @@
 
         * Es mejor usar ambos opciones de ES7, para esto si o si hay que usar ES6/Babel, que transpila el código y lo convierte.
 
-    18. The Spread & Rest Operator - # TEORIA #
+    17. The Spread & Rest Operator - 
 
         // Operator Spread o Rest (depende de donde se use)
         ...
@@ -374,7 +244,7 @@
         console.log(filter(1,2,3));
         // [1]
 
-    19. Destructuring - # TEORIA #
+    18. Destructuring - 
 
         Permite extraer facilmente elementos de una matriz o propiedades de objetos y guardarlos en variables.
         ej:
@@ -396,7 +266,7 @@
             console.log(name); // Noe
             console.log(age); // undefined
 
-    20. Reference and Primitive Types Refresher - # TEORIA #
+    19. Reference and Primitive Types Refresher - 
 
         Primitivos
         * Copia el valor de su variable en otra, osea hay 2.
@@ -425,7 +295,7 @@
 
             console.log(secPerson); // 'Max'
 
-    21. Refreshing Array Functions - # TEORIA #
+    20. Refreshing Array Functions - 
 
         const numbers = [1,2,3];
 
@@ -435,13 +305,216 @@
         const doubleNumArray = numbers.map((num) => num * 2 );
         console.log(doubleNumArray); // [2,4,6]
 
-    22. Wrap Up
+    21. Wrap Up
 
         Basicamente que cualquier cosa, se puede volver a esas clases para refrescar por si te olvidaste algo.
 
-    23. Next-Gen JavaScript - Summary
-    24. JS Array Functions
+    22. Next-Gen Javascript - Summary
+        In this module, I provided a brief introduction into some core next-gen JavaScript features, of course focusing on the ones you'll see the most in this course. Here's a quick summary!
 
+        let & const
+        Read more about let : https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let
+
+        Read more about const : https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const
+
+        let  and const  basically replace var . You use let  instead of var  and const  instead of var  if you plan on never re-assigning this "variable" (effectively turning it into a constant therefore).
+
+        ES6 Arrow Functions
+        Read more: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions
+
+        Arrow functions are a different way of creating functions in JavaScript. Besides a shorter syntax, they offer advantages when it comes to keeping the scope of the this  keyword (see here).
+
+        Arrow function syntax may look strange but it's actually simple.
+
+        function callMe(name) { 
+            console.log(name);
+        }
+        which you could also write as:
+
+        const callMe = function(name) { 
+            console.log(name);
+        }
+        becomes: 
+
+        const callMe = (name) => { 
+            console.log(name);
+        }
+        Important: 
+
+        When having no arguments, you have to use empty parentheses in the function declaration:
+
+        const callMe = () => { 
+            console.log('Max!');
+        }
+        When having exactly one argument, you may omit the parentheses:
+
+        const callMe = name => { 
+            console.log(name);
+        }
+        When just returning a value, you can use the following shortcut:
+
+        const returnMe = name => name
+        That's equal to:
+
+        const returnMe = name => { 
+            return name;
+        }
+        Exports & Imports
+        In React projects (and actually in all modern JavaScript projects), you split your code across multiple JavaScript files - so-called modules. You do this, to keep each file/ module focused and manageable.
+
+        To still access functionality in another file, you need export  (to make it available) and import  (to get access) statements.
+
+        You got two different types of exports: default (unnamed) and named exports:
+
+        default => export default ...; 
+
+        named => export const someData = ...; 
+
+        You can import default exports like this:
+
+        import someNameOfYourChoice from './path/to/file.js'; 
+
+        Surprisingly, someNameOfYourChoice  is totally up to you.
+
+        Named exports have to be imported by their name:
+
+        import { someData } from './path/to/file.js'; 
+
+        A file can only contain one default and an unlimited amount of named exports. You can also mix the one default with any amount of named exports in one and the same file.
+
+        When importing named exports, you can also import all named exports at once with the following syntax:
+
+        import * as upToYou from './path/to/file.js'; 
+
+        upToYou  is - well - up to you and simply bundles all exported variables/functions in one JavaScript object. For example, if you export const someData = ...  (/path/to/file.js ) you can access it on upToYou  like this: upToYou.someData .
+
+        Classes
+        Classes are a feature which basically replace constructor functions and prototypes. You can define blueprints for JavaScript objects with them. 
+
+        Like this:
+
+        class Person {
+            constructor () {
+                this.name = 'Max';
+            }
+        }
+        
+        const person = new Person();
+        console.log(person.name); // prints 'Max'
+        In the above example, not only the class but also a property of that class (=> name ) is defined. The syntax you see there, is the "old" syntax for defining properties. In modern JavaScript projects (as the one used in this course), you can use the following, more convenient way of defining class properties:
+
+        class Person {
+            name = 'Max';
+        }
+        
+        const person = new Person();
+        console.log(person.name); // prints 'Max'
+        You can also define methods. Either like this:
+
+        class Person {
+            name = 'Max';
+            printMyName () {
+                console.log(this.name); // this is required to refer to the class!
+            }
+        }
+        
+        const person = new Person();
+        person.printMyName();
+        Or like this:
+
+        class Person {
+            name = 'Max';
+            printMyName = () => {
+                console.log(this.name);
+            }
+        }
+        
+        const person = new Person();
+        person.printMyName();
+        The second approach has the same advantage as all arrow functions have: The this  keyword doesn't change its reference.
+
+        You can also use inheritance when using classes:
+
+        class Human {
+            species = 'human';
+        }
+        
+        class Person extends Human {
+            name = 'Max';
+            printMyName = () => {
+                console.log(this.name);
+            }
+        }
+        
+        const person = new Person();
+        person.printMyName();
+        console.log(person.species); // prints 'human'
+        Spread & Rest Operator
+        The spread and rest operators actually use the same syntax: ... 
+
+        Yes, that is the operator - just three dots. It's usage determines whether you're using it as the spread or rest operator.
+
+        Using the Spread Operator:
+
+        The spread operator allows you to pull elements out of an array (=> split the array into a list of its elements) or pull the properties out of an object. Here are two examples:
+
+        const oldArray = [1, 2, 3];
+        const newArray = [...oldArray, 4, 5]; // This now is [1, 2, 3, 4, 5];
+        Here's the spread operator used on an object:
+
+        const oldObject = {
+            name: 'Max'
+        };
+        const newObject = {
+            ...oldObject,
+            age: 28
+        };
+        newObject  would then be
+
+        {
+            name: 'Max',
+            age: 28
+        }
+        The spread operator is extremely useful for cloning arrays and objects. Since both are reference types (and not primitives), copying them safely (i.e. preventing future mutation of the copied original) can be tricky. With the spread operator you have an easy way of creating a (shallow!) clone of the object or array. 
+
+        Destructuring
+        Destructuring allows you to easily access the values of arrays or objects and assign them to variables.
+
+        Here's an example for an array:
+
+        const array = [1, 2, 3];
+        const [a, b] = array;
+        console.log(a); // prints 1
+        console.log(b); // prints 2
+        console.log(array); // prints [1, 2, 3]
+        And here for an object:
+
+        const myObj = {
+            name: 'Max',
+            age: 28
+        }
+        const {name} = myObj;
+        console.log(name); // prints 'Max'
+        console.log(age); // prints undefined
+        console.log(myObj); // prints {name: 'Max', age: 28}
+        Destructuring is very useful when working with function arguments. Consider this example:
+
+        const printName = (personObj) => {
+            console.log(personObj.name);
+        }
+        printName({name: 'Max', age: 28}); // prints 'Max'
+        Here, we only want to print the name in the function but we pass a complete person object to the function. Of course this is no issue but it forces us to call personObj.name inside of our function. We can condense this code with destructuring:
+
+        const printName = ({name}) => {
+            console.log(name);
+        }
+        printName({name: 'Max', age: 28}); // prints 'Max')
+        We get the same result as above but we save some code. By destructuring, we simply pull out the name  property and store it in a variable/ argument named name  which we then can use in the function body.
+
+        Resources for this lecture
+        next-gen-js-summary.pdf
+
+    23. JS Array Functions
         En realidad, no la próxima generación de JavaScript, pero también es importante: un arreglo de funciones de JavaScript, como map() , filter() , reduce()  etc.
         Me verás usarlos bastante ya que muchos conceptos de React se basan en trabajar con arreglos (de manera inmutable).
 
@@ -459,86 +532,61 @@
         slice()  =>  https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice
         splice()  =>  https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice
 
-### Sección 3: - Understanding the Base Features & Syntax ###
+# Section 3: React Basics & Working With Components
 
-    25. Module Introduction
+    24. Module Introduction
+        ...
 
-        Que es, como usarlo, nuestra primera app react, conceptos generales, sintaxis basicas, etc.
+    25. What Are Components? And Why Is React All About Them?
+        React crea interfaces simples itneractivas y reactivas al usuario.
+        
+        Componentes: son una composición de html, css y js son reusables. todos los componentes unidos forman una interface de usuarios.
 
-    26. The Build Workflow
+        Porque componentes?
+        Reusabilidad:
+            DRY 
+        Separation of Concerns: 
+            No hacer demsiasdo en una sola función. Separarlos en funciones mas chicas.
 
-        Recomendado para SPA y MPAs
+    26. React Code Is Written In A "Declarative Way"!
 
-        Porque?
-                - Optimización de codigo en grandes apps, para tener también el menor codigo postible, considerando el peso de las app también.
+        Como se construye un componente? 
+            html, css y js
+                aunque css no es principalmente lo importante, sino html y js
+            
+        Declarative approach: que react no le va a decir a react que un html fue creado.
+        defina el estado de destino deseado y deje que React descubra las instrucciones DOM de JavaScript reales
 
-                - Usar nex-gen JS. Mejoramos como desarrolladores, y funcionan mejor las app, porque basicamente usar esto es "comprometerse con las mejores practicas"
-                    Como no en todos los browsers se soporta esto, se debe usar un flujo de trabajo diferente, para poder compilar next-gen javascript y usarlo.
+    27. Creating a new React Project
+        https://github.com/academind/react-complete-guide-code/tree/03-react-basics-working-with-components/code
 
-                - Ser mas productivo.
-                    Incluir, auto-prefixing de CSS.
-                    Linting: una herramienta que te dice si estas escribiendo mal codigo o podes hacer mas optimo algún codigo especifico.
+        new_resources/01-starting-setup.zip
 
-        Como?
-                - Gestor de dependencias: npm o yarn (3ty parth libraries)
-                - Bundler "Controlador", recomendado: webpack
-                    Para escribir codigo modular, para tener una tarea/enfoque claro y nos resulte mas facil de mantener y administrar.
-                - Compilador (para next-gen), recomendado: Babel + presets
-                - Un Web Server de desarrollo.
+        npm start -> arrancar la app
+        ctrl+c -> cancelar la ejecución.
 
-        * Nos va a enseñar una herramienta de desarrollo que hace todo esto menos engorroso y no tenemos qe andar configurando todo, es una herramienta que generó el equipo de React de facebook.
-        * En otro modulo enseña como hacer una desde 0 igual.
+    28. The Starting Project
+        In case you skipped the previous lecture, attached you find the starting project snapshot.
 
-    27. Using Create React App
-        Es la herramienta recomendada para crear proyectos de React. "Create React App"
+        Download it
 
-        - Instalar Node JS.
-        # IMPORTANTE: npm install -g create-react-app ESTA DEPRECADO.
+        Extract it
 
-        > npm create-react-app react-guia-completa // El segundo parametro es el nombre de la app.
-        > cd react-guia-completa
-        > npm start
+        run npm install in the extracted folder
 
-    28. Understanding the Folder Structure
+        Run npm start to start the development server.
 
-        package.json
-            Donde estan las dependencias y los diferentes scripts que podemos ejecutar para correr diferentes tareas. Dependencias productivas y de desarrollo.
+        Resources for this lecture
+        01-starting-setup.zip
+        Section Code Snapshots
 
-        node_modules
-            Donde estan las dependencias de cada paquete, y los paquetes en si de Node.
+    29. Analyzing a Standard React Project
+        index.js es el primer archivo que se ejecuta.
 
-        public
-            Es la carpeta raiz, donde van a estar todos los archivos que se le sirven al cliente.
+        ambas son parte de la misma libreria, pero se separan las responsabilidades en dos package diferentes.
+            react 
+            react-dom 
 
-            index.html
-                Es la única que tenemos y la única que vamos a tener. NUNCA TENEMOS QUE AGREGAR PAGINAS.
-                Si es una MPA (Multi Page Application), el Workflow va a tener que ser diferente.
-                Si queremos agregar otro css, va ahí.
-                No metamos html dentro del html
-
-            manifest.json
-                Nos brinda una aplicación web progresiva, lista para usar.
-
-        scr
-            Ahí van los archivos que podemos editar.
-
-            index.js
-                obtiene acceso al elemento raiz de nuestro DOM del arch html, para que dentro del elemento con id="root" se renderice nuestra aplicación react.
-
-            App.js
-                Actualmente ahí tenemos nuestro primer componente.
-
-            registerServiceWorker.js (En la ultima versión no esta este archivo, esta: serviceWorker)
-                Es importante para registrar un service worker, que es generado automaticamente, relacionado a la PWA
-                Basicamente, pre-cachea los archivos scripts.
-
-            App.test.js
-                Nos permite crear pruebas unitarias para los diferentes componentes en nuestra app.
-
-        - Eliminar el logo de react.svg y la linea que importa el logo.
-        - Eliminar del archivo css, todo menos la parte de .App
-
-    29. Understanding Component Basics
         index.js
             import React from 'react';
             import ReactDOM from 'react-dom';
@@ -547,7 +595,7 @@
             import * as serviceWorker from './serviceWorker';
 
             // Siempre vamos a tener un elemento donde van a estar todos los componentes
-            // y que lo vamos a renderizar en un id x ej root. # TEORIA #
+            // y que lo vamos a renderizar en un id x ej root. 
             ReactDOM.render(<App />, document.getElementById('root'));
 
         app.js
@@ -576,17 +624,150 @@
                 1.2) el metodo render()
                         sirve para renderizar JSX en la pantalla.
 
-            2)
-        -
-
-        # TEORIA #
+            2) crear una función.
+        
         * Por lo general cuando se elige el nombre de un componente, se usa ese nombre para la variable a importar, para el archivo y para el elemento.
         * Los archivos también podrían llamarse JSX, pero se usa js por convención.
             JSX en realidad es lo que llaman "syntactic sugar". Es una sintaxis dentro de un lenguaje de programación, diseñado para ser mas facil de leer o expresarse.
             Es como "mas dulce para que lo pueda usar una persona"
 
-    30. Understanding JSX
+    30. Introducing JSX
 
+        Javascript Xml -> es el standar
+        es html con js
+
+        son archivos con codigo transformado, ya que jsx no es soportado en los browsers.
+            0.chunk.js
+            bundle.js
+            main.chunk.js      
+        
+    31. How React Works
+        Creamos nuestros propios componentes html.
+
+        Imperative instructions son las que se usan en js normal.
+        En react es declarative way.
+
+    32. Building a First Custom Component
+        BEST PRACTICE: new components -> new files.
+
+        root, es nuestro main container.
+
+        React tiene su tree, que parte desde App
+
+        crea:
+            components/
+                ExpenseItems.js -> convensión Pascal Case
+
+                La gran mayor cantidad de tiempo los componentes se crean como el de app, pero por lo general son solo funciones.
+
+        Para crear un componente entonces (que no derive de Component):
+            Generamos una función.
+            La exportamos como default.
+            Retornamos JSX
+
+        Para usar en nuestro component App:
+            Importamos el componente.
+            Dentro del html que estamos retornando, agregamos el tag con nuestro componente.
+
+        <ExpenseItems /> // lo podemos dejar así ya que no tenemos que anidar nada adentro.
+
+    33. Writing More Complex JSX Code
+        - Como en realidad el html que vemos es JSX, no podemos usar palabras reservadas como class, debemos en este caso, por ej usar className, en el elemento.
+
+        - No podemos devolver elementos que no tienen un padre. Por ej, no podemos poner un elemento hermano al div root.
+
+        - Es buena practica, es meter todo dentro de un contenedor a devolver.
+
+    34. Adding Basic CSS Styling
+        https://github.com/academind/react-complete-guide-code/blob/03-react-basics-working-with-components/extra-files/ExpenseItem.css
+
+        bajarse el archivo y ponerlo en la misma ruta que el js e importarlo.
+
+        Tener en cuenta que no se puede usar class, ya que es una palabra reservada, por ende hay que usar className, al igual que for, es htmlFor, etc...
+
+    35. Outputting Dynamic Data & Working with Expressions in JSX
+        Para que el js, no sea interpretada como texto, se debe usar {js que quiera}
+
+            return <p>Soy una persona and I am {Math.floor(Math.random() * 30)} years old! </p>
+
+        Esto se usa para simples calculos o llamadas a funciones, pero nada mas, debería ser solo una linea de codigo
+
+        En la actualización da un ejemplo creando una variable fecha y actualizando en el código donde estaba hardcoding.
+
+    36. Passing Data via "props"
+        Dejo el ejemplo viejo, en el nuevo lo explica lo mismo con <ExpensiveItems />
+        https://github.com/academind/react-complete-guide-code/blob/03-react-basics-working-with-components/extra-files/expenses.txt
+
+        Trabajar componentes en archivos separados, hace que el codigo sea mas mantenible.
+        Aparte se lo puede configurar y reutilizar.
+        return (
+            <div className="App">
+            <h1>Hola, soy una App React</h1>
+            <Person />
+            <Person />
+            <Person />
+            </div>
+        );
+
+         return (
+            <div className="App">
+            <h1>Hola, soy una App React</h1>
+            <Person name="Max" age="28"/>
+            <Person name="Manu" age="29"/>
+            <Person name="Noe" age="32"/>
+            </div>
+        );
+
+        Del componente principal, se le pasa al componente que corresponde el valor de las propiedades, name y age en este ejemplo.
+
+        Person.js
+            #IMPORTANTE:
+            El argumento es un objeto con toda la info que se le pasa al componente, se puede llamar props, como se puede llamar pepito.
+
+            const person = (props) => {
+                return <p>Hola! Soy {props.name} y tengo {props.age} años! </p>
+            }
+
+        Cuanto se usa en una clase-componente (como app), se tiene que usar this.props
+
+    37. Adding "normal" JavaScript Logic to Components
+        crea diferentes variables y utiliza funciones propias de js, que usa en el código jsx.
+
+    38. Splitting Components Into Multiple Components
+        Crea un segundo componente ExpenseDate.js pone lo referido a las fechas ahí y lo importa en ExpenseItem.js apare ahora se puede reutilizar en cualquier parte de la app.
+
+        Al componente le pasa las props necesarias para que funcione.
+        
+        Importa un css a ExpenseDate: https://github.com/academind/react-complete-guide-code/blob/03-react-basics-working-with-components/extra-files/ExpenseDate.css
+
+    Assignment 1: Time to Practice: React & Component Basics
+        TODO: después hago esta tarea nueva..
+
+    39. The Concept of "Composition" ("children props")
+        Explicación vieja, en lo nuevo explica lo mismo pero crando una card y en props usa la prop children.
+
+        Si queremos pasar algo entre la etiqueta de apertura y cierre, tenemos que envolver eso en un elemento padre y usar children.
+
+        <div className="App">
+            <h1>Hola, soy una App React</h1>
+            <Person name="Max" age="28"/>
+            <Person name="Manu" age="29">My hobbies: Racing</Person>
+            <Person name="Noe" age="32"/>
+        </div>
+
+        Person.js
+         <div>
+            <p>I'm {props.name} and I am {props.age} years old!</p>
+            <p>{props.children}</p>
+         </div>
+
+    40. A First Summary
+        TODO: Lo veo a lo último del curso.
+
+    41. A Closer Look At JSX
+        En las nuevas versiones de react, no es necesario importar React. React lo utiliza under the hood.
+
+        Explicación vieja, que aplica a esta sección.
         Componente basado en clase:
         class App extends Component {
             render() {
@@ -608,128 +789,21 @@
         * NO SE USA CREAR LOS ELEMENTOS ASÍ, es para que sepamos que existe esto y no es lo correcto.
         Para eso se genera el "HTML, que en realidad es JSX" = javascript.
 
-    31. JSX Restrictions
+    42. Organizing Component Files
+        components/
+            Expenses/
+                ExpenseDate.js
+                ExpenseDate.css
+                ExpenseItem.js
+            UI -> interfaces elements
 
-        # IMPORTANTE #:
+        Siempre igual depende de vos o el equipo en el que trabajes.
+        
+    43. An Alternative Function Syntax
 
-        - Como en realidad el html que vemos es JSX, no podemos usar palabras reservadas como class, debemos en este caso, por ej usar className, en el elemento.
+    Quiz 1: Learning Check: React Basics, Components, Props & JSX
 
-        - No podemos devolver elementos que no tienen un padre. Por ej, no podemos poner un elemento hermano al div root.
-
-        - Es buena practica, es meter todo dentro de un contenedor a devolver.
-
-    32. Creating a Functional Component
-
-        # IMPORTANTE #
-
-        vamos a crear un componente:
-            src/
-                Person/
-                    Person.js
-            Por convención el nombre comienza con mayus.
-            Por convención las funciones van en minuscula.
-
-        La gran mayor cantidad de tiempo los componentes se crean como el de app, pero por lo general son solo funciones.
-
-        Para crear un componente entonces (que no derive de Component):
-            Generamos una función.
-            La exportamos como default.
-            Retornamos JSX
-
-        Para usar en nuestro component App:
-            Importamos el componente.
-            Dentro del html que estamos retornando, agregamos el tag con nuestro componente.
-
-        <Person /> // lo podemos dejar así ya que no tenemos que anidar nada adentro.
-
-    33. Components & JSX Cheat Sheet
-        Descargar pdf o file:///C:/Users/Noe/Downloads/components.Pronfudización
-
-        Los componentes son el componente básico de las aplicaciones React . En realidad, React realmente es solo una biblioteca para crear componentes en su núcleo.
-
-        Por lo tanto, una aplicación React típica podría representarse como un árbol de componentes : tiene un componente raíz ("Aplicación") y luego una cantidad potencialmente infinita de componentes secundarios anidados.
-        Cada componente debe devolver / generar algún  código JSX ; define qué código HTML React debe procesar al DOM real al final.
-        JSX NO es HTML pero se parece mucho a eso. Sin embargo, se pueden ver las diferencias cuando se mira de cerca (por ejemplo, className en JSX vs class en "HTML normal"). JSX es solo azúcar sintáctica para JavaScript, lo que le permite escribir código HTML en lugar de llamadas React.createElement (...) anidadas.
-
-        Al crear componentes, puede elegir entre dos formas diferentes:
-            Componentes funcionales (también conocidos como componentes de "presentación", "tontos" o "sin estado"; más información sobre esto más adelante en el curso) =>
-                const cmp = () => {
-                    return <div>some JSX</div>
-                }
-                (se recomienda usar las funciones de flecha de ES6 como se muestra aquí, pero es opcional)
-
-            Componentes basados ​​en clase (también conocidos como componentes "contenedores", "inteligentes" o "con estado") =>
-                class Cmp extends Component {
-                        render () {
-                            return <div>some JSX</div>
-                            }
-                }
-
-        Por supuesto, nos sumergiremos en la diferencia a lo largo de este curso. Ya puede notar que debe usar 1) con la mayor frecuencia posible. Es la mejor práctica.
-
-    34. Working with Components & Re-Using Them
-
-        Trabajar componentes en archivos separados, hace que el codigo sea mas mantenible.
-        Aparte se lo puede configurar y reutilizar.
-        return (
-            <div className="App">
-            <h1>Hola, soy una App React</h1>
-            <Person />
-            <Person />
-            <Person />
-            </div>
-        );
-
-        * Esto no es dinamico, así que en el proximo vamos a ver como hacerlo..
-
-    35. Outputting Dynamic Content
-
-        # IMPORTANTE #
-        Para que el js, no sea interpretada como texto, se debe usar {js que quiera}
-
-            return <p>Soy una persona and I am {Math.floor(Math.random() * 30)} years old! </p>
-
-        Esto se usa para simples calculos o llamadas a funciones, pero nada mas, debería ser solo una linea de codigo
-
-    36. Working with Props
-
-        return (
-            <div className="App">
-            <h1>Hola, soy una App React</h1>
-            <Person name="Max" age="28"/>
-            <Person name="Manu" age="29"/>
-            <Person name="Noe" age="32"/>
-            </div>
-        );
-
-        Del componente principal, se le pasa al componente que corresponde el valor de las propiedades.
-
-        Person.js
-            #IMPORTANTE:
-            El argumento es un objeto con toda la info que se le pasa al componente, se puede llamar props, como se puede llamar pepito.
-
-            const person = (props) => {
-                return <p>Hola! Soy {props.name} y tengo {props.age} años! </p>
-            }
-
-        Cuanto se usa en una clase-componente (como app), se tiene que usar this.props
-
-    37. Understanding the Children Property
-
-        Si queremos pasar algo entre la etiqueta de apertura y cierre, tenemos que envolver eso en un elemento padre y usar children.
-
-        <div className="App">
-            <h1>Hola, soy una App React</h1>
-            <Person name="Max" age="28"/>
-            <Person name="Manu" age="29">My hobbies: Racing</Person>
-            <Person name="Noe" age="32"/>
-        </div>
-
-        Person.js
-         <div>
-            <p>I'm {props.name} and I am {props.age} years old!</p>
-            <p>{props.children}</p>
-         </div>
+    44. Module Resources
 
     38. Understanding & Using State
 
@@ -765,66 +839,6 @@
                 props.children mostraría por ej en el componente Person "My hobbies: Racing"
 
             this, hace referencia a la clase donde se esta usando
-
-    39. Props & State
-        file:///C:/Users/Noe/Downloads/props-state.pdf
-
-        props  y state  son los conceptos CORE de React. Solo props  y/o state activa React para volver a renderizar sus componentes y potencialmente actualizar el DOM en el navegador
-
-        Props
-            props: le permite pasar datos de un componente principal (container) a un componente secundario (embebido).
-
-        Ejemplo:
-            AllPosts Component:
-                const posts = () => {
-                    return (
-                        <div>
-                            <Post title="My first Post" />
-                        </div>
-                    );
-                }
-
-            Aquí title  está la propiedad personalizada ( prop ) configurada en el Post  componente personalizado . Básicamente, replicamos el comportamiento del atributo HTML predeterminado que ya conocemos (por ejemplo, <input type="text">  le informamos al navegador acerca de cómo manejar esa entrada).
-
-            Post Component:
-                const post = ( props ) => {
-                    volver (
-                        <div>
-                            <h1> { props . título } </ h1 >
-                        </ div >
-                    );
-                }
-
-            El componente Post recibe props como argumento. Por supuesto, puede nombrar este argumento como desee: es la definición de su función, ¡a React no le importa! Pero React pasará un argumento a su función de componente => Un objeto, que contiene todas las propiedades que configuró <Post ... /> .
-            {props.title}  luego genera dinámicamente la title  propiedad del props  objeto, que está disponible ya que configuramos la title  propiedad dentro del AllPosts  componente (ver arriba).
-
-
-        State:
-            Mientras props le permiten pasar datos al árbol de componentes (y, por lo tanto, desencadenar una actualización de la interfaz de usuario), el estado se usa para cambiar el componente, bueno, el estado desde dentro. Los cambios en el estado también activan una actualización de la interfaz de usuario.
-
-        Ejemplo:
-            NewPost Component:
-                ¡La clase NewPost extiende el Componente { // estado solo se puede acceder en los componentes basados ​​en clase!
-
-                class NewPost extends Component { // state can only be accessed in class-based components!
-                    state = {
-                        counter: 1
-                    };
-
-                    render () { // Needs to be implemented in class-based components! Needs to return some JSX!
-                        return (
-                            <div>{this.state.counter}</div>
-                        );
-                    }
-                }
-
-            Por supuesto, puede pasar state  a componentes funcionales, pero estos no pueden editarlo directamente.
-            state  =>
-                Simplemente es una propiedad de la clase de componente, debes llamarlo state, obligatoriamente.
-                Luego, puede acceder a él a través this.state  de su código JSX de clase (que devuelve en el render()  método requerido ).
-                Cada vez que state  cambia, el componente se volverá a representar y reflejará el nuevo estado.
-
-                La diferencia con props es que esto sucede dentro de un mismo componente: ¡no recibe datos nuevos ( props ) de fuera!
 
     40. Handling Events with Methods
         // en JSX es con la C mayus.
@@ -1310,9 +1324,8 @@
 
 ### Sección 5: Styling React - Components & Elements
 
-    64. Module Introduction
-    65. Outlining the Problem Set
-    66. Setting Styles Dynamically
+    73. Module Introduction
+    74. Setting Dynamic Inline Styles
 
         render () {
             // Agrega esto
@@ -1344,7 +1357,7 @@
             style.backgroundColor = 'red'; // Agrega esto
         }
 
-    67. Setting Class Names Dynamically
+    75. Setting CSS Class Dynamically
 
         // Agrega las clases:
 
@@ -1365,6 +1378,43 @@
                 <div className="App">
                     <h1>Hi, I'm a React App</h1>
                     <p className={classes}>This is really working!</p>
+
+    76. Introducing Styled Components
+        npm install --save styled-components
+
+        import syled from 'styled-components';
+        const Button = styled.button`` -> feature: que se llama tacked templates. button es una función o metodo, dentro de los ticks, podes pasar texto.
+
+        Los metodos retornan un componente de react.
+
+        En vez de:
+        <div className="Person" style={style}">
+
+        Haces:
+        styled.div``
+            width: 60%;
+            margin:  16px auto;
+
+        pero, es mejor, crear un nuevo COMPONENTE, de esta manera, que es especifica para este framework, ya que recordemos, los metodos, retornan un componente.:
+
+        const StyledDiv = styled.div`
+            width: 60%;
+            margin:  16px auto;`;
+
+        Esto después lo usamos así:
+        <StyledDiv>
+        </StyledDiv>
+
+    77. Styled Components & Dynamic Props
+        Para pasarle props y cambiar su estilo, dinamicamente, simplemente le pasamos como cualquier otro componente, mediante un nombre de prop y un valor. Después dentro de los backteacks, usamos por ej:
+
+        <StyledButton alt="this.state.button">
+
+        const StyledButton = styled.button`
+            background-color: ${props => props.alt ? 'red' : 'green' }
+        `;
+
+        Todo esto es javascript, no react, por eso usando los backteacks, se puede usar interpolación de cadenas y a su vez el package hace la magia de poder usar props.
 
     68. Adding and Using Radium
 
@@ -1407,49 +1457,12 @@
                 }
             };
 
-    70. Introducing Styled Components
-        npm install --save styled-components
-
-        import syled from 'styled-components';
-        const Button = styled.button`` -> feature: que se llama tacked templates. button es una función o metodo, dentro de los ticks, podes pasar texto.
-
-        Los metodos retornan un componente de react.
-
-        En vez de:
-        <div className="Person" style={style}">
-
-        Haces:
-        styled.div``
-            width: 60%;
-            margin:  16px auto;
-
-        pero, es mejor, crear un nuevo COMPONENTE, de esta manera, que es especifica para este framework, ya que recordemos, los metodos, retornan un componente.:
-
-        const StyledDiv = styled.div`
-            width: 60%;
-            margin:  16px auto;`;
-
-        Esto después lo usamos así:
-        <StyledDiv>
-        </StyledDiv>
-
     71. More on Styled Components
         Como funcionan realmente?
 
         Si nos fijamos en el html, los nombres de las clases que se generaron son fruta, estos nombres los genera el framework.
 
         El package agarra todo el css y lo pone como selectores de clase y los agrega al encabezado documento, y después agrega el css al div que es retornado por ese compoenente.
-
-    72. Styled Components & Dynamic Styles
-        Para pasarle props y cambiar su estilo, dinamicamente, simplemente le pasamos como cualquier otro componente, mediante un nombre de prop y un valor. Después dentro de los backteacks, usamos por ej:
-
-        <StyledButton alt="this.state.button">
-
-        const StyledButton = styled.button`
-            background-color: ${props => props.alt ? 'red' : 'green' }
-        `;
-
-        Todo esto es javascript, no react, por eso usando los backteacks, se puede usar interpolación de cadenas y a su vez el package hace la magia de poder usar props.
 
     73. Working with CSS Modules
         npm run eject
@@ -2888,7 +2901,7 @@
 
         después sigue sin funcionar porque tiene chequeo estricto, así que o convertimos a number o le sacamos el stricto y listo.
 
-        # IMPORTANTE #
+        
         Otra manera de convertir algo a number es meterle un + adelante.
 
     210. Redirecting Requests
@@ -4644,7 +4657,7 @@
         redux-saga--04-orders.zip
         redux-saga--05-finished.zip
 
-### Sección 26: React Hooks - # TEORIA #
+### Sección 26: React Hooks - 
 
     424. Introduction
     425. What are "React Hooks"?
@@ -4690,7 +4703,7 @@
 
         La idea de los hooks, es que vos podes exponer cierta (posiblemente stateful funcionalities) a functions components, como manejar el estado, como el ciclo de vida de los componentes.
 
-        # IMPORTANTE #
+        
             Lifecycle hooks, son sinonimo de los metodos de ciclo de vida y solo se pueden usar en componentes basados en clases.
 
     426. The Starting Project
@@ -4768,7 +4781,7 @@
         - Se crea un estado que se maneja "detras de escena" por React, que sobrevive re-render cicles.
         - Lo que obtenemos es una matriz con dos elementos, el primero es un puntero a tu estado y es el segundo es    una función de update del estado.
 
-        # IMPORTANTE #
+        
         Hay dos reglas importantes que se aplican a todos los estados:
             1) Los hooks, solo se deben usar en componentes funcionales (functional components) o dentro de nuestros propios hooks personalizados.
             2) No podes usar un hook en una función anidada, siempre es en el componente root. Para que quede claro, esto no se puede hacer:
@@ -4790,7 +4803,7 @@
         Creó un nuevo proyecto en Firebase.
         va a usar fetch y agrega la url del nuevo proyecto, configura el metodo como post, un body de lo que queres enviar (data en formato json), le envia el ingrediente sin id porque ahora eso lo va a generar firebase.
 
-        # IMPORTANTE #
+        
         Explica que en fetch es obligatorio poner el header de app/json para que parsee eso a json, en axios no es necesario.
 
         response.json() -> toma el body y lo convierte a json.
@@ -4808,7 +4821,7 @@
         useEffect se ejecuta después de que cada componente procesa su ciclo.
         O sea, después de que el componente donde se esta por usar se haya procesado por primera vez, la función que le pasas a useEffect, va a ser ejecutada.
 
-        # IMPORTANTE #
+        
         Se ejecuta cada vez que el componente se vaya a re-renderizar.
 
         Dentro de la función useEffect, hace un llamado a firebase con un get, para obtener los ingredientes.
@@ -4822,7 +4835,7 @@
 
     435. Understanding useEffect() Dependencies
 
-        # IMPORTANTE #
+        
         Se puede tener tantos useEffect como necesites, como useState.
 
         Si le pasamos una dependencia, useEffect va a correr solo cuando a esa dependencia se le cambie algo (State, props
@@ -5359,41 +5372,224 @@
     480. Building the Burger CSS Code
         Todo el video es sobre css y como crea el icono de hamburguesa, también esta el pdf adjunto: burger-css.pdf
 
-### Sección 30: Next Steps and Course Roundup
+### Sección 30: Course Roundup
 
-    481. Module Introduction
-        Practicar, practicar...
-
-    482. React Rocks! Where to find more Examples
-        http://react.rocks
-        Tiene mas ejemplos, no necesariamente pueden estar bien codeados, pero tenes muchos ejemplos.
-
-    483. More Inspiration: Real-World Projects Built with React
-        build with react.
-        es un repo de git que tenes un monton de opciones para elegir que hacer en react.
-
-    484. Static React Apps with Gatsby.js
-        sitios web staticos con react.
-
-    485. Introducing React Native
+    481. What Now? Next Steps You Could Take!
         ...
-    486. Component Libraries (Example: Material UI)
-        material-ui.com
 
-    487. Smaller Apps with Preact
-        mas liviano que react. no lo termine de ver
-
-    488. Comparing React with Preact
-        no lo vi.
-    489. Congratulations
+    482. Explore The React Ecosystem!
+        Gatsby
+        PREACT
+        React Native
+        
+    483. Finishing Thoughts
         ...
-    490. Bonus: More Content!
-        I got a lot of other high-quality & bestselling courses you might be interested in: https://academind.com/learn/our-courses/
 
-        I'd love to welcome you on board of any of these courses! :-)
+    484. Bonus!
 
-        Also don't forget to subscribe to my newsletter on https://academind.com/ to receive the latest updates and exclusive offers!
+        With this course, you learned a lot about React!
 
-        And in case you didn't know: On the same page as well as on my YouTube channel I got loads of additional tutorials.
+        But the React ecosystem is huge and there are tons of things you can do and build with React, for example:
 
-        Last but not least - I tweet on @maxedapps and on @academind_real, would love to see you there!
+        Learn how to build server-side rendered (great for SEO!) or fullstack apps with Next.js & React: https://acad.link/nextjs
+
+        Build mobile Android & iOS apps with React Native: https://acad.link/react-native
+
+        Build fullstack MERN (MongoDB, ExpressJS, React, NodeJS) web apps: https://acad.link/mern
+
+        Or dive into one of the many other courses I have on web development, JavaScript etc: https://academind.com/courses/
+
+# Section 31: This Course Got Updated!
+
+    485. Course Update Overview, Explanation & Migration Guide
+        
+        Porque React evoluciono y ahora el standar es functional component + react hooks...
+        Porque el loco creció y con el feedback mejoró el curso y como explicaba.....
+
+    486. Course Update & Migration Guide
+        ***
+
+        PLEASE READ THIS ENTIRE DOCUMENT CAREFULLY
+
+        It contains detailed information on WHY the course is updated, WHAT changed and what that means for you and your course progress!
+
+        FAQs (e.g. "How do I regain my course progress" can be found at the end of this document!)
+
+        ***
+
+        On April 12th 2021, I updated this entire course to make it future-proof and teach the latest version of React in the best-possible way.
+
+        For that, I completely re-recorded this course - you get this brand-new course for free!
+
+        In a nutshell, this means that this course switched from "class-based components for state management" to "using React Hooks with functional components right from the start".
+
+        What you learned with the old course is not obsolete - I simply updated the course to make it future-proof and embrace modern React practices (specifically function components + hooks) right from the start!
+
+        I re-recorded the entire course (i.e. I created a brand-new course), incorporating all the latest best practices and all the amazing feedback I got from you over the years.
+
+        Here's what you need to know about this update (and what it means for you) - please read this article carefully!
+
+        I completely re-recorded the course and therefore created a brand-new 40h+ course!
+
+        You get this update 100% for free and you don't need to do anything for that!
+
+        The new course is inserted into this existing course (in front of the old course) - i.e. lecture 1 in section 1 is the new course after April 12th
+
+        The old course content will stay around for a short transitional period (planned to end on May 3rd) after which it will be removed
+
+        You keep access to the old course though: Download links (to videos, VTT caption files and course attachments) are provided in the next lecture
+
+        Details on how you should proceed (based on your current course progress) can be found below!
+
+        Why did I update the course?
+        Over the years and months, React evolved and today, you write React code slightly different than you did in the past. Most importantly, we nowadays use functional components + React Hooks instead of using class-based components for state management.
+
+        Whilst I do cover React Hooks in-depth in this course, the course still starts with a strong focus on class-based components (just like the official docs still do by the way). That is not bad or incorrect but it doesn't reflect the future of React. And hence, to make this course future-proof and teach you React in the most modern way possible, I updated the course to fully embrace functional components + React Hooks.
+
+        What changed?
+        I also used the opportunity to improve the content in general and add some new content (besides the general restructuring due to the switch to "React Hooks first"):
+
+        The single, large course project (the burger builder) will be replaced by multiple smaller, more focused (yet realistic) demo projects so that skipping modules or coming back to modules will be easier (and so that you got more variety!)
+
+        A brand-new, in-depth introduction to Next.js (> 3h!) was added to the course
+
+        A React summary module was added: You can use that after going through the course or as a "mini course" that teaches you the essence of React => Great if you have limited time and don't want to go through the full course right now
+
+        Overall, explanations and examples were improved, as I had to create a brand-new course anyways (due to the switch to "React Hooks first")
+
+        More new content (on React + TypeScript, Authentication, Testing) will be added after May 3rd (once the old lectures were removed) - I can't add that content yet since there is a "maximum number of lectures" limitation on Udemy
+
+        What about the old course?
+        As mentioned, the old content stays around for a short transitional period until May 3rd - thereafter it will be removed. You will keep access to it thereafter via download links though (see next lecture).
+
+        Because Udemy has a lecture limit (max amount of published lectures), I also had to remove some less important old content right away: The Webpack section, the old, short Next.js section, the old Deployment section, the Redux Saga section.
+
+        All those sections are of course still available via download!
+
+        How should you proceed?
+        How you should proceed depends on your current status:
+
+        You haven't started the course yet or you haven't progressed much yet ("NOT STARTED")
+
+        You are well into the course already and you're currently doing the course ("WELL INTO THE COURSE")
+
+        You completed the course in the past or you haven't visited it for a longer time period ("COMPLETED / PAUSED")
+
+        NOT STARTED
+
+        Simply restart with the updated course (i.e. take lecture 1 in section 1 to start the new course)
+
+        Ignore the old course content, the new course will teach you everything in a better way
+
+        WELL INTO THE COURSE
+
+        Consider restarting if you have the time: The new course will contain sharpened explanations, new demos and examples and is arguably a bit better than the old one
+
+        But you can also just finish the existing course (in the transitional period until May 3rd or by downloading the old course content, see next lecture)
+
+        You will still learn React in a best-practice way! You will learn all about React Hooks => It's just the strong focus on class-based components which is not as important anymore
+
+        Definitely explore the recommended new content you find below!
+
+        COMPLETED / PAUSED
+
+        You can ignore the update in general as you did still learn React in a best-practice way! You did learn all about React Hooks => It's just the strong focus on class-based components which is not as important anymore
+
+        If you have the time, definitely consider taking the full course again: It will contain sharpened explanations, new demos and examples and simply is better than the old one!
+
+        Definitely explore the recommended new content you find below!
+
+        New Content Which You Definitely Should Explore
+        The new first ("Getting Started") module to get an overview of the new course
+
+        The Next.js introduction module
+
+        The React.js summary module
+
+        The new Routing ("Building a Multi-Page SPA with React Router") module
+
+        The new Redux sections => They now also include Redux Toolkit!
+
+        The new Testing section (released on May 3rd)
+
+        The new Authentication section (released on May 3rd)
+
+        The new React + TypeScript section (released on May 3rd)
+
+        All the new "Project" or "Practice" course sections where we build demo apps
+
+        Frequently asked questions
+        What about my course progress / course completion certificate?
+
+        Unfortunately, since the new course was inserted into this existing course, your course progress is reset / diluted.
+
+        But you get a complete new course with many improvements for free! It's probably worth it ;-)
+
+        To regain your course progress and certificate, you can simply mark lectures as completed manually. It's annoying but will only take a few minutes.
+
+        What about my notes or existing threads in the Q&A section (for the old content)?
+
+        Unfortunately, notes and existing Q&A threads will be lost, once the old content is removed (i.e. lectures are unpublished). Udemy doesn't offer a way of saving that data at the moment - that is beyond my control.
+
+        Why didn't you create a new course?
+
+        I wanted to make this update available for free!
+
+        There also is no possible way on Udemy to offer a brand-new course for free (without leaking it to the entire world) anymore, hence this is the best approach going forward. It also ensures that no student misses this update!
+
+        Will you remove the old content?
+
+        Yes, please see above.
+
+        Why will you remove the old content?
+
+        Because it unnecessarily bloats the course, makes it look bigger than it is and forces students to go through two courses instead of one. Keeping it around therefore is only a temporary workaround.
+
+        I have another question!
+
+        If it wasn't answered in this article already, feel free to ask in the Q&A - I'll do my best to help there! :)
+
+        Resources for this lecture
+        course-update-udemy.pdf
+
+    487. Old Course Content Download
+        Attached to this lecture you find download links to the old course content (by sections).
+
+        Each ZIP file contains the videos, VTT captions and code attachments for the section.
+
+        You should ignore that old course content if you took / are taking the updated course - the new course is more detailed and simply better.
+
+        Unfortunately, Udemy messed up the attachment order (and I can't change that order), so don't get confused by that :)
+
+        Resources for this lecture
+        01 Getting Started.zip
+        02 JS Refresher.zip
+        02 Base Syntax.zip
+        05 Styling.zip
+        06 Debugging.zip
+        07 Component Deep Dive.zip
+        10 Http Project.zip
+        09 Http.zip
+        08 Project Burger Builder Start part 1.zip
+        08 Project Burger Builder Start part 2.zip
+        12 Routing Project.zip
+        14 Redux Basics.zip
+        11 Routing.zip
+        13 Forms.zip
+        15 Redux Project.zip
+        04 Lists & Conditionals.zip
+        zz Bonus Next.js.zip
+        zz Bonus Redux Saga.zip
+        zz React Hooks part 2.zip
+        zz React Hooks Burger Builder.zip
+        zz Bonus Burger Builder CSS.zip
+        20 Testing.zip
+        17 Advanced Redux Project.zip
+        zz Bonus Animations.zip
+        zz Bonus Webpack.zip
+        19 Burger Improvements.zip
+        zz React Hooks part 1.zip
+        22 Roundup.zip
+        18 Authentication.zip
+        16 Advanced Redux.zip
+        21 Deployment.zip
