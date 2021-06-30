@@ -104,6 +104,47 @@ NOTA: El curso se actualizó y algunas secciones fueron borradas, el autor re-gr
 
     44. Module Resources
 
+# Section 4: React State & Working with Events
+
+    45. Module Introduction
+
+    46. Listening to Events & Working with Event Handlers
+
+    47. How Component Functions Are Executed
+
+    48. Working with "State"
+
+    49. A Closer Look at the "useState" Hook
+
+    50. State can be updated in many ways!
+
+    51. Adding Form Inputs
+
+    52. Listening to User Input
+
+    53. Working with Multiple States
+
+    54. Using One State Instead (And What's Better)
+
+    55. Updating State That Depends On The Previous State
+
+    56. Handling Form Submission
+
+    57. Adding Two-Way Binding
+
+    58. Child-to-Parent Component Communication (Bottom-up)
+
+    59. Lifting The State Up
+
+    Assignment 2: Time to Practice: Working with Events & State
+
+    60. Controlled vs Uncontrolled
+    Components & Stateless vs Stateful Co…60. Controlled vs Uncontrolled Components & Stateless vs Stateful Components
+
+    Quiz 2: Learning Check: Working with Events & State
+
+    61. Module Resources
+
 # Section 29: Optional: React Summary & Core Feature Walkthrough
 
     446. Module Introduction

@@ -798,14 +798,67 @@
             UI -> interfaces elements
 
         Siempre igual depende de vos o el equipo en el que trabajes.
-        
+
     43. An Alternative Function Syntax
+        Muestra como cambiar de function ExpensiveDate a arrow functions ...
 
     Quiz 1: Learning Check: React Basics, Components, Props & JSX
+        TODO: lo hago a lo ultimo
 
     44. Module Resources
+        You may want to compare your code to mine (e.g. to find + fix errors).
 
-    38. Understanding & Using State
+        For that, you find multiple code snapshots for this module here in this Github repository: https://github.com/academind/react-complete-guide-code/tree/03-react-basics-working-with-components
+
+        Usage instructions can be found on the page that link is leading to.
+
+        Simply pick one of the snapshots in the /code folder - the subfolder names are chosen such that they are easy to match against lecture names in this course section.
+
+        You also find section slides (if available) in that Github repository.
+
+# Section 4: React State & Working with Events
+
+    45. Module Introduction
+
+    46. Listening to Events & Working with Event Handlers
+
+    47. How Component Functions Are Executed
+
+    48. Working with "State"
+
+    49. A Closer Look at the "useState" Hook
+
+    50. State can be updated in many ways!
+
+    51. Adding Form Inputs
+
+    52. Listening to User Input
+
+    53. Working with Multiple States
+
+    54. Using One State Instead (And What's Better)
+
+    55. Updating State That Depends On The Previous State
+
+    56. Handling Form Submission
+
+    57. Adding Two-Way Binding
+
+    58. Child-to-Parent Component Communication (Bottom-up)
+
+    59. Lifting The State Up
+
+    Assignment 2: Time to Practice: Working with Events & State
+
+    60. Controlled vs Uncontrolled
+    Components & Stateless vs Stateful Co…60. Controlled vs Uncontrolled Components & Stateless vs Stateful Components
+
+    Quiz 2: Learning Check: Working with Events & State
+
+    61. Module Resources
+    
+----------------------------------- SECCIONES VIEJAS --------------------------------------    
+38. Understanding & Using State
 
         <button>Cambiar de nombre</button>
 
