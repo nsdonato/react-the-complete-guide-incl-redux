@@ -819,285 +819,52 @@
 # Section 4: React State & Working with Events
 
     45. Module Introduction
+        ...
 
     46. Listening to Events & Working with Event Handlers
+        React expone eventos que arrancan con on
+        onClick, onChange, etc..
 
-    47. How Component Functions Are Executed
+        Explicación vieja, en la nueva lo hace sobre un boton de ExpenseItem:
+            // en JSX es con la C mayus. 
+            <button onClick=>Cambiar de nombre</button>
 
-    48. Working with "State"
+            es buena practica ponerle al final Handler, a la función que haga de handler.
 
-    49. A Closer Look at the "useState" Hook
-
-    50. State can be updated in many ways!
-
-    51. Adding Form Inputs
-
-    52. Listening to User Input
-
-    53. Working with Multiple States
-
-    54. Using One State Instead (And What's Better)
-
-    55. Updating State That Depends On The Previous State
-
-    56. Handling Form Submission
-
-    57. Adding Two-Way Binding
-
-    58. Child-to-Parent Component Communication (Bottom-up)
-
-    59. Lifting The State Up
-
-    Assignment 2: Time to Practice: Working with Events & State
-
-    60. Controlled vs Uncontrolled
-    Components & Stateless vs Stateful Co…60. Controlled vs Uncontrolled Components & Stateless vs Stateful Components
-
-    Quiz 2: Learning Check: Working with Events & State
-
-    61. Module Resources
-    
------------------------------------ SECCIONES VIEJAS --------------------------------------    
-38. Understanding & Using State
-
-        <button>Cambiar de nombre</button>
-
-        State:
-            #IMPORTANTE:
-                - SOLO SE PUEDE USAR: En las clases-componentes
-                - es una propiedad especial, donde se establecen y pasan props desde afuera como name, age etc, y que se gestionan dentro del componente.
-                    Si cambiamos algo que use esta propiedad, va a renderizar nuevamente el dom/componente.
-
-                Se inicializa como un objeto.
-                    state = {}
-                Se le pueden agregar, array objetos:
-                    state = {
-                        persons: [
-                            { name: 'Noe', age: 32 },
-                            { name: 'Gabu', age: 29 },
-                            { name: 'Nany', age: 33 },
-                        ]
-                    }
-
-                Una vez que hacemos esto, la podemos usar en nuestro metodo dinamico.
-
-                <div className="App">
-                <h1>Hola, soy una App React</h1>
-                <button>Cambiar de nombre</button>
-                <Person name={this.state.persons[0].name} age={this.state.persons[0].age}/>
-                <Person name={this.state.persons[1].name} age={this.state.persons[1].age}>My hobbies: Racing</Person>
-                <Person name={this.state.persons[2].name} age={this.state.persons[2].age}/>
-                </div>
-
-                props.children mostraría por ej en el componente Person "My hobbies: Racing"
-
-            this, hace referencia a la clase donde se esta usando
-
-    40. Handling Events with Methods
-        // en JSX es con la C mayus.
-        <button onClick=>Cambiar de nombre</button>
-
-        es buena practica ponerle al final Handler, a la función que haga de handler.
-
-        switchNameHanlder = () => {
-            console.log("click");
-        }
-
-        a la función no hay que ponerle los () para que no lo llame en ese mismo momento.
-
-        <button onClick={this.switchNameHanlder}>Cambiar de nombre</button>
-
-    41. To Which Events Can You Listen?
-
-        En la última conferencia, vimos que puedes reaccionar ante el evento onClick, pero ¿a qué otros eventos puedes escuchar? Puede encontrar una lista de eventos compatibles aquí:  https://reactjs.org/docs/events.html#supported-events
-
-        Clipboard Events
-            Event names:
-                onCopy onCut onPaste
-            Properties:
-                DOMDataTransfer clipboardData
-
-        Composition Events
-            Event names:
-                onCompositionEnd onCompositionStart onCompositionUpdate
-            Properties:
-                string data
-
-        Keyboard Events
-            Event names:
-                onKeyDown onKeyPress onKeyUp
-
-            Properties:
-                boolean altKey
-                number charCode
-                boolean ctrlKey
-                boolean getModifierState(key)
-                string key
-                number keyCode
-                string locale
-                number location
-                boolean metaKey
-                boolean repeat
-                boolean shiftKey
-                number which
-
-        Focus Events
-            Event names:
-                onFocus onBlur
-
-            These focus events work on all elements in the React DOM, not just form elements.
-
-            Properties:
-                DOMEventTarget relatedTarget
-
-        Form Events
-            Event names:
-                onChange onInput onInvalid onSubmit
-
-            For more information about the onChange event, see Forms.
-
-        Mouse Events
-            Event names:
-                onClick onContextMenu onDoubleClick onDrag onDragEnd onDragEnter onDragExit
-                onDragLeave onDragOver onDragStart onDrop onMouseDown onMouseEnter onMouseLeave
-                onMouseMove onMouseOut onMouseOver onMouseUp
-
-            The onMouseEnter and onMouseLeave events propagate from the element being left to the one being entered instead of ordinary bubbling and do not have a capture phase.
-
-            Properties:
-                boolean altKey
-                number button
-                number buttons
-                number clientX
-                number clientY
-                boolean ctrlKey
-                boolean getModifierState(key)
-                boolean metaKey
-                number pageX
-                number pageY
-                DOMEventTarget relatedTarget
-                number screenX
-                number screenY
-                boolean shiftKey
-        Selection Events
-            Event names:
-                onSelect
-
-        Touch Events
-            Event names:
-                onTouchCancel onTouchEnd onTouchMove onTouchStart
-
-            Properties:
-                boolean altKey
-                DOMTouchList changedTouches
-                boolean ctrlKey
-                boolean getModifierState(key)
-                boolean metaKey
-                boolean shiftKey
-                DOMTouchList targetTouches
-                DOMTouchList touches
-
-        UI Events
-            Event names:
-                onScroll
-            Properties:
-                number detail
-                DOMAbstractView view
-
-        Wheel Events
-            Event names:
-                onWheel
-            Properties:
-                number deltaMode
-                number deltaX
-                number deltaY
-                number deltaZ
-
-        Media Events
-            Event names:
-                onAbort onCanPlay onCanPlayThrough onDurationChange onEmptied onEncrypted
-                onEnded onError onLoadedData onLoadedMetadata onLoadStart onPause onPlay
-                onPlaying onProgress onRateChange onSeeked onSeeking onStalled onSuspend
-                onTimeUpdate onVolumeChange onWaiting
-
-        Image Events
-            Event names:
-                onLoad onError
-
-        Animation Events
-            Event names:
-                onAnimationStart onAnimationEnd onAnimationIteration
-            Properties:
-                string animationName
-                string pseudoElement
-                float elapsedTime
-
-        Transition Events
-            Event names:
-                onTransitionEnd
-            Properties:
-                string propertyName
-                string pseudoElement
-                float elapsedTime
-        Other Events
-            Event names:
-                onToggle
-
-    42. Manipulating the State
-        file:///C:/Users/Noe/Downloads/state-learning-card.pdf
-
-        switchNameHanlder = () => {
-            // No hay que mutar de esta manera (cambiar de estado), va a dar un error.
-            //this.state.persons[0].name = 'Noelia';
-            this.setState({
-                persons: [
-                    { name: 'Noeñs', age: 32 },
-                    { name: 'Gabuns', age: 29 },
-                    { name: 'Nanys', age: 33 },
-                ]
-            )
-        }
-
-        setState:
-            Esta disponible solo en clases basadas en componentes.
-
-            Este es un método que nos permite actualizar esta propiedad state, después
-            nos aseguramos de que react conozca como la actualización y react actualice el DOM.
-
-            // Toma un objeto como argumento y fusionara (sobreescribe) eso con nuestro estado actual
             switchNameHanlder = () => {
-                this.setState({
-                    persons: [
-                        { name: 'Noels', age: 32 },
-                        { name: 'Gabuns', age: 29 },
-                        { name: 'Nanys', age: 33 },
-                    ]
-                })
+                console.log("click");
             }
 
-            * Solo se pueden cambiar props y state
+            a la función no hay que ponerle los () para que no lo llame en ese mismo momento.
 
-    43. Function Components Naming
+            <button onClick={this.switchNameHanlder}>Cambiar de nombre</button>
 
-        En la próxima conferencia, aprenderemos a administrar el estado en componentes funcionales (en lugar de componentes basados en clases).
+    47. How Component Functions Are Executed
+        Tu componente es una función regular que retorna JSX, cuando el componente se utiliza en algun lugar de la pagina se llama al mismo como si fuera una función, verifica todas las funciones que hay que ejecutar hasta que termina renderizando el componente.
 
-        En caso de que esté obteniendo un error con el código que se muestra en la siguiente clase, simplemente asigne un nombre de variable en mayúscula a la variable que contiene su componente funcional.
+        React no repite todo eso, lo hace solo cuando renderiza toda la pagina por primera vez, por lo que para que reevalue algo que cambio, se utiliza el state.
 
-        Ejemplo:
-            Utilizar
-                const App = () => {...}
-                en lugar de
+    48. Working with "State"
+        Explicación nueva para functional components:
+            import React, { useState } from 'react' -> es una función (hook) que provee React que nos habilita encontrar valores como estado, que cuando cambian esos valores, debe reflejar en la functional component.
+            
+            Se coloca dentro de la función del componente:
+            Los hooks solo van dentro de la functionals components.
+            Todos arrancan con useXxxx
 
-                const app = () => {...}
+            const ExpensiveItem = (props) => {
+                
+                // const [valor, functionQueUpdateaElstado] = useState(valorInicial, puede ser obj, arrat, variable, etc..)
+                
+                const [title,setTitle] = useState(props.title) 
 
-        Técnicamente, eso no es necesario, pero dependiendo de la configuración de su proyecto, el indicador incorporado (una herramienta de verificación de la calidad del código) que viene con la aplicación crear-reaccionar puede no gustarle el nombre de la variable en minúscula.
+                const clickHandler = () => {
+                    setTitle('updated') // es manejado por react en algun lugar de la memoria, actualiza la variable title. re-renderiza el componente, ya que re-evalua todo el jsx de la función y actualiza solo lo necesario
+                }
+            }
+        
 
-        También puede evitar esto creando proyectos con la versión correcta de react-scripts, que recomendaría para este curso de todos modos (vea el video de instalación, conferencia 26)
-
-        create-react-app my-app --scripts-version 1.1.5
-
-    44. Using the useState() Hook for State Manipulation
-        base-syntax--02-state-events.zip
+        Explicación vieja:
 
         Hasta React 16.8 setState era la unica manera de manejar estados en las aplicaciones de React.
 
@@ -1134,102 +901,264 @@
 
                     3) Si estabamos usando this.state ahora debemos cambiarlo por currentState
 
-    45. Stateless vs Stateful
+            <button>Cambiar de nombre</button>
+
+            state:
+                - SOLO SE PUEDE USAR: En las clases-componentes
+                - es una propiedad especial, donde se establecen y pasan props desde afuera como name, age etc, y que se gestionan dentro del componente.
+                    Si cambiamos algo que use esta propiedad, va a renderizar nuevamente el dom/componente.
+
+                Se inicializa como un objeto.
+                    state = {}
+                Se le pueden agregar, array objetos:
+                    state = {
+                        persons: [
+                            { name: 'Noe', age: 32 },
+                            { name: 'Gia', age: 29 },
+                            { name: 'Nany', age: 33 },
+                        ]
+                    }
+
+                Una vez que hacemos esto, la podemos usar en nuestro metodo dinamico.
+
+                <div className="App">
+                <h1>Hola, soy una App React</h1>
+                <button>Cambiar de nombre</button>
+                <Person name={this.state.persons[0].name} age={this.state.persons[0].age}/>
+                <Person name={this.state.persons[1].name} age={this.state.persons[1].age}>My hobbies: Racing</Person>
+                <Person name={this.state.persons[2].name} age={this.state.persons[2].age}/>
+                </div>
+
+                props.children mostraría por ej en el componente Person "My hobbies: Racing"
+
+            this, hace referencia a la clase donde se esta usando
+
+    49. A Closer Look at the "useState" Hook
+        Cada State es unico en cuanto a su componente, por ejemplo en una lista, si aprestas un botno especifico que actualiza un texto de su row, es de esa row el cambio no de todos.
+
+        si hay 4 rows en la primera renderizada, va a haber 4 renderizados, en la segunda por ej a un click, solo uno.
+
+        Cuando se renderiza el componente, react en primera instancia guardo los estados que pudiera haberse inicializado y en los demás, solo actualiza aquel que realmente se haya actualizado.
+
+    50. State can be updated in many ways!
+        Thus far, we update our state upon user events (e.g. upon a click).
+
+        That's very common but not required for state updates! You can update states for whatever reason you may have.
+
+        Later in the course, we'll see Http requests that complete (where we then want to update the state based on the Http response we got back) but you could also be updating state because a timer (set with setTimeout()) expired for example.
+
+    51. Adding Form Inputs
+        https://github.com/academind/react-complete-guide-code/blob/04-react-state-events/extra-files/ExpenseForm.css
+        https://github.com/academind/react-complete-guide-code/blob/04-react-state-events/extra-files/NewExpense.css
+
+        genera el form y los inputs..
+
+    52. Listening to User Input
+        pone un onChange en un input, explica como setear el estado desde la función que handlea el evento.
+
+        event.target.value
+
+        Explicación vieja para class components:
+            switchNameHanlder = () => {
+                // No hay que mutar de esta manera (cambiar de estado), va a dar un error.
+                //this.state.persons[0].name = 'Noelia';
+                this.setState({
+                    persons: [
+                        { name: 'Noeñs', age: 32 },
+                        { name: 'Gabuns', age: 29 },
+                        { name: 'Nanys', age: 33 },
+                    ]
+                )
+            }
+
+            setState:
+                Esta disponible solo en clases basadas en componentes.
+
+                Este es un método que nos permite actualizar esta propiedad state, después
+                nos aseguramos de que react conozca como la actualización y react actualice el DOM.
+
+                // Toma un objeto como argumento y fusionara (sobreescribe) eso con nuestro estado actual
+                switchNameHanlder = () => {
+                    this.setState({
+                        persons: [
+                            { name: 'Noels', age: 32 },
+                            { name: 'Gabuns', age: 29 },
+                            { name: 'Nanys', age: 33 },
+                        ]
+                    })
+                }
+
+                * Solo se pueden cambiar props y state
+
+    53. Working with Multiple States
+        const [title,setTitle] = useState(props.title) 
+        const [name,setName] = useState(props.name) 
+        const [lastName,setLastName] = useState(props.lastName) 
+
+    54. Using One State Instead (And What's Better)
+        const [data,setData] = useState({
+            name: props.name,
+            lastName: props.lastName,
+            title: props.title
+        }) 
+
+        Para no perder los estados ahora que estan unificados, React mergea estos, utilizando el setState de esta manera:
+
+        spread operator sirve para copiar lo que había en el estado actual, y después pisamos solo lo que queremos actualizar
+
+        setData({...data, name: 'nuevo nombre'})
+
+    55. Updating State That Depends On The Previous State
+        Cuando actualizamos el estado como antes, es una mejor practica, hacer esto:
+
+        recibe el snaptshoot previo, 
+            setData((prevState) => {}, {
+                return {
+                    ...prevState, 
+                    title: 'nuevo titulo'
+                }
+            })
+        
+        Dice que si usas el primer approach, y estás actualizando varios estados, podes llegar a tener un estadio "desactualizado". De la otra manera, React garantiza que siempre sera el último snaptshoot y que va a estar correctamente actualizado.
+
+        Esto siempre usarlo si tu state update depende del estado previo, sino no es necesario.
+
+        De todas maneras el se va a manejar con estados separados porque prefiere ese approach.
+
+    56. Handling Form Submission
+        La mejor manera de handlear el submit no es poner el handler en el submit, sino en el onSubmit de la etiqueta form.
+
+        Como el form esta preparado par que al submitir envie información a un backend, x ej, hay que hacer si o si preventDefault para evitar esto.
+
+    57. Adding Two-Way Binding
+        Significa que va a estar bindeado de dos maneras, porque, el input en este caso, handlea el evento que cambia el estado y a la vez utiliza la propiedad actualizada en dicho estado.
+
+        Una vez que se submite, hay que limpiar los inputs, reinicializando sus estados a vacio.
+
+    58. Child-to-Parent Component Communication (Bottom-up)
+        Explica como hacer un handler de saveExpenses por ejemplo, desde un padre, a un hijo y que el hijo setee el estado del padre mediante la función, entonces por ej.
+
+        App 
+            handlerAddExpense
+                <NewExpense onAddExpense={handlerAddExpense} />
+                    dentro de NewExpense tiene la funcion para guardar y se la pasa al hijo
+                    handlerSaveExpense
+                    <ExpenseForm onSaveExpense={handlerSaveExpense} />
+                        este setea el estado y lo "levanta"
+
+        Explicación vieja para class components:
+            en el padre, al hijo embebido, le generamos un atributo donde le podemos pasar un metodo, entonces en el archivo del hijo, usando prop podemos utilizarlo.
+
+            o sea, el hijo termina usando un metodo que esta en el padre.
+
+            Si necesitamos pasar parametros hay que usar bind.
+
+            this.metodo.bind(this, param)
+
+            si en vez de usar esa manera, usamos una funcion de flecha anonima, tenemos que tener en cuenta que cuando escribimos la función en una linea:
+                onClick={() => this.metodo()}
+
+                adelante del this, si bien no lo pone, hay un RETURN.
+
+            Idealmente es mejor usar bind, porque la función anonima es ineficiente.
+
+    59. Lifting The State Up
+        "levantando el estado"
+
+        basicamente el punto anterior, pasar el estado del hijo al padre.
+
+    Assignment 2: Time to Practice: Working with Events & State
+        TODO:
+
+    60. Controlled vs Uncontrolled Components & Stateless vs Stateful Co…60. Controlled vs Uncontrolled Components & Stateless vs Stateful Components
 
         Functional (Stateless) vs class (Stateful) Components
         La mayoria de las veces vamos a usar funciones stateless, las que reciben props.
 
         La mayor parte de la app, no debería cambiar el estado de la aplicación, se supone que solo va a cambiar en ciertos componentes,
             conocidos como "contenedores" Statefull Components. ej app.js
+            
+    Quiz 2: Learning Check: Working with Events & State
+        TODO:
 
-    46. Passing Method References Between Components
-        base-syntax--02-state-events.zip
+    61. Module Resources
+        You may want to compare your code to mine (e.g. to find + fix errors).
 
-        en el padre, al hijo embebido, le generamos un atributo donde le podemos pasar un metodo, entonces en el archivo del hijo, usando prop podemos utilizarlo.
+        For that, you find multiple code snapshots for this module here in this Github repository: https://github.com/academind/react-complete-guide-code/tree/04-react-state-events
 
-        o sea, el hijo termina usando un metodo que esta en el padre.
+        Usage instructions can be found on the page that link is leading to.
 
-        Si necesitamos pasar parametros hay que usar bind.
+        Simply pick one of the snapshots in the /code folder - the subfolder names are chosen such that they are easy to match against lecture names in this course section.
 
-        this.metodo.bind(this, param)
+        You also find section slides (if available) in that Github repository.
 
-        si en vez de usar esa manera, usamos una funcion de flecha anonima, tenemos que tener en cuenta que cuando escribimos la función en una linea:
-            onClick={() => this.metodo()}
+# Section 5: Rendering Lists & Conditional Content
 
-            adelante del this, si bien no lo pone, hay un RETURN.
+    62. Module Introduction
+        ...
 
-        Idealmente es mejor usar bind, porque la función anonima es ineficiente.
+    63. Rendering Lists of Data
 
-    47. Adding Two Way Binding
+        Explicación vieja, aplica acá igual...
+                .map mapea elementos en un array dado (en este caso "elArray"), ejecuta un metodo en cada elemento del array
+            el metodo/funcion, es pasado a mapa dentor de los ().
+            - .map retorna un nuevo array, react lo que intenta hacer al retornarlo es renderizarlo otra vez en el DOM (si es un JSX valido)
 
-        En el padre, generamos el metodo que va a cambiar el estado, por parametro le pasamos un event.
+        esa función que se le pasa a map, se ejecuta en cada elemento del array.
+        map tiene un segundo parametro que es el index del elemento.
 
-        dentro del elemento hijo, agregamos un parametro onChange, para pasarle a ese componente ese metodo, y usamos props.change (que es el atributo donde pusimos el metodo.)
+        {this.state.elArray.map(elementoDelArray => {
+            // Lo que quiero mapear dentro de cada elemento.
+            return <Person name="person.name" age="person.age" />;                                    
+        })}
 
-        IMPORTANTE: Si usamos un input siempre le tenemos que poner un onChange o readonly
+    64. Using Stateful Lists
 
-    48. Adding Styling with Stylesheets
 
-        hay que poner un archivo .css en la misma carpeta que el componente e importarlo en el componente.js
+        Explicación vieja:
 
-    49. Working with Inline Styles
-
-        Para usar inline styles, se usa javascript en camelCase, ej lo que en css es background-color, aca es backgroundColor o marginLeft, etc.. en el JSX se usa
-
-        Dentro de render ()
-        const style = {
-            backgroundColor: color,
+        deletePersonHandler = (personIndex) => {
+            const persons = this.state.persons; // Me guardo el array de personas.
+            persons.splice(personIndex, 1); // Splice, sirve para eliminar elementos del array, acá le decimos que elimine 1 solo, y un index en particular.
+            this.setState({persons: persons})
         }
 
-        <a style={style}></a>
+        {this.state.elArray.map( ( elementoDelArray, index ) => {
+            return <Person click={this.deletePersonHandler} name="person.name" age="person.age" />;
+        })}
 
-        Tarea 1: Time to Practice - The Base Syntax
+    65. Understanding "Keys"
+        React actualiza todos los elementos y los reordena cuando no tiene una key, porque no sabe bien que actualizar, hasta podría perderse información, se soluciona agregandole una key a lo elementos jsx.
+        en key o usamos un id especifico o usamos el index del array que estamos recorriendo
 
-    50. [OPTIONAL] Assignment Solution
+        Explicación vieja:
+         React exige escribir el elemento key, ya que esto le deja comparar el dom virtual con el dom real, y de esta manera identifica que elemento cambió y debe actualizar y no así toda la lista.
+            se tiene que poner el id de los elementos.
 
-        base-syntax--01-props-custom-cmp.zip
-        base-syntax--02-state-events.zip
-        base-syntax--03-finished.zip
-        base-syntax--assignment-solution.zip
-
-        Solución de la tarea.
-
-    51. Useful Resources & Links
-
-        create-react-app: https://github.com/facebookincubator/create-react-app
-        Introducing JSX: https://reactjs.org/docs/introducing-jsx.html
-        Rendering Elements: https://reactjs.org/docs/rendering-elements.html
-        Components & Props: https://reactjs.org/docs/components-and-props.html
-        Listenable Events: https://reactjs.org/docs/events.html
-        Recursos de esta clase
-        base-syntax--01-props-custom-cmp.zip
-        base-syntax--02-state-events.zip
-        base-syntax--03-finished.zip
-        base-syntax--assignment-solution.zip
-
-### Sección 4: Working with Lists and Conditionals
-
-    52. Module Introduction
-    53. Rendering Content Conditionally
-
-        envolver un elemento con { para poder escribir javascript }
+            {this.state.elArray.map( ( elementoDelArray, index ) => {
+                return <Person click={this.deletePersonHandler} name="person.name" age="person.age" key="person.id" />;
+            })}
+            
+    66. Outputting Conditional Content
+    
         por ejemplo para mostrar o dejar de mostrar un div.
-
-        IMPORTANTE: Hay que usar el operador ternario
-
+        - Hay que usar el operador ternario -
         Dentro de JSX no se puede poner el if comun.
 
         ej:
-        { this.showParrafo === true ?
+        {this.showParrafo === true ?
             <p>hola</p>
         :
         null
         }
 
+        o 
+
+        {this.showParrafo === true && <p>hola</p>}
+
         significa que o muestro o el parrafo o no muestro (renderizo nada)
 
-    54. Handling Dynamic Content "The JavaScript Way"
-
+        Explicación vieja que suma:
         Dentro de render, antes de retornar algo, podemos poner variables javascript, ya que ahí podemos usar js normalmente.
 
         ej:
@@ -1249,136 +1178,76 @@
             )
         }
 
-    55. Outputting Lists (Intro)
+    67. Adding Conditional Return Statements
+        retorna el componente antes de procesarlo todo al pedo, o sea, valida antes si tiene elementos el array por ej, y sino retorna un mensaje.
 
-        Explica que las listas asi hardcodeadas como estan se romperían si se elimina un elemento. Y que se soluciona con lo que se va a seguir en el curso (re al pedo este modulo.)
+    Assignment 4: Time to Practice: Conditional Content
+        TODO:
 
-    56. Outputting Lists
+    68. Demo App: Adding a Chart
+        https://github.com/academind/react-complete-guide-code/blob/05-rendering-lists-conditional-content/extra-files/ChartBar.css
+        https://github.com/academind/react-complete-guide-code/blob/05-rendering-lists-conditional-content/extra-files/Chart.css
+        
+    69. Adding Dynamic Styles
 
+        Explicación vieja, acá habla de lo mismo.
 
-        .map mapea elementos en un array dado (en este caso "elArray"), ejecuta un metodo en cada elemento del array
-            el metodo/funcion, es pasado a mapa dentor de los ().
-            - .map retorna un nuevo array, react lo que intenta hacer al retornarlo es renderizarlo otra vez en el DOM (si es un JSX valido)
+        Para usar inline styles, se usa javascript en camelCase, ej lo que en css es background-color, aca es backgroundColor o marginLeft, etc.. en el JSX se usa
 
-        esa función que se le pasa a map, se ejecuta en cada elemento del array.
-        map tiene un segundo parametro que es el index del elemento.
-
-        {this.state.elArray.map(elementoDelArray => {
-            return <Person name="person.name" age="person.age" />;                                    // Lo que quiero mapear dentro de cada elemento.
-        })}
-
-        * El elemento key en este ejemplo falta, esta en el 58 y se tiene que poner para que funcione todo correctamente, explicación ahí.
-
-    57. Lists & State
-        deletePersonHandler = (personIndex) => {
-
-            const persons = this.state.persons; // Me guardo el array de personas.
-            persons.splice(personIndex, 1); // Splice, sirve para eliminar elementos del array, acá le decimos que elimine 1 solo, y un index en particular.
-            this.setState({persons: persons})
-
+        Dentro de render ()
+        const style = {
+            backgroundColor: color,
         }
 
-        {this.state.elArray.map( ( elementoDelArray, index ) => {
-            return <Person click={this.deletePersonHandler} name="person.name" age="person.age" />;
-        })}
+        <a style={style}></a>
 
-        Supuestamente esto tiene una falla, en el proximo  modulo se va a demostrar esto.
+    70. Wrap Up & Next Steps
+        ...
 
-    58. Updating State Immutably
+    71. Fixing a Small Bug
+        The demo application has a small bug at the moment: When adding multiple values, those values are added as strings instead of numbers.
 
-        Lo que se hizo antes es una mala practica. Ya que esta apuntando al state original, y si ese se modifica, también explotaría acá.
-        Lo que hay que hacer primero es una copia del array, utilizando slice.
+        Fixing it is easy though, simply make sure you enforce a number conversion:
 
-        slice() sin argumentos copia el array completo y retorna uno nuevo en la variable, entonces ahora si no habría ningún problema.
+        In ExpenseForm.js, just change
 
-            const persons = this.state.persons.slice();
+        const expenseData = {
+        title: enteredTitle,
+        amount: enteredAmount,
+        date: new Date(enteredDate),
+        };
+        to
 
-        Hay una alternativa (equivalente) a esto, que es usar el operador spread: ... / Si son tres puntos.
-        Spread: ... despliega los elementos del array en una lista de elementos, que se agrega a esa matriz, de modo que ahora tenemos una matriz,
-            nueva matriz con los objetos viejos de la matriz vieja, pero no la matriz vieja en si misma.
+        const expenseData = {
+        title: enteredTitle,
+        amount: +enteredAmount,
+        date: new Date(enteredDate),
+        };
+        in the submitHandler function.
 
-            const persons = [...this.state.persons]
+    Quiz 3: Learning Check: Outputting Lists & Conditional Content
+        TODO: 
 
-        Por ende:
-            1) Crear una copia
-            2) Actualizar esa
-            3) updatear el state
+    72. Module Resources
+        You may want to compare your code to mine (e.g. to find + fix errors).
 
-    59. Lists & Keys
+        For that, you find multiple code snapshots for this module here in this Github repository: https://github.com/academind/react-complete-guide-code/tree/05-rendering-lists-conditional-content
 
-        React exige escribir el elemento key, ya que esto le deja comparar el dom virtual con el dom real, y de esta manera identifica
-            que elemento cambió y debe actualizar y no así toda la lista.
-            se tiene que poner el id de los elementos.
+        Usage instructions can be found on the page that link is leading to.
 
-            {this.state.elArray.map( ( elementoDelArray, index ) => {
-                return <Person click={this.deletePersonHandler} name="person.name" age="person.age" key="person.id" />;
-            })}
+        Simply pick one of the snapshots in the /code folder - the subfolder names are chosen such that they are easy to match against lecture names in this course section.
 
-    60. Flexible Lists
+        You also find section slides (if available) in that Github repository.
 
-        1) Le agrega id al array de persons, apenas lo setea
-        2) modifica el elemento Person para que tenga el evento change, pasandole el evento y el id:
-
-            {this.state.elArray.map( ( elementoDelArray, index ) => {
-                return <Person
-                            click={this.deletePersonHandler}
-                            name="person.name"
-                            age="person.age"
-                            key="person.id"
-                            change="{(event) => { this.nameChangeHandler(event, person.id)}} // A la función anonima hay que pasarle el param event, para que después se lo pueda pasar a la función nameChangeHandler
-
-                            />;
-            })}
-
-        3) Actualiza la función nameChangeHandler, para que seactualice el elemento especifico.
-
-            nameChangeHandler = (event, id) => {
-
-                // Obtenemos el index del elemento en la matriz, findIndex retorna true o false si no lo encontró.
-                const personIndex = this.state.persons.findIndex(p => {
-                    return p.id === id;
-                });
-
-                // Creamos un nuevo objeto para poder quedarnos con el que queremos una vez que lo encontramos.
-                const person = {
-                    ...this.state.persons[personIndex]
-                }
-
-                // Otra manera de hacerlo sería:
-                // Pasamos un objeto vacio, y como 2do param, el objeto que queremos asignarle.
-                // const person = Object.assign({}, this.state.persons[person]);
-
-                // Ya conseguí la copia (no el objeto original)
-                person.name = event.target.name;
-
-                // Pongo los elementos viejos del state en uno nuevo, y actualizo el array con la nueva persona a la que actualizamos el nombre anteriormente.
-                const persons = [...this.state.persons];
-                persons[personIndex] = person;
-
-                // Finalmente actualizamos el estado con el nuevo array actualizado.
-                this.setState({ persons: persons)}
-
-
-            // findIndex como map, recorre cada elemento y busca el index que le pasamos.
-
-    61. Wrap Up
-        Tarea 2: Time to Practice - Lists & Conditionals
-
-    62. [OPTIONAL] Assignment Solution
-    63. Useful Resources & Links
-
-        Conditional Rendering: https://reactjs.org/docs/conditional-rendering.html
-        Lists & Keys: https://reactjs.org/docs/lists-and-keys.html
-
-        Recursos de esta clase
-            lists-conditionals--01-conditional-content.zip
-            lists-conditionals--lists-finished.zip
-            lists-conditionals--assignment-solution.zip
-
-### Sección 5: Styling React - Components & Elements
+# Sección 6: Styling React Components
+    Cualquier cosa reveer porque apenas chequee xq deje las explicaciones viejas
 
     73. Module Introduction
+        ...
+
     74. Setting Dynamic Inline Styles
+
+        Explicación vieja, igual aplica acá:
 
         render () {
             // Agrega esto
@@ -1469,167 +1338,70 @@
 
         Todo esto es javascript, no react, por eso usando los backteacks, se puede usar interpolación de cadenas y a su vez el package hace la magia de poder usar props.
 
-    68. Adding and Using Radium
+    78. Styled Components & Media Queries (antes este y el prox hablaban de radium)
+        TOOD: 
 
-        // Sirve para poder usar, inline styles, pseudo selectores y media queries:
-            Para extender el alcance de un componente o cambiarlo dinamicamente.
+    79. Using CSS Modules
+        TOOD: 
+        
+    80. Dynamic Styles with CSS Modules
+        TODO: 
 
-        1) > npm install --save Radium
-        2) import Radium from 'radium';
-        3) export default Radium(App); // Higher order component, se puede usar en todo tipo de componentes.
+    81. Module Resources
+        You may want to compare your code to mine (e.g. to find + fix errors).
 
-        const style = {
-        backgroundColor: 'green',
-        color: 'white',
-        font: 'inherit',
-        border: '1px solid blue',
-        padding: '8px',
-        cursor: 'pointer',
-        ':hover': {
-            backgroundColor: 'yellow',
-            color: 'black'
-        }
-        };
+        For that, you find multiple code snapshots for this module here in this Github repository: https://github.com/academind/react-complete-guide-code/tree/06-styling
 
-        style.backgroundColor = 'red';
-        style[':hover'] = {
-            backgroundColor: 'brown',
-            color: 'black'
-        };
+        Usage instructions can be found on the page that link is leading to.
 
-        IMPORTANTE: Todo esto es porque si bien podemos poner el codigo en el css, no va a aplicar solo al componente que queremos sino a todos los componentes.
+        Simply pick one of the snapshots in the /code folder - the subfolder names are chosen such that they are easy to match against lecture names in this course section.
 
-    69. Using Radium for Media Queries
+        You also find section slides (if available) in that Github repository.
 
-        // Actualemente no es necesario importar ni usar usar: </StyleRoot>
-            no hay errores.
-        Person.js
-            const style = {
-                '@media (min-width: 580px': {
+# Section 7: Debugging React Apps
 
-                }
-            };
+    82. Module Introduction
+        ... 
 
+    83. Understanding React Error Messages
+
+    84. Analyzing Code Flow & Warnings
+
+    85. Working with Breakpoints
+
+    86. Using the React DevTools
+
+    87. Module Resources
+        You may want to compare your code to mine (e.g. to find + fix errors).
+
+        For that, you find multiple code snapshots for this module here in this Github repository: https://github.com/academind/react-complete-guide-code/tree/07-debugging
+
+        Usage instructions can be found on the page that link is leading to.
+
+        Simply pick one of the snapshots in the /code folder - the subfolder names are chosen such that they are easy to match against lecture names in this course section.
+
+        You also find section slides (if available) in that Github repository.
+
+----------------------------------- SECCIONES VIEJAS --------------------------------------    
+
+# Sección 6, cosas que quedaron por revisar:
     71. More on Styled Components
-        Como funcionan realmente?
+            Como funcionan realmente?
 
-        Si nos fijamos en el html, los nombres de las clases que se generaron son fruta, estos nombres los genera el framework.
+            Si nos fijamos en el html, los nombres de las clases que se generaron son fruta, estos nombres los genera el framework.
 
-        El package agarra todo el css y lo pone como selectores de clase y los agrega al encabezado documento, y después agrega el css al div que es retornado por ese compoenente.
+            El package agarra todo el css y lo pone como selectores de clase y los agrega al encabezado documento, y después agrega el css al div que es retornado por ese compoenente.
 
-    73. Working with CSS Modules
-        npm run eject
-        // Esto ya se hace varias veces en el curso, buscarlo en el archivo.
+        73. Working with CSS Modules
+            npm run eject
+            // Esto ya se hace varias veces en el curso, buscarlo en el archivo.
 
-        En el caso de que estemos manejando todo el css dentro de un solo arhivo, podríamos indicar adelante de los selectores, el css principal por ejemplo el de App.
+            En el caso de que estemos manejando todo el css dentro de un solo arhivo, podríamos indicar adelante de los selectores, el css principal por ejemplo el de App.
 
-    74. CSS Modules & Media Queries
-         Con CSS Modules, tenemos la info separada, js por un lado css por otro, y aparte de importar el css solo en el js que lo necesitamos. Recomendable este en la misma carpeta del componente junto al js.
+        74. CSS Modules & Media Queries
+            Con CSS Modules, tenemos la info separada, js por un lado css por otro, y aparte de importar el css solo en el js que lo necesitamos. Recomendable este en la misma carpeta del componente junto al js.
 
-    75. More on CSS Modules
-        CSS Modules are a relatively new concept (you can dive super-deep into them here: https://github.com/css-modules/css-modules). With CSS modules, you can write normal CSS code and make sure, that it only applies to a given component.
-
-        It's not using magic for that, instead it'll simply automatically generate unique CSS class names for you. And by importing a JS object and assigning classes from there, you use these dynamically generated, unique names. So the imported JS object simply exposes some properties which hold the generated CSS class names as values.
-
-        Example:
-
-        In Post.css File
-
-        .Post {
-            color: red;
-        }
-        In Post Component File
-
-        import classes from './Post.css';
-
-        const post = () => (
-            <div className={classes.Post}>...</div>
-        );
-        Here, classes.Post  refers to an automatically generated Post  property on the imported classes  object. That property will in the end simply hold a value like Post__Post__ah5_1 .
-
-        So your .Post  class was automatically transformed to a different class (Post__Post__ah5_1 ) which is unique across the application. You also can't use it accidentally in other components because you don't know the generated string! You can only access it through the classes  object. And if you import the CSS file (in the same way) in another component, the classes  object there will hold a Post  property which yields a different (!) CSS class name. Hence it's scoped to a given component.
-
-        By the way, if you somehow also want to define a global (i.e. un-transformed) CSS class in such a .css  file, you can prefix the selector with :global .
-
-        Example:
-
-        :global .Post { ... }
-
-        Now you can use className="Post"  anywhere in your app and receive that styling.
-
-    76. Useful Resources & Links
-        Using CSS Modules in create-react-app Projects: https://medium.com/nulogy/how-to-use-css-modules-with-create-react-app-9e44bec2b5c2
-        More information about CSS Modules: https://github.com/css-modules/css-modules
-        Recursos de esta clase
-        styling--01-radium.zip
-        styling--02-styled-components.zip
-        styling--03-finished.zip
-
-    Desde acá hasta el 75, cambio todo, esto es viejo:
-        70. MUST READ: Enabling CSS Modules
-
-            // Para habilitar CSS Modules:
-            1) commitear los cambios que puedas tener
-            2) npm run eject
-            3) Vamos a ver nuevas carpetas:
-                /config -->
-                /scripts --> Tiene un script por cada comando en scripts a ejecutar
-
-            4) Modificar el archivo en config/webpack.config.js
-
-            test: cssRegex,
-                    exclude: cssModuleRegex,
-                    use: getStyleLoaders({
-                        importLoaders: 1,
-                        modules: true,
-                        localIdentName: '[name]__[local]__[hash:base64:5]',
-                        sourceMap: isEnvProduction && shouldUseSourceMap,
-                    }),
-
-                debería modificarse también en el de prod, pero no lo tengo.. igual que otros archivos que el tiene y yo no.
-            5) Modificamos el import del css: import clases from './App.css'
-                las clases que tenemos en el archivo pasan a ser propiedades :O
-            6) Cambiamos
-                <div className="App">
-                por:
-                <div className={clases.App}>
-
-                Transforma la info que esta en la clase en unica.
-            7) Si revisamos el html vemos que tiene un nombre de clase super extraño :D
-
-        71. Enabling & Using CSS Modules
-
-            // Para habilitar CSS Modules:
-            1) commitear los cambios que puedas tener
-            2) npm run eject
-            3) Vamos a ver nuevas carpetas:
-                /config -->
-                /scripts --> Tiene un script por cada comando en scripts a ejecutar
-
-            4) Modificar el archivo en config/webpack.config.js
-
-            test: cssRegex,
-                    exclude: cssModuleRegex,
-                    use: getStyleLoaders({
-                        importLoaders: 1,
-                        modules: true,
-                        localIdentName: '[name]__[local]__[hash:base64:5]',
-                        sourceMap: isEnvProduction && shouldUseSourceMap,
-                    }),
-
-                debería modificarse también en el de prod, pero no lo tengo.. igual que otros archivos que el tiene y yo no.
-            5) Modificamos el import del css: import clases from './App.css'
-                las clases que tenemos en el archivo pasan a ser propiedades :O
-            6) Cambiamos
-                <div className="App">
-                por:
-                <div className={clases.App}>
-
-                Transforma la info que esta en la clase en unica.
-            7) Si revisamos el html vemos que tiene un nombre de clase super extraño :D
-
-        72. More on CSS Modules
-
+        75. More on CSS Modules
             CSS Modules are a relatively new concept (you can dive super-deep into them here: https://github.com/css-modules/css-modules). With CSS modules, you can write normal CSS code and make sure, that it only applies to a given component.
 
             It's not using magic for that, instead it'll simply automatically generate unique CSS class names for you. And by importing a JS object and assigning classes from there, you use these dynamically generated, unique names. So the imported JS object simply exposes some properties which hold the generated CSS class names as values.
@@ -1660,45 +1432,148 @@
 
             Now you can use className="Post"  anywhere in your app and receive that styling.
 
-        73. Adding Pseudo Selectors
-
-            Elimina todo el css que andaba por los archivos. Lo voy a eliminar cualquier cosa ver commit "elime css por curso 72"
-
-            .App button {
-                border: 1px solid blue;
-                padding: 16px;
-                background-color : green;
-                font: inherit;
-            }
-
-            Sigue funcionando todo porque:
-            <div className={classes.App}>
-                <button
-            </div
-
-
-            btnClass = classes.Red;
-            <button
-                className={btnClass}
-
-        74. Working with Media Queries
-
-            Person.css
-            @media (min-width: 500px) {
-                .Person {
-                    width: 450px;
-                }
-            }
-
-            no se que pasa que no funciona.
-
-        75. Useful Resources & Links
-
+        76. Useful Resources & Links
             Using CSS Modules in create-react-app Projects: https://medium.com/nulogy/how-to-use-css-modules-with-create-react-app-9e44bec2b5c2
             More information about CSS Modules: https://github.com/css-modules/css-modules
             Recursos de esta clase
             styling--01-radium.zip
-            styling--02-css-modules-finished.zip
+            styling--02-styled-components.zip
+            styling--03-finished.zip
+
+        Desde acá hasta el 75, cambio todo, esto es viejo:
+            70. MUST READ: Enabling CSS Modules
+
+                // Para habilitar CSS Modules:
+                1) commitear los cambios que puedas tener
+                2) npm run eject
+                3) Vamos a ver nuevas carpetas:
+                    /config -->
+                    /scripts --> Tiene un script por cada comando en scripts a ejecutar
+
+                4) Modificar el archivo en config/webpack.config.js
+
+                test: cssRegex,
+                        exclude: cssModuleRegex,
+                        use: getStyleLoaders({
+                            importLoaders: 1,
+                            modules: true,
+                            localIdentName: '[name]__[local]__[hash:base64:5]',
+                            sourceMap: isEnvProduction && shouldUseSourceMap,
+                        }),
+
+                    debería modificarse también en el de prod, pero no lo tengo.. igual que otros archivos que el tiene y yo no.
+                5) Modificamos el import del css: import clases from './App.css'
+                    las clases que tenemos en el archivo pasan a ser propiedades :O
+                6) Cambiamos
+                    <div className="App">
+                    por:
+                    <div className={clases.App}>
+
+                    Transforma la info que esta en la clase en unica.
+                7) Si revisamos el html vemos que tiene un nombre de clase super extraño :D
+
+            71. Enabling & Using CSS Modules
+
+                // Para habilitar CSS Modules:
+                1) commitear los cambios que puedas tener
+                2) npm run eject
+                3) Vamos a ver nuevas carpetas:
+                    /config -->
+                    /scripts --> Tiene un script por cada comando en scripts a ejecutar
+
+                4) Modificar el archivo en config/webpack.config.js
+
+                test: cssRegex,
+                        exclude: cssModuleRegex,
+                        use: getStyleLoaders({
+                            importLoaders: 1,
+                            modules: true,
+                            localIdentName: '[name]__[local]__[hash:base64:5]',
+                            sourceMap: isEnvProduction && shouldUseSourceMap,
+                        }),
+
+                    debería modificarse también en el de prod, pero no lo tengo.. igual que otros archivos que el tiene y yo no.
+                5) Modificamos el import del css: import clases from './App.css'
+                    las clases que tenemos en el archivo pasan a ser propiedades :O
+                6) Cambiamos
+                    <div className="App">
+                    por:
+                    <div className={clases.App}>
+
+                    Transforma la info que esta en la clase en unica.
+                7) Si revisamos el html vemos que tiene un nombre de clase super extraño :D
+
+            72. More on CSS Modules
+
+                CSS Modules are a relatively new concept (you can dive super-deep into them here: https://github.com/css-modules/css-modules). With CSS modules, you can write normal CSS code and make sure, that it only applies to a given component.
+
+                It's not using magic for that, instead it'll simply automatically generate unique CSS class names for you. And by importing a JS object and assigning classes from there, you use these dynamically generated, unique names. So the imported JS object simply exposes some properties which hold the generated CSS class names as values.
+
+                Example:
+
+                In Post.css File
+
+                .Post {
+                    color: red;
+                }
+                In Post Component File
+
+                import classes from './Post.css';
+
+                const post = () => (
+                    <div className={classes.Post}>...</div>
+                );
+                Here, classes.Post  refers to an automatically generated Post  property on the imported classes  object. That property will in the end simply hold a value like Post__Post__ah5_1 .
+
+                So your .Post  class was automatically transformed to a different class (Post__Post__ah5_1 ) which is unique across the application. You also can't use it accidentally in other components because you don't know the generated string! You can only access it through the classes  object. And if you import the CSS file (in the same way) in another component, the classes  object there will hold a Post  property which yields a different (!) CSS class name. Hence it's scoped to a given component.
+
+                By the way, if you somehow also want to define a global (i.e. un-transformed) CSS class in such a .css  file, you can prefix the selector with :global .
+
+                Example:
+
+                :global .Post { ... }
+
+                Now you can use className="Post"  anywhere in your app and receive that styling.
+
+            73. Adding Pseudo Selectors
+
+                Elimina todo el css que andaba por los archivos. Lo voy a eliminar cualquier cosa ver commit "elime css por curso 72"
+
+                .App button {
+                    border: 1px solid blue;
+                    padding: 16px;
+                    background-color : green;
+                    font: inherit;
+                }
+
+                Sigue funcionando todo porque:
+                <div className={classes.App}>
+                    <button
+                </div
+
+
+                btnClass = classes.Red;
+                <button
+                    className={btnClass}
+
+            74. Working with Media Queries
+
+                Person.css
+                @media (min-width: 500px) {
+                    .Person {
+                        width: 450px;
+                    }
+                }
+
+                no se que pasa que no funciona.
+
+            75. Useful Resources & Links
+
+                Using CSS Modules in create-react-app Projects: https://medium.com/nulogy/how-to-use-css-modules-with-create-react-app-9e44bec2b5c2
+                More information about CSS Modules: https://github.com/css-modules/css-modules
+                Recursos de esta clase
+                styling--01-radium.zip
+                styling--02-css-modules-finished.zip
 
 ### Sección 6: Debugging React Apps
 

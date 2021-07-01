@@ -145,6 +145,36 @@ NOTA: El curso se actualizó y algunas secciones fueron borradas, el autor re-gr
 
     61. Module Resources
 
+# Section 5: Rendering Lists & Conditional Content
+
+    62. Module Introduction
+
+    63. Rendering Lists of Data
+
+    64. Using Stateful Lists
+
+    65. Understanding "Keys"
+
+    66. Outputting Conditional Content
+
+    67. Adding Conditional Return Statements
+
+    Assignment 4: Time to Practice: Conditional Content
+
+    68. Demo App: Adding a Chart
+
+    69. Adding Dynamic Styles
+
+    70. Wrap Up & Next Steps
+
+    71. Fixing a Small Bug
+
+    Quiz 3: Learning Check: Outputting Lists & Conditional Content
+
+    72. Module Resources
+
+Assignment 3: Time to Practice: Working with Lists
+
 # Section 29: Optional: React Summary & Core Feature Walkthrough
 
     446. Module Introduction
