@@ -173,7 +173,65 @@ NOTA: El curso se actualizó y algunas secciones fueron borradas, el autor re-gr
 
     72. Module Resources
 
-Assignment 3: Time to Practice: Working with Lists
+    Assignment 3: Time to Practice: Working with Lists
+
+# Section 6: Styling React Components
+
+    73. Module Introduction
+
+    74. Setting Dynamic Inline Styles
+
+    75. Setting CSS Classes Dynamically
+
+    76. Introducing Styled Components
+
+    77. Styled Components & Dynamic Props
+
+    78. Styled Components & Media Queries
+
+    79. Using CSS Modules
+
+    80. Dynamic Styles with CSS Modules
+
+    81. Module Resources
+
+# Section 7: Debugging React Apps
+
+    82. Module Introduction
+
+    83. Understanding React Error Messages
+
+    84. Analyzing Code Flow & Warnings
+
+    85. Working with Breakpoints
+
+    86. Using the React DevTools
+
+    87. Module Resources
+
+# Section 8: Time to Practice: A Complete Practice Project
+
+    88. Module Introduction
+
+    89. Adding a "User" Component
+
+    90. Adding a re-usable "Card" Component
+
+    91. Adding a re-usable "Button" Component
+
+    92. Managing the User Input State
+
+    93. Adding Validation & Resetting Logic
+
+    94. Adding a Users List Component
+
+    95. Managing a List Of Users via State
+
+    96. Adding The "ErrorModal" Component
+
+    97. Managing the Error State
+
+    98. Module Resources
 
 # Section 29: Optional: React Summary & Core Feature Walkthrough
 

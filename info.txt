@@ -1364,12 +1364,20 @@
         ... 
 
     83. Understanding React Error Messages
+        Como ver en la consola el error y en que linea esta.
 
     84. Analyzing Code Flow & Warnings
+        Muestra como seguir un error a partir de la consola de desarrollador.
 
     85. Working with Breakpoints
+        Muestra como buscar en la solapa sources los componentes y poner Breakpoints desde la consola...
 
     86. Using the React DevTools
+        Instala la extensión de chrome, muestra la solapa Components en la consola de Chrome.
+
+        Del lado derecho abajo de todo, en negrita dice "rendering by", muestra el componente seleccionado y quien lo renderizo, tener en cuenta eso.
+        
+        se puede buscar componentes, se puede cambiar el tema a dark, desde el icono de configuración.
 
     87. Module Resources
         You may want to compare your code to mine (e.g. to find + fix errors).
@@ -1381,6 +1389,73 @@
         Simply pick one of the snapshots in the /code folder - the subfolder names are chosen such that they are easy to match against lecture names in this course section.
 
         You also find section slides (if available) in that Github repository.
+
+# Section 8: Time to Practice: A Complete Practice Project - TODO:
+
+    88. Module Introduction
+        ...
+
+    89. Adding a "User" Component
+
+    90. Adding a re-usable "Card" Component
+
+    91. Adding a re-usable "Button" Component
+
+    92. Managing the User Input State
+
+    93. Adding Validation & Resetting Logic
+
+    94. Adding a Users List Component
+
+    95. Managing a List Of Users via State
+
+    96. Adding The "ErrorModal" Component
+
+    97. Managing the Error State
+
+    98. Module Resources
+        You may want to compare your code to mine (e.g. to find + fix errors).
+
+        For that, you find multiple code snapshots for this module here in this Github repository: https://github.com/academind/react-complete-guide-code/tree/08-practice-project
+
+        Usage instructions can be found on the page that link is leading to.
+
+        Simply pick one of the snapshots in the /code folder - the subfolder names are chosen such that they are easy to match against lecture names in this course section.
+
+        You also find section slides (if available) in that Github repository.
+
+# Section 9: Diving Deeper: Working with Fragments, Portals & "Refs"
+
+    99. Module Introduction
+        ...
+
+    100. JSX Limitations & Workarounds
+        Que no se puede retornar mas de un elemento, ni tener mas de un root.
+
+        Soluciones: wrappear los elementos a la misma altura con un div, un fragment, o cualquier otro elemento sirve. También podemos wrappear los elmentos en un array y separar los componentes por comas, también hay que agregarles key, para que react pueda identificar bien los componentes.
+
+        El problema es que si abusas de los divs, el tree termina lleno de divs que no tienen sentido.
+
+    101. Creating a Wrapper Component
+        Para solucionar el problema anterior crea un componente Wrapper, dentro de una carpeta Helper. Y el componente retorna props.children. Ahora si se revisa el dom, no hay components divs demas al pedo.
+
+    102. React Fragments
+        Tambiénn podemos reemplazar el de App con <> o Fragment
+
+    103. Introducing React Portals
+        Comenta que tener un modal en una sección o algo así, considerando que ocupa toda la app no es buena practica. O sea, el problema es que este nesteado con otros elementos cuando no debería ser así.
+
+        Es malo para la accesibilidad, es como hacer un boton con un div :|
+
+        Para esto hay que usar React Portal, para mantener la estructura, pero que al reflejarlo en el DOM real, este por fuera de todo.
+
+    104. Working with Portals
+
+    105. Working with "ref"s
+
+    106. Controlled vs Uncontrolled Components
+
+    107. Module Resources
 
 ----------------------------------- SECCIONES VIEJAS --------------------------------------    
 
@@ -1574,62 +1649,6 @@
                 Recursos de esta clase
                 styling--01-radium.zip
                 styling--02-css-modules-finished.zip
-
-### Sección 6: Debugging React Apps
-
-    77. Module Introduction
-    78. Understanding Error Messages
-
-        Como ver en la consola el error y en que linea esta.
-
-    79. Finding Logical Errors by using DevTools & Sourcemaps
-
-        Enseña como poner un debug en la consola de chrome.
-
-    80. Working with the React Developer Tools
-
-        Instala la extensión de chrome, muestra la solapa React en la consola de Chrome.
-
-    81. Using Error Boundaries (React 16+)
-
-        throw new Error("hubo un error");
-
-        IMPORTANTE: key, siempre tiene que estar en el elemento "padre";
-
-        Crea un componente ErrorBoundary
-
-        import React, { Component } from 'react;
-        class ErrorBoundary extends Component{
-            state = {
-                hasError: false,
-                errorMessage:
-            }
-
-            componentDidCatch = (error, info ) => {
-                this.setState({hasError: true, errorMessage: error});
-            }
-
-            render () {
-                if(this.state.hasError){
-                    return <h1>{this.state.errorMessage}</h1>;
-                }else{
-                    return.this.props.children;
-                }
-            }
-        }
-
-        export default ErrorBoundary;
-
-        IMPORTANTE: hay que usar este componente para envolver algo que tenga realmente sentido.
-                    en development el error es sobreescrito por lo que informa React, no así en prod.
-
-    82. Wrap Up
-    83. Useful Resources & Links
-
-        Error Boundaries: https://reactjs.org/docs/error-boundaries.html
-        Chrome Devtool Debugging: https://developers.google.com/web/tools/chrome-devtools/javascript/
-        Recursos de esta clase
-        debugging--01-finished.zip
 
 ### Sección 7: Diving Deeper into Components & React Internals
 
