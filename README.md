@@ -299,6 +299,148 @@ NOTA: El curso se actualizó y algunas secciones fueron borradas, el autor re-gr
 
     129. Module Resources
 
+# Section 11: Practice Project: Building a Food Order App
+
+    130. Module Introduction
+
+    131. Starting Setup
+
+    132. Adding a "Header" Component
+
+    133. Adding the "Cart" Button Component
+
+    134. Adding a "Meals" Component
+
+    135. Adding Individual Meal Items & Displaying Them
+
+    136. Adding a Form
+
+    137. Fixing Form Input IDs
+
+    138. Working on the "Shopping Cart" Component
+
+    139. Adding a Modal via a React Portal
+
+    140. Managing Cart & Modal State
+
+    141. Adding a Cart Context
+
+    142. Using the Context
+
+    143. Adding a Cart Reducer
+
+    144. Working with Refs & Forward Refs
+
+    145. Outputting Cart Items
+
+    146. Working on a More Complex Reducer Logic
+
+    147. Making Items Removable
+
+    148. Using the useEffect Hook
+
+    149. Module Resources
+
+# Section 12: A Look Behind The Scenes Of React & Optimization Techniques
+
+    150. Module Introduction
+
+    151. How React Really Works
+
+    152. Component Updates In Action
+
+    153. A Closer Look At Child Component Re-Evaluation
+
+    154. Preventing Unnecessary Re-Evaluations with React.memo()
+
+    155. Preventing Function Re-Creation with useCallback()
+
+    156. useCallback() and its Dependencies
+
+    157. A First Summary
+
+    158. A Closer Look At State & Components
+
+    159. Understanding State Scheduling & Batching
+
+    160. Optimizing with useMemo()
+
+    161. Module Resources
+
+# Section 13: An Alternative Way Of Building Components: Class-based Com…Section 13: An Alternative Way Of Building Components: Class-based Components
+
+    162. Module Introduction
+
+    163. What & Why
+
+    164. Adding a First Class-based Component
+
+    165. Working with State & Events
+
+    166. The Component Lifecycle (Class-based Components Only!)
+
+    167. Lifecycle Methods In Action
+
+    168. Class-based Components & Context
+
+    169. Class-based vs Functional Components: A Summary
+
+    170. Introducing Error Boundaries
+
+    171. Module Resources
+
+# Section 14: Sending Http Requests (e.g. Connecting to a Database)
+
+    172. Module Introduction
+
+    173. How To (Not) Connect To A Database
+
+    174. Our Starting App & Backend
+
+    175. Sending a GET Request
+
+    176. Using async / await
+
+    177. Handling Loading & Data States
+
+    178. Handling Http Errors
+
+    179. Using useEffect() For Requests
+
+    180. Preparing The Project For The Next Steps
+
+    181. Sending a POST Request
+
+    182. Wrap Up
+
+    183. Module Resources
+
+|
+
+# Section 15: Building Custom React Hooks
+
+    184. Module Introduction
+
+    185. What are "Custom Hooks"?
+
+    186. Creating a Custom React Hook Function
+
+    187. Using Custom Hooks
+
+    188. Configuring Custom Hooks
+
+    189. Onwards To A More Realistic Example
+
+    190. Building a Custom Http Hook
+
+    191. Using the Custom Http Hook
+
+    192. Adjusting the Custom Hook Logic
+
+    193. Using The Custom Hook In More Components
+
+    194. Module Resources
+
 # Section 29: Optional: React Summary & Core Feature Walkthrough
 
     446. Module Introduction
