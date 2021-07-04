@@ -233,6 +233,72 @@ NOTA: El curso se actualizó y algunas secciones fueron borradas, el autor re-gr
 
     98. Module Resources
 
+# Section 9: Diving Deeper: Working with Fragments, Portals & "Refs"
+
+    99. Module Introduction
+
+    100. JSX Limitations & Workarounds
+
+    101. Creating a Wrapper Component
+
+    102. React Fragments
+
+    103. Introducing React Portals
+
+    104. Working with Portals
+
+    105. Working with "ref"s
+
+    106. Controlled vs Uncontrolled Components
+
+    107. Module Resources
+
+# Section 10: Advanced: Handling Side Effects, Using Reducers & Using the Con…Section 10: Advanced: Handling Side Effects, Using Reducers & Using the Context API
+
+    108. Module Introduction
+
+    109. What are "Side Effects" & Introducing useEffect
+
+    110. Using the useEffect() Hook
+
+    111. useEffect & Dependencies
+
+    112. What to add & Not to add as Dependencies
+
+    113. Using the useEffect Cleanup Function
+
+    114. useEffect Summary
+
+    115. Introducing useReducer & Reducers In General
+
+    116. Using the useReducer() Hook
+
+    117. useReducer & useEffect
+
+    118. Adding Nested Properties As Dependencies To useEffect
+
+    119. useReducer vs useState for State Management
+
+    120. Introducing React Context (Context API)
+
+    121. Using the React Context API
+
+    122. Tapping Into Context with the useContext Hook
+
+    123. Making Context Dynamic
+
+    124. Building & Using a Custom Context Provider Component
+
+    125. React Context Limitations
+
+    126. Learning the "Rules of Hooks"
+
+    127. Refactoring an Input Component
+
+    128. Diving into "Forward Refs"
+
+    129. Module Resources
+
 # Section 29: Optional: React Summary & Core Feature Walkthrough
 
     446. Module Introduction

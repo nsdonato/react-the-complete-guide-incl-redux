@@ -1445,19 +1445,472 @@
     103. Introducing React Portals
         Comenta que tener un modal en una sección o algo así, considerando que ocupa toda la app no es buena practica. O sea, el problema es que este nesteado con otros elementos cuando no debería ser así.
 
-        Es malo para la accesibilidad, es como hacer un boton con un div :|
+        Es malo para la accesibilidad, es como hacer un boton con un div
 
         Para esto hay que usar React Portal, para mantener la estructura, pero que al reflejarlo en el DOM real, este por fuera de todo.
 
     104. Working with Portals
+        lo que hace es crear un div a la misma altura que root, en el index.html con un id especifico donde se va a renderar el modal, spinner, etc, y con portal es donde vas a decirle que tiene que ir ahí.
+
+        ReactDOM.createPortal(<Backdrop onConfirm={props.onConfirm} />, document.getElementById('backdrop-root'))
+
+        Es como cuando se renderiza root, pero con portal...
 
     105. Working with "ref"s
 
+        refs = reference
+        useRef se puede usar solo en functional components.
+
+        sirve para conectar cuan cualquier elemento html
+
+        import React, { useRef } from 'react'
+
+        const nameInputRef = useRef(); // un objeto con el 'current value' valor actual del elemento. se guarda el elemento html ahí, el verdadero nodo del dom, lo recomendado es dejar que react maneje el dom, pero leer info nada mas, no habría problema para usar ref.
+        
+        <input id='userName' ref={nameInputRef} />
+
+        console.log(nameInputRef.current.value) // si escribis en el input, se loguea lo que pusiste
+
+        elementos reales del DOM, 
+
+
+        Elimina los state que seteaban y servian para leer la info del estado del input, value y onchange también.
+
+        Como no tenes mas el useState, para limpiar los inputs, hace esto:
+        nameInputRef.current.value = '' 
+
+
+        RARAMENTE SE MANIPULA EL DOM ASÍ.-
+
     106. Controlled vs Uncontrolled Components
+        Si accedemos a los valores con ref, son componentes controlados, -un controlled components- porque no los maneja react.
+        
+        por ende, los controlados, son los que sí maneja react en cuanto al estado.
 
     107. Module Resources
+        You may want to compare your code to mine (e.g. to find + fix errors).
+
+        For that, you find multiple code snapshots for this module here in this Github repository: https://github.com/academind/react-complete-guide-code/tree/09-fragments-portals-refs
+
+        Usage instructions can be found on the page that link is leading to.
+
+        Simply pick one of the snapshots in the /code folder - the subfolder names are chosen such that they are easy to match against lecture names in this course section.
+
+        You also find section slides (if available) in that Github repository.
+
+# Section 10: Advanced: Handling Side Effects, Using Reducers & Using the Con…Section 10: Advanced: Handling Side Effects, Using Reducers & Using the Context API
+
+    108. Module Introduction
+        ...
+
+    109. What are "Side Effects" & Introducing useEffect
+        
+        Main job de react: 
+            No nos olvidemos que nuestros componentes/react library, evaluar jsx, reaccionar a un cambio en un input, sirve para renderizar, re-renderizar la ui, etc cuando lo necesitamos..
+
+        Un efecto o side effect es:    
+            por ejemplo, enviar un request, setear estados, manejar timers... 
+            tienen que pasar por fuera de tu componente, 
+
+            Para esto se usa useEffect(), sirve para:
+
+                import React, { useEffect } import 'react'
+
+                Toma una función que corre en cada ciclo de renderizado, si las dependencias cambian, no cuando se re-renderiza e lcomponente
+                    useEffect(() => {
+                        // ...código
+                    },[dependencias])
+
+    110. Using the useEffect() Hook
+
+        Muestra como usar localStorage, para simular que estas logueado a una pseudo app que solo tiene un login.
+        Si dejamos el código que hace la validación se va a generar un loop infinito, para eso usamos useEffect.
+
+        useEffect(() => {
+            const storedUserLoggin = localStorage.getItem('isLoggedIn')
+
+            if(storedUserLoggin === '1'){
+                setIsLoggedIn(true)
+            }
+        },[])
+
+        Que haga algo solo la primera vez. Se pone un array vacio [] y corre una sola vez y nunca mas.
+            useEffect(() => {
+
+            },[])
+
+        useEffect combina dos:
+            componentDidMount y componentDidUpdate.
+
+    111. useEffect & Dependencies
+        Cuando se actualiza un estado especifico, lo que hay que hacer es pasarlo como dependencia, para que useEffect se vuelva a ejecutar para que se reevalue el estado
+        
+            Lo que hay que hacer sería lo siguiente:
+
+            useEffect(() => {
+                ...
+            },[isLoggedIn])
+
+        IMPORTANTE: No es necesario pasar las funciones que setean los estados ya que eso nunca cambia, solo hay que pasar sus estados y solo los que se usen dentro de useEffect.
+
+    112. What to add & Not to add as Dependencies
+        In the previous lecture, we explored useEffect() dependencies.
+
+        You learned, that you should add "everything" you use in the effect function as a dependency - i.e. all state variables and functions you use in there.
+
+        That is correct, but there are a few exceptions you should be aware of:
+
+        You DON'T need to add state updating functions (as we did in the last lecture with setFormIsValid): React guarantees that those functions never change, hence you don't need to add them as dependencies (you could though)
+
+        You also DON'T need to add "built-in" APIs or functions like fetch(), localStorage etc (functions and features built-into the browser and hence available globally): These browser APIs / global functions are not related to the React component render cycle and they also never change
+
+        You also DON'T need to add variables or functions you might've defined OUTSIDE of your components (e.g. if you create a new helper function in a separate file): Such functions or variables also are not created inside of a component function and hence changing them won't affect your components (components won't be re-evaluated if such variables or functions change and vice-versa)
+
+        So long story short: You must add all "things" you use in your effect function if those "things" could change because your component (or some parent component) re-rendered. That's why variables or state defined in component functions, props or functions defined in component functions have to be added as dependencies!
+
+        Here's a made-up dummy example to further clarify the above-mentioned scenarios:
+
+        import { useEffect, useState } from 'react';
+        
+        let myTimer;
+        
+        const MyComponent = (props) => {
+        const [timerIsActive, setTimerIsActive] = useState(false);
+        
+        const { timerDuration } = props; // using destructuring to pull out specific props values
+        
+        useEffect(() => {
+            if (!timerIsActive) {
+            setTimerIsActive(true);
+            myTimer = setTimeout(() => {
+                setTimerIsActive(false);
+            }, timerDuration);
+            }
+        }, [timerIsActive, timerDuration]);
+        };
+        In this example:
+
+        timerIsActive is added as a dependency because it's component state that may change when the component changes (e.g. because the state was updated)
+
+        timerDuration is added as a dependency because it's a prop value of that component - so it may change if a parent component changes that value (causing this MyComponent component to re-render as well)
+
+        setTimerIsActive is NOT added as a dependency because it's that exception: State updating functions could be added but don't have to be added since React guarantees that the functions themselves never change
+
+        myTimer is NOT added as a dependency because it's not a component-internal variable (i.e. not some state or a prop value) - it's defined outside of the component and changing it (no matter where) wouldn't cause the component to be re-evaluated
+
+        setTimeout is NOT added as a dependency because it's a built-in API (built-into the browser) - it's independent from React and your components, it doesn't change
+
+    113. Using the useEffect Cleanup Function
+        useEffect(() => {
+                ...
+
+            return () => {
+                console.log('CLEANUP')
+            }; // se ejecuta antes de todo el código de useEffect, sirve para "limpiar"
+        },[isLoggedIn])
+
+        o sea, la primera vez que se renderiza el componente no, sino las proximas.
+
+        por ejemplo, lo mostro con un timer, y  la cleanup se ejecutaba constantemente para limpiar el timer y recién cuando dejó de escribir y terminó el timer, se volvió a renderizar el documento.
+
+    114. useEffect Summary
+        TODO: 
+        
+    115. Introducing useReducer & Reducers In General
+        Cuando tenes estados mas complejos, sirve como reemplazo de useState.
+
+        Recomienda usarlo para cuando un estado depende de otro o por ejemplo para hacer validaciones de un estado especifico, como el email, realizar validaciones mediante acciones.
+
+        Siempre recomienda setear el estado pasando el parametro prevState porque es la unica manera que te asseguras que el estado siempre este actualizado a lo ultimo, porque a veces puede pasar que react no actualice los estados a tiempo.
+         
+    116. Using the useReducer() Hook
+        retorna dos valores, como setState
+
+        const [state, dispatchFn] = useReducer(reducerFn, initialState, initFn);
+
+        state = 
+            el snapshot del estado que se usa en el ciclo de re-evaluación del re-renderizados
+
+        dispatchFn = 
+            una funcion que puede ser usada para dispatchear una nueva acción, por ej triggerear un update del estado.
+        
+            esa acción, va a ser usada por la primer función pasada a useReducer, en este caso reducerFn, recibe el último snaptshopt y debería retornar el nuevo estado actualizado.
+
+        initialState = 
+            el estado inicial
+
+        initFn = 
+            una funcion para setear el estado inicial 
+
+            // se puede crear afuera, porque react automaticamente se la pasa al reducer cuando se renderiza el componente.
+
+            const emailReducer = (state, action) => {
+
+                switch(action){
+                    case 'USER_INPUT': 
+                        return { value: '', isValid: action.val.includes('@') }
+                    case 'INPUT_BLUR'
+                        return { value: Action.val, isValid: false }
+                    default:
+                        return { value: Action.val, isValid: false }    
+
+            } 
+
+            //dentro del componente:
+            const [emailState, dispatchEmail ] = useReducer(emailReducer);
+
+            const emailChangeHandler = (event) => {
+                distpatchEmail({type: 'USER_INPUT', val: event.target.value})
+
+                setFormIsValid(
+                    event.target.value.includes('@')
+                )
+            }
+
+            const validateEmailHandler = () => {
+                dispatcEmail({type: 'INPUT_BLUR'})
+            }
+
+            enteredEmail lo cambia por emailState.isValid
+
+    117. useReducer & useEffect
+        Destructurando propiedades para que SOLO CAMBIE EL ESTADO, SI ESTAS CAMBIAN, por ende no se re-renderiza todo cuando el objeto cambia. 
+        
+        A  la propiedad destructurada se le puede poner un alias
+        const { isValid: emailIsValid } = emailState;
+
+        También simplemente se le podría pasar como dependenca a useEffect, emailState.isValid y listo
+
+    118. Adding Nested Properties As Dependencies To useEffect
+        In the previous lecture, we used object destructuring to add object properties as dependencies to useEffect().
+
+        const { someProperty } = someObject;
+        useEffect(() => {
+        // code that only uses someProperty ...
+        }, [someProperty]);
+        This is a very common pattern and approach, which is why I typically use it and why I show it here (I will keep on using it throughout the course).
+
+        I just want to point out, that they key thing is NOT that we use destructuring but that we pass specific properties instead of the entire object as a dependency.
+
+        We could also write this code and it would work in the same way.
+
+        useEffect(() => {
+        // code that only uses someProperty ...
+        }, [someObject.someProperty]);
+        This works just fine as well!
+
+        But you should avoid this code:
+
+        useEffect(() => {
+        // code that only uses someProperty ...
+        }, [someObject]);
+        Why?
+
+        Because now the effect function would re-run whenever ANY property of someObject changes - not just the one property (someProperty in the above example) our effect might depend on.
+
+    119. useReducer vs useState for State Management
+        usar reducer cuando el sentido de useState sea medio al pedo, y tengas bugs o comportamientos no intencioados.
+        
+        useState
+            herramienta principal
+            bueno para piezas independientes de info/estado
+            bueno si las actualizaciones de estado son faciles y limitadas a unos pocos updates.
+
+        useReducer
+            bueno si necesitas "mas poder"
+            si tenes updates de estado mas complejos
+            considerarlo si tenes data/estados  relacionada
+            
+    120. Introducing React Context (Context API)
+        * this.context no se usa mas, se debe usar esta api. React.createContext + useContext
+
+        PROVIDER: se crea el context para que los componentes después, lo puedan CONSUMIR.
+            - React create context, nos permite inicializar nuestro contexto con un valor inicial, puede ser cualquiera cosa, obj, array, etc. También se inicializa para poder usar el intellisense, pero generalmente la inicialización no se utiliza salvo que no se pase nada al atributo value del componente.
+
+            - Crete context es un "objeto global" de javascript. O sea, en realidad no es que es un objeto global,
+            sino que vos decidis donde se va a aplicar.
+
+            - En el contexto tengo que guardar todo lo que quiero acceder desde mis diferentes componentes.
+
+            - Con nuestro nuevo componente, en este caso authContext, tenemos que envolver, los componentes, que querramos que tengan acceso a esta información.
+
+        CONSUMER:
+            - Se debe importar el context, y en el return, debemos utilizar el componente, englobando los componentes que necesitan esa info, pero con <AuthContext.Consumer> ver ej mas abajo:
+            - No toma JSX como un hijo, pero si una función, ver ej de como realizar esto.
+            - Se utiliza en el componente que este lo mas abajo posible, ya que sino tenemos que andar pasando cosas por props y justamente esa no es la idea.
+
+    121. Using the React Context API
+        Crea una carpeta context (porque a el le gusta hacerlo así): de esta manera todos los componentes que esten envueltos en el componente AuthContext, van a "escuchar" las actualizaciones sobre los estados isAuth y login.
+
+        auth-context.js
+            import React, { useState } from 'react';
+
+            export const AuthContext = React.createContext({
+                isAuth: false,
+                login: () => {}
+            });
+
+            const AuthContextProvider = props => {
+                const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+                const loginHandler = () => {
+                    setIsAuthenticated(true);
+                };
+
+                return (
+                    <AuthContext.Provider
+                    value={{ login: loginHandler, isAuth: isAuthenticated }}>
+                        {props.children} // De esta manera decis que a este componente se le puede pasar cualquier otro componente, es un wrapper.
+                    </AuthContext.Provider>
+                );
+            };
+
+            export default AuthContextProvider;
+
+        index.js
+
+            <AuthContextProvider>
+                <App />
+            </AuthContextProvider>
+
+        app.js
+            En los componentes funionales, el contexto no se puede utilizar, deberíamos convertirlos a clases, pero, para no hacer eso, podemos usar el hoook useContext.
+
+            import React, { useContext } from 'react';
+
+            import Ingredients from './components/Ingredients/Ingredients';
+            import Auth from './components/Auth';
+            import { AuthContext } from './context/auth-context';
+
+            const App = props => {
+                const authContext = useContext(AuthContext);
+
+                let content = <Auth />;
+                if (authContext.isAuth) {
+                    content = <Ingredients />;
+                }
+
+                return content;
+            };
+
+            export default App;
+
+        Auth.js
+            import React, { useContext } from 'react';
+
+            import Card from './UI/Card';
+            import { AuthContext } from '../context/auth-context';
+            import './Auth.css';
+
+            const Auth = props => {
+            const authContext = useContext(AuthContext);
+
+            const loginHandler = () => {
+                authContext.login();
+            };
+
+            return (
+                <div className="auth">
+                    <Card>
+                        <h2>You are not authenticated!</h2>
+                        <p>Please log in to continue.</p>
+                        <button onClick={loginHandler}>Log In</button>
+                    </Card>
+                </div>
+                );
+            };
+
+            export default Auth;
+
+        IMPORTANTE: lo que se cambie en ese contexto, no va a generar una re-renderización.
+
+    122. Tapping Into Context with the useContext Hook
+        
+        FUNCTIONAL COMPONENTS
+            import AuthContext from 'context/aut-context';
+            import React, {useContext} from 'react'
+
+            const authContext = useContext(AuthContext);
+
+            authContext.authenticated
+
+        COMPONENTES BASADOS EN CLASES:
+
+            Como en ComponentDidMount, puede que tengas que hacer un llamado HTTP y necesites el context y ahí no se puede obtener la info como la aprendimos.
+            A partir de react 16.6 hay una variable estatica contextType.
+
+            static contextType = authContext;
+
+            Esto habilita a que detrás de escena, el metodo ComponentDidMount, se comunique con la variable estatica, ya que ahora tenes dentro del metodo:
+            this.context.login por ej.
+            this.context.authenticated
+            También podemos modificar el elemento AuthContext.Consumer por this.context.authenticated
+
+    123. Making Context Dynamic
+        explica que se pueden agregar funciones al contexto (mas arriba hay un ejemplo)
+        authContext.login();
+
+    124. Building & Using a Custom Context Provider Component
+        Le mete mas funciones al contexto que ya había creado.
+
+    125. React Context Limitations
+        No esta optimizado para muchos cambios por segundo
+        Tampoco debe ser usado para reemplazar todas las comunicaciones entre los componentes.
+
+    126. Learning the "Rules of Hooks"
+
+        - Arrancan con useAlgo
+        - Podemos llamarlo con un estado inicial o no.
+        - Se crea un estado que se maneja "detras de escena" por React, que sobrevive re-render cicles.
+        - Lo que obtenemos es una matriz con dos elementos, el primero es un puntero a tu estado y es el segundo es  una función de update del estado.
+
+        Hay dos reglas importantes que se aplican a todos los estados:
+            1) Los hooks, solo se deben usar en componentes funcionales (functional components) o dentro de nuestros propios hooks personalizados.
+            2) No podes usar un hook en una función anidada, siempre es en el componente root. Para que quede claro, esto no se puede hacer:
+
+            const unaFuncion = () => {
+                useState() -> usarlo acá adentro.
+            }
+
+    127. Refactoring an Input Component
+        Crea un component custom de Input.
+        
+    128. Diving into "Forward Refs"
+        Para poder hacerle focus a los input (ya que no viene con react), tenemos que usar useRef para acceder al DOM real, y utilizarlo en ambos inputs, el problema es que no se puede hacer eso para ambos.
+
+        Por eso hay que generar una función imperativa, basicamente es porque si bien focus no se puede usar esta ordenando que se use mediante estas tecnicas.
+
+        hay que importar useImperativeHandler
+
+        en el componente aparte de props, pasar ref y envolverlo en React.forwardRef, se usa para decir este es un componente que puede utilizar ref.
+
+        1 arg: ref
+        2 arg: la función anonima, va a devolver un objeto con información que se va a poder usar desde el exterior. 
+
+        useImperativeHandler(ref, () => {
+            return {
+                focus: active()
+            }
+        }) 
+
+        reemplazamos donde se usa props.current.activate por .focus (aunque le podríamos haber puesto activate o pedo a la prop que retorna useImperativeHandler)
+
+        Solo usar en casos muy especiales, ya que no se recomienda su uso.
+        
+    129. Module Resources
+        You may want to compare your code to mine (e.g. to find + fix errors).
+
+        For that, you find multiple code snapshots for this module here in this Github repository: https://github.com/academind/react-complete-guide-code/tree/10-side-effects-reducers-context-api
+
+        Usage instructions can be found on the page that link is leading to.
+
+        Simply pick one of the snapshots in the /code folder - the subfolder names are chosen such that they are easy to match against lecture names in this course section.
+
+        You also find section slides (if available) in that Github repository.
 
 ----------------------------------- SECCIONES VIEJAS --------------------------------------    
+
+Casi todo es sobre class components:
 
 # Sección 6, cosas que quedaron por revisar:
     71. More on Styled Components
@@ -1652,38 +2105,6 @@
 
 ### Sección 7: Diving Deeper into Components & React Internals
 
-    84. Module Introduction
-    85. A Better Project Structure
-
-        Los componentes a generar deben tener sentido. Por ej si queremos tener algo generico como un input que se use en varias partes, ahí si valdría la pena hacer un solo componente por eso.
-        Los componentes que manejan estados, no deberían comprometerse mucho con la renderización de otros, o sea no tener mucho JSX.
-
-        En src, genera:
-            /components  --> cada componente
-            /assets      --> imagenes y css
-            /containers  --> los componentes principales (como App)
-
-    86. Splitting an App Into Components
-
-        // Si hacemos esto, no es necesario poner el return, gracias a ES6
-        const persons = (props) => (
-            Podemos poner JSX
-        );
-
-        Si en una función utilizamos { } y un metodo return -> componente.
-        Si en una función utilizamos { } -> funcion
-
-        Resumen: Hay que tener containers donde se manejen estados y el resto deberían ser funcional components donde
-                solamente se pasen props.
-
-    87. Comparing Stateless and Stateful Components
-
-        Presentational component (stateless components) = functional component que no maneja estados
-
-    88. Class-based vs Functional Components
-
-            A los containers se les puede pasar props desde index.js al renderizarlos.
-
     89. class Component Lifecycle Overview
 
         - Solo esta disponible en class Component.
@@ -1750,45 +2171,12 @@
             LOOP INFINITOO ALERT:
                 no actualice el stado aqui porque sino va a causar re-renderizado nuevamente.
 
-    92. Component Update Lifecycle (for state Changes)
-        cmp-deep-dive-03-updating-lifecycle-state
-
-    93. Using useEffect() in Functional Components
-
-        import React, { useEffect } import 'react'
-
-        Toma una función que corre en cada ciclo de renderizado, después que se re-renderiza.
-            useEffect(() => {
-
-            })
-
-        useEffect combina dos :
-            componentDidMount y componentDidUpdate.
-
-    94. Controlling the useEffect() Behavior
-
-        1) Que haga algo solo la primera vez. Se pone un array vacio [] y corre una sola vez y nunca mas.
-            useEffect(() => {
-
-            },[])
-
-        2) cuando se actualiza un estado.
-            Lo que hay que hacer sería lo siguiente:
-
-            useEffect(() => {
-
-            },[props.persons])
-
-        IMPORTANTE: En el caso de necesitar lo mismo para otra prop, hay que volver a escribir useEffect y pasarle esa prop.
 
     95. Cleaning up with Lifecycle Hooks & useEffect()
 
         componentWillUnmount, se ejecuta cuando se remueve el componente, en el caso del toggle persons por ej cuando haces clic otra vez para ocultarlo.
 
         Dentro del mismo useEffect, se puede retornar algo mediante una función anonima, para limpiar algo.
-
-    96. Cleanup Work with useEffect() - Example
-        useeffect
 
     97. Using shouldComponentUpdate for Optimization
         https://academind.com/learn/javascript/reference-vs-primitive-values/
@@ -1842,7 +2230,6 @@
 
                     Si no encuentra diferencias, se ejecuta render y ahí es donde shouldComponentUpdate debería prevenir que llame al dom real, si realmente nada cambio.
 
-    102. Rendering Adjacent JSX Elements
 
         En vez de envolver los elementos en un div, podemos usar:
 
@@ -2089,57 +2476,6 @@
 
         export default authContext;
 
-    114. contextType & useContext()
-
-
-        COMPONENTES BASADOS EN CLASES:
-
-            Como en ComponentDidMount, puede que tengas que hacer un llamado HTTP y necesites el context y ahí no se puede obtener la info como la aprendimos.
-            A partir de react 16.6 hay una variable estatica contextType.
-
-            static contextType = authContext;
-
-            Esto habilita a que detrás de escena, el metodo ComponentDidMount, se comunique con la variable estatica, ya que ahora tenes dentro del metodo:
-            this.context.login por ej.
-            this.context.authenticated
-            También podemos modificar el elemento AuthContext.Consumer por this.context.authenticated
-
-        FUNCTIONAL COMPONENTS
-            import AuthContext from 'context/aut-context';
-            import React, {useContext} from 'react'
-
-            const authContext = useContext(AuthContext);
-
-            authContext.authenticated
-
-            en coockpit, cambias el elemento por esto y listo.
-
-    115. Wrap Up
-    116. Useful Resources & Links
-
-        More on useEffect(): https://reactjs.org/docs/hooks-effect.html
-
-        State & Lifecycle: https://reactjs.org/docs/state-and-lifecycle.html
-
-        PropTypes: https://reactjs.org/docs/typechecking-with-proptypes.html
-
-        Higher Order Components: https://reactjs.org/docs/higher-order-components.html
-
-        Refs: https://reactjs.org/docs/refs-and-the-dom.html
-
-        Recursos de esta clase
-        cmp-deep-dive-01-creation-lifecycle.zip
-        cmp-deep-dive-02-updating-lifecycle-props.zip
-        cmp-deep-dive-03-updating-lifecycle-state.zip
-        cmp-deep-dive-04-finished-useeffect.zip
-        cmp-deep-dive-05-shouldcomponentupdate-memo.zip
-        cmp-deep-dive-06-aux.zip
-        cmp-deep-dive-07-withclass.zip
-        cmp-deep-dive-08-finished-hocs.zip
-        cmp-deep-dive-09-updating-state.zip
-        cmp-deep-dive-10-proptypes.zip
-        cmp-deep-dive-11-refs.zip
-        cmp-deep-dive-12-finished.zip
 
 ### Sección 8: A Real App: The Burger Builder (Basic Version)
 
@@ -4722,20 +5058,7 @@
         }}
 
     431. Rules of Hooks
-        Entendiendo useState...
-
-        - Podemos llamarlo con un estado inicial o no.
-        - Se crea un estado que se maneja "detras de escena" por React, que sobrevive re-render cicles.
-        - Lo que obtenemos es una matriz con dos elementos, el primero es un puntero a tu estado y es el segundo es    una función de update del estado.
-
         
-        Hay dos reglas importantes que se aplican a todos los estados:
-            1) Los hooks, solo se deben usar en componentes funcionales (functional components) o dentro de nuestros propios hooks personalizados.
-            2) No podes usar un hook en una función anidada, siempre es en el componente root. Para que quede claro, esto no se puede hacer:
-
-            const unaFuncion = () => {
-                useState() -> usarlo acá adentro.
-            }
 
     432. Passing State Data Across Components
         Explica como hacer para agregar ingredientes y pasarselo al otro componente.
@@ -5030,89 +5353,7 @@
         // const [error, setError] = useState();
 
     445. Working with useContext()
-        Crea una carpeta context (porque a el le gusta hacerlo así): de esta manera todos los componentes que esten envueltos en el componente AuthContext, van a "escuchar" las actualizaciones sobre los estados isAuth y login.
-
-        auth-context.js
-            import React, { useState } from 'react';
-
-            export const AuthContext = React.createContext({
-                isAuth: false,
-                login: () => {}
-            });
-
-            const AuthContextProvider = props => {
-                const [isAuthenticated, setIsAuthenticated] = useState(false);
-
-                const loginHandler = () => {
-                    setIsAuthenticated(true);
-                };
-
-                return (
-                    <AuthContext.Provider
-                    value={{ login: loginHandler, isAuth: isAuthenticated }}>
-                        {props.children} // De esta manera decis que a este componente se le puede pasar cualquier otro componente, es un wrapper.
-                    </AuthContext.Provider>
-                );
-            };
-
-            export default AuthContextProvider;
-
-        index.js
-
-            <AuthContextProvider>
-                <App />
-            </AuthContextProvider>
-
-        app.js
-            En los componentes funionales, el contexto no se puede utilizar, deberíamos convertirlos a clases, pero, para no hacer eso, podemos usar el hoook useContext.
-
-            import React, { useContext } from 'react';
-
-            import Ingredients from './components/Ingredients/Ingredients';
-            import Auth from './components/Auth';
-            import { AuthContext } from './context/auth-context';
-
-            const App = props => {
-                const authContext = useContext(AuthContext);
-
-                let content = <Auth />;
-                if (authContext.isAuth) {
-                    content = <Ingredients />;
-                }
-
-                return content;
-            };
-
-            export default App;
-
-        Auth.js
-            import React, { useContext } from 'react';
-
-            import Card from './UI/Card';
-            import { AuthContext } from '../context/auth-context';
-            import './Auth.css';
-
-            const Auth = props => {
-            const authContext = useContext(AuthContext);
-
-            const loginHandler = () => {
-                authContext.login();
-            };
-
-            return (
-                <div className="auth">
-                <Card>
-                    <h2>You are not authenticated!</h2>
-                    <p>Please log in to continue.</p>
-                    <button onClick={loginHandler}>Log In</button>
-                </Card>
-                </div>
-            );
-            };
-
-            export default Auth;
-
-        Cualquier cosa revisar la sección 7 donde explica mas sobre el contexto.
+        
 
     446. Performance Optimizations with useMemo()
 
