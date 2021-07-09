@@ -2751,37 +2751,120 @@
 # Section 19: Advanced Redux
 
     248. Module Introduction
+        ...
 
     249. Redux & Side Effects (and Asynchronous Code)
+        Los reducers tienen que ser puros, sin side effects, con funciones sincronicas.
+        input (old state +  action) -> output (new state)
+
+        donde ponemos nuestros side effects y async task?
+        dentro de componentes useEffect, dentro de creadores de acciones.
 
     250. Refresher / Practice: Part 1/2
+        Va avanzando metiendo redux en el proyecto que dejó en la 249..
 
     251. Refresher / Practice: Part 2/2
+        Continua avanzando metiendo redux en el proyecto que dejó en la 249..
 
     252. Redux & Async Code
+        Las llamadas se hacen dentro de useEffect en los componentes o dentro de los action creators.
+        ...
 
     253. Frontend Code vs Backend Code
+        Va a usar Firebase, por ende hay que hace run poco mas de laburito de front, si fuera una api que llama a una bd, sería otra cosa.
 
     254. Where To Put Our Logic
+        https://github.com/academind/react-complete-guide-code/tree/19-advanced-redux/code/zz-suboptimal-example-code
+        Para código sincronico, y código que no tiene side effects, por ej, transformación de data:
+            El prefiere reducers para hacer llamados Http, evitando componentes y actions creators.
+        
+        Para async code, con side effects:
+            Prefiere actions creators o componentes, NUNCA USAR REDUCERS.-
 
     255. Using useEffect with Redux
-
+        usa useEffect en App, aunque podría haber sido en otro componente, ahí hace el fetch a firebase para actualizar info del carrito.
+        Lo que hace con esto, al estar usando redux, es que si se actualiza el estado del carrito, useEffect se vuelev a ejecutar y a pushear un producto al carrito, sin mucho kilombo, 
+        mantiene la logica de agregar items al carrito dentro del reducer en el store/slice-cardt y listo.-
+        
     256. A Problem with useEffect()
+        We face one problem when using useEffect the way we currently do it: It will execute when our app starts.
+        Why is this an issue?
+        It's a problem because this will send the initial (i.e. empty) cart to our backend and overwrite any data stored there.
+        We'll fix this over the next lectures, I just wanted to point it out here!
 
     257. Handling Http States & Feedback with Redux
+        Arregla el temita de que useEffect se ejecuta la primera vez cuando arranca la app metiendo un producto vacio al carrito.
+        https://github.com/academind/react-complete-guide-code/tree/19-advanced-redux/extra-files
 
     258. Using an Action Creator Thunk
+        Otra manera de ejecutar side-effects y tareas asincronicas es dentro de las actions creators.
+
+        Thunk, es una función que retrasa una acción hasta mas tarde, hasta que algo termine.
+        
+        Podríamos crear una acción como un thunk, para escribir un action creator, que no retorne inmediatamente la acción del objeto, pero 
+        a la vez retorna otra función que evetualment retorna una acción.
+
+        Para crear nuestro propio action creator, creamos una función:
+        Que retorne OTRA FUNCIÓN.
+
+        const sendCartData = (cartData) => {
+            return (distpach) => {
+                // antes de dispatchear podemos hacer la llamada asincronica.
+                dispach(
+                    uiActions.shownotification({
+                        status: 'pending',
+                        title: 'Sending...',
+                        message: 'Sending cart data!'
+                    })
+                )
+
+                const response = await fetch(
+                    'url',
+                    {
+                        method: 'PUT',
+                        body: JSON.stringify(data)
+                    }
+                })
+
+                if(!response.ok){
+                    ...
+                }
+
+                 dispach(
+                    uiActions.shownotification({
+                        status: 'success',
+                        title: 'Sending...',
+                        message: 'Sent cart successfully!'
+                    })
+                )
+            }
+        }
+
+        redux acepta actions creators que retornan functions, esta preparado para eso.-
 
     259. Getting Started with Fetching Data
+        pone el fetch en otro lado del código..
 
     260. Finalizing the Fetching Logic
-
+        continua...
+        
     261. Exploring the Redux DevTools
+        Instala la extensión de Chrome y muestra como va cambiando el estado en la consola del desarrollador
 
     262. Summary
+        Resumen...
 
     263. Module Resources
-    
+        You may want to compare your code to mine (e.g. to find + fix errors).
+
+        For that, you find multiple code snapshots for this module here in this Github repository: https://github.com/academind/react-complete-guide-code/tree/19-advanced-redux
+
+        Usage instructions can be found on the page that link is leading to.
+
+        Simply pick one of the snapshots in the /code folder - the subfolder names are chosen such that they are easy to match against lecture names in this course section.
+
+        You also find section slides (if available) in that Github repository.
+
 # Sección 28, copiar, es opcional y resumen de lo ya visto, es para los que hacían el curso anterior.
 
 # Sección 29, copiar, es opcional y resumen de lo ya visto, es para los que hacían el curso anterior.
@@ -3009,9 +3092,7 @@
         16 Advanced Redux.zip
         21 Deployment.zip
 
-# ----------------------------------- SECCIONES VIEJAS ORIENTADAS A CLASS COMPONENTS --------------------------------------    
-
-    Casi todo es sobre class components:
+# ----------------------------------- SECCIONES VIEJAS --------------------------------------    
 
     # Sección 6, cosas que quedaron por revisar:
         71. More on Styled Components
@@ -3231,12 +3312,6 @@
                     Acá se pueden generar "side effects"
                     NO ACTUALIZAR EL ESTADO ACA. Salvo que se cumpla una promesa sobre un llamado http.
 
-        90. Component Creation Lifecycle in Action
-            lifecycle-creation-learning-card (1)
-            cmp-deep-dive-01-creation-lifecycle
-
-            mediante console log, muestra como se van ejecutando en orden las cosas, idem las posteriores..
-
         91. Component Update Lifecycle (for props Changes)
 
             lifecycle-update-external-learning-card (1)
@@ -3271,110 +3346,6 @@
                 acá si se pueden realizar llamadas http
                 LOOP INFINITOO ALERT:
                     no actualice el stado aqui porque sino va a causar re-renderizado nuevamente.
-
-
-        95. Cleaning up with Lifecycle Hooks & useEffect()
-
-            componentWillUnmount, se ejecuta cuando se remueve el componente, en el caso del toggle persons por ej cuando haces clic otra vez para ocultarlo.
-
-            Dentro del mismo useEffect, se puede retornar algo mediante una función anonima, para limpiar algo.
-
-        97. Using shouldComponentUpdate for Optimization
-            https://academind.com/learn/javascript/reference-vs-primitive-values/
-
-            shouldComponentUpdate -> se renderizan todos los componentes, pero lo podemos modificar para que se renderice solo el que se actualizó:
-
-            shouldComponentUpdate(nextProps, nextState){
-                if(nextProps.persons !== this.props.persons){
-                    return true;
-                }else{
-                    return false;
-                }
-
-                return true;
-            }
-
-            IMPORTANTE: Para ver que se refresca en la pantalla > F12 > clic en los 3 puntos > More Tools > Rendering > chequear la opción Paint Flashing
-                        Ojo porque a veces parece que refresca la pantalla, pero en realidad esta refrescando el dom virtual.
-
-        98. Optimizing Functional Components with React.memo()
-
-            Lo que hace es tomar un snapshot del componente y lo re-renderiza, si y solo si, el input cambia.
-
-            export default React.memo(componente);
-
-            cuando el componente solo usa una propiedad, no tenemos que apsar todo el objeto, porque sino se re-renderiza si otra prop cambia.
-
-        99. When should you optimize?
-        100. PureComponents instead of shouldComponentUpdate
-
-            Si queremos chequear si alguna de todas las propiedades cambió, no nos conviene usar shouldComponentUpdate.
-            Para eso tenemos que extender de otro componente:
-
-            import React, { PureComponent } from 'react'
-
-            PureComponent, ya implementa shouldComponentUpdate con un completo chequeo de todas las props.
-
-        101. How React Updates the DOM
-
-            render() --> No actualiza inmediatamente al DOM real. Aplica a todo tipo de componentes.
-                        Este puede llegar a dar el mismo resultado que antes, es por eso que se usa shouldComponentUpdate, para manejar que es lo que realmente se debería renderizar.
-
-                        Lo que hace es compara el viejo DOM con el nuevo DOM (virtuals)
-                            Hace esto porque es mas rapido que el DOM real.
-
-                        DOM Virtual, es una representación del DOM en Javascript.
-                        El future DOM, es el que se crea cuando render es llamado, recordemos que render no llama inmediatamente al DOM real sin antes comparar (el viejo con el futuro para ver si hay diferencias.)
-                        Una vez que termina llama al DOM real y lo actualiza, y no lo re-renderiza por completo, solo lo que fue detectado para updetear.
-
-                        Si no encuentra diferencias, se ejecuta render y ahí es donde shouldComponentUpdate debería prevenir que llame al dom real, si realmente nada cambio.
-
-
-            En vez de envolver los elementos en un div, podemos usar:
-
-                return [
-                    <h1></h1>,
-                    <p></p>
-                ]
-
-                El tema es que hay que generar una key, para cada elemento, si no tenes que generar identificadores unico igual.
-
-            Otra manera de hacer esto es:
-
-                Crear una carpeta hoc (High order component)
-                Después hay que crear un archivo Aux.js (mac) Auxiliary.js (Windows)
-
-                import React from 'react';
-
-                const aux = props => props.children;
-
-                export default aux;
-
-                IMPORTANTE: Children es una propiedad especial, que lo que sea que entre, lo pone entre tags cerrados.
-
-        103. Windows Users Must Read
-
-            On Windows, the Aux.js  filename is not allowed in ZIP archives. Hence when extracting the attached source code, you might get prompted to rename the Aux.js  file. You might also face difficulties creating an Aux folder and Aux.js file.
-
-            I really apologize for that inconvenience, Windows is really doing an amazing job here ;-).
-
-            Follow these fixes:
-
-            1) Problems when unzipping the attached file:
-            Simply skip this step (e.g. by pressing "No") and ignore the upcoming error message.
-
-            In the extracted folder, you'll then find all source files EXCEPT for the Aux.js  file. In later course modules (where we work on the course project), the Aux.js  file can be found in an Aux/  subfolder inside hoc/ .
-
-            Make sure to take the Aux.js  file attached to this lecture and place it inside the hoc/  or hoc/Aux/  folder (which ever of the two you got).
-
-            2) Problems with the creation of an Aux folder and/ or file:
-            Simply name both differently. For example, you may create an Auxiliary  folder and name the file inside of it Auxiliary.js . Make sure to then adjust your imports (import Aux from './path/to/Auxiliary/Auxiliary' ) and you should be fine.
-
-
-
-            Recursos de esta clase
-            Aux.js
-            Auxiliary.js
 
         104. Using React.Fragment
 
@@ -3879,73 +3850,6 @@
             http--04-after-global-axios.zip
             http--05-finished.zip
 
-    ### Sección 10: Burger Builder Project: Accessing a Server
-
-        177. Module Introduction
-        178. Firebase & The Right Database
-            The Firebase Database console - which we'll see in the next lecture - changed visually.
-
-            Important: Make sure you pick the Realtime Database, NOT Firestore!
-
-        179. Creating the Firebase Project
-            Ir a consola > Nuevo proyecto > poner el nombre > destilde Google Analytics.
-
-            Dice que hay que tener en cuenta los planes...
-            Setea en rules en true, la opción de lectura/escritura, al menos por el momento.
-            Copia la url que le provee que es como un endpoint al que le pegas a la base.
-
-
-            * La consola que muestra el es bastante diferente de la que tiene actualmente firebase.
-            El en este curso usa la opción de realtime database, por si en algún lugar de la consola se llega a ver eso.
-
-        180. Creating the Axios Instance
-            crea un archivo axios-order.js y genera una instancia de axios para hacer posteos
-
-        181. Sending a POST Request
-            Dentro de la función purchaseContinueHandler
-
-            hace la llamada a axios, y hay que tener en cuenta que para pegarle a la base a la tabla que corresponde en firebase, hay que poner por ej:
-
-            axios.post('/orders.json', objetoConInfo);
-
-        182. Displaying a Spinner while Sending a Request
-
-            Crea dentro de la carpeta UI un spinner.js
-            Busca en google css spinner, se copia el css,
-            genera el componente en el archivo, props, estado.
-
-            Dentro del modal, en el metodo shouldComponentUpdate, agrega una condición al if, que se renderice lo que esta adentro del componente si cambia show o si nextProps.children !== this.props.children
-
-        183. Handling Errors
-            Implementar Global Error Handling.
-
-            Crea un componente hoc, withErrorHandler, con minuscula (es otra manera de crear un componente), no va a devolver JSX.
-            Usa el interceptor de response de axios para obtener si hubo algun error en alguna llamada en el response.
-            Crea una función para setear el error en nulo cuando cierra el modal de error.
-
-        184. Retrieving Data from the Backend
-            En FireBase, crea la "tabla" ingredients, con las mismas propiedades del objeto con el que inicializaba, ahora en componentDidUpdate realiza la llamada a la base y mete una validación para que no rompa la app ya que ahora ingredients en el state es nulo al arrancar, porque se actualiza después con lo de la base.
-
-            Hay un error por la manera en la que se llaman los componentes cuando son clases y el problema lo tiene porque se utlizan los interceptores, por lo que cambia componentDidUpdate por componentWillMount, en la versión 16.8 ya no existe.
-            Agrega los catch a las llamadas con axios que faltaban.
-
-        185. Removing Old Interceptors
-            Genera propiedades a la clase donde pone el resultado de los interceptors de req y resp, para usarlo en el componentWillUnmount.
-
-            Y utiliza axios.interceptors.request.eject(this.reqInterceptor)
-            Y utiliza axios.interceptors.response.eject(this.reqResponse)
-
-            con esto evitamos crear y crear interceptors.
-
-        186. Useful Resources & Links
-            Useful Resources & Links
-            Find the source code for this module attached to this lecture.
-
-            Recursos de esta clase
-            http-burger--01-post-data.zip
-            http-burger--02-after-error-hoc.zip
-            http-burger--03-finished.zip
-
     ### Sección 11: Multi-Page-Feeling in a Single-Page-App: Routing
 
         187. Module Introduction
@@ -4252,697 +4156,6 @@
             routing--05-finished.zip
             routing--assignment-solution.zip
 
-    ### Sección 12: Adding Routing to our Burger Project
-
-        220. Module Introduction
-        221. Building the Checkout Container
-
-            Crea el componente Checkout, para manejar el estado, ya que es donde se procesan todos los ingredientes, pago etc.
-
-
-            En App.js
-                <Layout>
-                    <BurgerBuilder />
-                    <Checkout />
-                </Layout>
-
-            Para poner css en linea por ej, hace:
-                <div style={{with: 100%, margin: 'auto'}}
-
-        222. Setting Up Routing & Routes
-
-            npm install --save react-router-dom
-
-            En index envuelve app con BrowserRouter.
-            En App, usa switch y router para los componentes quee estaba cargando.
-
-        223. Navigating to the Checkout Page
-
-            this.props.history.push('/checkout')
-
-        224. Navigating Back & To Next Page
-
-            en el cancel usa this.props.history.goBack();
-            en el de continuar history.replace('/checkout/contact-data')
-
-        225. Passing Ingredients via Query Params
-
-            const queryParams = [];
-            for (let i in this.state.ingridients){
-                queryParams.push(encodedURIcomponent(i) + '=' + encodedURIcomponent(this.state.ingridients[i]))
-            }
-            const queryString = queryParams.join('&');
-
-            this.props.history.push({
-                pathName: '/checkout',
-                search= '?' + queryString
-            })
-
-            En Checkout, agrega la logica para obtener la info.
-
-            Ver en resources/section_12/routing-burger-02-query-params
-
-        226. Navigating to the Contact Data Component
-
-        233. Useful Resources & Links
-            Find the source code for the module attached to this lecture.
-
-            Recursos de esta clase
-            routing-burger--01-first-routes.zip
-            routing-burger--02-query-params.zip
-            routing-burger--03-finished.zip
-
-    ### Sección 13: Forms and Form Validation
-
-        234. Module Introduction
-        235. Analyzing the App
-            Habla de poner los input en su propio componente para poder centralizar, poner label y algún manejo de errores.
-
-        236. Creating a Custom Dynamic Input Component
-            Lo mete dentro de la carpeta components > UI
-            Genera css, y le pasa la info desde el form que lo usa, no más que eso
-
-        237. Setting Up a JS Config for the Form
-            Genera un objeto con los inputs que va a tener el formulario, ej:
-
-            orderForm: {
-                name: {
-                    elementType: 'input',
-                    elementConfig: {
-                        type: 'text',
-                        placeholder: 'Your Name'
-                    },
-                    value: '',
-                    validation: {
-                        required: true
-                    },
-                    valid: false,
-                    touched: false
-                },
-            }
-
-        238. Dynamically Create Inputs based on JS Config
-            después dinamicamente genera el form:
-
-            <form onSubmit={this.orderHandler}>
-                    {formElementsArray.map(formElement => (
-                        <Input
-                            key={formElement.id}
-                            elementType={formElement.config.elementType}
-                            elementConfig={formElement.config.elementConfig}
-                            value={formElement.config.value}
-                            invalid={!formElement.config.valid}
-                            shouldValidate={formElement.config.validation}
-                            touched={formElement.config.touched}
-                            changed={(event) => this.inputChangedHandler(event, formElement.id)} />
-                    ))}
-                    <Button btnType="Success" disabled={!this.state.formIsValid}>ORDER</Button>
-                </form>
-
-        239. Adding a Dropdown Component
-            Genera en el switch el código para renderizar selects
-
-        230. Handling User Input
-            Le agrega los onchage a los input y genera la función:
-
-            inputChangedHandler = (event, inputIdentifier) => {
-                const updatedOrderForm = {
-                    ...this.state.orderForm
-                };
-                const updatedFormElement = {
-                    ...updatedOrderForm[inputIdentifier]
-                };
-                updatedFormElement.value = event.target.value;
-                updatedFormElement.valid = this.checkValidity(updatedFormElement.value, updatedFormElement.validation);
-                updatedFormElement.touched = true;
-                updatedOrderForm[inputIdentifier] = updatedFormElement;
-
-                let formIsValid = true;
-                for (let inputIdentifier in updatedOrderForm) {
-                    formIsValid = updatedOrderForm[inputIdentifier].valid && formIsValid;
-                }
-                this.setState({orderForm: updatedOrderForm, formIsValid: formIsValid});
-            }
-
-        241. Handling Form Submission
-            Genera la función que va a utilizar el formulario al submitirse.
-
-            orderHandler = ( event ) => {
-                event.preventDefault();
-
-                const formData = {};
-                for (let formElementIdentifier in this.state.orderForm) {
-                    formData[formElementIdentifier] = this.state.orderForm[formElementIdentifier].value;
-                }
-                const order = {
-                    ingredients: this.props.ings,
-                    price: this.props.price,
-                    orderData: formData,
-                    userId: this.props.userId
-                }
-
-                this.props.onOrderBurger(order, this.props.token);
-
-            }
-
-        242. Adding Custom Form Validation
-            Genera la función, con la que se valida si esta bien lla info ingresada en los input o no.
-
-            checkValidity(value, rules) {
-                let isValid = true;
-                if (!rules) {
-                    return true;
-                }
-
-                if (rules.required) {
-                    isValid = value.trim() !== '' && isValid;
-                }
-
-                if (rules.minLength) {
-                    isValid = value.length >= rules.minLength && isValid
-                }
-
-                if (rules.maxLength) {
-                    isValid = value.length <= rules.maxLength && isValid
-                }
-
-                if (rules.isEmail) {
-                    const pattern = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
-                    isValid = pattern.test(value) && isValid
-                }
-
-                if (rules.isNumeric) {
-                    const pattern = /^\d+$/;
-                    isValid = pattern.test(value) && isValid
-                }
-
-                return isValid;
-            }
-        243. Fixing a Common Validation Gotcha
-            Mejora esto:
-
-            if (rules.required) {
-                isValid = value.trim() !== '' && isValid;
-            }
-
-        244. Adding Validation Feedback
-            if (props.invalid && props.shouldValidate && props.touched) {
-                inputClasses.push(classes.Invalid);
-            }
-
-        245. Improving Visual Feedback
-            Agrega la propiedad touche: false, esto es para que los input no arranquen rojos, como que tuvieran mal la validación.
-
-        274. Showing Error Messages
-            We're not showing any error messages in our form, but you can of course easily add some.
-
-            The form inputs (<Input />  component) already receives the information whether it's invalid or not. You could of course easily add some conditionally rendered element inside of that component.
-
-            For example (inside <Input />  component function):
-
-            // all the other code from the videos
-
-            let validationError = null;
-            if (props.invalid && props.touched) {
-                validationError = <p>Please enter a valid value!</p>;
-            }
-
-            return (
-                <div className={classes.Input}>
-                    <label className={classes.Label}>{props.label}</label>
-                    {inputElement}
-                    {validationError}
-                </div>
-            );
-            This could of course be finetuned. You could also pass the value type (e.g. "email address" ) as a prop:
-
-            validationError = <p>Please enter a valid {props.valueType}</p>;
-
-            You could also receive the complete error message as a prop:
-
-            validationError = <p>{props.errorMessage}</p>;
-
-            And of course, also don't forget to style the messages if you want to do that:
-
-            validationError = <p className={classes.ValidationError}>{props.errorMessage}</p>;
-
-            In your CSS file, you could have:
-
-            .ValidationError {
-                color: red;
-                margin: 5px 0;
-            }
-
-        247. Handling Overall Form Validity
-            Agrega formValid a los controles del form.
-
-            Hace que el boton no este habilitado si no estan todos los inputs requeridos validados.
-
-        248. Working on an Error
-            Arregla un problema con el combo.
-            Agrega un validation: {} en el control del select, para que no de error.
-
-        249. Fixing a Bug
-            Le pone un valor por defecto al combo, para que se posicione en un value, dice que lo va a arreglar después ??
-
-        250. Useful Resources & Links
-            Validate.js (you may import its functionality into your React projects): https://validatejs.org/
-            Get more ideas about potential validation approaches: https://react.rocks/tag/Validation
-            Alternatives to the manual approach taken in this course:
-
-            react-validation package: https://www.npmjs.com/package/react-validation
-            formsy-react package: https://github.com/christianalfoni/formsy-react
-            Recursos de esta clase
-            forms--01-basic-form.zip
-            forms--02-form-validation.zip
-            forms--03-finished.zip
-
-    ### Sección 14: Redux
-
-        251. Module Introduction
-            State management, que es el estado y como funciona redux.
-
-        252. Understanding State
-            Ingredientes nuevos
-            Esta el usuario autenticado?
-            El modal esta abierto?
-            lista de posteos en nuestro blog, etc...
-
-        253. The Complexity of Managing State
-            Si bien podemos manejar el estado y pasar información de un componente A a un componente B mediante queryString a travez de las rutas, se vuelve inmanejable cuando crece la app.
-
-            Si queremos pasar por ej, la información de autenticación de un componente A a B, se puede tornar muy engorroso ya que o lo vamos a manejar pasando de props en props y componentes.. o queryStrings, ahí aparece redux en acción...
-
-        254. Understanding the Redux Flow
-            Redux es una libreria de terceros, que si bien vemos que se puede integrar con React, se puede usar sola.
-
-            Como maneja los datos y como se actualiza?
-
-            CentralStorage:
-                Tiene el estado de toda la aplicación
-
-            Acciones:
-                - Se envian (dispatch) desde los componentes.
-                - Un action, es un es un paquete de información predefinida, por ej "Agregar componente" o "Eliminar componente"
-                - Posiblemente también tenga un payload, por ej, si la acción es un ingrediente, necesitamos pasar toda la información sobre QUE ingrediente
-                - Una acción no sabe como operar el central storage, no tiene logica, es solo un mensajero.
-
-            Reducers:
-                - Se utiliza para cambiar el central storage.
-                - Es una función pura que recibe la acción y el estado viejo.
-                - Podemos combinar diferentes reducers en 1. Pero en el "final", simplemente es una ruta reducer que se conecta directamente con el central storage.
-                - El reducer puede chequear el tipo de la acción , por ej si es agregar un ingrediente, y cuando definimos el codigo para ese tipo de acción y luego "escupe" un estado actualizado.
-                - El reducer ejecuta codigo sincronico, por ende no ejecuta HTTP request, no side effects, nada. Es solo información entrando, respuesta saliendo, nada de delay, igual vamos a aprender a hacer cosas asincronicas.
-                - El reducer actualiza el estado del central storage, de una manera inmutable, por lo que siempre retornamos un nuevo estado, que es basado en el viejo pero es tecnicamente un nuevo objeto javascript, porque los objetos son de tipo de referencia y no queremos que accidentalmente cambiemos el objeto viejo.
-
-            Subscriptions Model (Subscriptors?):
-                - Sirve para que una vez que el reducer actualiza el estado del central storage, se triggeree la finromación nuevamente al componente que lo necesitaba, para ello el componente debe estar subscripto al modelo de subscripción.
-
-            EJ:
-                Tenemos un componente que quiere manipular el estado, este no lo actualiza directamente modificando central storage
-
-        255. Setting Up Reducer and Store
-            Comenta que agrego un proyecto para que bajemos y con el que vamos a ejercitar redux.
-
-            1) Instalación redux:
-                > npm install --save redux
-            2) Crea el archivo redux-basics.js acá va a poner el Store, Reducer, Dispatching Action, Subscription.
-
-            Estado incial del estado..
-                const initialState = {
-                    counter: 0;
-                }
-
-            Reducer:
-                Es una función rootReducer que recibe el estado y la acción por parametro.
-                return state;
-
-                const rootReducer = (state = initialState, action) => {
-                    return state;
-                }
-
-            Store:
-                const store = createSotre(rootReducer) ;nos habilita a crear un nuevo store.
-                                                        un Store, necesita ser inicializado con un reducer.
-                connsole.log(sotre);
-
-        256. Dispatching Actions
-            Una acción es "enviada" por simplemente acceder al store.
-
-
-            // Dispatching
-            // recibe como parametro una acción, un objeto, que si o si tiene que ser type, por convención su valor tiene que estar todo en mayus.
-            store.dispatch({ type: 'INC_COUNTER' });
-            store.dispatch({ type: 'INC_COUNTER', value: 10 }); // tiene otro parametro opcional.
-
-
-            const rootReducer = (state = initialState, action) => {
-                if(action.type === 'INC_COUNTER'){
-                    // state.counter++ -> esto no se puede hacer porque estas mutando su estado original.
-                    return {
-                        ...state,
-                        counter: state.counter + 1; // obtiene el estado que acabo de desesctructurar y ahi si, en un nuevo obj le sumo 1.
-                    };
-                }
-
-                return state;
-            }
-
-        257. Adding Subscriptions
-            // Subscription -> Tienqe que ir antes de los dispatchers.
-
-            store.suscribe(() => {
-                console.log('[Suscripción]', store.getState());
-            }) // como parametro toma una función que se va a ejecutar cada vez que se actualice el estado.
-
-        258. Connecting React to Redux
-            Tenemos que tener en cuenta que hay aplicaciones que no necesitan redux porque no son tan complejas...
-
-            en el archivo index.js, importamos redux:
-                import { createStore } from 'redux';
-
-                // antes de que se renderice la app:
-                const store = createStore(reducer);
-
-            # ! Generalmente se puede ver en la estructura del proyecto que hay una carpet store. #
-
-            crea la carpeta store, adentro crea un archivo reducer.js:
-
-                const initialState = {
-                    counter: 0
-                }
-
-                const reducer = (state = initialState, action) => {
-                    return state;
-                }
-
-                export default reducer;
-
-        259. Connecting the Store to React
-            Instalamos react-redux, para conectar el store con nuestra app react:
-                npm install --save react-redux;
-
-            index.js
-                import { Provider }  from 'react-redux';
-
-                envolvemos el componente a renderizar <App /> con el componente Provider.
-
-            Provider:
-                Es un helper component, que nos habilita a "inyectar" nuestro store dentro de los componentes de react.
-                le tenemos que pasar una propiedad, le vamos a poner store por sentido comun, y le pasamos el store que creamos.
-                <Provider store={}> <App /> </Provider>
-
-            Counter.js
-                Importamos un hoc, una función de redux que nos permite ocnectar con nuestro store. O sea, no es realmente un hoc, sino una función que retorna un hoc.
-                En grandes aplicaciones podríamos tener montones y montones de diferentes estados y piezas de estados que manejar.
-
-                import { connect } from 'redux';
-
-                const mapStateToProps = state => {
-                    return {
-                        ctr: state;
-                    }
-                }
-                export default connect(mapStateToProps)(Counter); // En el primer param le pasamos cierta config.
-
-                Al hacer esto ahora en nuestro componente, donde mostramos el value que crece o decrece, simplemente utilizamos la prop que acabamos de generar y pasarle a connect:
-
-                // value={this.state.counter}
-                <CounterOutput value={this.props.ctr} />
-
-        260. Dispatching Actions from within the Component
-            Ahora vamos a aprender a enviar acciones desde nuestro componente.
-
-            También necesitamos una función para enviarle por parametro a connect e informarle que acciones queremos realmente que se envien.
-
-            // retorna un obj javascript que va a tener la función que cuando se ejecute va a enviar una acción.
-            // pasariamos como nulo el primer parametro a connect si no es necesario, segun lo que tengamos en nuestro componente.
-            const mapDispatchToProps = dispatch => {
-                return {
-                    onIncrementCounter: () => dispatch({type: 'INCREMENT'})
-                };
-            }
-
-            Ahora en el componente <CounterControl pasamos en la prop donde tenemos el handler de la función que hace el incremento, simplemente pasamos this.props.onIncrementCounter
-
-
-            Ahora tenemos que actualizar en nuestro archivo reducer, el if que verifica las acciones que van llegando.
-
-        Tarea 4: Time to Practice - Dispatching Actions
-        261. Passing and Retrieving Data with Action
-            cuando pasamos info al dispatch, en el segundo parametro, podemos pasar info por el action.
-            después lo manejamos en el reducer.
-
-        262. Switch-Case in the Reducer
-            statement expression: switch
-
-            en el caso default, retornamos solo state;
-
-        263. Updating State Immutably
-            en el case arregla los return:
-
-            const newState = Object.assign({}, state);
-            newState.counter= state.counter + 1;
-            return newState;
-
-            una mejor manera:
-
-            case 'DECREMENT':
-                return {
-                    ...state,
-                    counter: state.counter + action.val
-                }
-
-            // en este caso esta es la manera correcta:
-            case 'STORE_RESULT':
-                return {
-                    ...state,
-                    results: state.results.concat(state.counter)
-                }
-
-            Agrega a mapStateToProps una propiedad:
-
-                storedResults: state.results;
-
-        264. Updating Arrays Immutably
-
-
-            Para eliminar info de un array se usa splice, pero como este lo hace sobre el array existe y nosotros no podemos mutar el original, muestra dos opciones:
-
-            1)
-                const id = 2;
-                const newArray = [...state.results]
-                newArray.splice(id, 1);
-
-                case 'DELETE_RESULT':
-                return {
-                    ...state,
-                    results: newArray
-                }
-
-            2) const updatedArray = state.results.filter(result => result.id !== action.resultElId);
-
-                case 'DELETE_RESULT':
-                return {
-                    ...state,
-                    results: updatedArray
-                }
-
-        265. Immutable Update Patterns
-            Immutable Update Patterns on reduxjs.org: http://redux.js.org/docs/recipes/reducers/ImmutableUpdatePatterns.html
-
-            Updating Nested Objects
-            The key to updating nested data is that every level of nesting must be copied and updated appropriately. This is often a difficult concept for those learning Redux, and there are some specific problems that frequently occur when trying to update nested objects. These lead to accidental direct mutation, and should be avoided.
-
-            Common Mistake #1: New variables that point to the same objects
-            Defining a new variable does not create a new actual object - it only creates another reference to the same object. An example of this error would be:
-
-            function updateNestedState(state, action) {
-                let nestedState = state.nestedState;
-                // ERROR: this directly modifies the existing object reference - don't do this!
-                nestedState.nestedField = action.data;
-
-                return {
-                    ...state,
-                    nestedState
-                };
-            }
-            This function does correctly return a shallow copy of the top-level state object, but because the nestedState variable was still pointing at the existing object, the state was directly mutated.
-
-            Common Mistake #2: Only making a shallow copy of one level
-            Another common version of this error looks like this:
-
-            function updateNestedState(state, action) {
-                // Problem: this only does a shallow copy!
-                let newState = {...state};
-
-                // ERROR: nestedState is still the same object!
-                newState.nestedState.nestedField = action.data;
-
-                return newState;
-            }
-            Doing a shallow copy of the top level is not sufficient - the nestedState object should be copied as well.
-
-            Correct Approach: Copying All Levels of Nested Data
-            Unfortunately, the process of correctly applying immutable updates to deeply nested state can easily become verbose and hard to read. Here's what an example of updating state.first.second[someId].fourth might look like:
-
-            function updateVeryNestedField(state, action) {
-                return {
-                    ...state,
-                    first : {
-                        ...state.first,
-                        second : {
-                            ...state.first.second,
-                            [action.someId] : {
-                                ...state.first.second[action.someId],
-                                fourth : action.someValue
-                            }
-                        }
-                    }
-                }
-            }
-            Obviously, each layer of nesting makes this harder to read, and gives more chances to make mistakes. This is one of several reasons why you are encouraged to keep your state flattened, and compose reducers as much as possible.
-
-            Inserting and Removing Items in Arrays
-            Normally, a Javascript array's contents are modified using mutative functions like push, unshift, and splice. Since we don't want to mutate state directly in reducers, those should normally be avoided. Because of that, you might see "insert" or "remove" behavior written like this:
-
-            function insertItem(array, action) {
-                return [
-                    ...array.slice(0, action.index),
-                    action.item,
-                    ...array.slice(action.index)
-                ]
-            }
-
-            function removeItem(array, action) {
-                return [
-                    ...array.slice(0, action.index),
-                    ...array.slice(action.index + 1)
-                ];
-            }
-            However, remember that the key is that the original in-memory reference is not modified. As long as we make a copy first, we can safely mutate the copy. Note that this is true for both arrays and objects, but nested values still must be updated using the same rules.
-
-            This means that we could also write the insert and remove functions like this:
-
-            function insertItem(array, action) {
-                let newArray = array.slice();
-                newArray.splice(action.index, 0, action.item);
-                return newArray;
-            }
-
-            function removeItem(array, action) {
-                let newArray = array.slice();
-                newArray.splice(action.index, 1);
-                return newArray;
-            }
-            The remove function could also be implemented as:
-
-            function removeItem(array, action) {
-                return array.filter( (item, index) => index !== action.index);
-            }
-            Updating an Item in an Array
-            Updating one item in an array can be accomplished by using Array.map, returning a new value for the item we want to update, and returning the existing values for all other items:
-
-            function updateObjectInArray(array, action) {
-                return array.map( (item, index) => {
-                    if(index !== action.index) {
-                        // This isn't the item we care about - keep it as-is
-                        return item;
-                    }
-
-                    // Otherwise, this is the one we want - return an updated value
-                    return {
-                        ...item,
-                        ...action.item
-                    };
-                });
-            }
-            Immutable Update Utility Libraries
-            Because writing immutable update code can become tedious, there are a number of utility libraries that try to abstract out the process. These libraries vary in APIs and usage, but all try to provide a shorter and more succinct way of writing these updates. Some, like dot-prop-immutable, take string paths for commands:
-
-            state = dotProp.set(state, `todos.${index}.complete`, true)
-            Others, like immutability-helper (a fork of the now-deprecated React Immutability Helpers addon), use nested values and helper functions:
-
-            var collection = [1, 2, {a: [12, 17, 15]}];
-            var newCollection = update(collection, {2: {a: {$splice: [[1, 1, 13, 14]]}}});
-            They can provide a useful alternative to writing manual immutable update logic.
-
-            Immutable Data#Immutable Update Utilities section of the Redux Addons Catalog.
-
-        266. Outsourcing Action Types
-            Recomienda por ej en un archivo acions.js crear constantes para las acciones, así si hay un error de tipo sabes donde puede estar el problema, y no tenes que andar buscando por toda la app donde pusiste esa variable para el dispatcher y que le pifiaste.
-
-            export const INCREMENTE = 'INCREMENT';
-            export const DECREMENT = 'DECREMENT';
-            ...ETC
-
-        267. Combining Multiple Reducers
-            Divide los reducers en diferentes archivos. Crea una carpeta reducers > counter.js, result.js
-
-            en counter pone los de decremento y incremento.
-            en result pone store result y delete result.
-            a ambos los exporta default reducer;
-
-            para combinarlos en el archivo index, aparte de importarlos, importa una helper function del paquete de readux, que se llama combineReducers
-
-            const rootReducer = combineReducers({
-                ctr: counterReducer,
-                res: resultReducer
-            });
-
-            y después al createStore se le pasa rootReducer.
-
-        268. Understanding State Types
-            Dice que para una aplicación chiquita no es necesario usar redux, pero para una chica>mediana, si. Pero que de todas maneras no es necesario que toda la app lo use, simplemente hay que analizar donde se necesita.
-
-            Tipos de estado:
-
-            Type:               Example:                Use Redux?:
-            loca ui state      show / hide backdrop     mostly handled within components.
-            Persistent state     All Users... All posts..    Stored on Server, relevant slice managed by Redux.
-            Client State        Esta autenticado? Filter set by User        Managed via Redux.
-
-
-            * No olvidarse que si el usuario recarga la pagina, el estado se pierde, redux no reemplaza una base de datos. *
-        Tarea 5: Time to Practice - Redux Basics
-
-        269. [OPTIONAL] Assignment Solution
-            Solución por él de la tarea.
-
-        270. Combining Local UI State and Redux
-            Muestra combina los dos, useState para manejar los valores que usa el usuario en los input.
-            Y en el boton que usa la función que se creo para redux dentro de mapDispatchToProps
-
-        271. Wrap Up
-        302. Useful Resources & Links
-            Redux Docs: http://redux.js.org/
-            Core Concepts: http://redux.js.org/docs/introduction/CoreConcepts.html
-            Actions: http://redux.js.org/docs/basics/Actions.html
-            Reducers: http://redux.js.org/docs/basics/Reducers.html
-            Redux FAQs: http://redux.js.org/docs/FAQ.html
-            Recursos de esta clase
-            redux--01-start.zip
-            redux--02-basic-flow.zip
-            redux--03-react-redux.zip
-            redux--04-improved-setup.zip
-            redux--05-finished.zip
-            redux--assignment-1-solution.zip
-            redux--assignment-2-solution.zip
-
-    ### Sección 15: Adding Redux to our Project
-
-        273. Module Introduction
-            Analiza la app de la hamburguesa, para ver donde puede usar Redux y donde deja state.
-
-            Analiza que es local ui state.
-
-        282. Useful Resources & Links
-            Find the source code for this module attached to this lecture.
-
-            Recursos de esta clase
-            redux-burger--01-basic-setup.zip
-            redux-burger--02-finished.zip
-
     ### Sección 18: Adding Authentication to our Burger Project
 
         321. Module Introduction
@@ -4987,248 +4200,6 @@
 
             let expirationDate = new Date(new Date().getTime() + response.data.expiresIn * 1000);
             localStorage('expirationDate', expirationDate);
-
-
-    ### Sección 19: Improving our Burger Project
-
-        343. Module Introduction
-        344. Fixing the Redirect to the Frontpage
-            Arregla un flag que le había quedado mal en purchaseBurgerStart (el loading lo pasó a true)
-
-            Cuando submite la orden, se redirige al index con todo vacio.
-                Vuelve a poner la ruta de auth, porque dentro de ese componente estaba la funcionalidad y como no hace daño volver a ponerlo, es la solucion mas rapida que encontró.
-
-            fixea el css de la hamburgeusa porque no esta bien centrado..
-
-        345. Using updateObject in the Entire App
-            Crea una carpeta shared y pasa el archivo utility.js ahí adentro.
-            actualiza las referencias al archivo en los import.
-
-            en updatedFormElement = updateObject(this.state.orderForm[inputIdentifier],
-                value: event.target.value,
-                valid: this.checkValidity(updatedFormElement.value, updatedFormElement.validation),
-                touched: true
-            )
-
-            mismo para orderForm
-
-            verifica en otros archivos y hace lo mismo.
-
-        346. Sharing the Validation Method
-            a la función checkValidity, la mete en el archivo utility.js, la usa para validar cosas del formulario.
-
-            elimina el metodo de los archivos, importa la función y le saca el this a la función en los archvos.
-
-        347. Using Environment Variables
-            Hace que la dev tools de redux se vea solo en dev con las variables de entorno.
-
-        348. Removing console.log()s
-            Elimina los console.log...
-
-        349. Adding Lazy Loading
-            Carga diferida.
-            Agrega dentro de la carpeta hoc > asyncComponent
-            le pega info que hizo en la sección de enrutamiento
-
-            Genera una para cada una, order, auth, etc.
-
-            * No se debe usar siempre y para cualquier cosa, porque si son cosas chicas ni vale la pena hacer esto.
-
-        350. Wrap Up
-        351. Useful Resources & Links
-            Find the source code for this module attached to this lecture.
-
-            Recursos de esta clase
-            burger-improvements--01-finished.zip
-
-    ### Sección 20: Testing
-
-        352. Module Introduction
-        353. What is Testing?
-            Build App > Testear manualmente en el navegador > Tests Automaticos > Ship App to Server.
-
-        354. Required Testing Tools
-            Necesitamos 2 cosas:
-
-            Un corredor de test.
-            Ejecutar test y tener una libreria de validación.
-            React viene con Jest instalado.
-
-            Generamos test unitarios
-            Simulamos la app, montamos componentes y de esto nos permite consumir el DOM.
-            React Test Units.
-
-            Enzyme es otra herramienta como Jest, creada por el equipo de Airbnb (también recomendada por el team de React), esta herramienta hace mas facil montar componentes y navegar entre ellos.
-
-        355. What To Test?
-
-            Que NO queres testear:
-                No queres testear la libreria, ni react, ni axios, redux, etc. Todo esto ya fue testeado por el que lo creó.
-
-                No queres testear conecciones complejas.
-
-            Lo que si queres:
-                - Mockear y generar data fake.
-                - Unidades aisladas, por ej una función que creaste, un componente.
-                - Output condicional.
-
-        356. Writing our First Test
-
-            enzyme             -> Nos permite cargar un componente por si mismo, sin dependenr de toda la app.
-                Estos dos packages, son complementos para enzyme.
-                react-test-render           -> dependencia de enzyme.
-                enzyme-adapter-react-16     -> adaptador de enzyme para nuestra versión actual.
-
-            jest               -> ya viene instalado.
-
-            npm install --save enzyme react-test-render
-
-            Va a testear NavigationItems, en la misma carpeta crea un js con el mismo nombre del componente pero le agrega test, ej: NavigationItems.test.js
-
-            describe es una función que toma 2 argumentos
-                1) Lo que se va a testear, el puso el nombre del componente x ej
-                2) Testing arrow function.
-
-            It te permite escribir un test individual, también tiene 2 argumentos.
-                1) Una descripción de lo que se esta testeando
-                2) Testing arrow function.
-
-            import React from 'react';
-            import { configure, shallow } from 'enzyme';
-            import Adapter from 'enzyme-adapter-react-16';
-
-            import NavigationItems from './NavigationItems';
-            import NavigationItem from './NavigationItem/NavigationItem';
-
-            // Para conectar enzyme con mi app.
-            configure({adapter: new Adapter});
-
-            describe('<NavigationItems />', () => {
-                it('should render two <NaviationItems /> elements if not authenticated', () => {
-                    // testing logic
-                    const wrapper = shallow(<NavigationItems />);
-                    expect(wrapper.find(NavigationItem)).toHaveLength(2); // osea, que haya 2 componentes.
-                })
-            })
-
-            * shallow, es un helper (una función),que usamos para renderizar el componente con todo su contenido, pero todo no es completamente cargado, osea no todo el sub arbol de componentes.
-            * wrapper en realidad puede ser pepito.
-            * en expect definimos lo que queremos chequear.
-            * find es una utilidad de enzyme que nos permite ver dentro del componente y chequear si existe lo que necesitamos.
-
-            Para correr los test, primero chequeamos que en package.json este el script de test.
-
-            npm test
-            * Si llega a haber un error, eliminar el test de App.test.js
-
-        357. Testing Components Continued
-
-            // Agrego otro test, ahora verifico que haya 3 componentes y le paso al componente la prop que necesita para que se rendericen los 3.
-
-            import React from 'react';
-            import { configure, shallow } from 'enzyme';
-            import Adapter from 'enzyme-adapter-react-16';
-
-            import NavigationItems from './NavigationItems';
-            import NavigationItem from './NavigationItem/NavigationItem';
-
-            // Para conectar enzyme con mi app.
-            configure({adapter: new Adapter});
-
-            describe('<NavigationItems />', () => {
-                // Si se repiten ciertas cosas, podemos usar este setup general:
-                let wrapper;
-
-                beforeEach(() => {
-                    wrapper = shallow(<NavigationItems />);
-                })
-
-                it('should render two <NaviationItems /> elements if not authenticated', () => {
-                    expect(wrapper.find(NavigationItem)).toHaveLength(2); // osea, que haya 2 componentes.
-                });
-
-                it('should render two <NaviationItems /> elements if not authenticated', () => {
-                    // Como este necesitaba que se pase una prop para correr bien, lo podemos setear de esta manera:
-                    wrapper.setProps({ isAuthenticated: true });
-                    expect(wrapper.find(NavigationItem)).toHaveLength(3);
-                })
-            })
-
-        358. Jest and Enzyme Documentations
-
-            Para ver todas las cosas que podemos usar de los packages:
-            Enzyme API: http://airbnb.io/enzyme/docs/api/
-            Jest Docs: https://facebook.github.io/jest/
-
-            it('should render two <NaviationItems /> elements if not authenticated', () => {
-                wrapper.setProps({ isAuthenticated: true });
-                expect(wrapper.contains(<NavigationItem link="/logout"> Logout </NavigationItem)).toEqual(True);
-            })
-
-        359. Testing Components Correctly
-
-            Escribir test correctos es complicado. Siempre hay algo que se nos puede escapar.
-            Lo que dice es que hay que escribir test de las cosas que sabemos que pueden romper todo, por ej un if negado, cuando no era negado y así.
-
-        360. Testing Containers
-
-            Como tenemos setProps también tenemos setTest para poder mockear estados.
-
-            Le agregamos export adelante de la clase, para exponerla y poder testearla. Esto no choca con el export default que ya tenemos.
-
-            en el test, por ej BurgerBuilder.test.js, la importamos así:
-
-            import { BurgerBuilder } from './BurgerBuilder';
-
-            Lo que hace es verificar si se encontra el componente BurgerBuilder, ya que se muestra solo si no hay ingredientes.
-
-        361. How to Test Redux
-
-            Hay testear Redux, pero hay que tener cuidado qué testeamos.
-            Si seguimos el patron de no poner demasiada logica dentro de en la creación de los actions.
-            Como son sincronicos y funciones que se les pasa y devuelven algo, es mas facil de testear.
-
-            import reducer from './auth';
-            import * as actionTypes from '../actions/actionTypes';
-
-            describe('auth reducer', () => {
-                it('should return the initial state', () => {
-                    expect(reducer(undefined, {})).toEqual({
-                        token: null,
-                        userId: null,
-                        error: null,
-                        loading: false,
-                        authRedirectPath: '/'
-                    });
-                });
-
-                it('should store the token upon login', () => {
-                    expect(reducer({
-                        token: null,
-                        userId: null,
-                        error: null,
-                        loading: false,
-                        authRedirectPath: '/'
-                    }, {
-                        type: actionTypes.AUTH_SUCCESS,
-                        idToken: 'some-token',
-                        userId: 'some-user-id'
-                    })).toEqual({
-                        token: 'some-token',
-                        userId: 'some-user-id',
-                        error: null,
-                        loading: false,
-                        authRedirectPath: '/'
-                    });
-                })
-            });
-
-        362. Wrap Up
-        363. Useful Resources & Links
-            Enzyme API: http://airbnb.io/enzyme/docs/api/
-            Jest Docs: https://facebook.github.io/jest/
-            Recursos de esta clase
-            testing--01-finished.zip
 
     ### Sección 21: Deploying the App to the Web
 
@@ -5675,33 +4646,3 @@
             Next.js Repo & Docs: https://github.com/zeit/next.js/
             Recursos de esta clase
             nextjs--01-finished.zip
-
-    ### Sección 26: React Hooks - 
-
-        433. Sending Http Requests
-            Creó un nuevo proyecto en Firebase.
-            va a usar fetch y agrega la url del nuevo proyecto, configura el metodo como post, un body de lo que queres enviar (data en formato json), le envia el ingrediente sin id porque ahora eso lo va a generar firebase.
-            
-            Explica que en fetch es obligatorio poner el header de app/json para que parsee eso a json, en axios no es necesario.
-
-            response.json() -> toma el body y lo convierte a json.
-
-        436. More on useEffect()
-
-            Va a usar useEffect para hacer un request a firebase cada vez que el usuario pulse una tecla.
-            Por ende en vez de un array vacio, le pasa enteredFilter, que es el estado actualizado de las letras que se van escribiendo en el value.
-
-            Al final de la llamada, usa props.onLoadIngredients(loadedIngredients), este ultimo es donde se va pusheando la info a cada respuesta del request.
-
-            Así que le pasa al componente Search, la nueva prop onLoadIngredients={filteredIngredientsHandler}
-
-            crea la funcion filteredIngredientsHandler, como props es una dependencia de useEffect, también hay que pasarla como parametro del array, pero como esto puede traer otros problemas, lo que se hace en realidad es oasar la funcion onLoadIngredients, y arriba de todo después de crearse la función, lo que se hace es extraer con destructuring, esa función de las props, const { onLoadIngredients } = props;
-            Esto se hace para que useEffect se use solo cuando uno de los dos parametros que le psamos cambie.
-
-            Firebase admite filtrado, así que arma una constante query con enteredFilter.lenght === 0 ? '' : `?orderBy="title"&equalTo="${enteredFilter}"
-
-            eso se lo pasamos al final de la url en el fetch
-
-            También hay que ir a rules, y habilitar filtering en firebase, ingredients: { ".indexOn": [ "title" ]}
-
-            esto da un loop infinito, lo resuelve en el proximo video.
