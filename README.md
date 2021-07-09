@@ -589,6 +589,110 @@ NOTA: El curso se actualizó y algunas secciones fueron borradas, el autor re-gr
 
     263. Module Resources
 
+# Section 20: Building a Multi-Page SPA with React Router
+
+    264. Module Introduction
+
+    265. What is Routing & Why?
+
+    266. Installing React Router
+
+    267. Defining & Using Routes
+
+    268. Working with Links
+
+    269. Using NavLinks
+
+    270. Adding Dynamic Routes with Params
+
+    271. Extracting Route Params
+
+    272. Using "Switch" and "exact" For Configuring Routes
+
+    273. Working with Nested Routes
+
+    274. Redirecting The User
+
+    275. Time to Practice: Onwards to a New Project
+
+    276. Practice Redirecting & Extracting Params
+
+    277. Practicing Nested Routes
+
+    278. Adding a Layout Wrapper Component
+
+    279. Adding Dummy Data & More Content
+
+    280. Outputting Data on the "Details" Page
+
+    281. Adding a "Not Found" Page
+
+    282. Implementing Programmatic (Imperative) Navigation
+
+    283. Preventing Possibly Unwanted Route Transitions with the "Prompt" Component
+
+    284. Working with Query Parameters
+
+    285. Getting Creative With Nested Routes
+
+    286. Writing More Flexible Routing Code
+
+    287. Sending & Getting Quote Data via Http
+
+    288. Adding the "Comments" Features
+
+    289. Module Resources
+
+# Section 21: Deploying React Apps
+
+    290. Module Introduction
+
+    291. Deployment Steps
+
+    292. Adding Lazy Loading
+
+    293. Building The Code For Production
+
+    294. Getting Started With Deployment (Uploading Files)
+
+    295. Exploring Routing Issues & Finishing Deployment
+
+    296. Module Resources
+
+# Section 22: Adding Authentication To React Apps
+
+    297. Module Introduction
+
+    298. What, How & Why?
+
+    299. More on "Authentication Tokens"
+
+    300. Starting Setup & First Steps
+
+    301. Adding User Signup
+
+    302. Showing Feedback To The User
+
+    303. Adding User Login
+
+    304. Managing The Auth State With Context
+
+    305. Using The Token For Requests To Protected Resources
+
+    306. Redirecting The User
+
+    307. Adding Logout
+
+    308. Protecting Frontend Pages
+
+    309. Persisting The User Authentication Status
+
+    310. Adding Auto-Logout
+
+    311. Finishing Steps
+
+    312. Module Resources
+
 # Section 29: Optional: React Summary & Core Feature Walkthrough
 
     446. Module Introduction

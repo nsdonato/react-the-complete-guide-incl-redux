@@ -2865,6 +2865,350 @@
 
         You also find section slides (if available) in that Github repository.
 
+# Section 20: Building a Multi-Page SPA with React Router
+
+    264. Module Introduction
+        ...
+
+    265. What is Routing & Why?
+        El enrutamiento se trata de poder mostrar diferentes paginas a el usuario.
+
+        Router Package:
+        Parsear url / path -> configurar las rutas ->  renderiza / carga el jsx apropiado / componente
+
+    266. Installing React Router
+        npm install --save react-router react-router-dom
+
+    267. Defining & Using Routes
+        importamos BrowserRouter y envolvemos el div de app por ej, a partir de ahí en todos los subcomponentes se van a poder acceder a las funcionalidades de este componente. 
+        (La funcionalidad sería parecida a la de Context)
+
+        App.js
+            import { Route } from 'react-router-dom';
+
+            <Route path="/welcome">
+                <Welcome />
+            </Route>
+
+        index.js
+            import { BrowserRouter } from 'react-router-dom'
+            <BrowserRouter>
+                <App />
+            </BrowserRouter>
+
+        Mete las diferentes paginas en src/pages
+
+    268. Working with Links
+        Comenta que no es correcto usar Route, sino que hay que importar y usar Link
+
+            Para eso modifica en en el nav, los <a> por el componente link
+            React router genera la etiqueta de anclaje y previene el reload, por lo tanto
+            to, apate de ser un string, también se le puede pasar una función, un objeto...
+
+            hash -> esto sirve para si hay algún id con submit, directamente vaya a esa pagina.
+            search -> nos habilita a pasar parametros por query
+
+            <Link to="/"> Home</Link>
+
+            Son ejemplos para que sepamos que existen, pero no lo vamos a usar así.
+            <Link to={{
+                pathname: '/new-post',
+                hash: '#submit',
+                search: '?quick-submit=true',
+            }}> New Post</Link>
+
+            Si hacemos click ahora vamos a ver que no se actualiza la pagina entera (se nota en el icono de reload del navegador, que no se mueve esta vez-)
+
+    269. Using NavLinks
+        https://github.com/academind/react-complete-guide-code/blob/20-building-mpas-with-react-router/extra-files/index.css
+        https://github.com/academind/react-complete-guide-code/blob/20-building-mpas-with-react-router/extra-files/MainHeader.module.css
+
+        Cuando cambiamos de ruta, si estamos usando <NavLink> para estilar. Dice que como es un caso raro, no pasa nada (?)
+
+        <NavLink
+            activeClassName="my-active"
+            actuveStyle={{
+                color: #6546
+                textDecoration: underline
+            }}
+        >
+        de react-router-dom se usa para estilar los links, magicamente te deja estilar los links tiene otras propiedades también, pero bueno la magia de estilar el link que esta activo se maneja con este componente.
+
+        Con actuveStyle se aplican estilos en linea.
+            
+    270. Adding Dynamic Routes with Params
+        <Link to="/my-path/:productId">Go to Start</Link>
+
+    271. Extracting Route Params
+
+        Ahora si hacemos props.match.params.id vamos a tener el idque pasamos y seteamos en nuestro <Route>
+        You learned how to extract route parameters (=> :id  etc).
+
+        But how do you extract search (also referred to as "query") parameters (=> ?something=somevalue  at the end of the URL)? How do you extract the fragment (=> #something  at the end of the URL)?
+
+        Query Params:
+        You can pass them easily like this:
+
+        <Link to="/my-path?start=5">Go to Start</Link>
+
+        or
+
+        <Link
+            to={‌{
+                pathname: '/my-path',
+                search: '?start=5'
+            }}
+            >Go to Start</Link>
+
+        React router makes it easy to get access to the search string: props.location.search .
+
+        But that will only give you something like ?start=5
+
+        You probably want to get the key-value pair, without the ?  and the = . Here's a snippet which allows you to easily extract that information:
+
+        componentDidMount() {
+            const query = new URLSearchParams(this.props.location.search);
+            for (let param of query.entries()) {
+                console.log(param); // yields ['start', '5']
+            }
+        }
+        URLSearchParams  is a built-in object, shipping with vanilla JavaScript. It returns an object, which exposes the entries()  method. entries()  returns an Iterator - basically a construct which can be used in a for...of...  loop (as shown above).
+
+        When looping through query.entries() , you get arrays where the first element is the key name (e.g. start ) and the second element is the assigned value (e.g. 5 ).
+
+        Fragment:
+        You can pass it easily like this:
+
+        <Link to="/my-path#start-position">Go to Start</Link>
+
+        or
+
+        <Link
+            to={‌{
+                pathname: '/my-path',
+                hash: 'start-position'
+            }}
+            >Go to Start</Link>
+        React router makes it easy to extract the fragment. You can simply access props.location.hash .
+
+    272. Using "Switch" and "exact" For Configuring Routes
+        Switch basicamente lo que hace es: cargar la primer ruta que realmente coincida y deja de analizar el resto.
+
+        El orden es importante, tampoco es necesario meter todo dentro del switch, 
+        hay que ver que hacer depende de lo que necesitemos.
+
+        <Route path='/products' exact>
+        <Route path='/products/:prodId' >
+
+    273. Working with Nested Routes
+        Podes utilizar <Route> en cualquier parte de tu aplicación, siempre y cuando el enutador atrape el componente que lo esta utilizando.
+        Para que sea realmente dinamico, en vez de hardcodear /post/id, vamos a usar props.match.url, que es la ruta que llamó a ese componente y después se le suma '/:id', por lo tanto va a matchera con la ruta.
+        después sigue sin funcionar porque tiene chequeo estricto, así que o convertimos a number o le sacamos el stricto y listo.
+        Otra manera de convertir algo a number es meterle un + adelante.
+
+    274. Redirecting The User
+        Una solución diferente a poner una ruta abajo de la otra es, en el switch utilizar
+            <Redirect from="/" to="/welcome" />
+
+            De esta manera hacemos que el usuario vaya a donde realmente debería estar.
+
+            Conditional Redirects
+                Lo que hace es generar por ejemplo un Redirect, solo si el formulario se submitió, entonces renderiza nu componente <Redirect> condicionalmente.
+
+                <Redirect to="/welcome">
+
+                No es necesario que le digamos desde donde from=
+
+            Using the History Prop to Redirect (Replace)
+                Cambiamos el redirect por push con history.
+                Push, lo que hace es enviar la pagina a la pila, por ende podemos volver atrás.
+                no así con redirect.
+
+                Redirect reemplaza el lugar donde estabamos, por eso no podemos volver atras.
+
+                También existe props.history.replace, que hace lo mismo que redirigir.
+
+    275. Time to Practice: Onwards to a New Project
+        ...
+
+    276. Practice Redirecting & Extracting Params
+        ...
+
+    277. Practicing Nested Routes
+        ...
+
+    278. Adding a Layout Wrapper Component
+        Crea un componente Layout que espera un children y basicamente lo llama en app donde estan todos los switchs de las rutas.
+
+    279. Adding Dummy Data & More Content
+        ...
+
+    280. Outputting Data on the "Details" Page
+        ...
+
+    281. Adding a "Not Found" Page
+        <Route path='*'>
+            <NotFound>
+        </Route>
+
+    282. Implementing Programmatic (Imperative) Navigation
+        Va a mostrar una alternativa a usar link envolviendo en este caso <Post>
+
+        También podemos usar history y pushear la nueva ruta al historial.
+
+        props.history.push({pathname: "/" + props.match.params.id});
+
+    283. Preventing Possibly Unwanted Route Transitions with the "Prompt" Component
+        Si, sin querer te vas hacía atras, perdes todo lo que llenaste en el formulario, entonces la idea es poner un 
+        dialog que te pregunte si queres perder los camibios que venías haciendo.
+
+        import { Prompt } from 'react-router-dom'
+
+        En el form, usa onFocus
+
+
+        <Prompt when={isEntering} message={(location) => 'Estas seguro de salir'} > 
+        muestra un prompt como el alert, horrible.
+
+    284. Working with Query Parameters
+        https://github.com/academind/react-complete-guide-code/blob/20-building-mpas-with-react-router/extra-files/sorting.js
+
+        Hace un filtro, y juega con el cambio de estado del location y los queries parameters, entonces si en el filtro
+        vos cambias el tipo de filtro, la pagina se refresca y no va a otra porque sigue en la misma ruta, solo cambia
+        uno de los parametros 
+
+        <Link to="/my-path?start=5">Go to Start</Link>
+
+    285. Getting Creative With Nested Routes
+        cualquier cosa verlo, hace como un loading, sin un loading, para que aparezcan los comentarios. zzz
+
+    286. Writing More Flexible Routing Code
+        const match = useRouteMatch();
+        const params = useParams();
+        const location = useLocation();
+
+        tiene toda la info con de la location, sirve para no andar escribiendo las rutas a mano sino que las tomamos de ahí.
+        idem con params, lo sacamos con ese hook en vez de andar haciendo location.match.params
+
+    287. Sending & Getting Quote Data via Http
+        con los hooks que hizo el antes use http y una libreria que hace de api, obtiene las quotes del proyecto contra firebase.
+
+    288. Adding the "Comments" Features
+        ver de ser necesario, agrega ese feature a lo que venía haciendo..
+
+    289. Module Resources
+        You may want to compare your code to mine (e.g. to find + fix errors).
+        For that, you find multiple code snapshots for this module here in this Github repository: https://github.com/academind/react-complete-guide-code/tree/20-building-mpas-with-react-router
+        Usage instructions can be found on the page that link is leading to.
+        Simply pick one of the snapshots in the /code folder - the subfolder names are chosen such that they are easy to match against lecture names in this course section.
+        You also find section slides (if available) in that Github repository.
+
+# Section 21: Deploying React Apps
+
+    290. Module Introduction
+        ...
+
+    291. Deployment Steps
+        Escribir código
+        Testearlo
+        Optimizarlo
+        buildear 
+            -> npm run build
+        subir el código a un server
+        Configurar server o hosting.
+
+            el servidor siempre tiene que servir el index.html (sino da 404)
+                ->  actualizar el artefacto a static del build
+                ->  githubpages o firebase se puede implementar porque es todo estatico, no hace falta un servidor, tendría que haber una carpeta /build
+
+    292. Adding Lazy Loading
+        https://www.udemy.com/join/login-popup/?next=/course/react-the-complete-guide-incl-redux/learn/lecture/25599594#overview
+
+        divide el código para que se descarguen solo los js cuando realmente sea necesario, o sea, cuando se llama
+        especificamente a una ruta.
+        Por ej todo lo que tenemos en app importados en App por cada ruta que vamos a querer rutear.
+
+        import React, { Suspense } from 'react'
+
+        // solo queremos descargar NewQuote cuando el usuario realmente visite /NewQuote
+        // Esto cre un nuevo js chunk, solo cuando pasa eso, esto tarda unos milisegundos, para eso se define
+        un fallback, y para eso usamos Suspense.
+
+        const NewQuote = React.lazy(() => import('./pages/NewQuotes'))
+        Debajo de Layout, tenemos que usar suspense,
+
+        <Suspense fallback={<div className='centered'> <LoadingSpinner /> </div>}
+        
+        Así podemos hacer con cada page a importar.
+
+        Todo esto hace que el bundle que se genera se mucho mas chico y por ende la pagina levante mas rapido.
+
+    293. Building The Code For Production
+        corre el comando npm run build
+        muestra la carpeta build que se creo con todo minimizado...
+
+    294. Getting Started With Deployment (Uploading Files)
+        googlea: static hosting providers, usa firebase.
+
+        En la consola de firebase > setup hosting > npm install -g firebase-tools > continue > firebase login > firebase init > firebase deploy
+            hosting hay que elegir en login, después la carpeta build, si, es una SPA, no a sobreescribir el index y listo
+            te genara un link tipo firebase.burgerApp.com bla entras y listo.
+
+            parecido a heroku.
+
+    295. Exploring Routing Issues & Finishing Deployment
+
+    296. Module Resources
+        You may want to compare your code to mine (e.g. to find + fix errors).
+        For that, you find multiple code snapshots for this module here in this Github repository: https://github.com/academind/react-complete-guide-code/tree/21-deploying-react-apps
+        Usage instructions can be found on the page that link is leading to.
+        Simply pick one of the snapshots in the /code folder - the subfolder names are chosen such that they are easy to match against lecture names in this course section.
+        You also find section slides (if available) in that Github repository.
+
+# Section 22: Adding Authentication To React Apps
+
+    297. Module Introduction
+
+    298. What, How & Why?
+
+    299. More on "Authentication Tokens"
+
+    300. Starting Setup & First Steps
+
+    301. Adding User Signup
+
+    302. Showing Feedback To The User
+
+    303. Adding User Login
+
+    304. Managing The Auth State With Context
+
+    305. Using The Token For Requests To Protected Resources
+
+    306. Redirecting The User
+
+    307. Adding Logout
+
+    308. Protecting Frontend Pages
+        "Guards" 
+        Basicamente sirve para utilizar en esas rutas que sabes que el usuario necesita estar autenticado.
+        Algo asi como el [Authorized] pero autenticado.
+
+        te fijas si el usuario esta logueado y sino no renderizas el componente. Esto no evita que si esta logueado, se pueda meter a otras secciones que no tiene permiso por el perfil.
+
+    309. Persisting The User Authentication Status
+
+    310. Adding Auto-Logout
+
+    311. Finishing Steps
+
+    312. Module Resources
+        You may want to compare your code to mine (e.g. to find + fix errors).
+        For that, you find multiple code snapshots for this module here in this Github repository: https://github.com/academind/react-complete-guide-code/tree/22-authentication
+        Usage instructions can be found on the page that link is leading to.
+        Simply pick one of the snapshots in the /code folder - the subfolder names are chosen such that they are easy to match against lecture names in this course section.
+        You also find section slides (if available) in that Github repository.
+
 # Sección 28, copiar, es opcional y resumen de lo ya visto, es para los que hacían el curso anterior.
 
 # Sección 29, copiar, es opcional y resumen de lo ya visto, es para los que hacían el curso anterior.
@@ -3427,312 +3771,7 @@
                 - Te avisa si estas pasando una propiedad incorrecta EN DEVELOPMENT MODE.
                 - Podes usarlo en el componente que creas necesario.
         
-    ### Sección 8: A Real App: The Burger Builder (Basic Version)
-
-        119. Planning an App in React - Core Steps
-
-            Como planear una applicación React: Pasos Core
-
-            1) Estructura (planificar el árlbol de componentes)
-            2) Estado (State)
-            3) Componentes vs Contenedores (cuales tienen que mantener el estado y cuales no)
-                Es normal que a veces cambiemos sobre la marcha, porque nos damos cuenta que es mejor otra cosa..
-
-        120. Planning our App - Layout and Component Tree
-
-            Modela como va a ser la pagina, y los componentes que va a necesitar.
-
-        121. Planning the State
-
-            Identificar donde necesitamos state, va a ayudar a saber que va a ser un componente o no
-
-            State
-                -Ingredients
-                    -carne
-                    -queso
-                -comprado: true/false
-                -totalPrice: 0
-                ...
-        122. MUST READ: Enabling CSS Modules
-
-            MUST READ (at least the first few paragraphs ... ;-))
-
-            In the next lecture, we'll use a styling solution named "CSS modules". We already had a look at that in the "Styling" section earlier in the course.
-
-            In the next lecture, we'll enable CSS modules and depending on the project setup you're using, the exact steps shown there might not work for you.
-
-            At least if you're not using the starting project you also find attached to the next lecture. If you DO use that, you should be able to continue without issues (and you can skip the rest of this text lecture here).
-
-            ***
-
-            In more recent project versions created by CRA, support for CSS modules is already built-in and you can use that feature without ejecting, please see: https://facebook.github.io/create-react-app/docs/adding-a-css-modules-stylesheet
-
-            I also showed this built-in support in the "Styling" section earlier in the course.
-
-            If you use this approach, you DON'T need to eject. But please don't skip the next videos though, I do explain what CSS modules are and why + how we use them there!
-
-            ***
-
-            Optional:
-
-            If you still want to eject and manually adjust the Webpack config (as we do it in the new videos - which you don't need to do if you follow the approach described in the link above), you should take the below comments into account in case your webpack config (after ejecting) doesn't look the same as it does in my videos:
-
-            After ejecting, we edit a Webpack config file that's made available by ejecting. This file might look slightly different for you.
-
-            In the video, I'll look for an entry that starts like this (in the webpack.config.js file):
-
-            {
-            test: /\.css$/,
-            ...
-            }
-            and I then edit this entry.
-
-            This entry now looks slightly different. You'll have to find the following part in your webpack.config.js file:
-
-            {
-            test: cssRegex,
-            exclude: cssModuleRegex,
-            ...
-            }
-            and then edit that entry.
-
-            Finally, it should look like this:
-
-            {
-            test: cssRegex,
-            exclude: cssModuleRegex,
-            use: getStyleLoaders({
-                importLoaders: 1,
-                modules: true,
-                localIdentName: '[name]__[local]__[hash:base64:5]'
-            }),
-            }
-            You can ignore me editing the webpack.config.prod.js file - with the latest version of create-react-app, ejecting only gives you ONE webpack config file (which you edit as described above).
-        123. Setting up the Project
-            Habilita Csss Modules, que ahora ya esta habilitada desde la nueva versión.
-            Agrega el css de una tipografia y nadamas..
-
-        124. Creating a Layout Component
-            Crea las carpetas de componentes/contenedores.
-            Crea el componente layout y comenta que usa props.children porque de esa manera va a ir mostrando las cosas en pantalla que esten por debajo de ese componente ??¿¿
-
-            crea una carpeta hoc y adentro un componente aux, que va a utilizar para envolver elementos adyacentes.
-                const aux = (props) => props.childre;
-                export default aux;
-
-        125. Starting Implementation of The Burger Builder Container
-            para agregar estilo, se pone el css y después se importa donde se necesita el estilo y con js se agrega, ej:
-
-            import classes from './Layout/Layout.css'
-            className={classes.laClaseQueHice}
-
-        126. Adding a Dynamic Ingredient Component
-            Si queremos tener un poco de logica nuestra función tiene que arrancar con llaves, sino directamente con parentesis.
-
-            Arma toda la parte de los ingredientes de la hamburguesa con una clase de css que el tenía.
-
-        127. Adding Prop Type Validation
-            npm install --save prop-types
-
-            sirve para validar lo que le pasamos a las properties sea lo que realmente esperamos.
-
-            Componente.propTypes = {
-                type: PropTypes.string,isRequired;
-            }
-
-        128. Starting the Burger Component
-            Estila Burger.css
-
-            En el componente BurgerBuilder, agrega el componente Burger.
-
-        129. Outputting Burger Ingredients Dynamically
-            Hace toda una función para mostrar pseudo dinamicament los ingredientes de la hamburgeusa (heardcoders), pero recorre todo el objeto.
-
-        130. Calculating the Ingredient Sum Dynamically
-            .reduce((previosValue, currentValue) => {
-                return previosValue.concat(currentValue)
-            }, [])
-
-            hace esto para poder verificar si no hay ingredientes y mostrar un texto para que el usuario empiece a agregarlos.
-
-        131. Adding the Build Control Component
-            Agrega un BuildControls y crea un componente BuildControl, lo estila..
-
-        132. Outputting Multiple Build Controls
-            agrega el control al componente principal y con map, mapea todos los controles para agregar los distintos ingredientes.
-
-        133. Connecting State to Build Controls
-            genera las funciones de remover y agregar, agrega el codigo necesario a add, como actualizar el precio, y los ingredientes.
-
-            en el componente de mas abajo de todos de los controles, no el ultimo, ya que ese es el que ejuta la funcion nad amas, el anterior, a la función le pase el tipo cuando hace clic, el se encarga de hacer eso no el padre de todos esos componentes, porque es el que tiene la función y el que pasa la referencia a sus componentes hijos.
-
-        134. Removing Ingredients Safely
-            copia y pega la de agregar y la modifica para el removr.
-            también valida que los ingredientes sean mayor a 0, así cuando intenta remover mas y no hay mas, no hay errres.
-
-            genera un flag que inhabilita el ctrl de el ingrediente cuando no hay mas de ese especifico
-
-            pasa la property de disable entre los componentes.
-
-        135. Displaying and Updating the Burger Price
-            con .toFixed(2) -> dice que el precio muestre con 2 decimales.
-
-        136. Adding the Order Button
-            genera la función que valida si hay al menos u ingrediente para que se habilite el boton de ordernar ahora. agrega la función al final del remover ingredientes o agregar ingredientes para que se llame y justamente verifique si tiene que habilitar el boton o no.
-
-        137. Creating the Order Summary Modal
-            crea una carpeta Ui dentro decomponentes, para poner el modal y un par mas,
-            a la misma altura que los controles crea un componente orderSumarr que se va a ir actualizando desde el componente raiz con los ingredientes.
-
-        138. Showing & Hiding the Modal (with Animation!)
-            crea el código para mostrar u ocultar el modal y le da un poco de estilo.
-            En el interin tiene un problema con this, por la manera que escribio la función, así que la pasa a una arrow function y listo, solucionado.
-
-            El error pasó porque la función se ejecutaba después de un evento y eso hacía que this no apunte a la función.
-
-        139. Implementing the Backdrop Component
-            Se puede retornar null en un componente, esta ok, significa que no queres mostrar nada.
-
-            Genera el overlay y pone el componente dentro del modal porque estan totalmente relacionados.
-
-        140. Adding a Custom Button Component
-            Agregar los botones confirmar y cancelar.
-            Genera en UI un componente nuevo Button, y le define las propiedades necesarias para utilizarlo y qe sea generico.
-
-            de clase le passa un array, ya que le agrega 2 o mas segun el estado del boton.
-
-        141. Implementing the Button Component
-            Lo implementa en OrderSummery
-            Le pasa por props a OrderSummery los handlers para los botones.
-
-        142. Adding the Price to the Order Summary
-            Usa el precio total que viene por props, y lo muestra.
-
-        143. Adding a Toolbar
-            crea el toolbar de la burguer y su css. (un nav con 2 menus)
-
-        144. Using a Logo in our Application
-            Dentro de componentes crea una carpeta Logo, dentro de assests tiene el logo de la app.
-
-            Importa el logo como si fuera un package.
-
-            en el src={variableConLaQueLoImporte}
-
-            Usa el componente logo donde lo necesita en el toolbar y listo.
-
-        145. Adding Reusable Navigation Items
-            Dentro de la carpeta Navigation aparte del Toolbar, crea una capreta NavigationItem, NavigationItems y sus js.
-
-            Dentro de NavigationItem.js
-                lo que mete acá sería el <li><a href="/"> A Link</a></li>
-
-            Dentro de NavigationItems.js
-                importa el componente NavigationItem
-
-                Lo que pone acá es el ul y pone los navigationItem que necesita.
-
-            Dentro de Toolbar.
-                Importa NavigationItems y dentro de <nav> pone NavigationItem.
-
-        146. Creating a Responsive SideDrawer
-            Cuando aprestas el boton Menu, el SideDrawer debería aparecer de costado.
-
-            importa el componente Logo y NavigationItems, classes..
-
-            <div className={classes.SideDrawer}>
-                <Logo />
-                <nav>
-                    <NavigationItems />
-                </nav>
-            </div>
-
-            Lo que hace es meterlo detro del componente Layout, junto con el Toolbar.
-                <Aux>
-                    <Toolbar />
-                    <SideDrawer />
-                    <main classNAme={classes.Content}>
-                        {props.children}
-                    </main>
-                </Aux>
-
-        147. Working on Responsive Adjustments
-            Le hace modificaciones en el css al SideDrawer
-        148. More about Responsive Adjustments
-            Css y mas css par todo lo relacionado al layout y mobile.
-
-        149. Reusing the Backdrop
-            El backdrop es como el telon que se pone cuando abris un modal. Ahora lo que hace es reutilizarlo
-            para el SideDrawer.
-
-            Por ende lo importa y lo usa en el SideDrawer y le pasa a su property show, true o false dependiendo si se tiene que ver o ono (idem el SideDrawer)
-
-            Pasa a layout como componente. y pone los handlers necesarios para manejar el mostrar o no el SideDrawer y el backdrop.
-
-            También agrega código para que cuando se hace clic en el overlay, se cierre todo.
-
-        150. Adding a SideDrawer Toggle Button
-            Intenta que primero lo hagas vos, después da el resultado:
-
-            Dentro de SideDrawer, crea otra carpeta DrawerToggle y su js.
-
-            Después lo importa en Toolbar y reemplaza la parte del menu con el componente DrawerToggle.
-
-            En el componente pasa una prop clicked, por ende maneja el estado en toolbar, pero como este se usa desde Layout, ahí finalmente va a manejar el handler del evento.
-
-        151. Adding a Hamburger Icon
-            Hace lo que dice el modulo.
-
-        152. Improving the App - Introduction
-            Habla sobre todo lo que nos enseño, su manera de pensar, que si hay componentes que se podrían mejorar, unir, si hay mejoras de performance que hacer, se va a tratar todo en las siguientes clases.
-
-        153. Prop Type Validation
-            Comenta que solamente hice una validación de propiedades, porque es una app que esta haciendo el solo, que si lo aplicaría para un team de trabajo, o si esta haciendo algo open source, etc.
-
-        154. Improving Performance
-            Empieza a analizar la aplicación y comenta que en OrderSummery, se esta re-renderizando el componente, aún cuando el modal no esta visible, por lo que va a optimizar eso:
-
-            Para verificar eso, pasa el componente de Order a una clase y utiliza el metodo ComponentWillUpdate(), si falla por la versión que tenemos, se puede usar también ComponenteDidUpdate()
-
-            Hace lo mismo con el modal, ya que verificó que realmente cada vez que agrega un ingrediente se actualiza Order.
-            A modal también lo convierte a clase y usa la función shouldComponentUpdate y solo va a actualizar las cosas si show (muestra o no el modal, se cambia a verdadero)
-
-
-            shouldComponentUpdate(nextProps, nextState) {
-                return nextProps.show !== this.props.show;
-            }
-
-            También comenta que no es necesario que se convierta en una clase, que debería ser un componente funcional.
-
-        155. Using Component Lifecycle Methods
-            Side effects en realidad aca se usa como llegar a hacer una llamada a una api y obtener datos de ella.
-            Explica la importancia de los metodos que ayudan a verificar si se actualizó un estado o no, etc.
-
-        156. Changing the Folder Structure
-            Explica que Layout es un HOC, que podría estar en esa carpeta, pero que tampoco esta mal que este en containers, porque maneja el estado y se lo pasa a los componentes que esta conteniendo.
-
-            Que no necesariamente hay que tener una carpeta hoc, podriamos tener solo componentes y containers y tampoco estaría mal.
-
-            Dentro de la carpeta hoc, agrega una Aux y mete ahí el archivo Aux.js
-        157. Wrap Up
-            Explica que hicimos nuestra primer app en react, que aprendimos, etc.
-
-        158. Useful Resources & Links
-            Useful Resources & Links
-            Find the finished code (as well as in-between steps) for this module attached to this lecture.
-
-            Recursos de esta clase
-            burger-basics--06-finished.zip
-            burger-basics--01-project-setup.zip
-            burger-basics--02-after-ingredients.zip
-            burger-basics--03-after-build-controls.zip
-            burger-basics--04-after-modal.zip
-            burger-basics--05-after-navigation.zip
-
     ### Sección 9: Reaching out to the Web (Http / Ajax)
-
-        159. Module Introduction
-        160. Understanding Http Requests in React
-            explica como funciona cuando un cliente hace un request mediante el navegador y que responde el servidor..
 
         161. Understanding our Project and Introducing Axios
             Habla de que se puede hacer algo con Javascript, pero ya existen paquetes que hacen todo mas facil, como axios.
@@ -3772,9 +3811,6 @@
                 .then(response => {
                     console.log(response);
                 })
-
-        169. Fixing a Bug
-            arregla un temita que no se había dado cuenta, que era que cuando hacia click en un post se mostraba el titulo y no el contendido, nad amas.
 
         170. Handling Errors Locally
             a la llamada de axios aparte de .then, se le puede agregar
@@ -3839,348 +3875,18 @@
 
             en donde la necesitamos ahora importamos este archivo en vez de axios.
 
-        175. Wrap Up
-        176. Useful Resources & Links
-            Useful Resources & Links
-            Axios Docs: https://github.com/axios/axios
-            Recursos de esta clase
-            http--01-starting-setup.zip
-            http--02-after-get.zip
-            http--03-after-post-error.zip
-            http--04-after-global-axios.zip
-            http--05-finished.zip
-
     ### Sección 11: Multi-Page-Feeling in a Single-Page-App: Routing
 
-        187. Module Introduction
-        188. Routing and SPAs
-            El enrutamiento se trata de poder mostrar diferentes paginas a el usuario.
-
-            Router Package:
-            Parsear url / path -> configurar las rutas ->  renderiza / carga el jsx apropiado / componente
-
-        189. Setting Up Links
-            Agrega un nav y los links necesarios.
-
-        190. Setting Up the Router Package
-            npm install --save react-router react-router-dom
-
-            importamos BrowserRouter y envolvemos el div de app por ej, a partir de ahí en todos los subcomponentes se van a poder acceder a las funcionalidades de este componente. (La funcionalidad sería parecida a la de Context)
-
-            import { BrowserRouter } from 'react-router-dom';
-            <BrowserRouter>
-            ...
-            </BrowserRouter>
-
-        191. react-router vs react-router-dom
-
-            We installed both react-router  and react-router-dom . Technically, only react-router-dom  is required for web development. It wraps react-router  and therefore uses it as a dependency.
-
-            We don't need to install react-router  on our own for it to work. You can omit this installation step, I left it in there for historic reasons and because I like to emphasize that the main package is named react-router. If you ever search for assistance, you probably want to search for "react router" - that's the name of the package.
-
-        192. Preparing the Project For Routing
-            Modifica la estructura, cambiando componentes de lugar Post lo saca de adentro de blog...
-
-        193. Setting Up and Rendering Routes
-            En Blog, importa Route de react-router-dom
-
-            render -> se le pasa una función por esta prop, dentro de la función se debe retornar jsx
-            exact -> prop booleana que exije que se muestre la ruta que realmente es actualmente
-
-            <Route path="/" render={() => <h1>Home</h1>}>
-
-        194. Rendering Components for Routes
-            component tiene que hacer referencia a la función o clase que queremos usar por ej Post dentro de Blog.
-            En render no debería renderizarse componentes enteros, porque es dificil de mantener después.
-
-            <Route path="/" component={Post}>
-
-        195. Switching Between Pages
-            <Route path="/" component={NewPost}>
-
-            Si bien funciona, al pasar de una pagina a otra se recarga toda la pagina y por lo tanto se pierde el state, en el prox muestra como soucionar esto.
-
-        196. Using Links to Switch Pages
-            Comenta que no es correcto usar Route, sino que hay que importar y usar Link
-
-            Para eso modifica en en el nav, los <a> por el componente link
-            React router genera la etiqueta de anclaje y previene el reload, por lo tanto
-            to, apate de ser un string, también se le puede pasar una función, un objeto...
-
-            hash -> esto sirve para si hay algún id con submit, directamente vaya a esa pagina.
-            search -> nos habilita a pasar parametros por query
-
-            <Link to="/"> Home</Link>
-
-            Son ejemplos para que sepamos que existen, pero no lo vamos a usar así.
-            <Link to={{
-                pathname: '/new-post',
-                hash: '#submit',
-                search: '?quick-submit=true',
-            }}> New Post</Link>
-
-            Si hacemos click ahora vamos a ver que no se actualiza la pagina entera (se nota en el icono de reload del navegador, que no se mueve esta vez-)
-
-        197. Using Routing-Related Props
-            Muestra en consola las props que tiene Router.
-
-        198. The "withRouter" HOC & Route Props
-        Para que un componente que esta routeando a otro, a este último, si queremos pasarle la props de ruteo, hay que decorarlo con withRouter.
-
-        199. Absolute vs Relative Paths
-            Absolute: depende siempre del dominio.
-
-            Relative: podes construir la url con las props, ya que vimos que en match viene parte de la url, entonces lo que harías es:
-            pathname: this.props.match + '/new-posts'
-
-        200. Absolute vs Relative Paths (Article)
-            Absolute vs Relative Paths (Article)
-            You learned about <Link> , you learned about the to  property it uses.
-
-            The path you can use in to can be either absolute or relative.
-
-            Absolute Paths
-            By default, if you just enter to="/some-path"  or to="some-path" , that's an absolute path.
-
-            Absolute path means that it's always appended right after your domain. Therefore, both syntaxes (with and without leading slash) lead to example.com/some-path .
-
-            Relative Paths
-            Sometimes, you might want to create a relative path instead. This is especially useful, if your component is already loaded given a specific path (e.g. posts ) and you then want to append something to that existing path (so that you, for example, get /posts/new ).
-
-            If you're on a component loaded via /posts , to="new"  would lead to example.com/new , NOT example.com/posts/new .
-
-            To change this behavior, you have to find out which path you're on and add the new fragment to that existing path. You can do that with the url  property of props.match :
-
-            <Link to={props.match.url + '/new'}>  will lead to example.com/posts/new  when placing this link in a component loaded on /posts . If you'd use the same <Link>  in a component loaded via /all-posts , the link would point to /all-posts/new .
-
-            There's no better or worse way of creating Link paths - choose the one you need. Sometimes, you want to ensure that you always load the same path, no matter on which path you already are => Use absolute paths in this scenario.
-
-            Use relative paths if you want to navigate relative to your existing path.
-
-        201. Styling the Active Route
-            <NavLink
-                activeClassName="my-active"
-                actuveStyle={{
-                    color: #6546
-                    textDecoration: underline
-                }}
-            >
-            de react-router-dom se usa para estilar los links, magicamente te deja estilar los links tiene otras propiedades también, pero bueno la magia de estilar el link que esta activo se maneja con este componente.
-
-            Con actuveStyle se aplican estilos en linea.
-
-        202. Passing Route Parameters
-            <Route path="/:id" exact component={Post} />
-
-            Soluciones:
-
-            1) Envolver al post con <Link>, al link en to, agregarle el "/" + id, el key lo tenía post, pero ahora como link es el componente mas externo, lo tiene que manejar él.
-
-        203. Extracting Route Parameters
-            Ahora si hacemos props.match.params.id vamos a tener el idque pasamos y seteamos en nuestro <Route>
-
-        204. Parsing Query Parameters & the Fragment
-            You learned how to extract route parameters (=> :id  etc).
-
-            But how do you extract search (also referred to as "query") parameters (=> ?something=somevalue  at the end of the URL)? How do you extract the fragment (=> #something  at the end of the URL)?
-
-            Query Params:
-            You can pass them easily like this:
-
-            <Link to="/my-path?start=5">Go to Start</Link>
-
-            or
-
-            <Link
-                to={‌{
-                    pathname: '/my-path',
-                    search: '?start=5'
-                }}
-                >Go to Start</Link>
-            React router makes it easy to get access to the search string: props.location.search .
-
-            But that will only give you something like ?start=5
-
-            You probably want to get the key-value pair, without the ?  and the = . Here's a snippet which allows you to easily extract that information:
-
-            componentDidMount() {
-                const query = new URLSearchParams(this.props.location.search);
-                for (let param of query.entries()) {
-                    console.log(param); // yields ['start', '5']
-                }
-            }
-            URLSearchParams  is a built-in object, shipping with vanilla JavaScript. It returns an object, which exposes the entries()  method. entries()  returns an Iterator - basically a construct which can be used in a for...of...  loop (as shown above).
-
-            When looping through query.entries() , you get arrays where the first element is the key name (e.g. start ) and the second element is the assigned value (e.g. 5 ).
-
-            Fragment:
-            You can pass it easily like this:
-
-            <Link to="/my-path#start-position">Go to Start</Link>
-
-            or
-
-            <Link
-                to={‌{
-                    pathname: '/my-path',
-                    hash: 'start-position'
-                }}
-                >Go to Start</Link>
-            React router makes it easy to extract the fragment. You can simply access props.location.hash .
-
-        205. Using Switch to Load a Single Route
-            Switch basicamente lo que hace es: cargar la primer ruta que realmente coincida y deja de analizar el resto.
-
-            El orden es importante, tampoco es necesario meter todo dentro del switch, hay que ver que hacer depende de lo que necesitemos.
-
-        206. Navigating Programmatically
-            Va a mostrar una alternativa a usar link envolviendo en este caso <Post>
-
-            También podemos usar history y pushear la nueva ruta al historial.
-
-            props.history.push({pathname: "/" + props.match.params.id});
-
-        207. Additional Information Regarding Active Links
-            Cuando cambiamos de ruta, si estamos usando <NavLink> para estilar. Dice que como es un caso raro, no pasa nada (?)
-
-        208. Understanding Nested Routes
-            Podes utilizar <Route> en cualquier parte de tu aplicación, siempre y cuando el enutador atrape el componente que lo esta utilizando.
-
-            Para que sea realmente dinamico, en vez de hardcodear /post/id, vamos a usar props.match.url, que es la ruta que llamó a ese componente y después se le suma '/:id', por lo tanto va a matchera con la ruta.
-
-        209. Creating Dynamic Nested Routes
-            Desde que hicimos las rutas dinamicas, el componente no carga el post especifico, porque como nota que no cambió nada no lo vuelve a renderizar, por lo que para solucionarlo hay que implementar:
-
-            componentDidUpdate()
-
-            mete todo acá y lo llama desde DidUpdate.
-            loadData()
-
-            cuando hacemos esto, se genera un loop infinito, por lo que:
-                modifica donde usa props.id por props.match.params.id
-
-            después sigue sin funcionar porque tiene chequeo estricto, así que o convertimos a number o le sacamos el stricto y listo.
-
-            
-            Otra manera de convertir algo a number es meterle un + adelante.
-
-        210. Redirecting Requests
-            Una solución diferente a poner una ruta abajo de la otra es, en el switch utilizar
-            <Redirect from="/" to="/post" />
-
-            De esta manera hacemos que el usuario vaya a donde realmente debería estar.
-
-            Por ej si ahora vamos a  /, nos va a redigir a /posts
-
-        211. Conditional Redirects
-            Lo que hace es generar por ejemplo un Redirect, solo si el formulario se submitió, entonces renderiza nu componente <Redirect> condicionalmente.
-
-            <Redirect to="/posts">
-
-            No es necesario que le digamos desde donde from=
-
-        212. Using the History Prop to Redirect (Replace)
-            Cambiamos el redirect por push con history.
-            Push, lo que hace es enviar la pagina a la pila, por ende podemos volver atrás.
-            no así con redirect.
-
-            Redirect reemplaza el lugar donde estabamos, por eso no podemos volver atras.
-
-            También existe props.history.replace, que hace lo mismo que redirigir.
-
         213. Working with Guards
-            Basicamente sirve para utilizar en esas surtas que sabes que el usuario necesita estar autenticado.
-            Algo asi como el [Authorized] pero autenticado.
-
-            te fijas si el usuario esta logueado y sino no renderizas el componente.
-
-        214. Handling the 404 Case (Unknown Routes)
-            Si no se puede catchear ninguna ruta, podemos poner un caso de ruta no encontrada de esta manera:
-
-            <Route render={() => <h1>Not found</h1>} />
-
-            O sea, puede existir la ruta, pero si por ejemplo no la mostramos porque el usuario no esta autenticado, va a terminar cayendo en Not found, y esta ok.
-
-        215. Loading Routes Lazily
-            Porque cargamos código del componente que todavía no se navego si no estamos autenticados?
-
-            Todo esta movida vale la pena solamente cuando tenemos una aplicación grande. Cuando es una aplicación chica no se justifica.
-
-            La técnica de descargar solo lo que necesita se conoce como división de código o carga diferida.
-
-            Para esto creamos una carpeta hoc -> AsyncComponent.js
-
-            * ver archivo.
-
-        216. Lazy Loading with React Suspense (16.6)
-            En vez de hacer lo que hicimos antes, usamos React.lazy() ej:
-
-            const Post = React.lazy(() => import('./containers/Posts'));
-
-            y después en en vez de levantar el componente en Route, usamos ej:
-
-
-            <Route
-                fallback={<div>Loading...</div>}
-                path="/posts"
-                render={() => {
-                    <Suspense>
-                        <Posts />
-                    </Suspense>
-                }}
-            />
-
-        No necesariamente necesitamos meter esto dentro de BrowserRouter, podemos usar suspense sin Route siquiera.
-
-        217. Routing and Server Deployment
-            La primer parte no entendí a que iba, ver otra vez.
-            La segunda parte:
-
-                Si tu sitio se aloja en lugar y queda algo asi como
-                blabla.com/my-app
-                hay que comunicarle esto a react.
-
-                basename por default no es necesario escribirlo y siempre apunta a la raiz ="/".
-
-                Esto se hace en BrowserRouter basename="/my-app"
-
-        Tarea 3: Time to Practice - Routing
-        218. Wrap Up
-        219. Useful Resources & Links
-            React Router Docs: https://reacttraining.com/react-router/web/guides/philosophy
-            Recursos de esta clase
-            routing--01-start.zip
-            routing--02-links-and-routes.zip
-            routing--03-after-nested-routing.zip
-            routing--04-redirect.zip
-            routing--05-finished.zip
-            routing--assignment-solution.zip
+           
 
     ### Sección 18: Adding Authentication to our Burger Project
-
-        321. Module Introduction
-            En MPA generalmente esto se maneja en el servidor mediante session. Acá tenemos un solo archivo, así que vamos a ver como se maneja...
 
         322. Understanding Authentication in Single Page Applications
             SPA -> envia un auth al SERVER, el server no devuelve una sesión sino un TOKEN (json), generalmente se guarda en el localStorage, no se puede guardar en el estado porque si refresca la pagina se pierde..
             Para hacer ciertos request necesitamos estar autenticados, entonces para no andar validando eso todo el tiempo en el request se envia el token con cierta información
 
             Si bien acá usamos Firebase, el token se puede generar en cualuqier server.
-
-        323. Required App Adjustments
-            Comenta que va a agregar una vista, que es el formulario de inicio de sesión, que también tenemos que manejar en que endpoints vamos a pedir autenticación y por ultimo tenemos que pasar el token para poder hacer lo anterior.
-
-        324. Adding an Auth Form
-            Dentro de containers crea un nuevo componente Auth.
-            Reutiliza lo que hizo en el modulo de Form y validaciones.
-
-            Le agrega un css, actualiza codigo..etc
-
-        325. Adding Actions
-            Al final termina usando redux..
-            Agrega un tipo de acción al archivo actionsTypes.js
-            crea un archivo auth.js dentro de la carpeta actions.
-            // TODO: terminar de ver
 
         326. Getting a Token from the Backend
             En firebase va a la sección de autenticación, y muestra que hay una opción para marcar donde elegis quedarte con el usuario y password del usuario y se aloja en firebase.
@@ -4194,43 +3900,13 @@
 
             Verifica que datos tiene que mandarle en el body al endpoint, lo prueba y muestra por consola que le retorno bien la info.
 
-
         336. Persistent Auth State with localStorage
             Agrega en el local storage el token que obtiene, y también en localStorage agrega un expirationDate.
 
             let expirationDate = new Date(new Date().getTime() + response.data.expiresIn * 1000);
             localStorage('expirationDate', expirationDate);
 
-    ### Sección 21: Deploying the App to the Web
-
-        364. Module Introduction
-        365. Deployment Steps
-            chequear y quizas actualizar basePath
-            buildear y optimizar el proyecto.
-                -> npm run build // in create-react-app project
-            el servidor siempre tiene que servir el index.html (sino da 404) ->
-            actualizar el artefacto a static del build
-                ->  githubpages o firebase se puede implementar porque es todo estatico, no hace falta un servidor, tendría que haber una carpeta /build
-
-        366. Building the Project
-            corre el comando npm run build
-            muestra la carpeta build que se creo con todo minimizado...
-
-        367. Example: Deploying on Firebase
-            En la consola de firebase > setup hosting > npm install -g firebase-tools > continue > firebase login > firebase init > firebase deploy
-            hosting hay que elegir en login, después la carpeta build, si, es una SPA, no a sobreescribir el index y listo
-            te genara un link tipo firebase.burgerApp.com bla entras y listo.
-
-            parecido a heroku.
-
-        368. Wrap Up
-        369. Useful Resources & Links
-            Useful Resources & Links
-            Attached to this lecture, you'll find the module source code.
-
-            Recursos de esta clase
-            deployment--01-finished.zip
-
+            
     ### Sección 22: Bonus: Working with Webpack
 
         370. Module Introduction
