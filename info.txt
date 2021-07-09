@@ -2748,6 +2748,40 @@
 
         You also find section slides (if available) in that Github repository.
 
+# Section 19: Advanced Redux
+
+    248. Module Introduction
+
+    249. Redux & Side Effects (and Asynchronous Code)
+
+    250. Refresher / Practice: Part 1/2
+
+    251. Refresher / Practice: Part 2/2
+
+    252. Redux & Async Code
+
+    253. Frontend Code vs Backend Code
+
+    254. Where To Put Our Logic
+
+    255. Using useEffect with Redux
+
+    256. A Problem with useEffect()
+
+    257. Handling Http States & Feedback with Redux
+
+    258. Using an Action Creator Thunk
+
+    259. Getting Started with Fetching Data
+
+    260. Finalizing the Fetching Logic
+
+    261. Exploring the Redux DevTools
+
+    262. Summary
+
+    263. Module Resources
+    
 # Sección 28, copiar, es opcional y resumen de lo ya visto, es para los que hacían el curso anterior.
 
 # Sección 29, copiar, es opcional y resumen de lo ya visto, es para los que hacían el curso anterior.
