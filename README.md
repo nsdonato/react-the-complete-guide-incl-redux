@@ -441,6 +441,154 @@ NOTA: El curso se actualizó y algunas secciones fueron borradas, el autor re-gr
 
     194. Module Resources
 
+# Section 16: Working with Forms & User Input
+
+    195. Module Introduction
+
+    196. Our Starting Setup
+
+    197. What's So Complex About Forms?
+
+    198. Dealing With Form Submission & Getting User Input Values
+
+    199. Adding Basic Validation
+
+    200. Providing Validation Feedback
+
+    201. Handling the "was touched" State
+
+    202. React To Lost Focus
+
+    203. Refactoring & Deriving States
+
+    204. Managing The Overall Form Validity
+
+    Assignment 5: Time to Practice: Forms
+
+    205. Adding A Custom Input Hook
+
+    206. Re-Using The Custom Hook
+
+    207. A Challenge For You!
+
+    208. Applying Our Hook & Knowledge To A New Form
+
+    209. Summary
+
+    210. Bonus: Using useReducer()
+
+    211. Module Resources
+
+# Section 17: Practice Project: Adding Http & Forms To The Food Order App
+
+    212. Module Introduction
+
+    213. Moving "Meals" Data To The Backend
+
+    214. Fetching Meals via Http
+
+    215. Handling the Loading State
+
+    216. Handling Errors
+
+    217. Adding A Checkout Form
+
+    218. Reading Form Values
+
+    219. Adding Form Validation
+
+    220. Submitting & Sending Cart Data
+
+    221. Adding Better User Feedback
+
+    222. Summary
+
+    223. Module Resources
+
+# Section 18: Diving into Redux (An Alternative To The Context API)
+
+    224. Module Introduction
+
+    225. Another Look At State In React Apps
+
+    226. Redux vs React Context
+
+    227. How Redux Works
+
+    228. Exploring The Core Redux Concepts
+
+    229. More Redux Basics
+
+    230. Preparing a new Project
+
+    231. Creating a Redux Store for React
+
+    232. Providing the Store
+
+    233. Using Redux Data in React Components
+
+    234. Dispatching Actions From Inside Components
+
+    235. Redux with Class-based Components
+
+    236. Attaching Payloads to Actions
+
+    237. Working with Multiple State Properties
+
+    238. How To Work With Redux State Correctly
+
+    239. Redux Challenges & Introducing Redux Toolkit
+
+    240. Adding State Slices
+
+    241. Connecting Redux Toolkit State
+
+    242. Migrating Everything To Redux Toolkit
+
+    243. Working with Multiple Slices
+
+    244. Reading & Dispatching From A New Slice
+
+    245. Splitting Our Code
+
+    246. Summary
+
+    247. Module Resources
+
+# Section 19: Advanced Redux
+
+    248. Module Introduction
+
+    249. Redux & Side Effects (and Asynchronous Code)
+
+    250. Refresher / Practice: Part 1/2
+
+    251. Refresher / Practice: Part 2/2
+
+    252. Redux & Async Code
+
+    253. Frontend Code vs Backend Code
+
+    254. Where To Put Our Logic
+
+    255. Using useEffect with Redux
+
+    256. A Problem with useEffect()
+
+    257. Handling Http States & Feedback with Redux
+
+    258. Using an Action Creator Thunk
+
+    259. Getting Started with Fetching Data
+
+    260. Finalizing the Fetching Logic
+
+    261. Exploring the Redux DevTools
+
+    262. Summary
+
+    263. Module Resources
+
 # Section 29: Optional: React Summary & Core Feature Walkthrough
 
     446. Module Introduction

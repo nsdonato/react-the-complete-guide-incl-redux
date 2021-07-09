@@ -54,12 +54,12 @@
 
     8. The Two Ways (Paths) Of Taking This Course
         Standar (recomendado)   
-            Arrancar por el principio, skipear el javascript refresher si no lo necesitas, mirar los summary para refrescar lo que aprendiste.
+            Arrancar por el principio, ir paso por paso, skipear el javascript refresher si no lo necesitas, mirar los summary para ver que aprendiste también los podes ver en el futuro para refrescar lo aprendido
 
-        Enfoque resumido:
-            saltear el modulo de resumen
-            opcional tomar el refresher de js
-            mirar todo el curso antes que los summary
+        Enfoque resumido, si estas apurado:
+            ir directamente solo a los modulos de resumen
+            hacer el modulo de refresher js solo si lo necesitas.
+            mirar todo el curso después de mirar los summary si tenes mas tiempo en el futuro
         
     9. Getting The Most Out Of This Course
         Te recomienda como ver el curso para sacarle jugo..
@@ -1339,10 +1339,10 @@
         Todo esto es javascript, no react, por eso usando los backteacks, se puede usar interpolación de cadenas y a su vez el package hace la magia de poder usar props.
 
     78. Styled Components & Media Queries (antes este y el prox hablaban de radium)
-        TOOD: 
+        TODO: 
 
     79. Using CSS Modules
-        TOOD: 
+        TODO: 
         
     80. Dynamic Styles with CSS Modules
         TODO: 
@@ -1432,12 +1432,13 @@
     100. JSX Limitations & Workarounds
         Que no se puede retornar mas de un elemento, ni tener mas de un root.
 
-        Soluciones: wrappear los elementos a la misma altura con un div, un fragment, o cualquier otro elemento sirve. También podemos wrappear los elmentos en un array y separar los componentes por comas, también hay que agregarles key, para que react pueda identificar bien los componentes.
+        Soluciones: wrappear los elementos a la misma altura con un div, un fragment, o cualquier otro elemento sirve. También podemos wrappear los elmentos en un array y separar los componentes por comas, 
+        también hay que agregarles key, para que react pueda identificar bien los componentes.
 
-        El problema es que si abusas de los divs, el tree termina lleno de divs que no tienen sentido.
+        IMPORTANTE: El problema es que si abusas de los divs, el tree termina lleno de divs que no tienen sentido.
 
     101. Creating a Wrapper Component
-        Para solucionar el problema anterior crea un componente Wrapper, dentro de una carpeta Helper. Y el componente retorna props.children. Ahora si se revisa el dom, no hay components divs demas al pedo.
+        SOLUCIÓN: Para solucionar el problema anterior crea un componente Wrapper, dentro de una carpeta Helper. Y el componente retorna props.children. Ahora si se revisa el dom, no hay components divs demas al pedo.
 
     102. React Fragments
         Tambiénn podemos reemplazar el de App con <> o Fragment
@@ -1859,10 +1860,11 @@
 
     126. Learning the "Rules of Hooks"
 
-        - Arrancan con useAlgo
+        - Arrancan con useNombreDelHook
         - Podemos llamarlo con un estado inicial o no.
-        - Se crea un estado que se maneja "detras de escena" por React, que sobrevive re-render cicles.
-        - Lo que obtenemos es una matriz con dos elementos, el primero es un puntero a tu estado y es el segundo es  una función de update del estado.
+        - Se crea un estado que se maneja "detras de escena" por React, que sobrevive ciclos de re-renderizado
+        - Depende lo que retornemos, podemos tener por ej: 
+            una matriz con dos elementos, el primero es un puntero a tu estado y es el segundo es  una función de update del estado.
 
         Hay dos reglas importantes que se aplican a todos los estados:
             1) Los hooks, solo se deben usar en componentes funcionales (functional components) o dentro de nuestros propios hooks personalizados.
@@ -2031,7 +2033,7 @@
 
         useMemo también tiene segundo parametro como useCallback, solo que le dice a React, cuando debe volver a ejecutar la función para crear un nuevo objeto que debe memorizar, entonces le pasamos las dependencias para que sepa cuando ese componente se tiene que re-renderizar, que es cuando cambian alguno de los dos, un estado y una prop.
 
-        A veces hay que analizar sivale la pena usar react.memo o useCallback o useMemo, porque capaz que son cosas chicas y no valenla pena, porque el costo re-renderizado al de chequeo constante puede ser menos.
+        A veces hay que analizar si vale la pena usar react.memo o useCallback o useMemo, porque capaz que son cosas chicas y no valenla pena, porque el costo re-renderizado al de chequeo constante puede ser menos.
 
         El ejemplo lo muestra con un array que no cambia nunca, pero al recrear la función un array nuevo se recrea, por ende en memoria, por ende re-renderiza todo.
 
@@ -2165,7 +2167,7 @@
         Verifica que se repite código tanto en FordwardCounter como BackwardComponent, entonces extrae todo lo que se repite a un hook, y usa en estos el hook, tomando solo lo que retorna el hook, el counter.
 
     187. Using Custom Hooks
-        los estados que esten dentro del hook, van a estar atachado a cada cimponente que use el hook, pero son diferentes estados, no el mismo.-
+        los estados que esten dentro del hook, van a estar atachado a cada componente que use el hook, pero son diferentes estados, no el mismo.-
 
         en el componente simplemente se usa una variable y el hook para usar la informacion de la misma.
 
@@ -2279,12 +2281,466 @@
         https://academind.com/tutorials/function-bind-event-execution/
 
         Usa el hook en otro componente, y lo configura.
-        
 
     194. Module Resources
         You may want to compare your code to mine (e.g. to find + fix errors).
 
         For that, you find multiple code snapshots for this module here in this Github repository: https://github.com/academind/react-complete-guide-code/tree/15-building-custom-react-hooks
+
+        Usage instructions can be found on the page that link is leading to.
+
+        Simply pick one of the snapshots in the /code folder - the subfolder names are chosen such that they are easy to match against lecture names in this course section.
+
+        You also find section slides (if available) in that Github repository.
+
+# Section 16: Working with Forms & User Input
+    TODO:
+
+    195. Module Introduction
+        ...
+
+    196. Our Starting Setup
+
+    197. What's So Complex About Forms?
+
+    198. Dealing With Form Submission & Getting User Input Values
+
+    199. Adding Basic Validation
+
+    200. Providing Validation Feedback
+
+    201. Handling the "was touched" State
+
+    202. React To Lost Focus
+
+    203. Refactoring & Deriving States
+
+    204. Managing The Overall Form Validity
+
+    Assignment 5: Time to Practice: Forms
+
+    205. Adding A Custom Input Hook
+
+    206. Re-Using The Custom Hook
+
+    207. A Challenge For You!
+
+    208. Applying Our Hook & Knowledge To A New Form
+
+    209. Summary
+
+    210. Bonus: Using useReducer()
+
+    211. Module Resources
+
+# Section 17: Practice Project: Adding Http & Forms To The Food Order App
+    TODO: 
+    212. Module Introduction
+
+    213. Moving "Meals" Data To The Backend
+
+    214. Fetching Meals via Http
+
+    215. Handling the Loading State
+
+    216. Handling Errors
+
+    217. Adding A Checkout Form
+
+    218. Reading Form Values
+
+    219. Adding Form Validation
+
+    220. Submitting & Sending Cart Data
+
+    221. Adding Better User Feedback
+
+    222. Summary
+
+    223. Module Resources
+
+# Section 18: Diving into Redux (An Alternative To The Context API)
+
+    224. Module Introduction
+        ...
+
+    225. Another Look At State In React Apps
+        Es un sistema de administración de estado para comonentes cruzados o apps amplias.
+
+        Local State
+            Estados que pertenecee a un solo componente.
+             Se puede manejar con useState() o useReducer()
+
+        Que es un componente cruzado (cross-componente state)?
+            El estado afecta a varios componentes.
+            Ej: abrir cerrar modal
+            Se requiere props chain / props drilling
+
+        Que es una aplicación amplia (app-wide state)?
+            El estado afecta a toda la app, la mayoría de los componentes.
+            Ej: la autenticación del usuario
+            Se requiere props chain / props drilling
+
+        Tanto el contexto como Redux nos sirve para simplicar el manejo de estado, ahora vemos las diferencias.
+
+    226. Redux vs React Context
+        Se pueden usar ambos, pero generalmente se usa uno de los dos.
+
+        Desventajas de Context:
+            Setup y administración Compleja para apps empresariales.
+            Podes llegar a tener muchos Providers y es un lío
+            Performance, porque el context no esta optimizado para cambios de estado de alta frecuencia
+
+    227. How Redux Works
+        Alternativa a React Context. 
+        Tiene UN SOLO ESTADO CENTRAL para administrar el estado en la aplicación, no necesitamos
+        manejar todo el estado todo el tiempo.
+
+        Tenemos data en ese store que vamos a usar en nuestros componentes, por ejemplo el estado de autenticación.
+        Los componentes se suscriben a nuestro store y cuando cambia algun dato, el store notifica a los componentes y obtienen solo la data que necesitan.
+
+        Los componentes NUNCA manipulan la data del store directamente, usan reducer functions, que son las que mutan los datos (no es useReducer) es un concepto, toman un input, lo "reducen" y dan el output.
+
+        Como se conectan los componentes con este store?
+            Trigger, es una buena palabra, los componentes dispatchean (triggerean) acciones, que describen que se quiere hacer, estas son enviadas al reducer a través del dispatch, y este sabe que van a hacer y reemplazan el estado en el estado central, cuando este se actualiza, los componentes son notificacods.
+
+    228. Exploring The Core Redux Concepts
+        Va a recrear la explicación solo con node.js y redux, por lo que el import cambia:
+
+        redux-demo.js
+            const redux = require('redux');
+
+            // reducer function, recibe 2 parametros, oldState, distpatchedAction -> retorna un objeto con el nuevo estado. 
+            // Tiene que ser una FUNCIÓN PURA, lo que significa es que los inputs, producen el mismo outputs y no hay side effects dentro de la función (no useEffect, https calls, etc)
+            // El estado puede ser de cualquier tipo, generalmente son objetos.. se le tiene que dar un valor por default
+
+            const counterReducer = (state = { counter: 0}, action) => {
+                return {
+                    counter: state.counter + 1;
+                }
+            };
+
+            // sirve para crear un store..
+            const store = redux.createStore(counterReducer); // debe manejar datos, estan determinadas por las reducer functions.
+            
+            // no tiene parametros, obtiene el último estado.
+            const counterSubscriber = () => {
+                const latestState = store.getState(); 
+                console.log(latestState)
+            };
+
+            // espera una suscriber function
+            store.suscribe(counterSubscriber);
+
+            // creamos un distpach que envía una acción.
+            // un dispatch es un metodo, que envía una acción.
+            // una acción, es objeto que tiene una propiedad type (un identificador string)
+
+            store.dispatch({type: 'increment'})
+
+            hasta ahora esto no hace nada, lo seguimos actualizando en la prox clase
+
+    229. More Redux Basics
+            Tenemos que manejar dentro del reducer, la acción a realizar
+
+            const counterReducer = (state = { counter: 0}, action) => {
+                if(action.type === 'increment') {
+                    return {
+                        counter: state.counter + 1;
+                    }
+                }
+
+                if(action.type === 'decrement') {
+                    return {
+                        counter: state.counter - 1;
+                    }
+                }
+
+                return state; // retornamos el state por default
+            };
+
+            const store = redux.createStore(counterReducer);
+            
+            const counterSubscriber = () => {
+                const latestState = store.getState(); 
+                console.log(latestState)
+            };
+
+            store.suscribe(counterSubscriber);
+
+            // podemos distpachear mas de una acción
+            store.dispatch({type: 'increment'})
+            store.dispatch({type: 'decrement'})
+
+
+            Todo esto es el core de Redux, si bien no lo estamos usando con React, es como funciona y aparte Redux se puede utilizar totalmente si React.-
+
+    230. Preparing a new Project
+        Usa el proyecto adjunto, instala redux y react-redux 
+        el último package sirve para conectar react applications facilmente con el store, suscribers, etc.
+
+    231. Creating a Redux Store for React
+        Crea el mismo store que en la 229
+
+        salvo que esta vez, exporta el store, y conecta la app al store, en App.
+        Sigue >
+
+    232. Providing the Store
+        import { Provider } from 'react-redux'
+        import store from './store/index.js' -> index o caca, da igual el nombre del archivo en el que lo creamos al store.
+
+        <Provider store={store}>
+            <App />
+        </Provider>
+
+        Se recomienda hacerlo rodeando App, para no tener que andar usando el provider en componentes especificos nesteados.
+        Todos los componentes van a poder enviar acciónes.
+
+    233. Using Redux Data in React Components
+        para utilizar el valor del store, en el componente que lo queremos acceder, tenemos que usar useSelector.
+
+        import { useSelector } from 'react-redux' 
+
+        // dentro del componente, useSelector espera una función que, recibe por parametro el estado y accede a la data del state que necesitamos.
+        
+        const counter = useSelector((state) => state.counter)
+
+        Cuando el componente es removido del dom, redux se encarga de limpiar la suscripción.
+
+        IMPORTANTE: si usaramos class componentes, tenemos que importar connect también, para conectar el componente con el store.
+        se puede usar también en function componentes, pero no es necesario.
+
+    234. Dispatching Actions From Inside Components
+        Para enviar acciones, el ejemplo que hace es generar dos botones, importar useDispatch
+
+        retorna una función que podemos ejecutar (distpachea una acción a nuestro store), dentro del componente:
+
+        import { useSelector, useDispatch } from 'react-redux' 
+
+        const Componente = () => {
+            const counter = useSelector((state) => state.counter)
+            const distpatch = useDispatch()
+
+            const decrement = () => {
+                distparch({type: 'decrement'})
+            }
+
+            const increment = () => {
+                distparch({type: 'increment'})
+            }
+
+            // resto del código...
+        }
+
+    235. Redux with Class-based Components
+        muestra un ejemplo con class component
+
+        devuelve una función y hay que pasarle el componente.
+
+        Tiene 2 argumentos que son funciones:
+        // redux state to props, esas props, van a estar disponibles en el componente, es como useSelector
+
+        const mapStateToProps = state => {
+            return {
+                counter: state.counter        
+            }
+        }
+
+        // redux state to props, esas props, van a estar disponibles en el componente, es como useDispatch
+        const mapDispatchToProps = dispach => {
+            return {
+                increment: () => distpach({type: 'increment'})
+                decrement: () => distpach({type: 'decrement'})
+            }
+        }
+
+        connect(mapStateToProps, mapDispatchToProps)(Counter)
+
+        En este caso no es necesario 
+
+        después en el componete de clase, accedes this.props.increment()
+
+        y bindeas las funciones de handler, ya que así funciona en class components.
+
+    236. Attaching Payloads to Actions
+        en el mismo dispatch se el agrega el valor que queres que pueda usar esa acción.
+
+        ej:
+        distpach({type: 'increment', amount: 10 })
+
+    237. Working with Multiple State Properties
+        va a dar un ejemplo con un toggle, agrega una propiedad incial al store
+
+        cuando agregamos una propiedad, aunque no haga a la cuestión en cierta acción, hay que agregarla igual
+
+        const initialState = { 
+            counter: 0,
+            showCounter: state.showCounter
+        }
+
+        const counterReducer = (state = initialState, action) => {
+                return {
+                    counter: state.counter + 1;
+                    showCounter: state.showCounter
+                }
+            };
+
+        idem al reves:
+
+        if(action.type === 'toggle'){
+            return {
+                counter: state.showCounter
+                showCounter: state.counter
+            }
+        }
+
+    238. How To Work With Redux State Correctly
+        IMPORTANTE: NUNCA PERO NUNCA, MUTAR EL ESTADO ASÍ:. Siempre copiar y crear nuevos objetos.
+        
+        state.counter++
+
+        SIEMPRE ASÍ:
+        const counterReducer = (state = initialState, action) => {
+            return {
+                counter: state.counter + 1;
+                showCounter: state.showCounter
+            }
+        };
+
+    239. Redux Challenges & Introducing Redux Toolkit
+        Para no errarle a los nombres de los tipos de acciones, crear constantes.
+        
+        Cuando la app se hace enorme, podemos encontrarnos con demasiado código en nuestro store.
+        También tenemos que tener cuidado de no cambiar los estados, que se hace mas dificil cuando hay objetos nesteados.
+        También se pueden hacer archivos mas chicos, para no tener todo en uno..
+        
+        Para todo eso esta Redux Toolkit, si lo usas las cosas se pueden poner mas faciles si lo haces...
+
+        :shrek:
+
+    240. Adding State Slices
+        desinstalar redux, ya que redux Toolkit ya lo trae.
+
+        npm install @reduxjs/toolkit
+        
+        import { createSlice } from '@reduxjs/toolkit' -> es mas poderoso que createReducer
+
+        const initialState = { 
+            counter: 0,
+            showCounter: state.showCounter
+        }
+
+        // recibe un objeto, obtenemos un pedazo del estado.- podemos sacar pedazos de nuestro estado en difernetes archivos para mejorar el código.
+        // hay que darle un nombre al estado (puede ser cualquier nombre)
+        // agregar el valor inicial
+        // reducers, las funciones que queremos exponer, reciben el stado por parametro y la acción se podría agregar como segundo parametro, pero no es necesario,
+        redux entiende cual es el que necesita la info.
+
+        // SI BIEN NO DEBEMOS MANIPULAR EL ESTADO ASÍ, en funciones como esta, PODEMOS.- Redux usa Emmer, que detecta este tipo de cosas y clona, copia, 
+        overridea, etc por nosotros que somos unos pelotudos a cuerda y le pifiamos.
+        LO HACE INTERNAMENTE, MAGIC.
+
+        // en increase por ej que necesita el extra payload, si hay que poner la acción pero en los que no, no es necesario ponerla, como antes...
+        AGUANTE REDUX TOOLKIT.-
+
+        createSlice({
+            name: 'counter',
+            initialState: initialState,
+            reducer: {
+                increment(state) {
+                    state.counter++ 
+                },
+                decrement(state) {
+                    state.counter--
+                },
+                increase(state, action) {
+                    state.counter = state.counter + action.amount
+                },
+                toggleCounter(state) {
+                    state.showCounter = !state.showCounter 
+                }
+            }
+        })
+
+    241. Connecting Redux Toolkit State
+        Como conectamos nuestro slice al store y enviamos acciones?
+
+        // nos guardamos el valor de retorno de createSlice
+
+        const counterSlice = createSlice({
+            name: 'counter',
+            initialState: initialState,
+            reducer: {
+                increment(state) {
+                    state.counter++ 
+                },
+                decrement(state) {
+                    state.counter--
+                },
+                increase(state, action) {
+                    state.counter = state.counter + action.amount
+                },
+                toggleCounter(state) {
+                    state.showCounter = !state.showCounter 
+                }
+            }
+        })
+
+        // eliminamos nuestro counterReducer y para no atarnos a un solo store, importamos y utilizamos otro Hook
+        import { createSlice, configStore } from '@reduxjs/toolkit'
+
+        configStore, hace lo mismo que createStore, solamente que mergea los reducers en uno
+
+        // configuramos nuestro store, reducer en singular ojo. ya que solo necesitamos UN REDUCER
+        // para que después podamos usar mas de un reducer, debemos usar un objeto, y pasarle un nombre y el slice correspondiente.
+        // si tenes un solo reducer, no necesitas crear el objeto, o sea, el lo deja sin, porque el ejemplo es basico.
+
+        const store = configureStore({
+            reducer: {
+                counter: counterSlice.reducer
+            }
+        })
+        
+    242. Migrating Everything To Redux Toolkit
+        Detras de escena, redux crea identificadores para cada acción que configuramos.
+
+        para usar las acciones, debemos exportarlas:
+
+        export const counterSlice.actions
+
+        en donde dispatcheabamos las cosas, ahora exportamos las acciones y la distpacheamos de manera difeente:
+            dispatch(counterActions.increment())
+
+        cuando tienen payload:
+        le podemos pasar un objeto con las propiedades y el valor o directamente el valor.
+            dispatch(counterActions.increase(10))
+
+        Para extraer ese valor el tema es que hay que usarlo de otra manera, en la función que se usa el valor hay que hacer:
+        En nuestro caso cambiar el valor de la prop, por el payload que tiene el valor, si fuera prop, payload.laprop
+
+        increase(state, action) {
+            state.counter = state.counter + action.payload
+        }
+
+    243. Working with Multiple Slices
+        abajo del otro slice, igual no importa el orden, creamos otro slice para la parte de autenticación.
+
+        bueno ahora si usa reducer y un objeto para poner ambos pedazos de store y exporta la nueva acción
+
+    244. Reading & Dispatching From A New Slice
+        En App, usa la nueva acción para renderizar de manera condicional el login o el profile del usuario.
+
+    245. Splitting Our Code
+        cada slice, o sea, pedacito de store, lo pasa a su propio js.
+
+        counter.js, auth.js
+
+    246. Summary
+
+    247. Module Resources
+        You may want to compare your code to mine (e.g. to find + fix errors).
+
+        For that, you find multiple code snapshots for this module here in this Github repository: https://github.com/academind/react-complete-guide-code/tree/18-diving-into-redux
 
         Usage instructions can be found on the page that link is leading to.
 
@@ -2519,7 +2975,7 @@
         16 Advanced Redux.zip
         21 Deployment.zip
 
-# ----------------------------------- SECCIONES VIEJAS --------------------------------------    
+# ----------------------------------- SECCIONES VIEJAS ORIENTADAS A CLASS COMPONENTS --------------------------------------    
 
     Casi todo es sobre class components:
 
@@ -2809,13 +3265,11 @@
 
         98. Optimizing Functional Components with React.memo()
 
-            En cockppit por ejemplo, al exportar el componente, utilizaríamos memo.
             Lo que hace es tomar un snapshot del componente y lo re-renderiza, si y solo si, el input cambia.
 
-            export default React.memo(cockpit);
+            export default React.memo(componente);
 
-            El problema es que en cockpit, hay una propiedad que cambia siempre que es persons, por ende hay que hacer un mini fix en la manera de pasarselo en App.
-                le pasamos solo el lenght de cockpit, en vez de que lo resuelva el adentro.
+            cuando el componente solo usa una propiedad, no tenemos que apsar todo el objeto, porque sino se re-renderiza si otra prop cambia.
 
         99. When should you optimize?
         100. PureComponents instead of shouldComponentUpdate
@@ -3816,18 +4270,6 @@
 
         226. Navigating to the Contact Data Component
 
-        227. Order Submission & Passing Data Between Pages
-
-        228. Adding an Orders Page
-
-        229. Implementing Navigation Links
-
-        230. Fetching Orders
-
-        231. Outputting the Orders
-
-        232. Wrap Up
-
         233. Useful Resources & Links
             Find the source code for the module attached to this lecture.
 
@@ -4460,121 +4902,12 @@
 
             Analiza que es local ui state.
 
-        274. Installing Redux and React Redux
-
-        275. Basic Redux Setup
-
-        276. Finishing the Reducer for Ingredients
-
-        277. Connecting the Burger Builder Container to our Store
-
-        278. Working on the Total Price Calculation
-
-        279. Redux & UI State
-
-        280. Adjusting Checkout and Contact Data
-
-        281. Wrap Up
         282. Useful Resources & Links
             Find the source code for this module attached to this lecture.
 
             Recursos de esta clase
             redux-burger--01-basic-setup.zip
             redux-burger--02-finished.zip
-
-    ### Sección 16: Redux Advanced
-
-        283. Module Introduction
-
-        284. Adding Middleware
-
-        285. Using the Redux Devtools
-
-        286. Executing Asynchronous Code - Introduction
-
-        287. Introducing Action Creators
-
-        288. Action Creators & Async Code
-
-        289. Handling Asynchronous Code
-
-        290. Restructuring Actions
-
-        291. Where to Put Data Transforming Logic?
-
-        292. Using Action Creators and Get State
-
-        293. Using Utility Functions
-
-        294. A Leaner Switch Case Statement
-
-        295. An Alternative Folder Structure
-
-        296. Diving Much Deeper
-
-        297. Wrap Up
-        298. Useful Resources & Links
-            Middleware: http://redux.js.org/docs/advanced/Middleware.html
-
-            redux-thunk package: https://github.com/gaearon/redux-thunk
-
-            Async Actions: https://redux.js.org/advanced/asyncactions
-
-            Recursos de esta clase
-            redux-adv--01-start.zip
-            redux-adv--02-action-creators.zip
-            redux-adv--03-async-actions.zip
-            redux-adv--04-finished.zip
-
-    ### Sección 17: Redux Advanced: Burger Project
-
-        299. Module Introduction
-
-        300. Installing the Redux Devtools
-
-        301. Preparing the Folder Structure
-
-        302. Creating Action Creators
-
-        303. Executing Asynchronous Code
-
-        304. Fetching Ingredients Asynchronously
-
-        305. Initializing Ingredients in the BurgerBuilder
-
-        306. Changing the Order of our Ingredients Manually
-
-        307. Adding Order Actions
-
-        308. Connecting Contact Data Container & Actions
-
-        309. The Order Reducer
-
-        310. Working on Order Actions
-
-        311. Redirect to Improve UX
-
-        312. Combining Reducers
-
-        313. Handling Purchases & Updating the UI
-
-        314. Resetting the Price after Purchases
-
-        315. Fetching Orders (via Redux)
-
-        316. Checking our Implemented Functionalities
-
-        317. Refactoring Reducers
-
-        318. Refactoring Reducers Continued
-
-        319. Wrap Up
-        320. Useful Resources & Links
-            Find the source code for this module attached to this lecture.
-
-            Recursos de esta clase
-            redux-adv-burger--01-async-action-ingredients.zip
-            redux-adv-burger--02-finished.zip
 
     ### Sección 18: Adding Authentication to our Burger Project
 
@@ -4614,24 +4947,6 @@
 
             Verifica que datos tiene que mandarle en el body al endpoint, lo prueba y muestra por consola que le retorno bien la info.
 
-        327. Adding Sign-In
-
-        328. Storing the Token
-            Dentro de la carpeta reducer, genera un archivo auth.js
-
-        329. Adding a Spinner
-
-        330. Logging Users Out
-
-        331. Accessing Protected Resources
-
-        332. Updating the UI Depending on Auth State
-
-        333. Adding a Logout Link
-
-        334. Forwarding Unauthenticated Users
-
-        335. Redirecting the User to the Checkout Page
 
         336. Persistent Auth State with localStorage
             Agrega en el local storage el token que obtiene, y también en localStorage agrega un expirationDate.
@@ -4639,23 +4954,6 @@
             let expirationDate = new Date(new Date().getTime() + response.data.expiresIn * 1000);
             localStorage('expirationDate', expirationDate);
 
-        337. Fixing Connect + Routing Errors
-
-        338. Ensuring App Security
-
-        339. Guarding Routes
-
-        340. Displaying User Specific Orders
-
-        341. Wrap Up
-        342. Useful Resources & Links
-            SPA Authentication in general: https://stormpath.com/blog/token-auth-spa
-            Firebase authentication REST API: https://firebase.google.com/docs/reference/rest/auth/
-            Recursos de esta clase
-            auth--01-form-actions.zip
-            auth--02-auth-store.zip
-            auth--03-token.zip
-            auth--04-finished.zip
 
     ### Sección 19: Improving our Burger Project
 
