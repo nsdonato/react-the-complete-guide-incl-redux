@@ -3168,26 +3168,66 @@
 # Section 22: Adding Authentication To React Apps
 
     297. Module Introduction
+        ...
 
     298. What, How & Why?
+        Se necesita para contenido que debe estar protegido, no accesible para todos.
+        Obtengo acceso logueandome, 
+        Envio un request a un recurso protegido.
+
+        Server-Side sessions
+            Store unique identifier on server, send same identifier to client.
+            client sends identifier along with requests to protected Resources
+        
+        Authentication Tokens
+            Create (but not store) "permission" token on server, send token to client
 
     299. More on "Authentication Tokens"
+        When working with "Authentication Tokens", these tokens are typically created in the "JSON Web Token" Format (JWT).
+
+        As explained in the previous lecture, those "tokens" are really just long strings which are constructed by an algorithm that encodes data into a string (with help of a private key, only known by the server).
+
+        You can learn more about JSON Web Tokens (JWTs) here: https://jwt.io/
 
     300. Starting Setup & First Steps
-
+         Explica que va a usar firebase como dummy backend
+        Firebase Auth Rest api
+        
     301. Adding User Signup
+        SPA -> envia un auth al SERVER, el server no devuelve una sesión sino un TOKEN (json), generalmente se guarda en el localStorage, no se puede guardar en el estado porque si refresca la pagina se pierde..
+        
+        Para hacer ciertos request necesitamos estar autenticados, entonces para no andar validando eso todo el tiempo en el request se envia el token con cierta información
+
+        Si bien acá usamos Firebase, el token se puede generar en cualuqier server.
+
+        En firebase va a la sección de autenticación, elije como sing-in provider EMAIL/PASSWORD.
+        
+            Enable > save.
+
+            Busca en Firebase el api key, para pegarle al nuevo endpoint.
+            Autenticación > web setup
+
+            Elige la url de sing up, la pone dentro del archivo auth, que esta dentro de la carpeta store > actions > auth.js en la parte donde se exporta la función auth, ahí hace el post.
+
+            Verifica que datos tiene que mandarle en el body al endpoint, lo prueba y muestra por consola que le retorno bien la info.
 
     302. Showing Feedback To The User
+        Muestra por ahora con alerts, las respuestas de error o login ok.
 
     303. Adding User Login
+        Muestra como cuando se loguea firebase le devuelve todo un response con un payload especifico.
 
     304. Managing The Auth State With Context
+        Acá usa context para no instalar redux, pero se podría manejar ahí tranquilamente.
 
     305. Using The Token For Requests To Protected Resources
+        Muestra como enviar el token para cuando usa el endpoint de cambio de contraseña.
 
     306. Redirecting The User
+        Muestra como redireccionar una vez que esta bien logueado.
 
     307. Adding Logout
+        Solo setea el token guardado en el context, en null.
 
     308. Protecting Frontend Pages
         "Guards" 
@@ -3197,10 +3237,15 @@
         te fijas si el usuario esta logueado y sino no renderizas el componente. Esto no evita que si esta logueado, se pueda meter a otras secciones que no tiene permiso por el perfil.
 
     309. Persisting The User Authentication Status
+        https://academind.com/tutorials/localstorage-vs-cookies-xss/
+
+        muestra como guarda el token en el localStorage
 
     310. Adding Auto-Logout
-
+        muestra como le mete un tiempo de expiración al token y como limpia el token en el localStorage
+        
     311. Finishing Steps
+        Mejora el timer, para el auto-logout
 
     312. Module Resources
         You may want to compare your code to mine (e.g. to find + fix errors).
@@ -3208,6 +3253,218 @@
         Usage instructions can be found on the page that link is leading to.
         Simply pick one of the snapshots in the /code folder - the subfolder names are chosen such that they are easy to match against lecture names in this course section.
         You also find section slides (if available) in that Github repository.
+
+# Section 23: A (Pretty Deep Dive) Introduction to Next.js
+
+    313. Module Introduction
+        ...
+
+    314. What is NextJS?
+
+    315. Key Feature 1: Built-in Server-side Rendering (Improved SEO!)
+
+    316. Key Feature 2: Simplified Routing with File-based Routing
+
+    317. Key Feature 3: Build Fullstack Apps
+
+    318. Creating a New Next.js Project & App
+
+    319. Analyzing the Created Project
+
+    320. Adding First Pages
+
+    321. Adding Nested Paths & Pages (Nested Routes)
+
+    322. Creating Dynamic Pages (with Parameters)
+
+    323. Extracting Dynamic Parameter Values
+
+    324. Linking Between Pages
+
+    325. Onwards to a bigger Project!
+
+    326. Preparing the Project Pages
+
+    327. Outputting a List of Meetups
+
+    328. Adding the New Meetup Form
+
+    329. The "_app.js" File & Layout Wrapper
+
+    330. Using Programmatic (Imperative) Navigation
+
+    331. Adding Custom Components & CSS Modules
+
+    332. How Pre-rendering Works & Which Problem We Face
+
+    333. Data Fetching for Static Pages
+
+    334. More on Static Site Generation (SSG)
+
+    335. Exploring Server-side Rendering (SSR) with "getServerSideProps"
+
+    336. Working with Params for SSG Data
+
+    337. Preparing Paths with "getStaticPaths" & Working With Fallback Pages
+
+    338. Introducing API Routes
+
+    339. Working with MongoDB
+
+    340. Sending Http Requests To Our API Routes
+
+    341. Getting Data From The Database
+
+    342. Getting Meetup Details Data & Preparing Pages
+
+    343. Adding "head" Metadata
+
+    344. Deploying Next.js Projects
+
+    345. Using Fallback Pages & Re-deploying
+
+    346. Summary
+        ...
+
+    347. Module Resources
+        You may want to compare your code to mine (e.g. to find + fix errors).
+        For that, you find multiple code snapshots for this module here in this Github repository: https://github.com/academind/react-complete-guide-code/tree/23-nextjs-introduction
+        Usage instructions can be found on the page that link is leading to.
+        Simply pick one of the snapshots in the /code folder - the subfolder names are chosen such that they are easy to match against lecture names in this course section.
+        You also find section slides (if available) in that Github repository.
+
+ ### Sección 23: Bonus: Next.js
+
+        385. Module Introduction
+
+            Es una libreria basada en react, fuerza una estructura especifica y nos da server side rendering y configuración extra que no tenemos que hacer a mano.
+
+            Server side rendering ayuda mucho a los search engine
+
+        386. Understanding Server Side Rendering
+
+            Server Side Rendering simplemente significa, cuando un usuario entre a una url, se va a estar pre-renderizando esa pagina, del lado del servidor y lo va a retornar ya "cocinado"
+
+            O sea, el cliente hace un request al server, el server hace el fetch y renderiza la app, retorna renderizada la primer pagina + react app bundle y en el cliente se re-renderiza la SPA.
+
+        387. Setting Up a Project
+            Web Next js: https://nextjs.org/
+
+            Esto que vamos a hacer lo hace con el paso a paso que esta en github
+                https://github.com/zeit/next.js/
+
+                Actualmente esto no esta mas en github, sino en la pagina oficial, hay ciertas partes que ya no estan igual, yo voy a seguir como lo da el en el curso:
+                    https://nextjs.org/learn/basics/getting-started
+
+            1) .gitignore
+            2) npm init
+            3) npm install --save next react react-dom
+            4) package.json
+
+                "scripts": {
+                    "dev": "next",
+                    "build": "next build",
+                    "start": "next start"
+                }
+
+                No se usa react-router, se usa file-system es la API main de Next js. Basicamente lo que se usa es carpetas y archivos para ir ruteando nuestra url, next js parsea esto y usa su propio ruteador interno, pre renderiza y automaticamente splitea y con lazy load lo muestra.
+
+            5) creamos:
+                pages/
+                    auth/
+                        index.js
+                    index.js
+
+                * podes usar clases, funcional componentes, state, etc.
+
+                index.js
+                    import React from 'react';
+
+                    const indexPage = () => {
+                        <div>
+                            <h1> Main Page </h1>
+                        </div>
+                    };
+
+                    export default indexPage;
+
+                auth/index.js
+                    import React from 'react';
+
+                    const indexPage = () => {
+                        <div>
+                            <h1> Auth index Page </h1>
+                        </div>
+                    };
+
+                    export default indexPage;
+
+            6) npm run dev
+
+            En localhost vamos a ver main page y en localhost/auth vamos a ver auth index page :O
+
+        388. Understanding the Basics
+
+            import Link from 'next/link';
+            import Router from 'next/router';
+
+            <Link href="/auth"> Auth </Link>
+            <button onClick={() => Router.push('/auth')}> Go to Auth </button>
+
+        389. Next.js & Components & Pages
+
+            components/
+                User.js
+
+            Al componente lo importamos en otro js como cualquier import.
+
+        390. Styling our App in Next.js
+
+            Next JS tiene su propia manera de estilar. Podemos usar Radium, podes usar estilos en linea, no podemos usar CSS Modules.
+
+            Styled-jsx
+
+            <style jsx> {`
+                div {
+                    border: 1px solid black;
+                }
+            `} </style>
+
+        391. Handling (404) Errors
+            Next js tiene una pagina por default para esto, si se quiere sobreescribir hay que generar un archivo _error.js dentro de pages.
+
+        392. A Special Lifecycle Hook
+
+            Transforma el componente funcional en un componente de clase.
+
+            usa una función nueva que también esta en functional components.
+
+            Static puede ser llamado sin ser instanciado y es asincrono, retorna algo instantaneamente.
+                Se puede usar async o no. *
+            Sirve para inicializar tu app antes de que se cargue.
+                Podríamos traer info de la bd x ej.
+
+            static async getInitialProps(context){
+                // console.log(context);
+                const promise = new Promise((resolve, reject) => {
+                    setTimeout(() => {
+                        resolve({appName: 'Super App});
+                    }, 1000);
+                });
+                return promise;
+            }
+
+            Después lo usamos en el retorno de jsx.
+                <h1> this.props.appName </h1>
+
+            Solo va a renderizar esa parte, cuando se retorne la promesa.
+
+            * Hace el ejemplo también con functional components.
+
+        393. Deploying our App
+
+            npm run build   -> para buildear el proyecto para deployarlo.
+
 
 # Sección 28, copiar, es opcional y resumen de lo ya visto, es para los que hacían el curso anterior.
 
@@ -3878,28 +4135,11 @@
     ### Sección 11: Multi-Page-Feeling in a Single-Page-App: Routing
 
         213. Working with Guards
-           
 
     ### Sección 18: Adding Authentication to our Burger Project
 
-        322. Understanding Authentication in Single Page Applications
-            SPA -> envia un auth al SERVER, el server no devuelve una sesión sino un TOKEN (json), generalmente se guarda en el localStorage, no se puede guardar en el estado porque si refresca la pagina se pierde..
-            Para hacer ciertos request necesitamos estar autenticados, entonces para no andar validando eso todo el tiempo en el request se envia el token con cierta información
-
-            Si bien acá usamos Firebase, el token se puede generar en cualuqier server.
-
         326. Getting a Token from the Backend
-            En firebase va a la sección de autenticación, y muestra que hay una opción para marcar donde elegis quedarte con el usuario y password del usuario y se aloja en firebase.
-            Enable > save.
-
-            Busca en Google firebase rest auth
-            Busca en Firebase el api key, para pegarle al nuevo endpoint.
-            Autenticación > web setup
-
-            Elige la url de sing up, la pone dentro del archivo auth, que esta dentro de la carpeta store > actions > auth.js en la parte donde se exporta la función auth, ahí hace el post.
-
-            Verifica que datos tiene que mandarle en el body al endpoint, lo prueba y muestra por consola que le retorno bien la info.
-
+            
         336. Persistent Auth State with localStorage
             Agrega en el local storage el token que obtiene, y también en localStorage agrega un expirationDate.
 
@@ -4186,139 +4426,4 @@
             webpack--02-added-babel.zip
             webpack--03-finished.zip
 
-    ### Sección 23: Bonus: Next.js
-
-        385. Module Introduction
-
-            Es una libreria basada en react, fuerza una estructura especifica y nos da server side rendering y configuración extra que no tenemos que hacer a mano.
-
-            Server side rendering ayuda mucho a los search engine
-
-        386. Understanding Server Side Rendering
-
-            Server Side Rendering simplemente significa, cuando un usuario entre a una url, se va a estar pre-renderizando esa pagina, del lado del servidor y lo va a retornar ya "cocinado"
-
-            O sea, el cliente hace un request al server, el server hace el fetch y renderiza la app, retorna renderizada la primer pagina + react app bundle y en el cliente se re-renderiza la SPA.
-
-        387. Setting Up a Project
-            Web Next js: https://nextjs.org/
-
-            Esto que vamos a hacer lo hace con el paso a paso que esta en github
-                https://github.com/zeit/next.js/
-
-                Actualmente esto no esta mas en github, sino en la pagina oficial, hay ciertas partes que ya no estan igual, yo voy a seguir como lo da el en el curso:
-                    https://nextjs.org/learn/basics/getting-started
-
-            1) .gitignore
-            2) npm init
-            3) npm install --save next react react-dom
-            4) package.json
-
-                "scripts": {
-                    "dev": "next",
-                    "build": "next build",
-                    "start": "next start"
-                }
-
-                No se usa react-router, se usa file-system es la API main de Next js. Basicamente lo que se usa es carpetas y archivos para ir ruteando nuestra url, next js parsea esto y usa su propio ruteador interno, pre renderiza y automaticamente splitea y con lazy load lo muestra.
-
-            5) creamos:
-                pages/
-                    auth/
-                        index.js
-                    index.js
-
-                * podes usar clases, funcional componentes, state, etc.
-
-                index.js
-                    import React from 'react';
-
-                    const indexPage = () => {
-                        <div>
-                            <h1> Main Page </h1>
-                        </div>
-                    };
-
-                    export default indexPage;
-
-                auth/index.js
-                    import React from 'react';
-
-                    const indexPage = () => {
-                        <div>
-                            <h1> Auth index Page </h1>
-                        </div>
-                    };
-
-                    export default indexPage;
-
-            6) npm run dev
-
-            En localhost vamos a ver main page y en localhost/auth vamos a ver auth index page :O
-
-        388. Understanding the Basics
-
-            import Link from 'next/link';
-            import Router from 'next/router';
-
-            <Link href="/auth"> Auth </Link>
-            <button onClick={() => Router.push('/auth')}> Go to Auth </button>
-
-        389. Next.js & Components & Pages
-
-            components/
-                User.js
-
-            Al componente lo importamos en otro js como cualquier import.
-
-        390. Styling our App in Next.js
-
-            Next JS tiene su propia manera de estilar. Podemos usar Radium, podes usar estilos en linea, no podemos usar CSS Modules.
-
-            Styled-jsx
-
-            <style jsx> {`
-                div {
-                    border: 1px solid black;
-                }
-            `} </style>
-
-        391. Handling (404) Errors
-            Next js tiene una pagina por default para esto, si se quiere sobreescribir hay que generar un archivo _error.js dentro de pages.
-
-        392. A Special Lifecycle Hook
-
-            Transforma el componente funcional en un componente de clase.
-
-            usa una función nueva que también esta en functional components.
-
-            Static puede ser llamado sin ser instanciado y es asincrono, retorna algo instantaneamente.
-                Se puede usar async o no. *
-            Sirve para inicializar tu app antes de que se cargue.
-                Podríamos traer info de la bd x ej.
-
-            static async getInitialProps(context){
-                // console.log(context);
-                const promise = new Promise((resolve, reject) => {
-                    setTimeout(() => {
-                        resolve({appName: 'Super App});
-                    }, 1000);
-                });
-                return promise;
-            }
-
-            Después lo usamos en el retorno de jsx.
-                <h1> this.props.appName </h1>
-
-            Solo va a renderizar esa parte, cuando se retorne la promesa.
-
-            * Hace el ejemplo también con functional components.
-
-        393. Deploying our App
-
-            npm run build   -> para buildear el proyecto para deployarlo.
-
-        394. Useful Resources & Links
-            Next.js Repo & Docs: https://github.com/zeit/next.js/
-            Recursos de esta clase
-            nextjs--01-finished.zip
+   
