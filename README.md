@@ -693,6 +693,286 @@ NOTA: El curso se actualizó y algunas secciones fueron borradas, el autor re-gr
 
     312. Module Resources
 
+# Section 23: A (Pretty Deep Dive) Introduction to Next.js
+
+    313. Module Introduction
+
+    314. What is NextJS?
+
+    315. Key Feature 1: Built-in Server-side Rendering (Improved SEO!)
+
+    316. Key Feature 2: Simplified Routing with File-based Routing
+
+    317. Key Feature 3: Build Fullstack Apps
+
+    318. Creating a New Next.js Project & App
+
+    319. Analyzing the Created Project
+
+    320. Adding First Pages
+
+    321. Adding Nested Paths & Pages (Nested Routes)
+
+    322. Creating Dynamic Pages (with Parameters)
+
+    323. Extracting Dynamic Parameter Values
+
+    324. Linking Between Pages
+
+    325. Onwards to a bigger Project!
+
+    326. Preparing the Project Pages
+
+    327. Outputting a List of Meetups
+
+    328. Adding the New Meetup Form
+
+    329. The "_app.js" File & Layout Wrapper
+
+    330. Using Programmatic (Imperative) Navigation
+
+    331. Adding Custom Components & CSS Modules
+
+    332. How Pre-rendering Works & Which Problem We Face
+
+    333. Data Fetching for Static Pages
+
+    334. More on Static Site Generation (SSG)
+
+    335. Exploring Server-side Rendering (SSR) with "getServerSideProps"
+
+    336. Working with Params for SSG Data Fetching
+
+    337. Preparing Paths with "getStaticPaths" & Working With Fallback Pages
+
+    338. Introducing API Routes
+
+    339. Working with MongoDB
+
+    340. Sending Http Requests To Our API Routes
+
+    341. Getting Data From The Database
+
+    342. Getting Meetup Details Data & Preparing Pages
+
+    343. Adding "head" Metadata
+
+    344. Deploying Next.js Projects
+
+    345. Using Fallback Pages & Re-deploying
+
+    346. Summary
+
+    347. Module Resources
+
+# Section 24: Animating React Apps
+
+    348. Module Introduction
+
+    349. Preparing the Demo Project
+
+    350. Using CSS Transitions
+
+    351. Using CSS Animations
+
+    352. CSS Transition & Animations Limitations
+
+    353. Using ReactTransitionGroup
+
+    354. Using the Transition Component
+
+    355. Wrapping the Transition Component
+
+    356. Animation Timings
+
+    357. Transition Events
+
+    358. The CSSTransition Component
+
+    359. Customizing CSS Classnames
+
+    360. Animating Lists
+
+    361. Alternative Animation Packages
+
+    362. Wrap Up
+
+    363. Module Resources
+
+# Section 25: Replacing Redux with React Hooks
+
+    364. Module Introduction
+
+    365. Starting Project & Why You Would Replace Redux
+
+    366. Alternative: Using the Context API
+
+    367. Toggling Favorites with the Context API
+
+    368. Context API Summary (and why NOT to use it instead of Redux)
+
+    369. Getting Started with a Custom Hook as a Store
+
+    370. Finishing the Store Hook
+
+    371. Creating a Concrete Store
+
+    372. Using the Custom Store
+
+    373. Custom Hook Store Summary
+
+    374. Optimizing the Custom Hook Store
+
+    375. Bonus: Managing Multiple State Slices with the Custom Store Hook
+
+    376. Wrap Up
+
+    377. Module Resources
+
+# Section 26: Testing React Apps (Unit Tests)
+
+    378. Module Introduction
+
+    379. What & Why?
+
+    380. Understanding Different Kinds Of Tests
+
+    381. What To Test & How To Test
+
+    382. Understanding the Technical Setup & Involved Tools
+
+    383. Running a First Test
+
+    384. Writing Our First Test
+
+    385. Grouping Tests Together With Test Suites
+
+    386. Testing User Interaction & State
+
+    387. Testing Connected Components
+
+    388. Testing Asynchronous Code
+
+    389. Working With Mocks
+
+    390. Summary & Further Resources
+
+    391. Module Resources
+
+# Section 27: React + TypeScript
+
+    392. Module Introduction
+
+    393. What & Why?
+
+    394. Installing & Using TypeScript
+
+    395. Exploring the Base Types
+
+    396. Working with Array & Object Types
+
+    397. Understanding Type Inference
+
+    398. Using Union Types
+
+    399. Understanding Type Aliases
+
+    400. Functions & Function Types
+
+    401. Diving Into Generics
+
+    402. A Closer Look At Generics
+
+    403. Creating a React + TypeScript Project
+
+    404. Working with Components & TypeScript
+
+    405. Working with Props & TypeScript
+
+    406. Adding a Data Model
+
+    407. Time to Practice: Exercise Time!
+
+    408. Form Submissions In TypeScript Projects
+
+    409. Working with refs & useRef
+
+    410. Working with "Function Props"
+
+    411. Managing State & TypeScript
+
+    412. Adding Styling
+
+    413. Time to Practice: Removing a Todo
+
+    414. The Context API & TypeScript
+
+    415. Summary
+
+    416. Bonus: Exploring tsconfig.json
+
+    417. Module Resources
+
+# Section 28: Optional: React Hooks Introduction & Summary|
+
+    418. Module Introduction
+
+    419. What Are React Hooks?
+
+    420. The Starting Project
+
+    421. Getting Started with useState()
+
+    422. More on useState() & State Updating
+
+    423. Array Destructuring
+
+    424. Multiple States
+
+    425. Rules of Hooks
+
+    426. Passing State Data Across Components
+
+    Assignment 6: Time to Practice: Hooks Basics
+
+    427. Sending Http Requests
+
+    428. useEffect() & Loading Data
+
+    429. Understanding useEffect() Dependencies
+
+    430. More on useEffect()
+
+    431. What's useCallback()?
+
+    432. Working with Refs & useRef()
+
+    433. Cleaning Up with useEffect()
+
+    434. Deleting Ingredients
+
+    435. Loading Errors & State Batching
+
+    436. More on State Batching & State Updates
+
+    437. Understanding useReducer()
+
+    438. Using useReducer() for the Http State
+
+    439. Working with useContext()
+
+    440. Performance Optimizations with useMemo()
+
+    441. Getting Started with Custom Hooks
+
+    442. Sharing Data Between Custom Hooks & Components
+
+    443. Using the Custom Hook
+
+    444. Wrap Up
+
+    445. Module Resources
+
 # Section 29: Optional: React Summary & Core Feature Walkthrough
 
     446. Module Introduction

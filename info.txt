@@ -3260,29 +3260,102 @@
         ...
 
     314. What is NextJS?
+        the react framework for production (la dif con una libreria es que tiene muchos mas features)
+        esta basado por encima de react, te hace la vida mas facil, agregando features que con react tenes que instalar 
+        extra
 
     315. Key Feature 1: Built-in Server-side Rendering (Improved SEO!)
 
-    316. Key Feature 2: Simplified Routing with File-based Routing
+        Es una libreria basada en react, fuerza una estructura especifica y nos da server side rendering y configuración extra que no tenemos que hacer a mano.
+        Server side rendering ayuda mucho a los search engine
 
+        Server Side Rendering simplemente significa, cuando un usuario entre a una url, se va a estar pre-renderizando esa pagina, del lado del servidor y lo va a retornar ya "cocinado"
+        O sea, el cliente hace un request al server, el server hace el fetch y renderiza la app, retorna renderizada la primer pagina + react app bundle y en el cliente se re-renderiza la SPA.
+
+        Excelente para SEO.
+
+
+        1) Server-side Rendering
+            Automaticamente se pre renderiza la pagina, excelente para SEO.
+            Fetch data en el servidor, rendereado de paginas "finalizadas"
+
+    316. Key Feature 2: Simplified Routing with File-based Routing
+        
+        2) File-based Routing
+            No se usa react-router, next.js se basa en file-base routing
+            Basicamente lo que se usa es carpetas y archivos para ir ruteando nuestra url, next js parsea esto y usa su propio ruteador interno, 
+            pre renderiza y automaticamente splitea y con lazy load lo muestra.
+
+            con pages/ ruteamos 
+         
     317. Key Feature 3: Build Fullstack Apps
+
+        3) Fullstack capabilities
+            Se agrega facilmente un backend server-side a tu app next/react
+            podes guardar data, obtener, auth, etc. se puede agregar a tus proyectos de react.
 
     318. Creating a New Next.js Project & App
 
+        1) npx create-next-app > y > ponerle un nombre
+
     319. Analyzing the Created Project
+        pages -> donde van a estar cada pagina
+        styles -> donde van a estar los estilos..
+        public -> donde va a estar las imagenes e index
 
     320. Adding First Pages
+        Eliminar la carpeta api, los css que vienen...
+
+        pages/
+            index.js // nuestra pag principal.
+
+                // no es necesario importar React, en las ultimas versiones.
+
+                const indexPage = () => {
+                    <div>
+                        <h1> Main Page </h1>
+                    </div>
+                };
+
+                si inspeccionas la pagina, esta el html de la pgina renderizada, porque viene del server, no así en react.
 
     321. Adding Nested Paths & Pages (Nested Routes)
+        pages/
+            news/
+                index.js -> la principal de index, midominio.com/news
+                algo.js -> la nesteada, o sea midominio.com/news/algo
 
     322. Creating Dynamic Pages (with Parameters)
+        para crear una pgina dinamica:
+        
+        ej:
+            [newsId].js
 
     323. Extracting Dynamic Parameter Values
+        Para extraer el valor se usa un hook,
+
+        import { useRouter} from 'next/router';
+
+        const Componente = () => {
+            const router = useRouter()
+            console.log(router.query.newsId) // lo que se pase como parametro ej news/pedo va a ser pedo.
+        }
 
     324. Linking Between Pages
+        muestra como construye un link con html regular
+            significa que no tengo una SPA cuando hago click porque se refresca la pagina buscando el nuevo recurso.
+
+        muestra como construye un link con next.js
+            con este feature vemos que no se refresca mas 
+
+            import Link from 'next/link';
+
+            <Link href="/news/algo">
+                Algo
+            </Link>
 
     325. Onwards to a bigger Project!
-
+        
     326. Preparing the Project Pages
 
     327. Outputting a List of Meetups
@@ -3333,91 +3406,8 @@
         Simply pick one of the snapshots in the /code folder - the subfolder names are chosen such that they are easy to match against lecture names in this course section.
         You also find section slides (if available) in that Github repository.
 
- ### Sección 23: Bonus: Next.js
-
-        385. Module Introduction
-
-            Es una libreria basada en react, fuerza una estructura especifica y nos da server side rendering y configuración extra que no tenemos que hacer a mano.
-
-            Server side rendering ayuda mucho a los search engine
-
-        386. Understanding Server Side Rendering
-
-            Server Side Rendering simplemente significa, cuando un usuario entre a una url, se va a estar pre-renderizando esa pagina, del lado del servidor y lo va a retornar ya "cocinado"
-
-            O sea, el cliente hace un request al server, el server hace el fetch y renderiza la app, retorna renderizada la primer pagina + react app bundle y en el cliente se re-renderiza la SPA.
-
-        387. Setting Up a Project
-            Web Next js: https://nextjs.org/
-
-            Esto que vamos a hacer lo hace con el paso a paso que esta en github
-                https://github.com/zeit/next.js/
-
-                Actualmente esto no esta mas en github, sino en la pagina oficial, hay ciertas partes que ya no estan igual, yo voy a seguir como lo da el en el curso:
-                    https://nextjs.org/learn/basics/getting-started
-
-            1) .gitignore
-            2) npm init
-            3) npm install --save next react react-dom
-            4) package.json
-
-                "scripts": {
-                    "dev": "next",
-                    "build": "next build",
-                    "start": "next start"
-                }
-
-                No se usa react-router, se usa file-system es la API main de Next js. Basicamente lo que se usa es carpetas y archivos para ir ruteando nuestra url, next js parsea esto y usa su propio ruteador interno, pre renderiza y automaticamente splitea y con lazy load lo muestra.
-
-            5) creamos:
-                pages/
-                    auth/
-                        index.js
-                    index.js
-
-                * podes usar clases, funcional componentes, state, etc.
-
-                index.js
-                    import React from 'react';
-
-                    const indexPage = () => {
-                        <div>
-                            <h1> Main Page </h1>
-                        </div>
-                    };
-
-                    export default indexPage;
-
-                auth/index.js
-                    import React from 'react';
-
-                    const indexPage = () => {
-                        <div>
-                            <h1> Auth index Page </h1>
-                        </div>
-                    };
-
-                    export default indexPage;
-
-            6) npm run dev
-
-            En localhost vamos a ver main page y en localhost/auth vamos a ver auth index page :O
-
-        388. Understanding the Basics
-
-            import Link from 'next/link';
-            import Router from 'next/router';
-
-            <Link href="/auth"> Auth </Link>
-            <button onClick={() => Router.push('/auth')}> Go to Auth </button>
-
-        389. Next.js & Components & Pages
-
-            components/
-                User.js
-
-            Al componente lo importamos en otro js como cualquier import.
-
+    TODO: Sección 23: Bonus: Next.js
+      
         390. Styling our App in Next.js
 
             Next JS tiene su propia manera de estilar. Podemos usar Radium, podes usar estilos en linea, no podemos usar CSS Modules.
@@ -3465,10 +3455,285 @@
 
             npm run build   -> para buildear el proyecto para deployarlo.
 
+# Section 24: Animating React Apps
 
-# Sección 28, copiar, es opcional y resumen de lo ya visto, es para los que hacían el curso anterior.
+    348. Module Introduction
 
-# Sección 29, copiar, es opcional y resumen de lo ya visto, es para los que hacían el curso anterior.
+    349. Preparing the Demo Project
+
+    350. Using CSS Transitions
+
+    351. Using CSS Animations
+
+    352. CSS Transition & Animations Limitations
+
+    353. Using ReactTransitionGroup
+
+    354. Using the Transition Component
+
+    355. Wrapping the Transition Component
+
+    356. Animation Timings
+
+    357. Transition Events
+
+    358. The CSSTransition Component
+
+    359. Customizing CSS Classnames
+
+    360. Animating Lists
+
+    361. Alternative Animation Packages
+
+    362. Wrap Up
+
+    363. Module Resources
+
+# Section 25: Replacing Redux with React Hooks
+
+    364. Module Introduction
+
+    365. Starting Project & Why You Would Replace Redux
+
+    366. Alternative: Using the Context API
+
+    367. Toggling Favorites with the Context API
+
+    368. Context API Summary (and why NOT to use it instead of Redux)
+
+    369. Getting Started with a Custom Hook as a Store
+
+    370. Finishing the Store Hook
+
+    371. Creating a Concrete Store
+
+    372. Using the Custom Store
+
+    373. Custom Hook Store Summary
+
+    374. Optimizing the Custom Hook Store
+
+    375. Bonus: Managing Multiple State Slices with the Custom Store Hook
+
+    376. Wrap Up
+
+    377. Module Resources
+
+# Section 26: Testing React Apps (Unit Tests)
+
+    378. Module Introduction
+
+    379. What & Why?
+
+    380. Understanding Different Kinds Of Tests
+
+    381. What To Test & How To Test
+
+    382. Understanding the Technical Setup & Involved Tools
+
+    383. Running a First Test
+
+    384. Writing Our First Test
+
+    385. Grouping Tests Together With Test Suites
+
+    386. Testing User Interaction & State
+
+    387. Testing Connected Components
+
+    388. Testing Asynchronous Code
+
+    389. Working With Mocks
+
+    390. Summary & Further Resources
+
+    391. Module Resources
+
+# Section 27: React + TypeScript
+
+    392. Module Introduction
+
+    393. What & Why?
+
+    394. Installing & Using TypeScript
+
+    395. Exploring the Base Types
+
+    396. Working with Array & Object Types
+
+    397. Understanding Type Inference
+
+    398. Using Union Types
+
+    399. Understanding Type Aliases
+
+    400. Functions & Function Types
+
+    401. Diving Into Generics
+
+    402. A Closer Look At Generics
+
+    403. Creating a React + TypeScript Project
+
+    404. Working with Components & TypeScript
+
+    405. Working with Props & TypeScript
+
+    406. Adding a Data Model
+
+    407. Time to Practice: Exercise Time!
+
+    408. Form Submissions In TypeScript Projects
+
+    409. Working with refs & useRef
+
+    410. Working with "Function Props"
+
+    411. Managing State & TypeScript
+
+    412. Adding Styling
+
+    413. Time to Practice: Removing a Todo
+
+    414. The Context API & TypeScript
+
+    415. Summary
+
+    416. Bonus: Exploring tsconfig.json
+
+    417. Module Resources
+
+# Section 28: Optional: React Hooks Introduction & Summary|
+
+    418. Module Introduction
+
+    419. What Are React Hooks?
+
+    420. The Starting Project
+
+    421. Getting Started with useState()
+
+    422. More on useState() & State Updating
+
+    423. Array Destructuring
+
+    424. Multiple States
+
+    425. Rules of Hooks
+
+    426. Passing State Data Across Components
+
+    Assignment 6: Time to Practice: Hooks Basics
+
+    427. Sending Http Requests
+
+    428. useEffect() & Loading Data
+
+    429. Understanding useEffect() Dependencies
+
+    430. More on useEffect()
+
+    431. What's useCallback()?
+
+    432. Working with Refs & useRef()
+
+    433. Cleaning Up with useEffect()
+
+    434. Deleting Ingredients
+
+    435. Loading Errors & State Batching
+
+    436. More on State Batching & State Updates
+
+    437. Understanding useReducer()
+
+    438. Using useReducer() for the Http State
+
+    439. Working with useContext()
+
+    440. Performance Optimizations with useMemo()
+
+    441. Getting Started with Custom Hooks
+
+    442. Sharing Data Between Custom Hooks & Components
+
+    443. Using the Custom Hook
+
+    444. Wrap Up
+
+    445. Module Resources
+
+# Section 29: Optional: React Summary & Core Feature Walkthrough
+
+    446. Module Introduction
+
+    447. What Is React?
+
+    448. Why React?
+
+    449. Building SPAs (Single Page Applications)
+
+    450. React Alternatives
+
+    451. Creating a React Project
+
+    452. Setting Up A Code Editor
+
+    453. Diving Into The Created Project
+
+    454. How React Works & Understanding Components
+
+    455. More Component Work & Styling with CSS Classes
+
+    456. Building & Re-Using Another Component
+
+    457. Working with "props" & Dynamic Content
+
+    458. Handling Events
+
+    459. Adding More Components
+
+    460. Introducing State
+
+    461. Working with "Event Props" (Passing Function As Props)
+
+    462. Adding Routing
+
+    463. Adding Links & Navigation
+
+    464. Styling with CSS Modules
+
+    465. Outputting Lists of Data
+
+    466. Adding More React Components
+
+    467. Building Wrapper Components with props.children
+
+    468. Adding a Form
+
+    469. Getting User Input & Handling Form Submission
+
+    470. Preparing the App for Http
+
+    471. Sending a POST Request
+
+    472. Navigating Programmatically
+
+    473. Getting Started with Fetching Data
+
+    474. Using the useEffect() Hook
+
+    475. Introducing React Context
+
+    476. Context Logic & Different Ways Of Updating State
+
+    477. Using Context In Components
+
+    478. More Context Usage
+
+    479. Summary
+
+    480. Module Resources
 
 # Sección 30: Course Roundup
 
