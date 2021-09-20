@@ -3355,11 +3355,15 @@
             </Link>
 
     325. Onwards to a bigger Project!
-        
+        habla del proyecto, y deja el zip
+
     326. Preparing the Project Pages
-
+        también se pueden crear rutas dinamicas, nesteando carpetas, ej
+        pages/[meetupid]/index.js
+        
     327. Outputting a List of Meetups
-
+        se baja una imagen de wikipedia..
+        
     328. Adding the New Meetup Form
 
     329. The "_app.js" File & Layout Wrapper
